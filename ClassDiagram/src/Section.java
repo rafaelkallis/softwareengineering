@@ -1,8 +1,12 @@
 /*
  * Section
  */
-public class Section {
-
+public abstract class Section {
+	public Object SectionEventBus;
+	void ActivateSection(){
+		
+	}
+	
 }
 
 class WorldMapSection extends Section{

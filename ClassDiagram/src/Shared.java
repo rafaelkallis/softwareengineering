@@ -3,6 +3,7 @@
  */
 
 final class AppController{
+	public Object GlobalEventBus;
 	void onModuleLoad(){
 		
 	}
