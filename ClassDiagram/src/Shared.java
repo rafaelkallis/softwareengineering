@@ -29,9 +29,31 @@ class MovieDuration extends MovieAttribute {}
 class MovieID extends MovieAttribute {}
 
 class Movie {
+	Movie(	MovieID id,
+			MovieTitle title,
+			MovieYear year,
+			MovieMonth month,
+			MovieDay day,
+			MovieLanguage[] languages,
+			MovieCountry[] countries,
+			MovieRating rating,
+			MovieDuration duration){
+		this.id = id;
+		this.title= title;
+		this.year = year;
+		this.month= month;
+		this.day = day;
+		this.languages = languages;
+		this.countries = countries;
+		this.rating = rating;
+		this.duration = duration;
+	}
+
 	public MovieID id;
 	public MovieTitle title;
 	public MovieYear year;
+	public MovieMonth month;
+	public MovieDay day;
 	public MovieLanguage[] languages;
 	public MovieCountry[] countries;
 	public MovieRating rating;
