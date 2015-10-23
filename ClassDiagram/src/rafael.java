@@ -1,7 +1,7 @@
 public class rafael {
 	
 }
-class AppController{
+final class AppController{
 	
 }
 
