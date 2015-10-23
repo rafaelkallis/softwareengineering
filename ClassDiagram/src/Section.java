@@ -42,11 +42,23 @@ class AdminareaSection extends Section{
 /*
  * View
  */
-interface FilterViewInterface {
+
+abstract class View{
+	View(Presenter presenter){
+		this.presenter = presenter;
+	}
+	protected Presenter presenter;
 }
 
 class RangeSliderView implements FilterViewInterface {
   
+//interface FilterViewInterface {
+//}
+
+abstract class FilterView extends View{
+	FilterView(FilterPresenter presenter){
+		super(presenter);
+	}
 }
 class SelectListView implements FilterViewInterface {
   
