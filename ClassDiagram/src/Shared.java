@@ -1,3 +1,5 @@
+//import com.google.gwt.event.shared.EventBus;
+
 /*
  * Bootstrapping class
  */
@@ -44,8 +46,7 @@ class Movie {
 	public MovieDuration duration;
 }
 
-abstract class MovieAttribute {
-}
+abstract class MovieAttribute {}
 
 class MovieTitle extends MovieAttribute {}
 
