@@ -1,10 +1,9 @@
 interface FilterViewInterface {
+}
+class RangeSliderView implements FilterViewInterface {
   
 }
-class RangeSliderView {
-  
-}
-class SelectListView {
+class SelectListView implements FilterViewInterface {
   
 }
 class LoginView {
@@ -13,16 +12,16 @@ class LoginView {
 class ImportView {
   
 }
-class PieChartView {
+class PieChartView implements ChartViewInterface {
   
 }
-class BarChartView {
+class BarChartView implements ChartViewInterface {
   
 }
 interface ChartViewInterface {
   
 }
-class SearchBoxView {
+class SearchBoxView implements FilterViewInterface {
   
 }
 class AdvertismentView {
