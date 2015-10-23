@@ -9,7 +9,6 @@ public abstract class Section {
 	void ActivateSection(){
 		
 	}
-	
 }
 
 class WorldMapSection extends Section{
