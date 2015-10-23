@@ -50,8 +50,6 @@ abstract class View{
 	protected Presenter presenter;
 }
 
-class RangeSliderView implements FilterViewInterface {
-  
 //interface FilterViewInterface {
 //}
 
@@ -60,8 +58,16 @@ abstract class FilterView extends View{
 		super(presenter);
 	}
 }
-class SelectListView implements FilterViewInterface {
-  
+
+class RangeSliderView extends FilterView {
+	RangeSliderView(FilterPresenter presenter){
+		super(presenter);
+	}
+}
+class SelectListView extends FilterView {
+	SelectListView(FilterPresenter presenter){
+		super(presenter);
+	}
 }
 class LoginView {
   
@@ -82,7 +88,10 @@ class SearchBoxView implements FilterViewInterface {
   
 }
 class AdvertismentView {
-  
+	AdvertismentView(AdvertisementPresenter presenter){
+		this.presenter = presenter;
+	}
+  private AdvertisementPresenter presenter;
 }
 class NavigationView {
   
@@ -106,30 +115,45 @@ class AdminareaView{
 
 /*
  * Presenter
+ * 
  */
-class TablePresenter {
 
+abstract class Presenter{
+	protected View view;
+	//protected Object SectionEventBus;
 }
 
-class LoginPresenter {
-
-}
-
-class ImportPresenter {
-
-}
-
-class StatisticsPresenter {
-
-}
-
-class ChartPresenter {
-	private ChartViewInterface view;
-}
-
-class FilterPresenter {
-	private FilterViewInterface view;
+class FilterPresenter extends Presenter{
+	//private FilterViewInterface view; //inherited from Presenter
 	private MovieAttribute attribute;
+}
+
+class TablePresenter extends Presenter {
+
+}
+
+class LoginPresenter extends Presenter{
+
+}
+
+class ImportPresenter extends Presenter{
+
+}
+
+class StatisticsPresenter extends Presenter{
+
+}
+
+class ChartPresenter extends Presenter{
+	//private ChartViewInterface view; //inherited from Presenter
+}
+
+class AdvertisementPresenter extends Presenter{
+
+}
+
+class NavigationPresenter extends Presenter{
+
 }
 
 class YearFilterPresenter extends FilterPresenter {
@@ -148,13 +172,6 @@ class CountryFilterPresenter extends FilterPresenter {
 
 }
 
-class AdvertisementPresenter {
-
-}
-
-class NavigationPresenter {
-
-}
 /*
  * Model
  */
