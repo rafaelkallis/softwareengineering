@@ -4,24 +4,27 @@ public class rafael {
 class AppController{
 	
 }
+
 class Section{
 	
 }
-class WorldMapSection{
+class WorldMapSection extends Section{
 	
 }
-class TableSection{
+class TableSection extends Section{
 	
 }
-class HeatMapSection{
+class HeatMapSection extends Section{
 	
 }
-class StatisticsSection{
+class StatisticsSection extends Section{
 	
 }
-class AdminareaSection{
+class AdminareaSection extends Section{
 	
 }
+
+
 class WorldMapView{
 	
 }
