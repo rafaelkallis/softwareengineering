@@ -1,9 +1,4 @@
 
-public class Natalie {
-
-}
-
-
 class TablePresenter {
 
 }
@@ -28,19 +23,19 @@ class FilterPresenter {
 
 }
 
-class YearFilterPresenter {
+class YearFilterPresenter extends FilterPresenter {
 
 }
 
-class LanguageFilterPresenter {
+class LanguageFilterPresenter extends FilterPresenter {
 
 }
 
-class GenreFilterPresenter {
+class GenreFilterPresenter extends FilterPresenter {
 
 }
 
-class CountyFilterPresenter {
+class CountryFilterPresenter extends FilterPresenter {
 
 }
 
@@ -48,6 +43,6 @@ class AdvertisementPresenter {
 
 }
 
-class NaviagationPresenter {
+class NavigationPresenter {
 
 }
