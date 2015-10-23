@@ -1,9 +1,9 @@
-
+/*
+ * Section
+ */
 public class Section {
 
 }
-
-// sections
 
 class WorldMapSection extends Section{
 	
@@ -21,8 +21,9 @@ class AdminareaSection extends Section{
 	
 }
 
-// views
-
+/*
+ * View
+ */
 interface FilterViewInterface {
 }
 
@@ -73,8 +74,9 @@ class AdminareaView{
 	
 }
 
-// presenters
-
+/*
+ * Presenter
+ */
 class TablePresenter {
 
 }
@@ -97,7 +99,7 @@ class ChartPresenter {
 
 class FilterPresenter {
 	private FilterViewInterface view;
-	private MovieAttributeInterface attribute;
+	private MovieAttribute attribute;
 }
 
 class YearFilterPresenter extends FilterPresenter {
