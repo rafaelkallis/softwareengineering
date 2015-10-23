@@ -50,8 +50,20 @@ abstract class View{
 	protected Presenter presenter;
 }
 
+class LoginView extends View{
+  LoginView(Presenter presenter){
+	  super(presenter);
+  }
+}
+class ImportView extends View{
+  ImportView(Presenter presenter){
+	  super(presenter);
+  }
+}
+
 //interface FilterViewInterface {
 //}
+/*	FilterView	*/
 
 abstract class FilterView extends View{
 	FilterView(FilterPresenter presenter){
@@ -69,42 +81,60 @@ class SelectListView extends FilterView {
 		super(presenter);
 	}
 }
-class LoginView {
-  
-}
-class ImportView {
-  
-}
-class PieChartView implements ChartViewInterface {
-  
-}
-class BarChartView implements ChartViewInterface {
-  
-}
-interface ChartViewInterface {
-  
-}
-class SearchBoxView implements FilterViewInterface {
-  
-}
-class AdvertismentView {
-	AdvertismentView(AdvertisementPresenter presenter){
-		this.presenter = presenter;
-	}
-  private AdvertisementPresenter presenter;
-}
-class NavigationView {
-  
+
+class SearchBoxView extends FilterView {
+	  SearchBoxView(FilterPresenter presenter){
+		  super(presenter);
+	  }
 }
 
-class WorldMapView{
-	
+/*	ChartView	*/
+abstract class ChartView extends View{
+	ChartView(ChartPresenter presenter){
+		super(presenter);
+	}
 }
-class TableView{
-	
+
+class PieChartView extends ChartView {
+	PieChartView(ChartPresenter presenter){
+		super(presenter);
+	}
+}
+class BarChartView extends ChartView {
+	BarChartView(ChartPresenter presenter){
+		super(presenter);
+	}
+}
+
+//interface ChartViewInterface {
+//}
+
+class AdvertismentView extends View {
+	AdvertismentView(AdvertisementPresenter presenter){
+		super(presenter);
+	}
+  //private AdvertisementPresenter presenter;
+}
+class NavigationView extends View {
+	NavigationView(NavigationPresenter presenter){
+		super(presenter);
+	}
+}
+
+class WorldMapView extends View{
+	WorldMapView(WorldMapPresenter presenter){
+		super(presenter);
+	}
+}
+class TableView extends View{
+	TableView(TablePresenter presenter){
+		super(presenter);
+	}
 }
 class HeatMapView{
-	
+	HeatMapView(HeatMapPresenter presenter){
+		super(presenter);
+	}
 }
 class StatisticsView{
 	
@@ -139,6 +169,8 @@ class LoginPresenter extends Presenter{
 class ImportPresenter extends Presenter{
 
 }
+
+//TODO heatmappresenter
 
 class StatisticsPresenter extends Presenter{
 
