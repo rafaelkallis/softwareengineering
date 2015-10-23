@@ -22,20 +22,20 @@ public abstract class Section {
 
 class WorldMapSection extends Section{
 	
-	private WorldMapView worldMapView;
-	private WorldMapPresenter worldMapPresenter;
+	protected WorldMapView 			worldMapView;
+	private WorldMapPresenter 		worldMapPresenter;
 	
-	private FilterView genreFilterView;
-	private GenreFilterPresenter genreFilterPresenter;
+	private FilterView 				genreFilterView;
+	private GenreFilterPresenter 	genreFilterPresenter;
 	
-	private FilterView countryFilterView;
-	private CountryFilterPresenter countryFilterPresenter;
+	private FilterView 				countryFilterView;
+	private CountryFilterPresenter 	countryFilterPresenter;
 	
-	private FilterView languageFilterView;
+	private FilterView 				languageFilterView;
 	private LanguageFilterPresenter languageFilterPresenter;
 	
-	private RangeSliderView rangeSliderView;
-	private YearFilterPresenter rangeSliderPresenter;
+	private RangeSliderView 		rangeSliderView;
+	private YearFilterPresenter 	rangeSliderPresenter;
 	
 	WorldMapSection(Object globalEventBus){
 		super(new Object()/* FIXME: constructor of sectionEventBus here*/,globalEventBus);
@@ -87,11 +87,7 @@ abstract class View{
 	protected Object sectionEventBus;
 }
 
-class LoginView extends View{
-  LoginView(Object sectionEventBus){
-		super(sectionEventBus);
-	}
-}
+
 class ImportView extends View{
   ImportView(Object sectionEventBus){
 		super(sectionEventBus);
@@ -158,12 +154,7 @@ class NavigationView extends View {
 	}
 }
 
-class WorldMapView extends View{
-	private WorldStatisticsModel model;
-	WorldMapView(Object sectionEventBus){
-		super(sectionEventBus);
-	}
-}
+
 class TableView extends View{
 	TableView(Object sectionEventBus){
 		super(sectionEventBus);
@@ -191,71 +182,102 @@ class AdminareaView extends View{
  */
 
 abstract class Presenter{
-	protected View view;
 	protected Object sectionEventBus;
-	Presenter(View view, Object sectionEventBus){
-		this.view = view;
+	Presenter(Object sectionEventBus){
 		this.sectionEventBus = sectionEventBus;
 	}
 }
 
 class FilterPresenter extends Presenter{
-	//private FilterViewInterface view; //inherited from Presenter
-	private MovieAttribute attribute;
+	//private FilterViewInterface view; //communicates indirect via sectionEventBus
+	FilterPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
+	private MovieAttribute attribute; // but why?
 }
 
 class WorldMapPresenter extends Presenter{
-	WorldMapPresenter(WorldMapView view, Object sectionEventBus){
-		super(view,sectionEventBus);
+	WorldMapPresenter(Object sectionEventBus){
+		super(sectionEventBus);
 	}
 }
 
 class TablePresenter extends Presenter {
-
+	TablePresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class HeatMapPresenter extends Presenter{
-	
+	HeatMapPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class LoginPresenter extends Presenter{
-
+	LoginPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class ImportPresenter extends Presenter{
-
+	ImportPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class StatisticsPresenter extends Presenter{
-
+	StatisticsPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class ChartPresenter extends Presenter{
-	//private ChartViewInterface view; //inherited from Presenter
+	//private ChartViewInterface view; //communicates indirect via section eventbus
+	ChartPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class AdvertisementPresenter extends Presenter{
-
+	AdvertisementPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
-class NavigationPresenter extends Presenter{
 
+/*
+ * Special Presenter
+ * operates threw global event bus
+ */
+class NavigationPresenter extends Presenter{
+	NavigationPresenter(Object globalEventBus){
+		super(globalEventBus);
+	}
 }
 
 class YearFilterPresenter extends FilterPresenter {
-
+	YearFilterPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class LanguageFilterPresenter extends FilterPresenter {
-
+	LanguageFilterPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class GenreFilterPresenter extends FilterPresenter {
-
+	GenreFilterPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 class CountryFilterPresenter extends FilterPresenter {
-
+	CountryFilterPresenter(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 /*
