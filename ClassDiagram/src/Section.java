@@ -2,7 +2,10 @@
  * Section
  */
 public abstract class Section {
-	public Object SectionEventBus;
+	protected Object sectionEventBus;
+	Section(Object sectionEventBus){
+		this.sectionEventBus = sectionEventBus;
+	}
 	void ActivateSection(){
 		
 	}
@@ -10,19 +13,31 @@ public abstract class Section {
 }
 
 class WorldMapSection extends Section{
-	
+	WorldMapSection(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 class TableSection extends Section{
-	
+	private TableView tableView;
+	private FilterView languageFilterView;
+	TableSection(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 class HeatMapSection extends Section{
-	
+	HeatMapSection(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 class StatisticsSection extends Section{
-	
+	StatisticsSection(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 class AdminareaSection extends Section{
-	
+	AdminareaSection(Object sectionEventBus){
+		super(sectionEventBus);
+	}
 }
 
 /*
