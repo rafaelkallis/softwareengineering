@@ -80,21 +80,6 @@ class ExportRequest{
 class ExportResponse{
 }
 
-
-
-class WorldStatisticsModel{
-	
-}
-class StatisticsModel{
-	
-}
-class FilterModel{
-	
-}
-class MovieCollection{
-	
-}
-
 /*
  * Users
  */

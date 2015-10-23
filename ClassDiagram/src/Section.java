@@ -125,3 +125,19 @@ class AdvertisementPresenter {
 class NavigationPresenter {
 
 }
+/*
+ * Model
+ */
+
+class WorldStatisticsModel{
+	
+}
+class StatisticsModel{
+	
+}
+class FilterModel{
+	
+}
+class MovieCollection{
+	
+}
