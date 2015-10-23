@@ -17,3 +17,5 @@
 *.dat
 
 *.xml
+
+.metadata/.log
