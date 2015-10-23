@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="NavigationView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="130" x="115" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="AdvertisementPresenter" project="ClassDiagram" 
+    file="/ClassDiagram/src/Natalie.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="188" x="285" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="SearchBoxView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="130" x="3653" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="rafael" project="ClassDiagram" file="/ClassDiagram/src/rafael.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="83" width="98" x="513" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="TablePresenter" project="ClassDiagram" file="/ClassDiagram/src/Natalie.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="127" x="651" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="AdvertismentView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="147" x="818" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="LanguageFilterPresenter" project="ClassDiagram" 
+    file="/ClassDiagram/src/Natalie.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="193" x="1005" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="8" language="java" name="FilterViewInterface" project="ClassDiagram" 
+    file="/ClassDiagram/src/dominique.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="65" width="151" x="3823" y="250"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="9" language="java" name="ImportPresenter" project="ClassDiagram" file="/ClassDiagram/src/Natalie.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="133" x="1686" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="ImportView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="100" x="1859" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="BarChartView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="116" x="1238" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="FilterPresenter" project="ClassDiagram" file="/ClassDiagram/src/Natalie.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="124" x="2213" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="GenreFilterPresenter" project="ClassDiagram" 
+    file="/ClassDiagram/src/Natalie.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="165" x="2377" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="PieChartView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="114" x="1394" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="SelectListView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="124" x="3823" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="LoginPresenter" project="ClassDiagram" file="/ClassDiagram/src/Natalie.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="129" x="2582" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="ChartPresenter" project="ClassDiagram" file="/ClassDiagram/src/Natalie.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="126" x="2751" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="LoginView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="98" x="2917" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="19" language="java" name="ChartViewInterface" project="ClassDiagram" 
+    file="/ClassDiagram/src/dominique.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="65" width="153" x="1316" y="250"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="20" language="java" name="RangeSliderView" project="ClassDiagram" file="/ClassDiagram/src/dominique.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="139" x="3987" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="YearFilterPresenter" project="ClassDiagram" file="/ClassDiagram/src/Natalie.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="154" x="3055" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="StatisticsPresenter" project="ClassDiagram" file="/ClassDiagram/src/Natalie.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="153" x="3460" y="127"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <realization id="23">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <realization id="24">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <realization id="25">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="26">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <realization id="27">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="8"/>  
+  </realization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
