@@ -85,9 +85,10 @@ class MovieCollection{
 	
 }
 class User{
-	
+	public static int global_user_id;
+	public int user_id;
 }
-class Adminuser{
+class Adminuser extends User{
 	
 }
 
