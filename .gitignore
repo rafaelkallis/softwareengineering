@@ -2,4 +2,4 @@
 bin/.classpath
 .DS_Store
 bin/
-.classpath
+.classpath.recommenders
