@@ -1,33 +1,16 @@
-
-public class Shared {
-
-}
+/*
+ * Bootstrapping class
+ */
 
 final class AppController{
-	
+	void onModuleLoad(){
+		
+	}
 }
 
-abstract class MovieAttribute {
-}
-
-class MovieTitle extends MovieAttribute {}
-
-class MovieYear extends MovieAttribute {}
-
-class MovieMonth extends MovieAttribute{}
-
-class MovieDay extends MovieAttribute{}
-
-class MovieLanguage extends MovieAttribute {}
-
-class MovieCountry extends MovieAttribute {}
-
-class MovieRating extends MovieAttribute {}
-
-class MovieDuration extends MovieAttribute {}
-
-class MovieID extends MovieAttribute {}
-
+/*
+ * Movie
+ */
 class Movie {
 	Movie(	MovieID id,
 			MovieTitle title,
@@ -60,6 +43,31 @@ class Movie {
 	public MovieDuration duration;
 }
 
+abstract class MovieAttribute {
+}
+
+class MovieTitle extends MovieAttribute {}
+
+class MovieYear extends MovieAttribute {}
+
+class MovieMonth extends MovieAttribute{}
+
+class MovieDay extends MovieAttribute{}
+
+class MovieLanguage extends MovieAttribute {}
+
+class MovieCountry extends MovieAttribute {}
+
+class MovieRating extends MovieAttribute {}
+
+class MovieDuration extends MovieAttribute {}
+
+class MovieID extends MovieAttribute {}
+
+/*
+ * Import / Export
+ */
+
 class ImportRequest{
 	
 }
@@ -71,6 +79,8 @@ class ExportRequest{
 }
 class ExportResponse{
 }
+
+
 
 class WorldStatisticsModel{
 	
@@ -84,6 +94,10 @@ class FilterModel{
 class MovieCollection{
 	
 }
+
+/*
+ * Users
+ */
 class User{
 	public static int global_user_id;
 	public int user_id;
