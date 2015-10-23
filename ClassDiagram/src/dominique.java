@@ -1,6 +1,5 @@
 interface FilterViewInterface {
 }
-
 class RangeSliderView implements FilterViewInterface {
   
 }

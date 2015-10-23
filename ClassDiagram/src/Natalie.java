@@ -16,11 +16,11 @@ class StatisticsPresenter {
 }
 
 class ChartPresenter {
-	private ChartViewInterface view;
+
 }
 
 class FilterPresenter {
-	private FilterViewInterface view;
+
 }
 
 class YearFilterPresenter extends FilterPresenter {
