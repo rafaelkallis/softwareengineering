@@ -21,6 +21,7 @@ class ChartPresenter {
 
 class FilterPresenter {
 	private FilterViewInterface view;
+	private MovieAttributeInterface attribute;
 }
 
 class YearFilterPresenter extends FilterPresenter {

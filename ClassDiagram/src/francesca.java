@@ -1,27 +1,27 @@
-import java.lang.Object;
 
-public class francesca extends Object {
-	
-	class movieAttribute {}
-	
-	class movieTitle {}
-	
-	class movieYear {}
-	
-	class movieMonth {}
-	
-	class movieDay {}
-	
-	class movieLanguage {}
-	
-	class movieCountry {}
-	
-	class movieRating {}
-	
-	class movieDuration {}
-	
-	class movieID {}
-	
-	class movie {}
+interface MovieAttributeInterface {
+}
 
+class MovieTitle implements MovieAttributeInterface {}
+
+class MovieYear implements MovieAttributeInterface {}
+
+class MovieLanguage implements MovieAttributeInterface {}
+
+class MovieCountry implements MovieAttributeInterface {}
+
+class MovieRating implements MovieAttributeInterface {}
+
+class MovieDuration implements MovieAttributeInterface {}
+
+class MovieID implements MovieAttributeInterface {}
+
+class Movie {
+	public MovieID id;
+	public MovieTitle title;
+	public MovieYear year;
+	public MovieLanguage[] languages;
+	public MovieCountry[] countries;
+	public MovieRating rating;
+	public MovieDuration duration;
 }
