@@ -20,18 +20,18 @@ public abstract class Section {
 	abstract void eventHandler(Object event);
 }
 
-class WorldMapSection extends Section{
+final class WorldMapSection extends Section{
 	
-	protected WorldMapView 			worldMapView;
+	private WorldMapView 			worldMapView;
 	private WorldMapPresenter 		worldMapPresenter;
 	
-	private FilterView 				genreFilterView;
+	private SelectListView 			genreFilterView;
 	private GenreFilterPresenter 	genreFilterPresenter;
 	
-	private FilterView 				countryFilterView;
+	private SelectListView 			countryFilterView;
 	private CountryFilterPresenter 	countryFilterPresenter;
 	
-	private FilterView 				languageFilterView;
+	private SelectListView 			languageFilterView;
 	private LanguageFilterPresenter languageFilterPresenter;
 	
 	private RangeSliderView 		rangeSliderView;
@@ -39,12 +39,21 @@ class WorldMapSection extends Section{
 	
 	WorldMapSection(Object globalEventBus){
 		super(new Object()/* FIXME: constructor of sectionEventBus here*/,globalEventBus);
-		this.worldMapView 		= new WorldMapView(this.sectionEventBus);
-		this.worldMapPresenter 	= new WorldMapPresenter(this.sectionEventBus);
-		this. genreFilterView 	= new FilterView(this.sectionEventBus);
-		this.genreFilterPresenter = new GenreFilterPresenter(this.sectionEventBus);
-		this.countryFilterView		= new FilterView(this.sectionEventBus);
+		
+		this.worldMapView 			= new WorldMapView(this.sectionEventBus);
+		this.worldMapPresenter 		= new WorldMapPresenter(this.sectionEventBus);
+		
+		this.genreFilterView 		= new SelectListView(this.sectionEventBus);
+		this.genreFilterPresenter 	= new GenreFilterPresenter(this.sectionEventBus);
+		
+		this.countryFilterView		= new SelectListView(this.sectionEventBus);
 		this.countryFilterPresenter	= new CountryFilterPresenter(this.sectionEventBus);
+		
+		this.languageFilterView		= new SelectListView(this.sectionEventBus);
+		this.languageFilterPresenter= new LanguageFilterPresenter(this.sectionEventBus);
+		
+		this.rangeSliderView		= new RangeSliderView(this.sectionEventBus);
+		this.rangeSliderPresenter	= new YearFilterPresenter(this.sectionEventBus);
 	}
 	void activateSection(){
 		// Nothing To do
@@ -56,24 +65,24 @@ class WorldMapSection extends Section{
 		// Handle event
 	}
 }
-class TableSection extends Section{
+final class TableSection extends Section{
 	private TableView tableView;
 	private FilterView languageFilterView;
 	TableSection(Object sectionEventBus){
 		super(sectionEventBus);
 	}
 }
-class HeatMapSection extends Section{
+final class HeatMapSection extends Section{
 	HeatMapSection(Object sectionEventBus){
 		super(sectionEventBus);
 	}
 }
-class StatisticsSection extends Section{
+final class StatisticsSection extends Section{
 	StatisticsSection(Object sectionEventBus){
 		super(sectionEventBus);
 	}
 }
-class AdminareaSection extends Section{
+final class AdminareaSection extends Section{
 	AdminareaSection(Object sectionEventBus){
 		super(sectionEventBus);
 	}
