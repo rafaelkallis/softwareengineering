@@ -11,8 +11,8 @@ public abstract class Section {
 	protected Object globalEventBus;
 	//protected AppController appController;
 	
-	Section(Object sectionEventBus, Object globalEventBus){
-		this.sectionEventBus = sectionEventBus;
+	Section(Object globalEventBus){
+		this.sectionEventBus = new Object(); //FIXME: contructor of sectionEventBus
 		this.globalEventBus = globalEventBus;
 	}
 	abstract void activateSection();
@@ -38,7 +38,7 @@ final class WorldMapSection extends Section{
 	private YearFilterPresenter 	rangeSliderPresenter;
 	
 	WorldMapSection(Object globalEventBus){
-		super(new Object()/* FIXME: constructor of sectionEventBus here*/,globalEventBus);
+		super(globalEventBus);
 		
 		this.worldMapView 			= new WorldMapView(this.sectionEventBus);
 		this.worldMapPresenter 		= new WorldMapPresenter(this.sectionEventBus);
@@ -68,23 +68,59 @@ final class WorldMapSection extends Section{
 final class TableSection extends Section{
 	private TableView tableView;
 	private FilterView languageFilterView;
-	TableSection(Object sectionEventBus){
-		super(sectionEventBus);
+	TableSection(Object globalEventBus){
+		super(globalEventBus);
+	}
+	void activateSection(){
+		// Nothing To do
+	}
+	void fireEvent(Object event){
+		// Do something
+	}
+	 void eventHandler(Object event){
+		// Handle event
 	}
 }
 final class HeatMapSection extends Section{
-	HeatMapSection(Object sectionEventBus){
-		super(sectionEventBus);
+	HeatMapSection(Object globalEventBus){
+		super(globalEventBus);
+	}
+	void activateSection(){
+		// Nothing To do
+	}
+	void fireEvent(Object event){
+		// Do something
+	}
+	void eventHandler(Object event){
+		// Handle event
 	}
 }
 final class StatisticsSection extends Section{
-	StatisticsSection(Object sectionEventBus){
-		super(sectionEventBus);
+	StatisticsSection(Object globalEventBus){
+		super(globalEventBus);
+	}
+	void activateSection(){
+		// Nothing To do
+	}
+	void fireEvent(Object event){
+		// Do something
+	}
+	 void eventHandler(Object event){
+		// Handle event
 	}
 }
 final class AdminareaSection extends Section{
-	AdminareaSection(Object sectionEventBus){
-		super(sectionEventBus);
+	AdminareaSection(Object globalEventBus){
+		super(globalEventBus);
+	}
+	void activateSection(){
+		// Nothing To do
+	}
+	void fireEvent(Object event){
+		// Do something
+	}
+	 void eventHandler(Object event){
+		// Handle event
 	}
 }
 
@@ -146,7 +182,7 @@ class PieChartView extends ChartView {
 	}
 }
 class BarChartView extends ChartView {
-	BarChartView((Object sectionEventBus){
+	BarChartView(Object sectionEventBus){
 		super(sectionEventBus);
 	}
 }
@@ -166,6 +202,11 @@ class NavigationView extends View {
 	}
 }
 
+class WorldMapView extends View{
+	WorldMapView(Object sectionEventBus){
+		super(sectionEventBus);
+	}
+}
 
 class TableView extends View{
 	TableView(Object sectionEventBus){
@@ -190,7 +231,6 @@ class AdminareaView extends View{
 
 /*
  * Presenter
- * 
  */
 
 abstract class Presenter{
