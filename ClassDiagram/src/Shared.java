@@ -1,4 +1,4 @@
-
+import java.util.LinkedList;
 /*
  * Bootstrapping & Section controlling
  */
@@ -21,31 +21,22 @@ class Movie {
 	Movie(	MovieID id,
 			MovieTitle title,
 			MovieYear year,
-			MovieMonth month,
-			MovieDay day,
 			MovieLanguage[] languages,
 			MovieCountry[] countries,
-			//MovieRating rating,
 			MovieDuration duration){
 		this.id = id;
 		this.title= title;
 		this.year = year;
-		this.month= month;
-		this.day = day;
 		this.languages = languages;
 		this.countries = countries;
-		//this.rating = rating;
 		this.duration = duration;
 	}
 
 	public MovieID id;
 	public MovieTitle title;
 	public MovieYear year;
-	public MovieMonth month;
-	public MovieDay day;
 	public MovieLanguage[] languages;
 	public MovieCountry[] countries;
-	//public MovieRating rating;
 	public MovieDuration duration;
 }
 
@@ -64,18 +55,6 @@ class MovieTitle extends MovieAttribute {
 
 class MovieYear extends MovieAttribute {
 	MovieYear(Integer value){
-		super(value);
-	}
-}
-
-class MovieMonth extends MovieAttribute{
-	MovieMonth(Integer value){
-		super(value);
-	}
-}
-
-class MovieDay extends MovieAttribute{
-	MovieDay(Integer value){
 		super(value);
 	}
 }
@@ -137,8 +116,31 @@ class Adminuser extends User{
  * Event
  */
 
+interface EventHandleable{
+	void handleEvent(Event e);
+}
+
+class EventBus{
+	LinkedList<EventHandleable> componentList;
+	public void bind(EventHandleable component){
+		componentList.add(component);
+	}
+	public void fireEvent(Event e){
+		for(EventHandleable component : componentList){
+			component.handleEvent(e);
+		}
+	}
+}
+
 abstract class Event{
-	
+	EventHandleable source;
+	Event(){
+		// no source means source cannot handle fired events
+		this.source = null;
+	}
+	Event(EventHandleable source){
+		this.source = source;
+	}
 }
 
 class FilterChangedEvent extends Event{

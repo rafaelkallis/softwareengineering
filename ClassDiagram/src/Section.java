@@ -8,18 +8,15 @@ import java.util.HashSet;
  * Dependencies:
  * 	GlobalEventBus
  */
-public abstract class Section {
+public abstract class Section{
 	protected EventBus sectionEventBus;
 	protected EventBus globalEventBus;
-	//protected AppController appController;
 	
 	Section(EventBus globalEventBus){
-		this.sectionEventBus = new EventBus(); //FIXME: contructor of sectionEventBus
+		this.sectionEventBus = new EventBus();
 		this.globalEventBus = globalEventBus;
 	}
 	abstract void activateSection();
-	abstract void fireEvent(Event event);
-	abstract void eventHandler(Event event);
 }
 
 final class WorldMapSection extends Section{
@@ -156,6 +153,25 @@ final class AdminareaSection extends Section{
 }
 
 /*
+ * Section Object
+ */
+abstract class SectionObject{
+	EventBus sectionEventBus;
+	SectionObject(EventBus sectionEventBus){
+		this.sectionEventBus = sectionEventBus;
+	}
+}
+
+abstract class SectionObjectWithGlobalEventBus extends SectionObject{
+	EventBus globalEventBus;
+	SectionObjectWithGlobalEventBus(EventBus sectionEventBus,EventBus globalEventBus){
+		super(sectionEventBus);
+	}
+}
+
+
+
+/*
  * View
  */
 
@@ -165,16 +181,21 @@ abstract class View{
 	}
 	protected EventBus sectionEventBus;
 }
-
-
-class ImportView extends View{
-  ImportView(EventBus sectionEventBus){
+abstract class ActiveView extends View implements{
+	ActiveView(EventBus sectionEventBus){
 		super(sectionEventBus);
+		this.sectionEventBus.bind(this);
 	}
+	abstract void handleEvent(Event e);
 }
 
-//interface FilterViewInterface {
-//}
+class ImportView extends View{
+	ImportView(EventBus sectionEventBus){
+		super(sectionEventBus);
+	}
+	
+}
+
 /*	FilterView	*/
 
 abstract class FilterView extends View{
@@ -183,7 +204,9 @@ abstract class FilterView extends View{
 	}
 }
 
-class RangeSliderView extends FilterView {
+
+
+class RangeSliderView extends FilterView{
 	RangeSliderView(EventBus sectionEventBus){
 		super(sectionEventBus);
 	}
@@ -201,6 +224,7 @@ class SearchBoxView extends FilterView {
 }
 
 /*	ChartView	*/
+
 abstract class ChartView extends View{
 	ChartView(EventBus sectionEventBus){
 		super(sectionEventBus);
@@ -218,14 +242,10 @@ class BarChartView extends ChartView {
 	}
 }
 
-//interface ChartViewInterface {
-//}
-
 class AdvertismentView extends View {
 	AdvertismentView(EventBus sectionEventBus){
 		super(sectionEventBus);
 	}
-  //private AdvertisementPresenter presenter;
 }
 class NavigationView extends View {
 	NavigationView(EventBus sectionEventBus){
@@ -233,9 +253,12 @@ class NavigationView extends View {
 	}
 }
 
-class WorldMapView extends View{
+class WorldMapView extends ActiveView{
 	WorldMapView(EventBus sectionEventBus){
 		super(sectionEventBus);
+	}
+	public void handleEvent(Event e){
+		// Handle event here
 	}
 }
 
@@ -272,11 +295,9 @@ abstract class Presenter{
 }
 
 class FilterPresenter extends Presenter{
-	//private FilterViewInterface view; //communicates indirect via sectionEventBus
 	FilterPresenter(EventBus sectionEventBus){
 		super(sectionEventBus);
 	}
-	private MovieAttribute attribute; // but why?
 }
 
 class WorldMapPresenter extends Presenter{
@@ -316,7 +337,6 @@ class StatisticsPresenter extends Presenter{
 }
 
 class ChartPresenter extends Presenter{
-	//private ChartViewInterface view; //communicates indirect via section eventbus
 	ChartPresenter(EventBus sectionEventBus){
 		super(sectionEventBus);
 	}
@@ -328,11 +348,11 @@ class AdvertisementPresenter extends Presenter{
 	}
 }
 
-
 /*
  * Special Presenter
  * operates threw global event bus
  */
+
 class NavigationPresenter extends Presenter{
 	NavigationPresenter(EventBus globalEventBus){
 		super(globalEventBus);
@@ -365,7 +385,6 @@ class CountryFilterPresenter extends FilterPresenter {
 
 /*
  * Model
- * NO DEPENDENCIES
  */
 
 class WorldStatisticsModel{
