@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 /*
  * Section
  */
@@ -66,10 +68,39 @@ final class WorldMapSection extends Section{
 	}
 }
 final class TableSection extends Section{
-	private TableView tableView;
-	private FilterView languageFilterView;
+	
+	private TableView 				tableView;
+	private TablePresenter			tablePresenter;
+	
+	private SelectListView 			genreFilterView;
+	private GenreFilterPresenter 	genreFilterPresenter;
+	
+	private SelectListView 			countryFilterView;
+	private CountryFilterPresenter 	countryFilterPresenter;
+	
+	private SelectListView 			languageFilterView;
+	private LanguageFilterPresenter languageFilterPresenter;
+	
+	private SelectListView			yearFilterView;
+	private YearFilterPresenter		yearFilterPresenter;
+	
 	TableSection(Object globalEventBus){
 		super(globalEventBus);
+		
+		this.tableView				= new TableView(this.sectionEventBus);
+		this.tablePresenter			= new TablePresenter(this.sectionEventBus);
+		
+		this.genreFilterView 		= new SelectListView(this.sectionEventBus);
+		this.genreFilterPresenter 	= new GenreFilterPresenter(this.sectionEventBus);
+		
+		this.countryFilterView		= new SelectListView(this.sectionEventBus);
+		this.countryFilterPresenter	= new CountryFilterPresenter(this.sectionEventBus);
+		
+		this.languageFilterView		= new SelectListView(this.sectionEventBus);
+		this.languageFilterPresenter= new LanguageFilterPresenter(this.sectionEventBus);
+		
+		this.yearFilterView			= new SelectListView(this.sectionEventBus);
+		this.yearFilterPresenter	= new YearFilterPresenter(this.sectionEventBus);
 	}
 	void activateSection(){
 		// Nothing To do
@@ -343,9 +374,13 @@ class WorldStatisticsModel{
 class StatisticsModel{
 	
 }
-class FilterModel{
+class HeatMapModel{
 	
 }
 class MovieCollection{
 	Movie[] movies;
+}
+
+class FilterCollection{
+	MovieAttribute[] filters;
 }
