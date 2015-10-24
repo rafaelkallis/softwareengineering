@@ -1,4 +1,5 @@
-import java.util.LinkedList;
+import java.util.List;
+import java.util.ArrayList;
 /*
  * Bootstrapping & Section controlling
  */
@@ -21,8 +22,8 @@ class Movie {
 	Movie(	MovieID id,
 			MovieTitle title,
 			MovieYear year,
-			MovieLanguage[] languages,
-			MovieCountry[] countries,
+			List<MovieLanguage> languages,
+			List<MovieCountry> countries,
 			MovieDuration duration){
 		this.id = id;
 		this.title= title;
@@ -35,8 +36,8 @@ class Movie {
 	public MovieID id;
 	public MovieTitle title;
 	public MovieYear year;
-	public MovieLanguage[] languages;
-	public MovieCountry[] countries;
+	public List<MovieLanguage> languages;
+	public List<MovieCountry> countries;
 	public MovieDuration duration;
 }
 
@@ -113,6 +114,38 @@ class Adminuser extends User{
 }
 
 /*
+ * Services
+ */
+
+abstract class Service implements EventHandleable{
+	protected EventBus globalEventBus;
+	Service(EventBus globalEventBus){
+		this.globalEventBus = globalEventBus;
+		this.globalEventBus.subscribe(this);
+	}
+	public abstract void handleEvent(Event e);
+}
+
+class QueryService extends Service{
+	QueryService(EventBus globalEventBus){
+		super(globalEventBus);
+	}
+	public void handleEvent(Event e){
+		if(e instanceof QueryEvent){
+			List<Movie> movies;
+			List<MovieAttribute> filters;
+			
+			filters = ((QueryEvent)e).filters;
+			
+			// lookup in database in return in movies
+			movies = new ArrayList<Movie>(); 
+			
+			((MovieRespondable)((QueryEvent)e).source).respond(movies);
+		}
+	}
+}
+
+/*
  * Event
  */
 
@@ -120,33 +153,76 @@ interface EventHandleable{
 	void handleEvent(Event e);	
 }
 
+interface Respondable<T> extends EventHandleable{
+	void respond(List<T> response);
+}
+
+interface MovieRespondable extends Respondable<Movie>{
+	
+}
+
 class EventBus{
-	LinkedList<EventHandleable> componentList;
-	public void bind(EventHandleable component){
-		componentList.add(component);
+	ArrayList<EventHandleable> subscriberList;
+	public void subscribe(EventHandleable subscriber){
+		subscriberList.add(subscriber);
 	}
 	public void fireEvent(Event e){
-		for(EventHandleable component : componentList){
-			component.handleEvent(e);
+		for(EventHandleable subscriber : subscriberList){
+			subscriber.handleEvent(e);
 		}
 	}
 }
 
 abstract class Event{
-	EventHandleable source;
+	Respondable source;
 	Event(){
-		// no source means source cannot handle fired events
+		// no source means no response needed
 		this.source = null;
 	}
-	Event(EventHandleable source){
+	Event(Respondable source){
 		this.source = source;
 	}
 }
 
 class FilterChangedEvent extends Event{
-	FilterCollection filters;
+	MovieAttribute filter;
+	FilterChangedEvent(MovieAttribute filter){
+		super();
+		this.filter = filter;
+	}
+}
+
+class FilterFlushEvent extends Event{
+	FilterFlushEvent(){
+		super();
+	}
+}
+
+class FilterDiscardEvent extends Event{
+	FilterDiscardEvent(){
+		super();
+	}
+}
+
+class QueryEvent extends Event{
+	List<MovieAttribute> filters;
+	QueryEvent(MovieRespondable source,List<MovieAttribute> filters){
+		super(source);
+		this.filters = filters;
+	}
+}
+
+class UpdateMoviesEvent extends Event{
+	List<Movie> newMovies;
+	UpdateMoviesEvent(List<Movie> newMovies){
+		super();
+		this.newMovies = newMovies;
+	}
 }
 
 class ActivateSectionEvent extends Event{
-	
+	ActivateSectionEvent(){
+		super();
+	}
 }
+

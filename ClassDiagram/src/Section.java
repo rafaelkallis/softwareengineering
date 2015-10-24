@@ -1,5 +1,5 @@
-import java.util.HashSet;
-
+import java.util.List;
+import java.util.ArrayList;
 /*
  * Section
  */
@@ -25,16 +25,14 @@ final class WorldMapSection extends Section{
 	private WorldMapPresenter 		worldMapPresenter;
 	
 	private SelectListView 			genreFilterView;
-	private GenreFilterPresenter 	genreFilterPresenter;
 	
 	private SelectListView 			countryFilterView;
-	private CountryFilterPresenter 	countryFilterPresenter;
 	
 	private SelectListView 			languageFilterView;
-	private LanguageFilterPresenter languageFilterPresenter;
 	
 	private RangeSliderView 		rangeSliderView;
-	private YearFilterPresenter 	rangeSliderPresenter;
+	
+	private FilterPresenter			filterPresenter;
 	
 	WorldMapSection(EventBus globalEventBus){
 		super(globalEventBus);
@@ -43,16 +41,14 @@ final class WorldMapSection extends Section{
 		this.worldMapPresenter 		= new WorldMapPresenter(this.sectionEventBus,this.globalEventBus);
 		
 		this.genreFilterView 		= new SelectListView(this.sectionEventBus);
-		this.genreFilterPresenter 	= new GenreFilterPresenter(this.sectionEventBus,this.globalEventBus);
 		
 		this.countryFilterView		= new SelectListView(this.sectionEventBus);
-		this.countryFilterPresenter	= new CountryFilterPresenter(this.sectionEventBus,this.globalEventBus);
 		
 		this.languageFilterView		= new SelectListView(this.sectionEventBus);
-		this.languageFilterPresenter= new LanguageFilterPresenter(this.sectionEventBus,this.globalEventBus);
 		
 		this.rangeSliderView		= new RangeSliderView(this.sectionEventBus);
-		this.rangeSliderPresenter	= new YearFilterPresenter(this.sectionEventBus,this.globalEventBus);
+		
+		this.filterPresenter		= new FilterPresenter(this.sectionEventBus,this.globalEventBus);
 	}
 	void activateSection(){
 		// Nothing To do
@@ -64,16 +60,12 @@ final class TableSection extends Section{
 	private TablePresenter			tablePresenter;
 	
 	private SelectListView 			genreFilterView;
-	private GenreFilterPresenter 	genreFilterPresenter;
 	
 	private SelectListView 			countryFilterView;
-	private CountryFilterPresenter 	countryFilterPresenter;
 	
 	private SelectListView 			languageFilterView;
-	private LanguageFilterPresenter languageFilterPresenter;
 	
 	private SelectListView			yearFilterView;
-	private YearFilterPresenter		yearFilterPresenter;
 	
 	TableSection(EventBus globalEventBus){
 		super(globalEventBus);
@@ -82,16 +74,12 @@ final class TableSection extends Section{
 		this.tablePresenter			= new TablePresenter(this.sectionEventBus,this.globalEventBus);
 		
 		this.genreFilterView 		= new SelectListView(this.sectionEventBus);
-		this.genreFilterPresenter 	= new GenreFilterPresenter(this.sectionEventBus,this.globalEventBus);
 		
 		this.countryFilterView		= new SelectListView(this.sectionEventBus);
-		this.countryFilterPresenter	= new CountryFilterPresenter(this.sectionEventBus,this.globalEventBus);
 		
 		this.languageFilterView		= new SelectListView(this.sectionEventBus);
-		this.languageFilterPresenter= new LanguageFilterPresenter(this.sectionEventBus,this.globalEventBus);
 		
 		this.yearFilterView			= new SelectListView(this.sectionEventBus);
-		this.yearFilterPresenter	= new YearFilterPresenter(this.sectionEventBus,this.globalEventBus);
 	}
 	void activateSection(){
 		// Nothing To do
@@ -148,7 +136,7 @@ abstract class SectionObjectWithGlobalEventBus extends SectionObject{
 abstract class HandlingSectionObject extends SectionObject implements EventHandleable{
 	HandlingSectionObject(EventBus sectionEventBus){
 		super(sectionEventBus);
-		this.sectionEventBus.bind(this);
+		this.sectionEventBus.subscribe(this);
 	}
 	public abstract void handleEvent(Event e);
 }
@@ -156,8 +144,8 @@ abstract class HandlingSectionObject extends SectionObject implements EventHandl
 abstract class HandlingSectionObjectWithGlobalEventBus extends SectionObjectWithGlobalEventBus implements EventHandleable{
 	HandlingSectionObjectWithGlobalEventBus(EventBus sectionEventBus, EventBus globalEventBus){
 		super(sectionEventBus,globalEventBus);
-		this.sectionEventBus.bind(this);
-		this.globalEventBus.bind(this);
+		this.sectionEventBus.subscribe(this);
+		this.globalEventBus.subscribe(this);
 	}
 	public abstract void handleEvent(Event e);
 }
@@ -191,6 +179,9 @@ class RangeSliderView extends SectionObject{
 class SelectListView extends SectionObject {
 	SelectListView(EventBus sectionEventBus){
 		super(sectionEventBus);
+	}
+	void aFunctionCalledWhenYearFilterSelected(MovieYear year){
+		this.sectionEventBus.fireEvent(new FilterChangedEvent(year));
 	}
 }
 
@@ -241,7 +232,10 @@ class WorldMapView extends HandlingSectionObject{
 		super(sectionEventBus);
 	}
 	public void handleEvent(Event e){
-		// Handle event here
+		if(e instanceof UpdateMoviesEvent){
+			List<Movie> newMovies = ((UpdateMoviesEvent)e).newMovies;
+			// do something with newMovies
+		}
 	}
 }
 
@@ -282,12 +276,29 @@ class AdminareaView extends HandlingSectionObject{
  * Presenter
  */
 
-class FilterPresenter extends HandlingSectionObjectWithGlobalEventBus{
+class FilterPresenter extends HandlingSectionObjectWithGlobalEventBus implements MovieRespondable{
+	ArrayList<MovieAttribute> filters;
 	FilterPresenter(EventBus sectionEventBus,EventBus globalEventBus){
 		super(sectionEventBus,globalEventBus);
+		filters = new ArrayList<MovieAttribute>();
 	}
 	public void handleEvent(Event e){
-		//TODO handle event here
+		if		(e instanceof FilterChangedEvent){
+			filters.add(((FilterChangedEvent)e).filter);
+			
+		}else if(e instanceof FilterFlushEvent){
+			//MovieAttribute[] filters_array = new MovieAttribute[this.filters.size()];
+			//this.filters.toArray(filters_array);
+			this.globalEventBus.fireEvent(new QueryEvent(this,filters));
+			this.sectionEventBus.fireEvent(new FilterDiscardEvent());
+			
+		}else if(e instanceof FilterDiscardEvent){
+			this.filters.clear();
+			
+		}
+	}
+	public void respond(List<Movie> movies){
+		this.sectionEventBus.fireEvent(new UpdateMoviesEvent(movies));
 	}
 }
 
@@ -370,14 +381,14 @@ class NavigationPresenter implements EventHandleable{
 	EventBus globalEventBus;
 	NavigationPresenter(EventBus globalEventBus){
 		this.globalEventBus = globalEventBus;
-		this.globalEventBus.bind(this);
+		this.globalEventBus.subscribe(this);
 	}
 	public void handleEvent(Event e){
 		//TODO handle event here
 	}
 }
 
-class YearFilterPresenter extends HandlingSectionObjectWithGlobalEventBus {
+/*class YearFilterPresenter extends HandlingSectionObjectWithGlobalEventBus {
 	YearFilterPresenter(EventBus sectionEventBus,EventBus globalEventBus){
 		super(sectionEventBus,globalEventBus);
 	}
@@ -411,7 +422,7 @@ class CountryFilterPresenter extends HandlingSectionObjectWithGlobalEventBus {
 	public void handleEvent(Event e){
 		//TODO handle event here
 	}
-}
+}*/
 
 /*
  * Model
