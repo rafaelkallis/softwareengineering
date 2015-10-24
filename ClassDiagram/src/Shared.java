@@ -117,7 +117,7 @@ class Adminuser extends User{
  */
 
 interface EventHandleable{
-	void handleEvent(Event e);
+	void handleEvent(Event e);	
 }
 
 class EventBus{
@@ -150,8 +150,3 @@ class FilterChangedEvent extends Event{
 class ActivateSectionEvent extends Event{
 	
 }
-
-/*
- * Miscallaneous
- */
-
