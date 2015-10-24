@@ -133,3 +133,23 @@ class Adminuser extends User{
 	
 }
 
+/*
+ * Event
+ */
+
+abstract class Event{
+	
+}
+
+class FilterChangedEvent extends Event{
+	FilterCollection filters;
+}
+
+class ActivateSectionEvent extends Event{
+	
+}
+
+/*
+ * Miscallaneous
+ */
+
