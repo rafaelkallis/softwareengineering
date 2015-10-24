@@ -5,3 +5,7 @@ bin/
 .classpath.recommenders
 
 ClassDiagram/.classpath
+
+*.prefs
+
+ClassDiagram/.settings/org.eclipse.jdt.core.prefs
