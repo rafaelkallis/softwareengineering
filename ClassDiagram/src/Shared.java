@@ -5,9 +5,9 @@
  */
 
 final class AppController{
-	public Object GlobalEventBus;
+	private Object GlobalEventBus;
 	void onModuleLoad(){
-		
+		//create sections
 	}
 }
 
@@ -22,7 +22,7 @@ class Movie {
 			MovieDay day,
 			MovieLanguage[] languages,
 			MovieCountry[] countries,
-			MovieRating rating,
+			//MovieRating rating,
 			MovieDuration duration){
 		this.id = id;
 		this.title= title;
@@ -31,7 +31,7 @@ class Movie {
 		this.day = day;
 		this.languages = languages;
 		this.countries = countries;
-		this.rating = rating;
+		//this.rating = rating;
 		this.duration = duration;
 	}
 
@@ -48,23 +48,39 @@ class Movie {
 
 abstract class MovieAttribute {}
 
-class MovieTitle extends MovieAttribute {}
+class MovieTitle extends MovieAttribute {
+	public String value;
+}
 
-class MovieYear extends MovieAttribute {}
+class MovieYear extends MovieAttribute {
+	public Integer value;
+}
 
-class MovieMonth extends MovieAttribute{}
+class MovieMonth extends MovieAttribute{
+	public Integer value;
+}
 
-class MovieDay extends MovieAttribute{}
+class MovieDay extends MovieAttribute{
+	public Integer value;
+}
 
-class MovieLanguage extends MovieAttribute {}
+class MovieLanguage extends MovieAttribute {
+	public String value;
+}
 
-class MovieCountry extends MovieAttribute {}
+class MovieCountry extends MovieAttribute {
+	public String value;
+}
 
-class MovieRating extends MovieAttribute {}
+//class MovieRating extends MovieAttribute {}
 
-class MovieDuration extends MovieAttribute {}
+class MovieDuration extends MovieAttribute {
+	public Integer value;
+}
 
-class MovieID extends MovieAttribute {}
+class MovieID extends MovieAttribute {
+	public Integer value;
+}
 
 /*
  * Import / Export
