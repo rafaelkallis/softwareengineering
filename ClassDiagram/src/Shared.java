@@ -1,11 +1,14 @@
-//import com.google.gwt.event.shared.EventBus;
 
 /*
- * Bootstrapping class
+ * Bootstrapping & Section controlling
  */
 
 final class AppController{
-	private Object GlobalEventBus;
+	private Object globalEventBus;
+	
+	private NavigationView 		navigationView;
+	private NavigationPresenter navigationPresenter;
+	
 	void onModuleLoad(){
 		//create sections
 	}
@@ -42,44 +45,65 @@ class Movie {
 	public MovieDay day;
 	public MovieLanguage[] languages;
 	public MovieCountry[] countries;
-	public MovieRating rating;
+	//public MovieRating rating;
 	public MovieDuration duration;
 }
 
-abstract class MovieAttribute {}
+abstract class MovieAttribute {
+	public Object value;
+	MovieAttribute(Object value){
+		this.value = value;
+	}
+}
 
 class MovieTitle extends MovieAttribute {
-	public String value;
+	MovieTitle(String value){
+		super(value);
+	}
 }
 
 class MovieYear extends MovieAttribute {
-	public Integer value;
+	MovieYear(Integer value){
+		super(value);
+	}
 }
 
 class MovieMonth extends MovieAttribute{
-	public Integer value;
+	MovieMonth(Integer value){
+		super(value);
+	}
 }
 
 class MovieDay extends MovieAttribute{
-	public Integer value;
+	MovieDay(Integer value){
+		super(value);
+	}
 }
 
 class MovieLanguage extends MovieAttribute {
-	public String value;
+	MovieLanguage(Integer value){
+		super(value);
+	}
 }
 
 class MovieCountry extends MovieAttribute {
-	public String value;
+	MovieCountry(String value){
+		super(value);
+	}
 }
 
 //class MovieRating extends MovieAttribute {}
 
 class MovieDuration extends MovieAttribute {
-	public Integer value;
+	MovieDuration(Integer value){
+		super(value);
+	}
 }
 
 class MovieID extends MovieAttribute {
-	public Integer value;
+	MovieID(Integer value){
+		super(value);
+	}
 }
 
 /*
@@ -101,9 +125,9 @@ class ExportResponse{
 /*
  * Users
  */
+
 class User{
-	public static int global_user_id;
-	public int user_id;
+	protected int user_id;
 }
 class Adminuser extends User{
 	
