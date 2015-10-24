@@ -1,23 +1,39 @@
 import java.util.List;
 import java.util.ArrayList;
 /*
- * Bootstrapping & Section controlling
+ * Entry Point & Section controlling
  */
 
-final class AppController{
-	private Object globalEventBus;
+final class AppController /*implements EntryPoint*/{
+	private EventBus globalEventBus;
 	
 	private NavigationView 		navigationView;
 	private NavigationPresenter navigationPresenter;
 	
-	void onModuleLoad(){
-		//create sections
+	private WorldMapSection		worldMapSection;
+	private TableSection		tableSection;
+	private	HeatMapSection		heatMapSection;
+	private StatisticsSection	statisticsSection;
+	private AdminareaSection	adminareaSection;
+	
+	public void onModuleLoad(){
+		this.globalEventBus 	= new EventBus();
+		
+		navigationView 			= new NavigationView(this.globalEventBus);
+		navigationPresenter	 	= new NavigationPresenter(this.globalEventBus);
+		
+		this.worldMapSection 	= new WorldMapSection(this.globalEventBus);
+		this.tableSection		= new TableSection(this.globalEventBus);
+		this.heatMapSection		= new HeatMapSection(this.globalEventBus);
+		this.statisticsSection	= new StatisticsSection(this.globalEventBus);
+		this.adminareaSection	= new AdminareaSection(this.globalEventBus);
 	}
 }
 
 /*
  * Movie
  */
+
 class Movie {
 	Movie(	MovieID id,
 			MovieTitle title,
@@ -71,8 +87,6 @@ class MovieCountry extends MovieAttribute {
 		super(value);
 	}
 }
-
-//class MovieRating extends MovieAttribute {}
 
 class MovieDuration extends MovieAttribute {
 	MovieDuration(Integer value){
@@ -137,10 +151,10 @@ class QueryService extends Service{
 			
 			filters = ((QueryEvent)e).filters;
 			
-			// lookup in database in return in movies
+			// lookup in database and return in movies
 			movies = new ArrayList<Movie>(); 
 			
-			((MovieRespondable)((QueryEvent)e).source).respond(movies);
+			((Respondable<Movie>)((QueryEvent)e).source).respond(movies);
 		}
 	}
 }
@@ -153,12 +167,8 @@ interface EventHandleable{
 	void handleEvent(Event e);	
 }
 
-interface Respondable<T> extends EventHandleable{
+interface Respondable<T>{
 	void respond(List<T> response);
-}
-
-interface MovieRespondable extends Respondable<Movie>{
-	
 }
 
 class EventBus{
@@ -174,12 +184,12 @@ class EventBus{
 }
 
 abstract class Event{
-	Respondable source;
+	Respondable<?> source;
 	Event(){
 		// no source means no response needed
 		this.source = null;
 	}
-	Event(Respondable source){
+	Event(Respondable<?> source){
 		this.source = source;
 	}
 }
@@ -206,7 +216,7 @@ class FilterDiscardEvent extends Event{
 
 class QueryEvent extends Event{
 	List<MovieAttribute> filters;
-	QueryEvent(MovieRespondable source,List<MovieAttribute> filters){
+	QueryEvent(Respondable<Movie> source,List<MovieAttribute> filters){
 		super(source);
 		this.filters = filters;
 	}
@@ -221,8 +231,10 @@ class UpdateMoviesEvent extends Event{
 }
 
 class ActivateSectionEvent extends Event{
-	ActivateSectionEvent(){
+	Section section;
+	ActivateSectionEvent(Section section){
 		super();
+		this.section = section;
 	}
 }
 
