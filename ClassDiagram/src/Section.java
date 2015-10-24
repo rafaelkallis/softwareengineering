@@ -9,7 +9,7 @@
 public abstract class Section {
 	protected Object sectionEventBus;
 	protected Object globalEventBus;
-	protected AppController appController;
+	//protected AppController appController;
 	
 	Section(Object sectionEventBus, Object globalEventBus){
 		this.sectionEventBus = sectionEventBus;
@@ -39,9 +39,12 @@ class WorldMapSection extends Section{
 	
 	WorldMapSection(Object globalEventBus){
 		super(new Object()/* FIXME: constructor of sectionEventBus here*/,globalEventBus);
-		this.worldMapView = new WorldMapView(this.sectionEventBus);
-		this.worldMapPresenter = new WorldMapPresenter(this.sectionEventBus);
-		this. genreFilterView = new FilterView(this.sectionEventBus);
+		this.worldMapView 		= new WorldMapView(this.sectionEventBus);
+		this.worldMapPresenter 	= new WorldMapPresenter(this.sectionEventBus);
+		this. genreFilterView 	= new FilterView(this.sectionEventBus);
+		this.genreFilterPresenter = new GenreFilterPresenter(this.sectionEventBus);
+		this.countryFilterView		= new FilterView(this.sectionEventBus);
+		this.countryFilterPresenter	= new CountryFilterPresenter(this.sectionEventBus);
 	}
 	void activateSection(){
 		// Nothing To do
