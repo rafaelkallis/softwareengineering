@@ -186,3 +186,19 @@ class ActivateSectionEvent extends Event{
 	}
 }
 
+/*
+ * Services
+ */
+
+abstract class Service{
+	
+}
+
+class QueryService extends Service{
+	
+}
+
+class UserService extends Service{
+	
+}
+
