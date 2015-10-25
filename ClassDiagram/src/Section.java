@@ -1,5 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 /*
  * Section
  */
@@ -26,7 +28,7 @@ public abstract class Section implements EventHandleable{
 
 final class WorldMapSection extends Section{
 	
-	private WorldMapPresenter 			worldMap;
+	private WorldMapPresenter			worldMap;
 	private GenreFilterPresenter		genreFilter;
 	private YearFilterPresenter			yearFilter;
 	private LanguageFilterPresenter 	languageFilter;
@@ -429,12 +431,50 @@ class NavigationPresenter extends Presenter{
  * Model
  */
 
-class WorldStatisticsModel {
-	WorldStatisticsModel(){}
+abstract class Model{
+	Model(){}
 }
-class StatisticsModel {
-	StatisticsModel( ){}
+
+class WorldStatisticsModel extends Model{
+	WorldStatisticsModel(){
+		super();
+	}
 }
-class HeatMapModel{
-	HeatMapModel(EventBus sectionEventBus){}
+class StatisticsModel extends Model{
+	StatisticsModel( ){
+		super();
+	}
+}
+class HeatMapModel extends Model{
+	HeatMapModel(EventBus sectionEventBus){
+		super();
+	}
+}
+
+class MovieCollection extends Model{
+	protected HashMap<String,Movie> movies;
+	MovieCollection(){
+		super();
+		movies = new HashMap<String,Movie>();
+	}
+	public void add(Movie movie){
+		// TODO 
+	}
+	public Collection<Movie> getMovies(){
+		return this.movies.values();
+	}
+}
+
+class FilterCollection extends Model{
+	protected HashMap<String,MovieAttribute> filters;
+	FilterCollection(){
+		super();
+		filters = new HashMap<String,MovieAttribute>();
+	}
+	public void add(MovieAttribute filter){
+		// TODO
+	}
+	public Collection<MovieAttribute> getFilters(){
+		return this.filters.values();
+	}
 }
