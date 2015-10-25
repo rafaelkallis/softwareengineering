@@ -35,11 +35,11 @@ final class WorldMapSection extends Section{
 	WorldMapSection(EventBus globalEventBus){
 		super(globalEventBus);
 		
-		this.worldMap			 		= new WorldMapPresenter(new WorldMapView(),this.sectionEventBus);
-		this.genreFilter				= new GenreFilterPresenter(new GenreFilterView(),this.sectionEventBus);
-		this.yearFilter 				= new YearFilterPresenter(new YearFilterView(),this.sectionEventBus);
-		this.languageFilter 			= new LanguageFilterPresenter(new LanguageFilterView(),this.sectionEventBus);
-		this.countryFilter 				= new CountryFilterPresenter(new CountryFilterView(),this.sectionEventBus);
+		this.worldMap			 		= new WorldMapPresenter			(new WorldMapView(),this.sectionEventBus);
+		this.genreFilter				= new GenreFilterPresenter		(new GenreFilterView(),this.sectionEventBus);
+		this.yearFilter 				= new YearFilterPresenter		(new YearFilterView(),this.sectionEventBus);
+		this.languageFilter 			= new LanguageFilterPresenter	(new LanguageFilterView(),this.sectionEventBus);
+		this.countryFilter 				= new CountryFilterPresenter	(new CountryFilterView(),this.sectionEventBus);
 	}
 	public void handleEvent(Event e){
 		//TODO: handle event
@@ -60,12 +60,12 @@ final class TableSection extends Section{
 	TableSection(EventBus globalEventBus){
 		super(globalEventBus);
 		
-		this.table						= new TablePresenter(new TableView(),this.sectionEventBus);
-		this.genreFilter				= new GenreFilterPresenter(new GenreFilterView(),this.sectionEventBus);
-		this.countryFilter				= new CountryFilterPresenter(new CountryFilterView(),this.sectionEventBus);
-		this.languageFilter				= new LanguageFilterPresenter(new LanguageFilterView(),this.sectionEventBus);
-		this.yearFilter					= new YearFilterPresenter(new YearFilterView(),this.sectionEventBus);
-		this.searchBox					= new SearchBoxFilterPresenter(new SearchBoxFilterView(),this.sectionEventBus);
+		this.table						= new TablePresenter			(new TableView(),this.sectionEventBus);
+		this.genreFilter				= new GenreFilterPresenter		(new GenreFilterView(),this.sectionEventBus);
+		this.countryFilter				= new CountryFilterPresenter	(new CountryFilterView(),this.sectionEventBus);
+		this.languageFilter				= new LanguageFilterPresenter	(new LanguageFilterView(),this.sectionEventBus);
+		this.yearFilter					= new YearFilterPresenter		(new YearFilterView(),this.sectionEventBus);
+		this.searchBox					= new SearchBoxFilterPresenter	(new SearchBoxFilterView(),this.sectionEventBus);
 	}
 	public void handleEvent(Event e){
 		//TODO: handle event
@@ -85,11 +85,11 @@ final class HeatMapSection extends Section{
 	HeatMapSection(EventBus globalEventBus){
 		super(globalEventBus);
 		
-		this.heatMap					= new HeatMapPresenter(new HeatMapView(),this.sectionEventBus);
-		this.genreFilter	 			= new GenreFilterPresenter(new GenreFilterView(),this.sectionEventBus);
-		this.countryFilter				= new CountryFilterPresenter(new CountryFilterView(),this.sectionEventBus);
-		this.languageFilter 			= new LanguageFilterPresenter(new LanguageFilterView(),this.sectionEventBus);
-		this.yearFilter					= new YearFilterPresenter(new YearFilterView(),this.sectionEventBus);
+		this.heatMap					= new HeatMapPresenter			(new HeatMapView(),this.sectionEventBus);
+		this.genreFilter	 			= new GenreFilterPresenter		(new GenreFilterView(),this.sectionEventBus);
+		this.countryFilter				= new CountryFilterPresenter	(new CountryFilterView(),this.sectionEventBus);
+		this.languageFilter 			= new LanguageFilterPresenter	(new LanguageFilterView(),this.sectionEventBus);
+		this.yearFilter					= new YearFilterPresenter		(new YearFilterView(),this.sectionEventBus);
 	}
 	public void handleEvent(Event e){
 		//TODO: handle event
@@ -106,7 +106,7 @@ final class StatisticsSection extends Section{
 	StatisticsSection(EventBus globalEventBus){
 		super(globalEventBus);
 		
-		this.statistics = new StatisticsPresenter(new StatisticsView(),this.sectionEventBus);
+		this.statistics 				= new StatisticsPresenter		(new StatisticsView(),this.sectionEventBus);
 	}
 	public void handleEvent(Event e){
 		//TODO: handle event
