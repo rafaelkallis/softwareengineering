@@ -10,13 +10,13 @@ import java.util.HashMap;
  * Dependencies:
  * 	GlobalEventBus
  */
-public abstract class Section implements EventHandleable{
-	protected EventBus sectionEventBus;
-	protected EventBus globalEventBus;
+public abstract class Section implements BusEventHandleable{
+	protected EventBus 					sectionEventBus;
+	protected EventBus 					globalEventBus;
 	
 	Section(EventBus globalEventBus){
-		this.sectionEventBus 	= new EventBus();
-		this.globalEventBus 	= globalEventBus;
+		this.sectionEventBus 			= new EventBus();
+		this.globalEventBus 			= globalEventBus;
 	}
 	//used as a router from internal(sectionEventBus) to external(globalEventBus) communication and vice-versa 
 	//e.g new query
@@ -29,19 +29,17 @@ public abstract class Section implements EventHandleable{
 final class WorldMapSection extends Section{
 	
 	private WorldMapPresenter			worldMap;
-	private GenreFilterPresenter		genreFilter;
-	private YearFilterPresenter			yearFilter;
-	private LanguageFilterPresenter 	languageFilter;
-	private CountryFilterPresenter 		countryFilter;
+	private FilterPresenter				genreFilter;
+	private FilterPresenter				yearFilter;
+	private AdvertisementPresenter		advertisment;
 	
 	WorldMapSection(EventBus globalEventBus){
 		super(globalEventBus);
 		
-		this.worldMap			 		= new WorldMapPresenter			(new WorldMapView(),this.sectionEventBus);
-		this.genreFilter				= new GenreFilterPresenter		(new GenreFilterView(),this.sectionEventBus);
-		this.yearFilter 				= new YearFilterPresenter		(new YearFilterView(),this.sectionEventBus);
-		this.languageFilter 			= new LanguageFilterPresenter	(new LanguageFilterView(),this.sectionEventBus);
-		this.countryFilter 				= new CountryFilterPresenter	(new CountryFilterView(),this.sectionEventBus);
+		this.worldMap			 		= new WorldMapPresenter			(new WorldMapView(worldMap),this.sectionEventBus);
+		this.genreFilter				= new FilterPresenter			(new SelectListView(genreFilter),this.sectionEventBus);
+		this.yearFilter 				= new FilterPresenter			(new SelectListView(yearFilter),this.sectionEventBus);
+		this.advertisment				= new AdvertisementPresenter	(new AdvertismentView(advertisment),this.sectionEventBus);
 	}
 	public void handleEvent(Event e){
 		//TODO: handle event
@@ -53,21 +51,23 @@ final class WorldMapSection extends Section{
 final class TableSection extends Section{
 	
 	private TablePresenter				table;
-	private GenreFilterPresenter		genreFilter;
-	private YearFilterPresenter			yearFilter;
-	private LanguageFilterPresenter		languageFilter;
-	private CountryFilterPresenter 		countryFilter;
-	private SearchBoxFilterPresenter 	searchBox;
+	private FilterPresenter				genreFilter;
+	private FilterPresenter				yearFilter;
+	private FilterPresenter				languageFilter;
+	private FilterPresenter 			countryFilter;
+	private FilterPresenter 			titleFilter;
+	private AdvertisementPresenter		advertisment;
 	
 	TableSection(EventBus globalEventBus){
 		super(globalEventBus);
 		
-		this.table						= new TablePresenter			(new TableView(),this.sectionEventBus);
-		this.genreFilter				= new GenreFilterPresenter		(new GenreFilterView(),this.sectionEventBus);
-		this.countryFilter				= new CountryFilterPresenter	(new CountryFilterView(),this.sectionEventBus);
-		this.languageFilter				= new LanguageFilterPresenter	(new LanguageFilterView(),this.sectionEventBus);
-		this.yearFilter					= new YearFilterPresenter		(new YearFilterView(),this.sectionEventBus);
-		this.searchBox					= new SearchBoxFilterPresenter	(new SearchBoxFilterView(),this.sectionEventBus);
+		this.table						= new TablePresenter			(new TableView(table),this.sectionEventBus);
+		this.genreFilter				= new FilterPresenter			(new SelectListView(genreFilter),this.sectionEventBus);
+		this.countryFilter				= new FilterPresenter			(new SelectListView(countryFilter),this.sectionEventBus);
+		this.languageFilter				= new FilterPresenter			(new SelectListView(languageFilter),this.sectionEventBus);
+		this.yearFilter					= new FilterPresenter			(new SelectListView(yearFilter),this.sectionEventBus);
+		this.titleFilter				= new FilterPresenter			(new SearchBoxFilterView(titleFilter),this.sectionEventBus);
+		this.advertisment				= new AdvertisementPresenter	(new AdvertismentView(advertisment),this.sectionEventBus);
 	}
 	public void handleEvent(Event e){
 		//TODO: handle event
@@ -79,19 +79,17 @@ final class TableSection extends Section{
 final class HeatMapSection extends Section{
 	
 	private HeatMapPresenter 			heatMap;
-	private GenreFilterPresenter 		genreFilter;
-	private YearFilterPresenter 		yearFilter;
-	private LanguageFilterPresenter 	languageFilter;
-	private CountryFilterPresenter 		countryFilter;
+	private FilterPresenter 			genreFilter;
+	private FilterPresenter 			yearFilter;
+	private AdvertisementPresenter		advertisment;
 	
 	HeatMapSection(EventBus globalEventBus){
 		super(globalEventBus);
 		
-		this.heatMap					= new HeatMapPresenter			(new HeatMapView(),this.sectionEventBus);
-		this.genreFilter	 			= new GenreFilterPresenter		(new GenreFilterView(),this.sectionEventBus);
-		this.countryFilter				= new CountryFilterPresenter	(new CountryFilterView(),this.sectionEventBus);
-		this.languageFilter 			= new LanguageFilterPresenter	(new LanguageFilterView(),this.sectionEventBus);
-		this.yearFilter					= new YearFilterPresenter		(new YearFilterView(),this.sectionEventBus);
+		this.heatMap					= new HeatMapPresenter			(new HeatMapView(heatMap),this.sectionEventBus);
+		this.genreFilter	 			= new FilterPresenter			(new SelectListView(genreFilter),this.sectionEventBus);
+		this.yearFilter					= new FilterPresenter			(new SelectListView(yearFilter),this.sectionEventBus);
+		this.advertisment				= new AdvertisementPresenter	(new AdvertismentView(advertisment),this.sectionEventBus);
 	}
 	public void handleEvent(Event e){
 		//TODO: handle event
@@ -108,7 +106,7 @@ final class StatisticsSection extends Section{
 	StatisticsSection(EventBus globalEventBus){
 		super(globalEventBus);
 		
-		this.statistics 				= new StatisticsPresenter		(new StatisticsView(),this.sectionEventBus);
+		this.statistics 				= new StatisticsPresenter		(new StatisticsView(statistics),this.sectionEventBus);
 	}
 	public void handleEvent(Event e){
 		//TODO: handle event
@@ -131,158 +129,103 @@ final class AdminareaSection extends Section{
 	}
 }
 
-// Can only fire section events
-abstract class SectionObject{
-	EventBus sectionEventBus;
-	SectionObject(EventBus sectionEventBus){
-		this.sectionEventBus = sectionEventBus;
-	}
-}
-
-// Can fire & handle section events
-abstract class HandleableSectionObject extends SectionObject implements EventHandleable{
-	HandleableSectionObject(EventBus sectionEventBus){
-		super(sectionEventBus);
-		this.sectionEventBus.subscribe(this);
-	}
-	public abstract void handleEvent(Event e);
-}
-
 /*
  * Views
  */
 
 abstract class View{
-	View(){
-		
+	Presenter presenter;
+	View(Presenter presenter){
+		this.presenter = presenter;
+	}
+	void fireEvent(Event e){
+		this.presenter.handleEvent(e);
 	}
 }
 
-
-
 abstract class FilterView extends View{
-	FilterView( ){
-		super();
+	FilterView(FilterPresenter presenter){
+		super(presenter);
+	}
+}
+
+class SelectListView extends FilterView{
+	SelectListView(FilterPresenter presenter){
+		super(presenter);
 	}
 }
 
 class RangeSliderFilterView extends FilterView {
-	RangeSliderFilterView( ){
-		super();
-	}
-}
-/*class SelectListFilterView extends FilterView {
-	SelectListFilterView( ){
-		super();
-	}
-}*/
-interface SelectListable{
-	
-}
-
-interface Sliderable extends SelectListable{
-	
-}
-
-interface Typeable{
-	
-}
-
-
-class GenreFilterView extends FilterView implements SelectListable{
-	GenreFilterView(){
-		super();
+	RangeSliderFilterView(FilterPresenter presenter ){
+		super(presenter);
 	}
 }
 
-class YearFilterView extends FilterView implements SelectListable{
-	YearFilterView(){
-		super();
-	}
-}
-
-class SliderYearFilterView extends YearFilterView implements Sliderable{
-	SliderYearFilterView(){
-		super();
-	}
-}
-
-class LanguageFilterView extends FilterView implements SelectListable{
-	LanguageFilterView(){
-		super();
-	}
-}
-
-class CountryFilterView extends FilterView implements SelectListable{
-	CountryFilterView(){
-		super();
-	}
-}
-
-class SearchBoxFilterView extends FilterView implements Typeable{
-	 SearchBoxFilterView( ){
-		super();
+class SearchBoxFilterView extends FilterView {
+	 SearchBoxFilterView(FilterPresenter presenter ){
+		super(presenter);
 	 }
 }
 
 abstract class ChartView extends View{
-	ChartView( ){
-		super();
+	ChartView(Presenter presenter ){
+		super(presenter);
 	}
 }
 
 class PieChartView extends ChartView {
-	PieChartView( ){
-		super();
+	PieChartView(Presenter presenter ){
+		super(presenter);
 	}
 }
 
 class BarChartView extends ChartView {
-	BarChartView( ){
-		super();
+	BarChartView(Presenter presenter ){
+		super(presenter);
 	}
 }
 
 class ImportView extends View{
-	ImportView( ){
-		super();
+	ImportView(Presenter presenter ){
+		super(presenter);
 	}
 }
 
 class AdvertismentView extends View{
-	AdvertismentView( ){
+	AdvertismentView(Presenter presenter ){
+		super(presenter);
 	}
 }
 class NavigationView extends View{
-	NavigationView( ){
-		super();
+	NavigationView(Presenter presenter ){
+		super(presenter);
 	}
 }
 
 class WorldMapView extends View{
-	WorldMapView( ){
-		super();
+	WorldMapView(Presenter presenter ){
+		super(presenter);
 	}
 }
 
 class TableView extends View{
-	TableView( ){
-		super();
+	TableView(Presenter presenter){
+		super(presenter);
 	}
 }
 class HeatMapView extends View{
-	HeatMapView( ){
-		super();
+	HeatMapView(Presenter presenter ){
+		super(presenter);
 	}
 }
 class StatisticsView extends View{
-	StatisticsView( ){
-		super();
+	StatisticsView(Presenter presenter ){
+		super(presenter);
 	}
 }
 class AdminareaView extends View{
-	AdminareaView( ){
-		super();
+	AdminareaView(Presenter presenter ){
+		super(presenter);
 	}
 }
 
@@ -290,30 +233,34 @@ class AdminareaView extends View{
  * Presenter
  */
 
-//can only fire events
-abstract class Presenter extends SectionObject{
+//listens to events only from view
+abstract class Presenter{
 	View view;
+	EventBus sectionEventBus;
 	Presenter(View view,EventBus sectionEventBus){
-		super(sectionEventBus);
 		this.view = view;
+		this.sectionEventBus = sectionEventBus;
+	}
+	abstract void handleEvent(Event e);
+	void fireEvent(Event e){
+		this.sectionEventBus.fireEvent(e);
 	}
 }
 
-//can fire & handle events
-abstract class HandleablePresenter extends HandleableSectionObject{
-	View view;
-	HandleablePresenter(View view, EventBus sectionEventBus){
-		super(sectionEventBus);
-		this.view = view;
+//can listen to events on section bus and view
+abstract class ListeningPresenter extends Presenter implements BusEventHandleable{
+	ListeningPresenter(View view, EventBus sectionEventBus){
+		super(view,sectionEventBus);
+		this.sectionEventBus.subscribe(this);
 	}
 	public abstract void handleEvent(Event e);
 }
 
-abstract class FilterPresenter extends HandleablePresenter {
-	//ArrayList<MovieAttribute> filters; TODO: replace with model
+class FilterPresenter extends ListeningPresenter {
+	FilterCollection filters;
 	FilterPresenter(FilterView view, EventBus sectionEventBus ){
 		super(view,sectionEventBus);
-		//filters = new ArrayList<MovieAttribute>(); //TODO replace with model
+		filters = new FilterCollection();
 	}
 	public void handleEvent(Event e){
 		if		(e instanceof FilterChangedEvent){
@@ -330,37 +277,7 @@ abstract class FilterPresenter extends HandleablePresenter {
 	}
 }
 
-class GenreFilterPresenter extends FilterPresenter{
-	GenreFilterPresenter(GenreFilterView view,EventBus sectionEventBus){
-		super(view,sectionEventBus);
-	}
-}
-
-class YearFilterPresenter extends FilterPresenter{
-	YearFilterPresenter(YearFilterView view,EventBus sectionEventBus){
-		super(view,sectionEventBus);
-	}
-}
-
-class LanguageFilterPresenter extends FilterPresenter{
-	LanguageFilterPresenter(LanguageFilterView view, EventBus sectionEventBus){
-		super(view,sectionEventBus);
-	}
-}
-
-class CountryFilterPresenter extends FilterPresenter{
-	CountryFilterPresenter(CountryFilterView view, EventBus sectionEventBus){
-		super(view,sectionEventBus);
-	}
-}
-
-class SearchBoxFilterPresenter extends FilterPresenter{
-	SearchBoxFilterPresenter(SearchBoxFilterView view, EventBus sectionEventBus){
-		super(view,sectionEventBus);
-	}
-}
-
-class WorldMapPresenter extends HandleablePresenter{
+class WorldMapPresenter extends ListeningPresenter{
 	WorldMapPresenter(WorldMapView view,EventBus sectionEventBus){
 		super(view,sectionEventBus);
 	}
@@ -369,7 +286,7 @@ class WorldMapPresenter extends HandleablePresenter{
 	}
 }
 
-class TablePresenter extends HandleablePresenter {
+class TablePresenter extends ListeningPresenter {
 	TablePresenter(TableView view,EventBus sectionEventBus){
 		super(view,sectionEventBus);
 	}
@@ -378,7 +295,7 @@ class TablePresenter extends HandleablePresenter {
 	}
 }
 
-class HeatMapPresenter extends HandleablePresenter{
+class HeatMapPresenter extends ListeningPresenter{
 	HeatMapPresenter(HeatMapView view,EventBus sectionEventBus){
 		super(view,sectionEventBus);
 	}
@@ -387,7 +304,7 @@ class HeatMapPresenter extends HandleablePresenter{
 	}
 }
 
-class AdminareaPresenter extends HandleablePresenter{
+class AdminareaPresenter extends ListeningPresenter{
 	AdminareaPresenter(AdminareaView view,EventBus sectionEventBus){
 		super(view,sectionEventBus);
 	}
@@ -396,7 +313,7 @@ class AdminareaPresenter extends HandleablePresenter{
 	}
 }
 
-class StatisticsPresenter extends HandleablePresenter{
+class StatisticsPresenter extends ListeningPresenter{
 	StatisticsPresenter(StatisticsView view,EventBus sectionEventBus){
 		super(view,sectionEventBus);
 	}
@@ -405,7 +322,7 @@ class StatisticsPresenter extends HandleablePresenter{
 	}
 }
 
-class ChartPresenter extends HandleablePresenter{
+class ChartPresenter extends ListeningPresenter{
 	ChartPresenter(ChartView view,EventBus sectionEventBus){
 		super(view,sectionEventBus);
 	}
@@ -419,11 +336,17 @@ class AdvertisementPresenter extends Presenter{
 	AdvertisementPresenter(AdvertismentView view,EventBus sectionEventBus){
 		super(view,sectionEventBus);
 	}
+	public void handleEvent(Event e){
+		//TODO handle event here
+	}
 }
 
-class NavigationPresenter extends Presenter{
+class NavigationPresenter extends Presenter {
 	NavigationPresenter(NavigationView view,EventBus globalEventBus){
 		super(view,globalEventBus);
+	}
+	public void handleEvent(Event e){
+		//TODO handle event here
 	}
 }
 
