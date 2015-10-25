@@ -231,6 +231,7 @@ class AdminareaView extends View{
 
 /*
  * Presenter
+ * All presenters can fireEvents on section Bus
  */
 
 //listens to events only from view

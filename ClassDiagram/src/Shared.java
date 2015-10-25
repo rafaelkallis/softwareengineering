@@ -1,5 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
+
 /*
  * Entry Point & Section controlling
  */
@@ -12,9 +15,9 @@ final class AppController /*implements EntryPoint*/{
 	private List<Section> sections	= new ArrayList<Section>();
 	
 	public void onModuleLoad(){
-		this.globalEventBus 	= new EventBus();
+		this.globalEventBus 		= new EventBus();
 		
-		navigation	 	= new NavigationPresenter(new NavigationView(),this.globalEventBus);
+		navigation	 				= new NavigationPresenter(new NavigationView(navigation),this.globalEventBus);
 		
 		this.sections.add(new WorldMapSection(this.globalEventBus));
 		this.sections.add(new TableSection(this.globalEventBus));
@@ -32,8 +35,8 @@ class Movie {
 	Movie(	MovieID id,
 			MovieTitle title,
 			MovieYear year,
-			List<MovieLanguage> languages,
-			List<MovieCountry> countries,
+			Set<MovieLanguage> languages,
+			Set<MovieCountry> countries,
 			MovieDuration duration){
 		this.id = id;
 		this.title= title;
@@ -46,8 +49,8 @@ class Movie {
 	public MovieID id;
 	public MovieTitle title;
 	public MovieYear year;
-	public List<MovieLanguage> languages;
-	public List<MovieCountry> countries;
+	public Set<MovieLanguage> languages;
+	public Set<MovieCountry> countries;
 	public MovieDuration duration;
 }
 
@@ -164,14 +167,6 @@ class FilterFlushEvent extends Event{
 class FilterDiscardEvent extends Event{
 	FilterDiscardEvent(){
 		super();
-	}
-}
-
-class QueryEvent extends Event{
-	List<MovieAttribute> filters;
-	QueryEvent(Respondable<Movie> source,List<MovieAttribute> filters){
-		super(source);
-		this.filters = filters;
 	}
 }
 
