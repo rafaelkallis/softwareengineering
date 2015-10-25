@@ -10,23 +10,19 @@ final class AppController /*implements EntryPoint*/{
 	private NavigationView 		navigationView;
 	private NavigationPresenter navigationPresenter;
 	
-	private WorldMapSection		worldMapSection;
-	private TableSection		tableSection;
-	private	HeatMapSection		heatMapSection;
-	private StatisticsSection	statisticsSection;
-	private AdminareaSection	adminareaSection;
+	private List<Section> sections	= new ArrayList<Section>();
 	
 	public void onModuleLoad(){
 		this.globalEventBus 	= new EventBus();
 		
-		navigationView 			= new NavigationView(this.globalEventBus);
+		navigationView 			= new NavigationView(this.globalEventBus,sections);
 		navigationPresenter	 	= new NavigationPresenter(this.globalEventBus);
 		
-		this.worldMapSection 	= new WorldMapSection(this.globalEventBus);
-		this.tableSection		= new TableSection(this.globalEventBus);
-		this.heatMapSection		= new HeatMapSection(this.globalEventBus);
-		this.statisticsSection	= new StatisticsSection(this.globalEventBus);
-		this.adminareaSection	= new AdminareaSection(this.globalEventBus);
+		this.sections.add(new WorldMapSection(this.globalEventBus));
+		this.sections.add(new TableSection(this.globalEventBus));
+		this.sections.add(new HeatMapSection(this.globalEventBus));
+		this.sections.add(new StatisticsSection(this.globalEventBus));
+		this.sections.add(new AdminareaSection(this.globalEventBus));
 	}
 }
 
