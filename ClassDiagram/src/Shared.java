@@ -122,70 +122,29 @@ class Adminuser extends User{
 }
 
 /*
- * Services
- */
-
-abstract class Service implements EventHandleable{
-	protected EventBus globalEventBus;
-	Service(EventBus globalEventBus){
-		this.globalEventBus = globalEventBus;
-		this.globalEventBus.subscribe(this);
-	}
-	public abstract void handleEvent(Event e);
-}
-
-class QueryService extends Service{
-	QueryService(EventBus globalEventBus){
-		super(globalEventBus);
-	}
-	public void handleEvent(Event e){
-		if(e instanceof QueryEvent){
-			List<Movie> movies;
-			List<MovieAttribute> filters;
-			
-			filters = ((QueryEvent)e).filters;
-			
-			// lookup in database and return in movies
-			movies = new ArrayList<Movie>(); 
-			
-			((Respondable<Movie>)((QueryEvent)e).source).respond(movies);
-		}
-	}
-}
-
-/*
  * Event
  */
 
-interface EventHandleable{
+interface BusEventHandleable{
 	void handleEvent(Event e);	
 }
 
-interface Respondable<T>{
-	void respond(List<T> response);
-}
-
 class EventBus{
-	ArrayList<EventHandleable> subscriberList;
-	public void subscribe(EventHandleable subscriber){
+	ArrayList<BusEventHandleable> subscriberList;
+	public void subscribe(BusEventHandleable subscriber){
 		subscriberList.add(subscriber);
 	}
 	public void fireEvent(Event e){
-		for(EventHandleable subscriber : subscriberList){
+		for(BusEventHandleable subscriber : subscriberList){
 			subscriber.handleEvent(e);
 		}
 	}
 }
 
 abstract class Event{
-	Respondable<?> source;
 	Event(){
-		// no source means no response needed
-		this.source = null;
 	}
-	Event(Respondable<?> source){
-		this.source = source;
-	}
+
 }
 
 class FilterChangedEvent extends Event{
