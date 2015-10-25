@@ -458,7 +458,8 @@ class MovieCollection extends Model{
 		movies = new HashMap<String,Movie>();
 	}
 	public void add(Movie movie){
-		// TODO 
+		String key = movie.title.value.toString();
+		movies.put(key, movie);
 	}
 	public Collection<Movie> getMovies(){
 		return this.movies.values();
@@ -472,7 +473,8 @@ class FilterCollection extends Model{
 		filters = new HashMap<String,MovieAttribute>();
 	}
 	public void add(MovieAttribute filter){
-		// TODO
+		String key = filter.value.toString();
+		filters.put(key, filter);
 	}
 	public Collection<MovieAttribute> getFilters(){
 		return this.filters.values();
