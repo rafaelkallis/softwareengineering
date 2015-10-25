@@ -7,16 +7,14 @@ import java.util.ArrayList;
 final class AppController /*implements EntryPoint*/{
 	private EventBus globalEventBus;
 	
-	private NavigationView 		navigationView;
-	private NavigationPresenter navigationPresenter;
+	private NavigationPresenter navigation;
 	
 	private List<Section> sections	= new ArrayList<Section>();
 	
 	public void onModuleLoad(){
 		this.globalEventBus 	= new EventBus();
 		
-		navigationView 			= new NavigationView(this.globalEventBus,sections);
-		navigationPresenter	 	= new NavigationPresenter(this.globalEventBus);
+		navigation	 	= new NavigationPresenter(new NavigationView(),this.globalEventBus);
 		
 		this.sections.add(new WorldMapSection(this.globalEventBus));
 		this.sections.add(new TableSection(this.globalEventBus));
