@@ -12,6 +12,9 @@ final class AppController /*implements EntryPoint*/{
 	
 	private NavigationPresenter navigation;
 	
+	public static QueryService queryService;
+	public static UserService userService;
+	
 	private List<Section> sections	= new ArrayList<Section>();
 	
 	public void onModuleLoad(){
