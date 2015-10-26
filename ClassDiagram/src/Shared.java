@@ -74,7 +74,7 @@ class MovieYear extends MovieAttribute {
 }
 
 class MovieLanguage extends MovieAttribute {
-	MovieLanguage(Integer value){
+	MovieLanguage(String value){
 		super(value);
 	}
 }
