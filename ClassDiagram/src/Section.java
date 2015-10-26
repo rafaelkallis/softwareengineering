@@ -168,19 +168,19 @@ class SearchBoxFilterView extends FilterView {
 }
 
 abstract class ChartView extends View{
-	ChartView(Presenter presenter ){
+	ChartView(ChartPresenter presenter ){
 		super(presenter);
 	}
 }
 
 class PieChartView extends ChartView {
-	PieChartView(Presenter presenter ){
+	PieChartView(ChartPresenter presenter ){
 		super(presenter);
 	}
 }
 
 class BarChartView extends ChartView {
-	BarChartView(Presenter presenter ){
+	BarChartView(ChartPresenter presenter ){
 		super(presenter);
 	}
 }
@@ -192,39 +192,39 @@ class ImportView extends View{
 }
 
 class AdvertismentView extends View{
-	AdvertismentView(Presenter presenter ){
+	AdvertismentView(AdvertisementPresenter presenter ){
 		super(presenter);
 	}
 }
 class NavigationView extends View{
-	NavigationView(Presenter presenter ){
+	NavigationView(NavigationPresenter presenter ){
 		super(presenter);
 	}
 }
 
 class WorldMapView extends View{
-	WorldMapView(Presenter presenter ){
+	WorldMapView(WorldMapPresenter presenter ){
 		super(presenter);
 	}
 }
 
 class TableView extends View{
-	TableView(Presenter presenter){
+	TableView(TablePresenter presenter){
 		super(presenter);
 	}
 }
 class HeatMapView extends View{
-	HeatMapView(Presenter presenter ){
+	HeatMapView(HeatMapPresenter presenter ){
 		super(presenter);
 	}
 }
 class StatisticsView extends View{
-	StatisticsView(Presenter presenter ){
+	StatisticsView(StatisticsPresenter presenter ){
 		super(presenter);
 	}
 }
 class AdminareaView extends View{
-	AdminareaView(Presenter presenter ){
+	AdminareaView(AdminareaPresenter presenter ){
 		super(presenter);
 	}
 }
@@ -264,17 +264,7 @@ class FilterPresenter extends ListeningPresenter {
 		filters = new FilterCollection();
 	}
 	public void handleEvent(Event e){
-		if		(e instanceof FilterChangedEvent){
-			//filters.add(((FilterChangedEvent)e).filter);
-			
-		}else if(e instanceof FilterFlushEvent){
-			//this.globalEventBus.fireEvent(new QueryEvent(this,filters));
-			//this.sectionEventBus.fireEvent(new FilterDiscardEvent());
-			
-		}else if(e instanceof FilterDiscardEvent){
-			//this.filters.clear();
-			
-		}
+
 	}
 }
 
