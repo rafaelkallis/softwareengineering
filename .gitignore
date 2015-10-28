@@ -1,5 +1,8 @@
 .metadata/*
 
 Project/bin/*
+Project/.project
+Project/.
 
+!Project/src/*
 
