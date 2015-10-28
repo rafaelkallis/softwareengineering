@@ -2,3 +2,4 @@ Project/*
 !Project/src
 
 .metadata
+.DS_Store
