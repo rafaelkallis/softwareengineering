@@ -1,13 +1,5 @@
-.metadata/
-bin/.classpath
-.DS_Store
-bin/
-.classpath.recommenders
+.metadata/*
 
-ClassDiagram/.classpath
+Project/bin/*
 
-*.prefs
 
-ClassDiagram/.settings/org.eclipse.jdt.core.prefs
-
-*.prefs
