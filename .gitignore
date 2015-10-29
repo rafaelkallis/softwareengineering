@@ -1,6 +1,7 @@
-Project/*
-!Project/src
-
 .metadata
 .DS_Store
 *~
+.recommenders
+bin/
+target/
+*.class
