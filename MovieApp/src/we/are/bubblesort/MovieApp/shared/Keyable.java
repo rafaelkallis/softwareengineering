@@ -1,5 +1,5 @@
 package we.are.bubblesort.MovieApp.shared;
 
-interface SetAddInterface {
+public interface Keyable {
 	Object getKey();
 }
