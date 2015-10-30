@@ -1,6 +1,6 @@
 package we.are.bubblesort.MovieApp.shared;
 
-class MovieLanguage extends MovieAttribute {
+public class MovieLanguage extends MovieAttribute {
 	MovieLanguage(String value){
 		super(value);
 	}
