@@ -6,4 +6,8 @@ public class NavigationView extends View implements NavigationViewInterface {
 	@Override
 	public void addMenuEntry(Section newSection) {
 	}
+
+	@Override
+	public void showMenuSelection(Section section) {	
+	}
 }

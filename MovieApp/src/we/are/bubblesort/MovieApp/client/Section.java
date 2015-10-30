@@ -29,4 +29,12 @@ public abstract class Section {
 	Panel getPanel() {
 		return this.mainPanel;
 	}
+
+	public void hide() {
+		this.mainPanel.getElement().addClassName("section-hidden");
+	}
+
+	public void show() {
+		this.mainPanel.getElement().removeClassName("section-hidden");
+	}
 }
