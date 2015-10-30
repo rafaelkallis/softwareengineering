@@ -1,4 +1,5 @@
 package we.are.bubblesort.MovieApp.shared;
+import java.util.Set;
 
 public class Movie {
 		Movie(	MovieID id,
