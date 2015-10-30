@@ -1,16 +1,15 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.user.client.ui.Panel;
+import com.google.web.bindery.event.shared.SimpleEventBus;
 
-import we.are.bubblesort.MovieApp.shared.EventBus;
-
-public abstract class Section {
-	protected String name = "";
+public abstract class Section extends SimpleEventBus{
+	protected String name;
 	protected Boolean showInMainMenu = false;
 	protected Panel mainPanel;
-	protected EventBus globalEventBus;
+	protected SimpleEventBus globalEventBus;
 
-	Section(String sectionName, Boolean showInMainMenu, EventBus globalEventBus) {
+	Section(String sectionName, Boolean showInMainMenu, SimpleEventBus globalEventBus) {
 		this.showInMainMenu = showInMainMenu;
 		this.name = sectionName;
 		this.globalEventBus = globalEventBus;
