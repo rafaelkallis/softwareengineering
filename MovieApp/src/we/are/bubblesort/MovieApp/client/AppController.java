@@ -1,30 +1,31 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.web.bindery.event.shared.HandlerRegistration;
+import com.google.web.bindery.event.shared.SimpleEventBus;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
-import we.are.bubblesort.MovieApp.shared.EventBus;
 
-public class AppController implements AppActivateSectionEventHandler {
+public class AppController extends SimpleEventBus implements AppActivateSectionEventHandler {
 	private RootPanel rootPanel;
 	private QueryServiceAsync queryService;
-	private EventBus globalEventBus;
 	private Collection<Section> sections = new Collection<Section>();
 	private NavigationPresenter navigation;
+	
+	HandlerRegistration AppActivateSectionEventHandlerRegistration;
 
-	public AppController(QueryServiceAsync queryService, EventBus eventBus) {
+	public AppController(QueryServiceAsync queryService) {
 		this.queryService = queryService;
-		this.globalEventBus = eventBus;
 
-		sections.add(new WorldMapSection(true, this.globalEventBus, this.queryService));
-		sections.add(new TableSection(true, this.globalEventBus, this.queryService));
+		sections.add(new WorldMapSection(true, this, this.queryService));
+		sections.add(new TableSection	(true, this, this.queryService));
 		
-		globalEventBus.addHandler(AppActivateSectionEvent.TYPE, this);
+		AppActivateSectionEventHandlerRegistration = this.addHandler(AppActivateSectionEvent.TYPE, this);
 	}
 
 	public void init(RootPanel rootPanel) {
 		this.rootPanel = rootPanel;
-		this.navigation = new NavigationPresenter(new NavigationView(), this.globalEventBus);
+		this.navigation = new NavigationPresenter(new NavigationView(), this);
 		this.navigation.setSections(sections);
 		
 		for (Section currentSection : sections) {
@@ -37,7 +38,7 @@ public class AppController implements AppActivateSectionEventHandler {
 	public void activateSection(Section section) {
 		hideAllSections();
 		section.show();
-		globalEventBus.fireEvent(new AppSectionActivatedEvent(section));
+		this.fireEvent(new AppSectionActivatedEvent(section));
 	}
 	
 	public void hideAllSections() {
@@ -46,6 +47,11 @@ public class AppController implements AppActivateSectionEventHandler {
 		}
 	}
 
+	
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.AppActivateSectionEventHandler#onActivateSection(we.are.bubblesort.MovieApp.client.Section)
+	 */
 	@Override
 	public void onActivateSection(Section section) {
 		activateSection(section);
