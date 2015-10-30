@@ -1,5 +1,9 @@
 package we.are.bubblesort.MovieApp.client;
 
-public class NavigationView {
+import we.are.bubblesort.MovieApp.client.NavigationPresenter.NavigationViewInterface;
 
+public class NavigationView extends View implements NavigationViewInterface {
+	@Override
+	public void addMenuEntry(Section newSection) {
+	}
 }

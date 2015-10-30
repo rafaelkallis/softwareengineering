@@ -4,13 +4,14 @@ import java.util.List;
 
 import com.google.gwt.user.client.ui.RootPanel;
 
+import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.EventBus;
 
 public class AppController {
 	private RootPanel rootPanel;
 	private QueryServiceAsync queryService;
 	private EventBus globalEventBus;
-	private List<Section> sections;
+	private Collection<Section> sections = new Collection<Section>();
 	private NavigationPresenter navigation;
 
 	public AppController(QueryServiceAsync queryService, EventBus eventBus) {
@@ -23,7 +24,8 @@ public class AppController {
 
 	public void init(RootPanel rootPanel) {
 		this.rootPanel = rootPanel;
-		this.navigation = new NavigationPresenter(new NavigationView(), sections);
+		this.navigation = new NavigationPresenter(new NavigationView());
+		this.navigation.setSections(sections);
 		
 		for (Section currentSection : sections) {
 			currentSection.init();

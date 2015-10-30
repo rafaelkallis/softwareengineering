@@ -21,5 +21,4 @@ public class TableSection extends Section {
 	void init() {
 		this.mainPanel = new FlowPanel();
 	}
-	
 }
