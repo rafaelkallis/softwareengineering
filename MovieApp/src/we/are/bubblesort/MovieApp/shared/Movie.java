@@ -1,7 +1,7 @@
 package we.are.bubblesort.MovieApp.shared;
 import java.util.Set;
 
-public class Movie implements SetAddInterface{
+public class Movie implements Keyable{
 	public MovieID id;
 	public MovieTitle title;
 	public MovieYear year;
