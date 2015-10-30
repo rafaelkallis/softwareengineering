@@ -1,12 +1,14 @@
 package we.are.bubblesort.MovieApp.shared;
 import java.util.HashMap;
 import java.util.Iterator;
+import com.google.web.bindery.event.shared.SimpleEventBus;
+
 
 /*
  * To implement a MovieSet -> Set<Movie>
  * To implement a FilterSet -> Set<MovieAttribute>
  */
-public class Set<T extends SetAddInterface> implements Iterable<T>{
+public class Set<T extends Keyable> extends SimpleEventBus implements Iterable<T>{
 		protected HashMap<Object,T> elements;
 		Set(){
 			elements = new HashMap<Object,T>();
@@ -34,7 +36,6 @@ public class Set<T extends SetAddInterface> implements Iterable<T>{
 				this.elements.put(key, element);
 			}
 		}
-		
 		
 		public java.util.Collection<T> getAll(){
 			return this.elements.values();
