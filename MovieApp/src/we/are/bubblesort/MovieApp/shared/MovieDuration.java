@@ -1,6 +1,6 @@
 package we.are.bubblesort.MovieApp.shared;
 
-class MovieDuration extends MovieAttribute {
+public class MovieDuration extends MovieAttribute {
 	MovieDuration(Integer value){
 		super(value);
 	}
