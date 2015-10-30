@@ -1,16 +1,17 @@
 package we.are.bubblesort.MovieApp.client;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
-import we.are.bubblesort.MovieApp.shared.EventBus;
+import com.google.web.bindery.event.shared.SimpleEventBus;
+
 
 public class NavigationPresenter extends Presenter implements NavigationMenuSelectedEventHandler, AppSectionActivatedEventHandler {
 	protected Collection<Section> sections;
-	protected NavigationViewInterface view;
-	protected EventBus parentEventBus;
+	protected NavigationView view;
+	protected SimpleEventBus parentEventBus;
 
-	public NavigationPresenter(NavigationViewInterface navigationView, EventBus parentEventBus) {
+	public NavigationPresenter(NavigationView navigationView, SimpleEventBus parentEventBus) {
 		this.view = navigationView;
-		this.view.subscribeToEvent(NavigationMenuSelectedEvent.TYPE, this);
+		this.view.addHandler(NavigationMenuSelectedEvent.TYPE, this);
 	}
 	
 	@Override
@@ -33,10 +34,11 @@ public class NavigationPresenter extends Presenter implements NavigationMenuSele
 		parentEventBus.fireEvent(new AppActivateSectionEvent(section));
 	}
 
-	public interface NavigationViewInterface extends ViewInterface {
-		void addMenuEntry(Section newSection);
-		void showMenuSelection(Section section);
-	}
+	// Use NavigationView (reason: more powerful than interface)
+//	public interface NavigationViewInterface {
+//		void addMenuEntry(Section newSection);
+//		void showMenuSelection(Section section);
+//	}
 
 	@Override
 	public void onSectionActivated(Section section) {
