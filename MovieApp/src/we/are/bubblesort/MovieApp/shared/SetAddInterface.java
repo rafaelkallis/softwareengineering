@@ -1,5 +1,5 @@
 package we.are.bubblesort.MovieApp.shared;
 
-public class Set {
-
+interface SetAddInterface {
+	Object getKey();
 }
