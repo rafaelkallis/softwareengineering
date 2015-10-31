@@ -9,8 +9,6 @@ import java.util.Vector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import we.are.bubblesort.MovieApp.server.DatabaseUser;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.MovieCountry;
-import we.are.bubblesort.MovieApp.shared.MovieYear;
 import we.are.bubblesort.MovieApp.shared.Set;
 
 import java.util.logging.Level;
@@ -39,7 +37,7 @@ public class Database extends RemoteServiceServlet {
     }
     
     private PreparedStatement makeStringToPreparedStatement(String search_string) throws SQLException{
-    	String statement = new String(" SELECT * FROM " + db_name + " WHERE movie_name='?' ;");
+    	String statement = new String(" SELECT * FROM " + db_name + " WHERE movie_name=\"?\" ;");
     	PreparedStatement pst = this.conn.prepareStatement(statement);
     	pst.setString(1, search_string);
     	return pst;
@@ -48,18 +46,13 @@ public class Database extends RemoteServiceServlet {
     	String statement = new String(" SELECT * FROM " + db_name + " WHERE 1 AND ");
     	PreparedStatement pst;
     	int i=1;
+    	
     	for(MovieAttribute filter : filters){
-    		if(filter instanceof MovieCountry){
-    			statement += " AND movie_countries='?' ";
-    		}else if(filter instanceof MovieYear){
-    			statement += " AND movie_release_year=? ";
-    		}
-    		/*
-    		 * goes on with else if
-    		 */
+    		statement += (" AND "+filter.db_name+"\"?\" ");
+  
     	}
-    	statement += ";";
-    	pst = this.conn.prepareStatement(statement);
+    	pst = this.conn.prepareStatement(statement+";");
+    	
     	for(MovieAttribute filter : filters){
     		if(filter.value instanceof Integer){
     			pst.setInt(i++, (int) filter.value);
