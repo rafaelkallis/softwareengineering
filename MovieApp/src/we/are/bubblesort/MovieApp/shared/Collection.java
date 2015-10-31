@@ -3,8 +3,10 @@ package we.are.bubblesort.MovieApp.shared;
 import java.util.Iterator;
 import java.util.List;
 
+import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Collection<T> extends Model implements Iterable<T> {
+
+public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 	protected List<T> elements;
 	
 	public void add(T element) {

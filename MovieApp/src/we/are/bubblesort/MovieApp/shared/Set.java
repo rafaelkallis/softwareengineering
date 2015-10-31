@@ -1,6 +1,8 @@
 package we.are.bubblesort.MovieApp.shared;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import com.google.gwt.user.client.rpc.IsSerializable;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 
 
@@ -8,7 +10,7 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
  * To implement a MovieSet -> Set<Movie>
  * To implement a FilterSet -> Set<MovieAttribute>
  */
-public class Set<T extends Keyable> extends SimpleEventBus implements Iterable<T>{
+public class Set<T extends Keyable> extends SimpleEventBus implements Iterable<T>,IsSerializable{
 		protected HashMap<Object,T> elements;
 		Set(){
 			elements = new HashMap<Object,T>();
