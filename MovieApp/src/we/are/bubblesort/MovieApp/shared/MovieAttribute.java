@@ -1,6 +1,8 @@
 package we.are.bubblesort.MovieApp.shared;
 
-public abstract class MovieAttribute implements Keyable{
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public abstract class MovieAttribute implements Keyable, IsSerializable{
 	public Object value;
 	MovieAttribute(Object value){
 		this.value = value;

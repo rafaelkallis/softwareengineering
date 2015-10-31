@@ -1,7 +1,9 @@
 package we.are.bubblesort.MovieApp.shared;
 import java.util.Set;
 
-public class Movie implements Keyable{
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public class Movie implements Keyable,IsSerializable{
 	public MovieID id;
 	public MovieTitle title;
 	public MovieYear year;
