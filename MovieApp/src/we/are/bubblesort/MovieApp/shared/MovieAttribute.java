@@ -4,10 +4,10 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public abstract class MovieAttribute implements Keyable, IsSerializable{
 	public Object value;
-	public String db_name;
-	MovieAttribute(Object value,String db_name){
+	public String dbName;
+	public MovieAttribute(Object value,String dbName){
 		this.value = value;
-		this.db_name = db_name;
+		this.dbName = dbName;
 	}
 	public Object getKey(){
 		return this.value;
