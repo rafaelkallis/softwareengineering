@@ -9,6 +9,7 @@ import we.are.bubblesort.MovieApp.shared.Movie;
  * The async counterpart of <code>QueryService</code>.
  */
 public interface QueryServiceAsync {
-
+/*
 	void getMovieSet(String database_name, AsyncCallback<Collection<Movie>> callback, AsyncCallback<Void> callback2);
+*/
 }

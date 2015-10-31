@@ -27,13 +27,14 @@ public class ButtonNavigationView extends View implements NavigationViewInterfac
 		Button button = new Button();
 		button.setText(item.getDisplayName());
 		valueButtonsMapping.put(item.getValue(), button);
-		
 		this.mainPanel.add(button);
+		
+		final NavigationViewItem thisItem = item;
 		
 		button.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				selectedItem = item;
+				selectedItem = thisItem;
 				fireNavigationSelectedEvent();
 			}
 		});
