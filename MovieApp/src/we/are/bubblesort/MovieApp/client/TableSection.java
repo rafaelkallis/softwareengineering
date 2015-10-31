@@ -7,17 +7,18 @@ public class TableSection extends Section {
 	static final String defaultName = "Tabelle";
 	private QueryServiceAsync queryService;
 	
-	TableSection(String sectionName, Boolean showInMainMenu, SimpleEventBus globalEventBus, QueryServiceAsync queryService) {
-		super(sectionName, showInMainMenu, globalEventBus);
+	TableSection(String sectionName, QueryServiceAsync queryService) {
+		super(sectionName);
 		this.queryService = queryService;
+		this.mainPanel = new FlowPanel();
 	}
 	
-	TableSection(Boolean showInMainMenu, SimpleEventBus globalEventBus, QueryServiceAsync queryService) {
-		this(defaultName, showInMainMenu, globalEventBus, queryService);
+	TableSection(QueryServiceAsync queryService) {
+		this(defaultName, queryService);
 	}
 
 	@Override
 	void init() {
-		this.mainPanel = new FlowPanel();
+		this.setPanelIdentifier("table");
 	}
 }
