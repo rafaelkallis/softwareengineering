@@ -1,23 +1,25 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.web.bindery.event.shared.SimpleEventBus;
+import com.google.gwt.user.client.ui.HTML;
 
 public class TableSection extends Section {
 	static final String defaultName = "Tabelle";
 	private QueryServiceAsync queryService;
 	
-	TableSection(String sectionName, Boolean showInMainMenu, SimpleEventBus globalEventBus, QueryServiceAsync queryService) {
-		super(sectionName, showInMainMenu, globalEventBus);
+	TableSection(String sectionName, QueryServiceAsync queryService) {
+		super(sectionName);
 		this.queryService = queryService;
 	}
 	
-	TableSection(Boolean showInMainMenu, SimpleEventBus globalEventBus, QueryServiceAsync queryService) {
-		this(defaultName, showInMainMenu, globalEventBus, queryService);
+	TableSection(QueryServiceAsync queryService) {
+		this(defaultName, queryService);
 	}
 
 	@Override
 	void init() {
 		this.mainPanel = new FlowPanel();
+		this.mainPanel.add(new HTML("<h1>TableSection</h1>"));
+		this.setPanelIdentifier("table");
 	}
 }

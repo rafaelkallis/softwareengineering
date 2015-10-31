@@ -1,5 +1,6 @@
 package we.are.bubblesort.MovieApp.shared;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 
 public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
-	protected List<T> elements;
+	protected List<T> elements = new ArrayList<T>();
 	
 	public void add(T element) {
 		this.elements.add(element);

@@ -11,12 +11,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  * The server-side implementation of the RPC service.
  */
 @SuppressWarnings("serial")
-public class QueryServiceImpl extends RemoteServiceServlet implements QueryService {
-
+public class QueryServiceImpl extends RemoteServiceServlet/* implements QueryService*/ {
+/*
 	@Override
 	public void getMovieSet(String database_name, AsyncCallback<Collection<Movie>> callback) {
 		// TODO Auto-generated method stub
 		
 	}
-	
+	*/
 }

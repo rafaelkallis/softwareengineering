@@ -11,6 +11,7 @@ import we.are.bubblesort.MovieApp.shared.Movie;
  */
 @RemoteServiceRelativePath("query")
 public interface QueryService extends RemoteService {
+	/*
 	public void getMovieSet(String database_name, AsyncCallback<Collection<Movie>> callback);
-	
+	*/
 }

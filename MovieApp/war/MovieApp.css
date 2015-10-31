@@ -1,0 +1,24 @@
+
+button {
+	outline:none;
+}
+
+.app-header {
+	text-align:center;
+}
+
+.app-header .mainnavigation {
+	margin:auto;
+}
+
+.section {
+	
+}
+
+.section-hidden {
+	display:none;
+}
+
+.button-navigation .active {
+	font-weight:bold;
+}
