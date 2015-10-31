@@ -1,10 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.web.bindery.event.shared.SimpleEventBus;
-
-import com.google.gwt.user.client.ui.Panel;
-
 
 public class WorldMapSection extends Section {
 	static final String defaultName = "Karte";

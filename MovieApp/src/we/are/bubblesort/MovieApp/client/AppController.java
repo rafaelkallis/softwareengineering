@@ -1,6 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import com.google.web.bindery.event.shared.SimpleEventBus;
@@ -23,6 +24,7 @@ public final class AppController extends SimpleEventBus implements AppActivateSe
 	}
 
 	public void init(Panel appPanel) {
+		appPanel.add(new HTML("<p>HEllo</p>"));
 		this.appPanel = appPanel;
 		this.headerPanel = new FlowPanel();
 		this.sectionPanel = new FlowPanel();
@@ -33,6 +35,8 @@ public final class AppController extends SimpleEventBus implements AppActivateSe
 
 		this.appPanel.add(headerPanel);
 		this.appPanel.add(sectionPanel);
+		
+		this.headerPanel.add(this.mainNavigation.getView());
 		
 		this.bind();
 		this.setupSections();
@@ -62,7 +66,7 @@ public final class AppController extends SimpleEventBus implements AppActivateSe
 	public void activateSection(Section section) {
 		hideAllSections();
 		section.show();
-		this.fireEvent(new AppSectionActivatedEvent(section));
+		this.fireEvent(new AppSectionActivatedEvent(section.getId()));
 	}
 	
 	public void hideAllSections() {
@@ -77,7 +81,12 @@ public final class AppController extends SimpleEventBus implements AppActivateSe
 	 * @see we.are.bubblesort.MovieApp.client.AppActivateSectionEventHandler#onActivateSection(we.are.bubblesort.MovieApp.client.Section)
 	 */
 	@Override
-	public void onActivateSection(Section section) {
-		activateSection(section);
+	public void onActivateSection(int sectionId) {
+		for (Section section : sections) {
+			if (section.getId() == sectionId) {
+				activateSection(section);
+				break;
+			}
+		}
 	}
 }

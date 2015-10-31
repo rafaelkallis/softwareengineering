@@ -1,10 +1,8 @@
 package we.are.bubblesort.MovieApp.client;
 
-import we.are.bubblesort.MovieApp.shared.Set;
 
 public class SectionNavigationPresenter extends Presenter implements NavigationSelectedEventHandler, AppSectionActivatedEventHandler {
 	protected NavigationViewInterface view;
-	protected Set<NavigationViewItem> sections;
 
 	public SectionNavigationPresenter(NavigationViewInterface navigationView) {
 		this.view = navigationView;
@@ -14,17 +12,16 @@ public class SectionNavigationPresenter extends Presenter implements NavigationS
 	@Override
 	public void onItemSelected() {
 		NavigationViewItem selectedItem = this.view.getSelectedItem();
-		this.fireEvent(new AppActivateSectionEvent((Section)selectedItem.getValue()));
+		this.fireEvent(new AppActivateSectionEvent(Integer.parseInt(selectedItem.getValue())));
 	}
 	
 	public void addMenu(Section section) {
-		NavigationViewItem item = new NavigationViewItem(section.getName(), section);
-		this.sections.add(item);
+		NavigationViewItem item = new NavigationViewItem(section.getName(), Integer.toString(section.getId()));
 		this.view.addItem(item);
 	}
 
 	@Override
-	public void onSectionActivated(Section section) {
-		this.view.activateItem(new NavigationViewItem(section.getName(), section));
+	public void onSectionActivated(int sectionId) {
+		this.view.activateItem(Integer.toString(sectionId));
 	}
 }

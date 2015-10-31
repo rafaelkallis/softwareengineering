@@ -4,9 +4,9 @@ import we.are.bubblesort.MovieApp.shared.Keyable;
 
 public class NavigationViewItem implements Keyable {
 	protected String displayName;
-	protected Object value;
+	protected String value;
 	
-	NavigationViewItem(String displayName, Object value) {
+	NavigationViewItem(String displayName, String value) {
 		this.displayName = displayName;
 		this.value = value;
 	}
@@ -15,7 +15,7 @@ public class NavigationViewItem implements Keyable {
 		return displayName;
 	}
 	
-	Object getValue() {
+	String getValue() {
 		return value;
 	}
 	

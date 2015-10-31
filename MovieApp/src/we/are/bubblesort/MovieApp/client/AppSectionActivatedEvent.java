@@ -4,10 +4,10 @@ import com.google.web.bindery.event.shared.Event;
 
 public class AppSectionActivatedEvent extends Event<AppSectionActivatedEventHandler>{
 	public static Type<AppSectionActivatedEventHandler> TYPE = new Type<AppSectionActivatedEventHandler>();
-	private Section section;
+	private int sectionId;
 	
-	AppSectionActivatedEvent(Section section) {
-		this.section = section;
+	AppSectionActivatedEvent(int sectionId) {
+		this.sectionId = sectionId;
 	}
 	
 	@Override
@@ -17,7 +17,7 @@ public class AppSectionActivatedEvent extends Event<AppSectionActivatedEventHand
 
 	@Override
 	protected void dispatch(AppSectionActivatedEventHandler handler) {
-		handler.onSectionActivated(section);
+		handler.onSectionActivated(sectionId);
 	}
 
 }
