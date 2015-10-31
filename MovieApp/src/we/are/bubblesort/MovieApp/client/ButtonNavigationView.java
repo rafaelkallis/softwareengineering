@@ -3,6 +3,7 @@ package we.are.bubblesort.MovieApp.client;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
@@ -12,7 +13,7 @@ import com.google.gwt.user.client.ui.Panel;
 
 public class ButtonNavigationView extends View implements NavigationViewInterface {
 	protected NavigationViewItem selectedItem;
-	protected HashMap<String, Button> valueButtonsMapping;
+	protected HashMap<String, Button> valueButtonsMapping = new HashMap<String, Button>();
 	protected Panel mainPanel;
 
 	ButtonNavigationView() {

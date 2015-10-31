@@ -1,6 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HTML;
 
 public class TableSection extends Section {
 	static final String defaultName = "Tabelle";
@@ -9,7 +10,6 @@ public class TableSection extends Section {
 	TableSection(String sectionName, QueryServiceAsync queryService) {
 		super(sectionName);
 		this.queryService = queryService;
-		this.mainPanel = new FlowPanel();
 	}
 	
 	TableSection(QueryServiceAsync queryService) {
@@ -18,6 +18,8 @@ public class TableSection extends Section {
 
 	@Override
 	void init() {
+		this.mainPanel = new FlowPanel();
+		this.mainPanel.add(new HTML("<h1>TableSection</h1>"));
 		this.setPanelIdentifier("table");
 	}
 }
