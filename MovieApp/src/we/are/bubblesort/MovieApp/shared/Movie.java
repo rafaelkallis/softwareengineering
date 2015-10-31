@@ -1,6 +1,6 @@
 package we.are.bubblesort.MovieApp.shared;
-import java.util.Set;
 
+import we.are.bubblesort.MovieApp.shared.Set;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class Movie implements Keyable,IsSerializable{
@@ -9,18 +9,19 @@ public class Movie implements Keyable,IsSerializable{
 	public MovieYear year;
 	public Set<MovieLanguage> languages;
 	public Set<MovieCountry> countries;
+	
 	public MovieDuration duration;
-	Movie(	MovieID id,
-			MovieTitle title,
-			MovieYear year,
-			Set<MovieLanguage> languages,
-			Set<MovieCountry> countries,
-			MovieDuration duration){
+	public Movie(	MovieID id,
+					MovieTitle title,
+					MovieYear year,
+					we.are.bubblesort.MovieApp.shared.Set<MovieLanguage> languages2,
+					we.are.bubblesort.MovieApp.shared.Set<MovieCountry> countries2,
+					MovieDuration duration){
 		this.id = id;
 		this.title= title;
 		this.year = year;
-		this.languages = languages;
-		this.countries = countries;
+		this.languages = languages2;
+		this.countries = countries2;
 		this.duration = duration;
 	}
 	public Object getKey(){
