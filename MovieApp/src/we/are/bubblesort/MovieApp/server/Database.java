@@ -8,39 +8,65 @@ import java.sql.SQLException;
 import java.util.Vector;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import we.are.bubblesort.MovieApp.server.DatabaseUser;
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.MovieCountry;
+import we.are.bubblesort.MovieApp.shared.MovieYear;
+import we.are.bubblesort.MovieApp.shared.Set;
 
-public class Database extends RemoteServiceServlet implements DBConnection {
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Database extends RemoteServiceServlet {
 	/**
 	 * Eclipse Generated UID
 	 */
 	private static final long serialVersionUID = 2252293602456602793L;
 	private Connection conn = null;
     private String status;
+    private String db_name = "movies";
     private String url  = "jdbc:mysql://80.74.150.210:3306/movieapp";
     private String user = "se_user";
     private String pass = "SEIsAwesome2015";
-    public Database() {
+    public Database() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 conn = DriverManager.getConnection(url, user, pass);
-        } catch (Exception e) {
-                //NEVER catch exceptions like this
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(Database.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+
         }
     }
     
-    public DatabaseUser authenticateUser(String user, String pass) {
-        DatabaseUser new_user = null;
-        try {
-                PreparedStatement ps = conn.prepareStatement("select readonly * from users where username = \"" + user + "\" AND " +"password = \"" + pass + "\"");
-                ResultSet result = ps.executeQuery();
-                while (result.next()) {
-                	new_user = new DatabaseUser(result.getString(1),result.getString(2));
-                }
-        	result.close();
-        	ps.close();
-    	} catch (SQLException sqle) {
-    		//do stuff on fail
+    private PreparedStatement makeStringToPreparedStatement(String search_string) throws SQLException{
+    	String statement = new String(" SELECT * FROM " + db_name + " WHERE movie_name='?' ;");
+    	PreparedStatement pst = this.conn.prepareStatement(statement);
+    	pst.setString(1, search_string);
+    	return pst;
+    }
+    private PreparedStatement makeFilterSetToPreparedStatement(Set<MovieAttribute> filters) throws SQLException{
+    	String statement = new String(" SELECT * FROM " + db_name + " WHERE 1 AND ");
+    	PreparedStatement pst;
+    	int i=1;
+    	for(MovieAttribute filter : filters){
+    		if(filter instanceof MovieCountry){
+    			statement += " AND movie_countries='?' ";
+    		}else if(filter instanceof MovieYear){
+    			statement += " AND movie_release_year=? ";
+    		}
+    		/*
+    		 * goes on with else if
+    		 */
     	}
-        return new_user;
+    	statement += ";";
+    	pst = this.conn.prepareStatement(statement);
+    	for(MovieAttribute filter : filters){
+    		if(filter.value instanceof Integer){
+    			pst.setInt(i++, (int) filter.value);
+    		}else if(filter.value instanceof String){
+    			pst.setString(i++, filter.value.toString());
+    		}
+    	}
+    	return pst;
     }
 }
