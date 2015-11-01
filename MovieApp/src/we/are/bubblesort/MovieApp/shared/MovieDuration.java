@@ -1,7 +1,8 @@
 package we.are.bubblesort.MovieApp.shared;
 
 public class MovieDuration extends MovieAttribute {
-	MovieDuration(Integer value){
-		super(value);
+	public static String dbName = "movie_runtime";
+	public MovieDuration(Integer value){
+		super(value,MovieDuration.dbName);
 	}
 }
