@@ -11,13 +11,12 @@ import com.google.gwt.user.client.ui.Composite;
 
 public class FilterPresenter extends Presenter implements Keyable {
 	protected FilterViewInterface view;
-	protected Class<? extends MovieAttribute> attribute;
+	protected MovieAttribute attribute;
 	protected QueryServiceAsync queryService;
-	protected String value = "";
 	
-	public FilterPresenter(Class<? extends MovieAttribute> attributeClass, QueryServiceAsync queryService, FilterViewInterface view) {
+	public FilterPresenter(MovieAttribute attribute, QueryServiceAsync queryService, FilterViewInterface view) {
 		this.view = view;
-		this.attribute = attributeClass;
+		this.attribute = attribute;
 		this.queryService = queryService;
 		this.fillViewValues();
 		
@@ -30,16 +29,16 @@ public class FilterPresenter extends Presenter implements Keyable {
 		});
 	}
 	
-	public Class<? extends MovieAttribute> getAttributeClass() {
+	public MovieAttribute getAttribute() {
 		return this.attribute;
 	}
 
 	private void readValue() {
-		this.value = this.view.getValue();
+		this.attribute.value = this.view.getValue();
 	}
 	
-	public String getValue() {
-		return this.value;
+	public Object getValue() {
+		return this.attribute.value;
 	}
 	
 	private void fillViewValues() {

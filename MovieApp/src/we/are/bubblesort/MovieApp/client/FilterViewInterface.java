@@ -1,7 +1,9 @@
 package we.are.bubblesort.MovieApp.client;
 
-import com.google.gwt.event.dom.client.HasChangeHandlers;
+import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
-public interface FilterViewInterface extends HasChangeHandlers {
+public interface FilterViewInterface {
 	String getValue();
+	public HandlerRegistration addChangeHandler(ChangeHandler handler);
 }

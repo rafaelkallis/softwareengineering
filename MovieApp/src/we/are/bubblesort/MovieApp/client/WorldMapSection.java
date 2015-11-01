@@ -32,7 +32,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		this.worldmap = new WorldMapPresenter();
 		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
 		
-		this.filterbar.addFilterFor(MovieYear.class, new FilterListBoxView());
+		this.filterbar.addFilterFor(new MovieYear(0), new FilterListBoxView());
 		
 		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 		
@@ -45,6 +45,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		Set<MovieAttribute> attributes = this.filterbar.getFilterValues();
 		// Call to RPC Service for new data.
 		Window.alert("New Data is being fetched");
+		callQueryService(attributes);
 	}
 	
 	@Override
@@ -70,14 +71,10 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 	public void callQueryService(Set<MovieAttribute> filterSet){
 		queryService.getMovieCollection(filterSet, new AsyncCallback<Collection<Movie>>(){
 			public void onFailure(Throwable caught){
-				/*
-				 * handle Failure
-				 */
+				Window.alert("That failed");
 			}
 			public void onSuccess(Collection<Movie> result){
-				/*
-				 * to something with result
-				 */
+				Window.alert("That worked");
 			}
 		});
 	}

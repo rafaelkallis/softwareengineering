@@ -15,8 +15,8 @@ public class FilterBarPresenter extends Presenter implements FilterChangedEventH
 		this.queryService = queryService;
 	}
 
-	public void addFilterFor(Class<? extends MovieAttribute> attributeClass, FilterViewInterface view) {
-		FilterPresenter presenter = new FilterPresenter(attributeClass, this.queryService, view);
+	public void addFilterFor(MovieAttribute attribute, FilterViewInterface view) {
+		FilterPresenter presenter = new FilterPresenter(attribute, this.queryService, view);
 		this.view.main.add(presenter.getCompositeView());
 		
 		presenter.addHandler(FilterChangedEvent.TYPE, this);
@@ -26,19 +26,8 @@ public class FilterBarPresenter extends Presenter implements FilterChangedEventH
 		Set<MovieAttribute> resultSet = new Set<MovieAttribute>();
 		
 		for (FilterPresenter presenter : this.presenters) {
-			try {
-				MovieAttribute attribute = presenter.getAttributeClass().newInstance();
-				if (attribute.value instanceof String) {
-					attribute.value = presenter.getValue();
-				}
-				else {
-					attribute.value = Integer.parseInt(presenter.getValue());
-				}
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
+			MovieAttribute attribute = presenter.getAttribute();
+			resultSet.add(attribute);
 		}
 		
 		return resultSet;

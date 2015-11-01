@@ -3,7 +3,7 @@ package we.are.bubblesort.MovieApp.client;
 import com.google.gwt.user.client.ui.Composite;
 
 public class WorldMapPresenter extends Presenter {
-	protected WorldMapView view;
+	protected WorldMapView view = new WorldMapView();
 
 	@Override
 	public Composite getCompositeView() {

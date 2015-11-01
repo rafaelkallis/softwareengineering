@@ -1,6 +1,5 @@
 package we.are.bubblesort.MovieApp.client;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 
@@ -27,7 +26,6 @@ public class SectionNavigationPresenter extends Presenter implements NavigationS
 
 	@Override
 	public void onSectionActivated(int sectionId) {
-		GWT.log("tada");
 		this.view.activateItem(Integer.toString(sectionId));
 	}
 
