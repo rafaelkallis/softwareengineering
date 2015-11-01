@@ -3,7 +3,7 @@ package we.are.bubblesort.MovieApp.client;
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Keyable;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.MovieAttributeValue;
+import we.are.bubblesort.MovieApp.shared.MovieYear;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -44,27 +44,27 @@ public class FilterPresenter extends Presenter implements Keyable {
 	private void fillViewValues() {
 		if (this.view instanceof FilterSelectableViewInterface) {
 			FilterSelectableViewInterface seletableView = (FilterSelectableViewInterface)this.view;
-			Collection<MovieAttributeValue> values = this.getFilterValues();
+			Collection<MovieAttribute> values = this.getFilterValues();
 			
-			for (MovieAttributeValue val : values) {
-				seletableView.addItem(val.getDisplayName(), val.getValue());
+			for (MovieAttribute val : values) {
+				seletableView.addItem(val.displayName, val.value);
 			}
 		}
 	}
 
-	private Collection<MovieAttributeValue> getFilterValues() {
+	private Collection<MovieAttribute> getFilterValues() {
 		// MOCK until Services work
-		Collection<MovieAttributeValue> values = new Collection<MovieAttributeValue>();
-		values.add(new MovieAttributeValue("1995"));
-		values.add(new MovieAttributeValue("1996"));
-		values.add(new MovieAttributeValue("1997"));
-		values.add(new MovieAttributeValue("1998"));
-		values.add(new MovieAttributeValue("1999"));
-		values.add(new MovieAttributeValue("2000"));
-		values.add(new MovieAttributeValue("2001"));
-		values.add(new MovieAttributeValue("2002"));
-		values.add(new MovieAttributeValue("2003"));
-		values.add(new MovieAttributeValue("2004"));
+		Collection<MovieAttribute> values = new Collection<MovieAttribute>();
+		values.add(new MovieYear(1995,"1995"));
+		values.add(new MovieYear(1996,"1996"));
+		values.add(new MovieYear(1997,"1997"));
+		values.add(new MovieYear(1998,"1998"));
+		values.add(new MovieYear(1999,"1999"));
+		values.add(new MovieYear(2000,"2000"));
+		values.add(new MovieYear(2001,"2001"));
+		values.add(new MovieYear(2002,"2002"));
+		values.add(new MovieYear(2003,"2003"));
+		values.add(new MovieYear(2004,"2004"));
 		
 		return values;
 	}
