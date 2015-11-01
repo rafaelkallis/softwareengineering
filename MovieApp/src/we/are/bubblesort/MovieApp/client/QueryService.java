@@ -1,6 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.Set;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 import we.are.bubblesort.MovieApp.shared.Collection;
@@ -11,7 +12,5 @@ import we.are.bubblesort.MovieApp.shared.Movie;
  */
 @RemoteServiceRelativePath("query")
 public interface QueryService extends RemoteService {
-	/*
-	public void getMovieSet(String database_name, AsyncCallback<Collection<Movie>> callback);
-	*/
+	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet);
 }

@@ -254,19 +254,32 @@ Lcom_google_gwt_user_client_ui_AttachDetachException$2_2_classLit,com.google.gwt
 Lcom_google_gwt_user_client_ui_AttachDetachException_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_AttachDetachException_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_AttachDetachException_2_classLit,com/google/gwt/user/client/ui/AttachDetachException.java,27,-1
 Lcom_google_gwt_user_client_ui_ButtonBase_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_ButtonBase_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_ButtonBase_2_classLit,com/google/gwt/user/client/ui/ButtonBase.java,27,-1
 Lcom_google_gwt_user_client_ui_Button_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_Button_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_Button_2_classLit,com/google/gwt/user/client/ui/Button.java,42,-1
+Lcom_google_gwt_user_client_ui_ChangeListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_ChangeListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_ChangeListenerCollection_2_classLit,com/google/gwt/user/client/ui/ChangeListenerCollection.java,28,-1
+Lcom_google_gwt_user_client_ui_ClickListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_ClickListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_ClickListenerCollection_2_classLit,com/google/gwt/user/client/ui/ClickListenerCollection.java,30,-1
 Lcom_google_gwt_user_client_ui_ComplexPanel_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_ComplexPanel_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_ComplexPanel_2_classLit,com/google/gwt/user/client/ui/ComplexPanel.java,26,-1
 Lcom_google_gwt_user_client_ui_Composite_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_Composite_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_Composite_2_classLit,com/google/gwt/user/client/ui/Composite.java,42,-1
 Lcom_google_gwt_user_client_ui_DirectionalTextHelper_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_DirectionalTextHelper_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_DirectionalTextHelper_2_classLit,com/google/gwt/user/client/ui/DirectionalTextHelper.java,32,-1
 Lcom_google_gwt_user_client_ui_FlowPanel_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_FlowPanel_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_FlowPanel_2_classLit,com/google/gwt/user/client/ui/FlowPanel.java,29,-1
+Lcom_google_gwt_user_client_ui_FocusListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_FocusListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_FocusListenerCollection_2_classLit,com/google/gwt/user/client/ui/FocusListenerCollection.java,32,-1
 Lcom_google_gwt_user_client_ui_FocusWidget_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_FocusWidget_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_FocusWidget_2_classLit,com/google/gwt/user/client/ui/FocusWidget.java,88,-1
+Lcom_google_gwt_user_client_ui_FormHandlerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_FormHandlerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_FormHandlerCollection_2_classLit,com/google/gwt/user/client/ui/FormHandlerCollection.java,29,-1
 Lcom_google_gwt_user_client_ui_HTML_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_HTML_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_HTML_2_classLit,com/google/gwt/user/client/ui/HTML.java,54,-1
+Lcom_google_gwt_user_client_ui_KeyboardListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_KeyboardListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_KeyboardListenerCollection_2_classLit,com/google/gwt/user/client/ui/KeyboardListenerCollection.java,31,-1
 Lcom_google_gwt_user_client_ui_LabelBase_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_LabelBase_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_LabelBase_2_classLit,com/google/gwt/user/client/ui/LabelBase.java,31,-1
 Lcom_google_gwt_user_client_ui_Label_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_Label_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_Label_2_classLit,com/google/gwt/user/client/ui/Label.java,103,-1
+Lcom_google_gwt_user_client_ui_LoadListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_LoadListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_LoadListenerCollection_2_classLit,com/google/gwt/user/client/ui/LoadListenerCollection.java,28,-1
+Lcom_google_gwt_user_client_ui_MouseListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_MouseListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_MouseListenerCollection_2_classLit,com/google/gwt/user/client/ui/MouseListenerCollection.java,33,-1
+Lcom_google_gwt_user_client_ui_MouseWheelListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_MouseWheelListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_MouseWheelListenerCollection_2_classLit,com/google/gwt/user/client/ui/MouseWheelListenerCollection.java,31,-1
 Lcom_google_gwt_user_client_ui_Panel_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_Panel_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_Panel_2_classLit,com/google/gwt/user/client/ui/Panel.java,24,-1
+Lcom_google_gwt_user_client_ui_PopupListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_PopupListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_PopupListenerCollection_2_classLit,com/google/gwt/user/client/ui/PopupListenerCollection.java,28,-1
 Lcom_google_gwt_user_client_ui_RootPanel$1_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_RootPanel$1_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_RootPanel$1_2_classLit,com/google/gwt/user/client/ui/RootPanel.java,69,-1
 Lcom_google_gwt_user_client_ui_RootPanel$2_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_RootPanel$2_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_RootPanel$2_2_classLit,com/google/gwt/user/client/ui/RootPanel.java,263,-1
 Lcom_google_gwt_user_client_ui_RootPanel$DefaultRootPanel_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_RootPanel$DefaultRootPanel_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_RootPanel$DefaultRootPanel_2_classLit,com/google/gwt/user/client/ui/RootPanel.java,49,-1
 Lcom_google_gwt_user_client_ui_RootPanel_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_RootPanel_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_RootPanel_2_classLit,com/google/gwt/user/client/ui/RootPanel.java,44,-1
+Lcom_google_gwt_user_client_ui_ScrollListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_ScrollListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_ScrollListenerCollection_2_classLit,com/google/gwt/user/client/ui/ScrollListenerCollection.java,28,-1
+Lcom_google_gwt_user_client_ui_TabListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_TabListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_TabListenerCollection_2_classLit,com/google/gwt/user/client/ui/TabListenerCollection.java,29,-1
+Lcom_google_gwt_user_client_ui_TableListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_TableListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_TableListenerCollection_2_classLit,com/google/gwt/user/client/ui/TableListenerCollection.java,29,-1
+Lcom_google_gwt_user_client_ui_TreeListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_TreeListenerCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_TreeListenerCollection_2_classLit,com/google/gwt/user/client/ui/TreeListenerCollection.java,28,-1
 Lcom_google_gwt_user_client_ui_UIObject_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_UIObject_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_UIObject_2_classLit,com/google/gwt/user/client/ui/UIObject.java,128,-1
 Lcom_google_gwt_user_client_ui_WidgetCollection$WidgetIterator_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_WidgetCollection$WidgetIterator_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_WidgetCollection$WidgetIterator_2_classLit,com/google/gwt/user/client/ui/WidgetCollection.java,36,-1
 Lcom_google_gwt_user_client_ui_WidgetCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lcom_google_gwt_user_client_ui_WidgetCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_google_gwt_user_client_ui_WidgetCollection_2_classLit,com/google/gwt/user/client/ui/WidgetCollection.java,34,-1
@@ -283,6 +296,7 @@ Ljava_io_FilterOutputStream_2_classLit,com.google.gwt.lang.ClassLiteralHolder::L
 Ljava_io_OutputStream_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_io_OutputStream_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_io_OutputStream_2_classLit,com/google/gwt/emul/java/io/OutputStream.java,21,-1
 Ljava_io_PrintStream_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_io_PrintStream_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_io_PrintStream_2_classLit,com/google/gwt/emul/java/io/PrintStream.java,21,-1
 Ljava_lang_AbstractStringBuilder_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_lang_AbstractStringBuilder_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_lang_AbstractStringBuilder_2_classLit,com/google/gwt/emul/java/lang/AbstractStringBuilder.java,24,-1
+Ljava_lang_ArrayIndexOutOfBoundsException_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_lang_ArrayIndexOutOfBoundsException_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_lang_ArrayIndexOutOfBoundsException_2_classLit,com/google/gwt/emul/java/lang/ArrayIndexOutOfBoundsException.java,26,-1
 Ljava_lang_ArrayStoreException_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_lang_ArrayStoreException_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_lang_ArrayStoreException_2_classLit,com/google/gwt/emul/java/lang/ArrayStoreException.java,23,-1
 Ljava_lang_AssertionError_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_lang_AssertionError_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_lang_AssertionError_2_classLit,com/google/gwt/emul/java/lang/AssertionError.java,21,-1
 Ljava_lang_ClassCastException_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_lang_ClassCastException_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_lang_ClassCastException_2_classLit,com/google/gwt/emul/java/lang/ClassCastException.java,21,-1
@@ -317,10 +331,13 @@ Ljava_util_AbstractMap$AbstractEntry_2_classLit,com.google.gwt.lang.ClassLiteral
 Ljava_util_AbstractMap$SimpleEntry_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_AbstractMap$SimpleEntry_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_AbstractMap$SimpleEntry_2_classLit,com/google/gwt/emul/java/util/AbstractMap.java,33,-1
 Ljava_util_AbstractMapEntry_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_AbstractMapEntry_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_AbstractMapEntry_2_classLit,com/google/gwt/emul/java/util/AbstractMapEntry.java,22,-1
 Ljava_util_AbstractMap_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_AbstractMap_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_AbstractMap_2_classLit,com/google/gwt/emul/java/util/AbstractMap.java,28,-1
+Ljava_util_AbstractSequentialList_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_AbstractSequentialList_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_AbstractSequentialList_2_classLit,com/google/gwt/emul/java/util/AbstractSequentialList.java,27,-1
 Ljava_util_AbstractSet_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_AbstractSet_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_AbstractSet_2_classLit,com/google/gwt/emul/java/util/AbstractSet.java,27,-1
 Ljava_util_ArrayList_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_ArrayList_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_ArrayList_2_classLit,com/google/gwt/emul/java/util/ArrayList.java,45,-1
+Ljava_util_Arrays$ArrayList_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Arrays$ArrayList_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Arrays$ArrayList_2_classLit,com/google/gwt/emul/java/util/Arrays.java,39,-1
 Ljava_util_Collections$EmptyListIterator_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Collections$EmptyListIterator_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Collections$EmptyListIterator_2_classLit,com/google/gwt/emul/java/util/Collections.java,96,-1
 Ljava_util_Collections$EmptyList_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Collections$EmptyList_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Collections$EmptyList_2_classLit,com/google/gwt/emul/java/util/Collections.java,67,-1
+Ljava_util_Collections$SingletonList_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Collections$SingletonList_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Collections$SingletonList_2_classLit,com/google/gwt/emul/java/util/Collections.java,277,-1
 Ljava_util_Collections$UnmodifiableCollectionIterator_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Collections$UnmodifiableCollectionIterator_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Collections$UnmodifiableCollectionIterator_2_classLit,com/google/gwt/emul/java/util/Collections.java,732,-1
 Ljava_util_Collections$UnmodifiableCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Collections$UnmodifiableCollection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Collections$UnmodifiableCollection_2_classLit,com/google/gwt/emul/java/util/Collections.java,302,-1
 Ljava_util_Collections$UnmodifiableListIterator_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Collections$UnmodifiableListIterator_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Collections$UnmodifiableListIterator_2_classLit,com/google/gwt/emul/java/util/Collections.java,752,-1
@@ -348,8 +365,14 @@ Ljava_util_InternalJsStringMap$InternalJsStringMapLegacy$1_2_classLit,com.google
 Ljava_util_InternalJsStringMap$InternalJsStringMapLegacy_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_InternalJsStringMap$InternalJsStringMapLegacy_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_InternalJsStringMap$InternalJsStringMapLegacy_2_classLit,com/google/gwt/emul/java/util/InternalJsStringMap.java,42,-1
 Ljava_util_InternalJsStringMap$InternalJsStringMapWithKeysWorkaround_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_InternalJsStringMap$InternalJsStringMapWithKeysWorkaround_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_InternalJsStringMap$InternalJsStringMapWithKeysWorkaround_2_classLit,com/google/gwt/emul/java/util/InternalJsStringMap.java,114,-1
 Ljava_util_InternalJsStringMap_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_InternalJsStringMap_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_InternalJsStringMap_2_classLit,com/google/gwt/emul/java/util/InternalJsStringMap.java,37,-1
+Ljava_util_LinkedHashMap_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_LinkedHashMap_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_LinkedHashMap_2_classLit,com/google/gwt/emul/java/util/LinkedHashMap.java,33,-1
+Ljava_util_LinkedList$ListIteratorImpl_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_LinkedList$ListIteratorImpl_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_LinkedList$ListIteratorImpl_2_classLit,com/google/gwt/emul/java/util/LinkedList.java,61,-1
+Ljava_util_LinkedList$Node_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_LinkedList$Node_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_LinkedList$Node_2_classLit,com/google/gwt/emul/java/util/LinkedList.java,163,-1
+Ljava_util_LinkedList_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_LinkedList_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_LinkedList_2_classLit,com/google/gwt/emul/java/util/LinkedList.java,31,-1
 Ljava_util_Map$Entry_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Map$Entry_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Map$Entry_2_classLit,com/google/gwt/emul/java/util/Map.java,29,-1
 Ljava_util_NoSuchElementException_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_NoSuchElementException_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_NoSuchElementException_2_classLit,com/google/gwt/emul/java/util/NoSuchElementException.java,23,-1
+Ljava_util_Stack_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Stack_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Stack_2_classLit,com/google/gwt/emul/java/util/Stack.java,25,-1
+Ljava_util_Vector_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_Vector_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_Vector_2_classLit,com/google/gwt/emul/java/util/Vector.java,30,-1
 Ljava_util_logging_Formatter_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_logging_Formatter_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_logging_Formatter_2_classLit,com/google/gwt/emul/java/util/logging/Formatter.java,24,-1
 Ljava_util_logging_Handler_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_logging_Handler_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_logging_Handler_2_classLit,com/google/gwt/emul/java/util/logging/Handler.java,24,-1
 Ljava_util_logging_Level$LevelAll_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Ljava_util_logging_Level$LevelAll_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Ljava_util_logging_Level$LevelAll_2_classLit,com/google/gwt/emul/java/util/logging/Level.java,42,-1
@@ -380,12 +403,13 @@ Lwe_are_bubblesort_MovieApp_client_SectionNavigationPresenter_2_classLit,com.goo
 Lwe_are_bubblesort_MovieApp_client_SectionView_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_SectionView_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_SectionView_2_classLit,we/are/bubblesort/MovieApp/client/SectionView.java,3,-1
 Lwe_are_bubblesort_MovieApp_client_Section_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_Section_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_Section_2_classLit,we/are/bubblesort/MovieApp/client/Section.java,3,-1
 Lwe_are_bubblesort_MovieApp_client_TableSectionView_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_TableSectionView_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_TableSectionView_2_classLit,we/are/bubblesort/MovieApp/client/TableSectionView.java,9,-1
-Lwe_are_bubblesort_MovieApp_client_TableSection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_TableSection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_TableSection_2_classLit,we/are/bubblesort/MovieApp/client/TableSection.java,5,-1
+Lwe_are_bubblesort_MovieApp_client_TableSection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_TableSection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_TableSection_2_classLit,we/are/bubblesort/MovieApp/client/TableSection.java,11,-1
 Lwe_are_bubblesort_MovieApp_client_View_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_View_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_View_2_classLit,we/are/bubblesort/MovieApp/client/View.java,8,-1
 Lwe_are_bubblesort_MovieApp_client_WorldMapSectionView_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_WorldMapSectionView_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_WorldMapSectionView_2_classLit,we/are/bubblesort/MovieApp/client/WorldMapSectionView.java,9,-1
-Lwe_are_bubblesort_MovieApp_client_WorldMapSection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_WorldMapSection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_WorldMapSection_2_classLit,we/are/bubblesort/MovieApp/client/WorldMapSection.java,5,-1
+Lwe_are_bubblesort_MovieApp_client_WorldMapSection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_client_WorldMapSection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_client_WorldMapSection_2_classLit,we/are/bubblesort/MovieApp/client/WorldMapSection.java,11,-1
 Lwe_are_bubblesort_MovieApp_shared_Collection_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_shared_Collection_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_shared_Collection_2_classLit,we/are/bubblesort/MovieApp/shared/Collection.java,10,-1
 Lwe_are_bubblesort_MovieApp_shared_Model_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_shared_Model_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_shared_Model_2_classLit,we/are/bubblesort/MovieApp/shared/Model.java,4,-1
+Lwe_are_bubblesort_MovieApp_shared_Set_2_classLit,com.google.gwt.lang.ClassLiteralHolder::Lwe_are_bubblesort_MovieApp_shared_Set_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lwe_are_bubblesort_MovieApp_shared_Set_2_classLit,we/are/bubblesort/MovieApp/shared/Set.java,13,-1
 CollapsedPropertyHolder,,com.google.gwt.lang.CollapsedPropertyHolder,,com/google/gwt/dev/jjs/intrinsic/com/google/gwt/lang/CollapsedPropertyHolder.java,22,-1
 permutationId,com.google.gwt.lang.CollapsedPropertyHolder::permutationId,com.google.gwt.lang.CollapsedPropertyHolder,permutationId,com/google/gwt/dev/jjs/intrinsic/com/google/gwt/lang/CollapsedPropertyHolder.java,27,-1
 cacheJavaScriptException,com.google.gwt.lang.Exceptions::cacheJavaScriptException(Ljava/lang/Object;Lcom/google/gwt/core/client/JavaScriptException;)V,com.google.gwt.lang.Exceptions,cacheJavaScriptException,com/google/gwt/dev/jjs/intrinsic/com/google/gwt/lang/Exceptions.java,57,0
@@ -540,6 +564,24 @@ deserialize_1,com.google.gwt.user.client.rpc.core.java.lang.String_CustomFieldSe
 instantiate_1,com.google.gwt.user.client.rpc.core.java.lang.String_CustomFieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Ljava/lang/String;,com.google.gwt.user.client.rpc.core.java.lang.String_CustomFieldSerializer,instantiate,com/google/gwt/user/client/rpc/core/java/lang/String_CustomFieldSerializer.java,35,0
 serialize_1,com.google.gwt.user.client.rpc.core.java.lang.String_CustomFieldSerializer::serialize(Lcom/google/gwt/user/client/rpc/SerializationStreamWriter;Ljava/lang/String;)V,com.google.gwt.user.client.rpc.core.java.lang.String_CustomFieldSerializer,serialize,com/google/gwt/user/client/rpc/core/java/lang/String_CustomFieldSerializer.java,40,0
 setDetailMessage,com.google.gwt.user.client.rpc.core.java.lang.Throwable_FieldSerializer::setDetailMessage(Ljava/lang/Throwable;Ljava/lang/String;)V,com.google.gwt.user.client.rpc.core.java.lang.Throwable_FieldSerializer,setDetailMessage,gen/com/google/gwt/user/client/rpc/core/java/lang/Throwable_FieldSerializer.java,14,0
+deserialize_2,com.google.gwt.user.client.rpc.core.java.util.ArrayList_CustomFieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Ljava/util/ArrayList;)V,com.google.gwt.user.client.rpc.core.java.util.ArrayList_CustomFieldSerializer,deserialize,com/google/gwt/user/client/rpc/core/java/util/ArrayList_CustomFieldSerializer.java,32,0
+instantiate_2,com.google.gwt.user.client.rpc.core.java.util.ArrayList_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Ljava/util/ArrayList;,com.google.gwt.user.client.rpc.core.java.util.ArrayList_FieldSerializer,instantiate,gen/com/google/gwt/user/client/rpc/core/java/util/ArrayList_FieldSerializer.java,10,0
+deserialize_3,com.google.gwt.user.client.rpc.core.java.util.Arrays$ArrayList_CustomFieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Ljava/util/List;)V,com.google.gwt.user.client.rpc.core.java.util.Arrays$ArrayList_CustomFieldSerializer,deserialize,com/google/gwt/user/client/rpc/core/java/util/Arrays.java,50,0
+instantiate_3,com.google.gwt.user.client.rpc.core.java.util.Arrays$ArrayList_CustomFieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Ljava/util/List;,com.google.gwt.user.client.rpc.core.java.util.Arrays$ArrayList_CustomFieldSerializer,instantiate,com/google/gwt/user/client/rpc/core/java/util/Arrays.java,55,0
+deserialize_4,com.google.gwt.user.client.rpc.core.java.util.Collection_CustomFieldSerializerBase::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Ljava/util/Collection;)V,com.google.gwt.user.client.rpc.core.java.util.Collection_CustomFieldSerializerBase,deserialize,com/google/gwt/user/client/rpc/core/java/util/Collection_CustomFieldSerializerBase.java,30,0
+deserialize_5,com.google.gwt.user.client.rpc.core.java.util.Collections$EmptyList_CustomFieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Ljava/util/List;)V,com.google.gwt.user.client.rpc.core.java.util.Collections$EmptyList_CustomFieldSerializer,deserialize,com/google/gwt/user/client/rpc/core/java/util/Collections.java,44,0
+instantiate_4,com.google.gwt.user.client.rpc.core.java.util.Collections$EmptyList_CustomFieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Ljava/util/List;,com.google.gwt.user.client.rpc.core.java.util.Collections$EmptyList_CustomFieldSerializer,instantiate,com/google/gwt/user/client/rpc/core/java/util/Collections.java,50,0
+deserialize_6,com.google.gwt.user.client.rpc.core.java.util.Collections$SingletonList_CustomFieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Ljava/util/List;)V,com.google.gwt.user.client.rpc.core.java.util.Collections$SingletonList_CustomFieldSerializer,deserialize,com/google/gwt/user/client/rpc/core/java/util/Collections.java,203,0
+instantiate_5,com.google.gwt.user.client.rpc.core.java.util.Collections$SingletonList_CustomFieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Ljava/util/List;,com.google.gwt.user.client.rpc.core.java.util.Collections$SingletonList_CustomFieldSerializer,instantiate,com/google/gwt/user/client/rpc/core/java/util/Collections.java,207,0
+serialize_2,com.google.gwt.user.client.rpc.core.java.util.HashMap_CustomFieldSerializer::serialize(Lcom/google/gwt/user/client/rpc/SerializationStreamWriter;Ljava/util/HashMap;)V,com.google.gwt.user.client.rpc.core.java.util.HashMap_CustomFieldSerializer,serialize,com/google/gwt/user/client/rpc/core/java/util/HashMap_CustomFieldSerializer.java,37,0
+serialize_3,com.google.gwt.user.client.rpc.core.java.util.LinkedHashMap_CustomFieldSerializer::serialize(Lcom/google/gwt/user/client/rpc/SerializationStreamWriter;Ljava/util/LinkedHashMap;)V,com.google.gwt.user.client.rpc.core.java.util.LinkedHashMap_CustomFieldSerializer,serialize,com/google/gwt/user/translatable/com/google/gwt/user/client/rpc/core/java/util/LinkedHashMap_CustomFieldSerializer.java,49,0
+deserialize_7,com.google.gwt.user.client.rpc.core.java.util.LinkedList_CustomFieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Ljava/util/LinkedList;)V,com.google.gwt.user.client.rpc.core.java.util.LinkedList_CustomFieldSerializer,deserialize,com/google/gwt/user/client/rpc/core/java/util/LinkedList_CustomFieldSerializer.java,32,0
+instantiate_6,com.google.gwt.user.client.rpc.core.java.util.LinkedList_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Ljava/util/LinkedList;,com.google.gwt.user.client.rpc.core.java.util.LinkedList_FieldSerializer,instantiate,gen/com/google/gwt/user/client/rpc/core/java/util/LinkedList_FieldSerializer.java,10,0
+serialize_4,com.google.gwt.user.client.rpc.core.java.util.Map_CustomFieldSerializerBase::serialize(Lcom/google/gwt/user/client/rpc/SerializationStreamWriter;Ljava/util/Map;)V,com.google.gwt.user.client.rpc.core.java.util.Map_CustomFieldSerializerBase,serialize,com/google/gwt/user/client/rpc/core/java/util/Map_CustomFieldSerializerBase.java,46,0
+deserialize_8,com.google.gwt.user.client.rpc.core.java.util.Stack_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Ljava/util/Stack;)V,com.google.gwt.user.client.rpc.core.java.util.Stack_FieldSerializer,deserialize,gen/com/google/gwt/user/client/rpc/core/java/util/Stack_FieldSerializer.java,10,0
+instantiate_7,com.google.gwt.user.client.rpc.core.java.util.Stack_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Ljava/util/Stack;,com.google.gwt.user.client.rpc.core.java.util.Stack_FieldSerializer,instantiate,gen/com/google/gwt/user/client/rpc/core/java/util/Stack_FieldSerializer.java,15,0
+deserialize_9,com.google.gwt.user.client.rpc.core.java.util.Vector_CustomFieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Ljava/util/Vector;)V,com.google.gwt.user.client.rpc.core.java.util.Vector_CustomFieldSerializer,deserialize,com/google/gwt/user/client/rpc/core/java/util/Vector_CustomFieldSerializer.java,32,0
+instantiate_8,com.google.gwt.user.client.rpc.core.java.util.Vector_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Ljava/util/Vector;,com.google.gwt.user.client.rpc.core.java.util.Vector_FieldSerializer,instantiate,gen/com/google/gwt/user/client/rpc/core/java/util/Vector_FieldSerializer.java,10,0
 SerializerBase,,com.google.gwt.user.client.rpc.impl.SerializerBase,,com/google/gwt/user/client/rpc/impl/SerializerBase.java,35,-1
 SerializerBase$MethodMap,,com.google.gwt.user.client.rpc.impl.SerializerBase$MethodMap,,com/google/gwt/user/client/rpc/impl/SerializerBase.java,40,-1
 AbsolutePanel,,com.google.gwt.user.client.ui.AbsolutePanel,,com/google/gwt/user/client/ui/AbsolutePanel.java,59,-1
@@ -563,6 +605,14 @@ Button,com.google.gwt.user.client.ui.Button::Button() <init>,com.google.gwt.user
 ButtonBase,,com.google.gwt.user.client.ui.ButtonBase,,com/google/gwt/user/client/ui/ButtonBase.java,27,-1
 $setText,com.google.gwt.user.client.ui.ButtonBase::$setText(Lcom/google/gwt/user/client/ui/ButtonBase;Ljava/lang/String;)V,com.google.gwt.user.client.ui.ButtonBase,$setText,com/google/gwt/user/client/ui/ButtonBase.java,55,0
 ButtonBase,com.google.gwt.user.client.ui.ButtonBase::ButtonBase(Lcom/google/gwt/dom/client/Element;) <init>,com.google.gwt.user.client.ui.ButtonBase,ButtonBase,com/google/gwt/user/client/ui/ButtonBase.java,35,0
+ChangeListenerCollection,,com.google.gwt.user.client.ui.ChangeListenerCollection,,com/google/gwt/user/client/ui/ChangeListenerCollection.java,28,-1
+ChangeListenerCollection,com.google.gwt.user.client.ui.ChangeListenerCollection::ChangeListenerCollection() <init>,com.google.gwt.user.client.ui.ChangeListenerCollection,ChangeListenerCollection,com/google/gwt/user/client/ui/ChangeListenerCollection.java,28,0
+deserialize_10,com.google.gwt.user.client.ui.ChangeListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/ChangeListenerCollection;)V,com.google.gwt.user.client.ui.ChangeListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/ChangeListenerCollection_FieldSerializer.java,10,0
+instantiate_9,com.google.gwt.user.client.ui.ChangeListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/ChangeListenerCollection;,com.google.gwt.user.client.ui.ChangeListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/ChangeListenerCollection_FieldSerializer.java,15,0
+ClickListenerCollection,,com.google.gwt.user.client.ui.ClickListenerCollection,,com/google/gwt/user/client/ui/ClickListenerCollection.java,30,-1
+ClickListenerCollection,com.google.gwt.user.client.ui.ClickListenerCollection::ClickListenerCollection() <init>,com.google.gwt.user.client.ui.ClickListenerCollection,ClickListenerCollection,com/google/gwt/user/client/ui/ClickListenerCollection.java,30,0
+deserialize_11,com.google.gwt.user.client.ui.ClickListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/ClickListenerCollection;)V,com.google.gwt.user.client.ui.ClickListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/ClickListenerCollection_FieldSerializer.java,10,0
+instantiate_10,com.google.gwt.user.client.ui.ClickListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/ClickListenerCollection;,com.google.gwt.user.client.ui.ClickListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/ClickListenerCollection_FieldSerializer.java,15,0
 ComplexPanel,,com.google.gwt.user.client.ui.ComplexPanel,,com/google/gwt/user/client/ui/ComplexPanel.java,26,-1
 $add,com.google.gwt.user.client.ui.ComplexPanel::$add(Lcom/google/gwt/user/client/ui/ComplexPanel;Lcom/google/gwt/user/client/ui/Widget;Lcom/google/gwt/user/client/Element;)V,com.google.gwt.user.client.ui.ComplexPanel,$add,com/google/gwt/user/client/ui/ComplexPanel.java,94,0
 $remove,com.google.gwt.user.client.ui.ComplexPanel::$remove(Lcom/google/gwt/user/client/ui/ComplexPanel;Lcom/google/gwt/user/client/ui/Widget;)Z,com.google.gwt.user.client.ui.ComplexPanel,$remove,com/google/gwt/user/client/ui/ComplexPanel.java,60,0
@@ -586,22 +636,50 @@ element,com.google.gwt.user.client.ui.DirectionalTextHelper::element,com.google.
 initialElementDir,com.google.gwt.user.client.ui.DirectionalTextHelper::initialElementDir,com.google.gwt.user.client.ui.DirectionalTextHelper,initialElementDir,com/google/gwt/user/client/ui/DirectionalTextHelper.java,53,-1
 textDir,com.google.gwt.user.client.ui.DirectionalTextHelper::textDir,com.google.gwt.user.client.ui.DirectionalTextHelper,textDir,com/google/gwt/user/client/ui/DirectionalTextHelper.java,90,-1
 FlowPanel,,com.google.gwt.user.client.ui.FlowPanel,,com/google/gwt/user/client/ui/FlowPanel.java,29,-1
-$add_1,com.google.gwt.user.client.ui.FlowPanel::$add(Lcom/google/gwt/user/client/ui/FlowPanel;Lcom/google/gwt/user/client/ui/Widget;)V,com.google.gwt.user.client.ui.FlowPanel,$add,com/google/gwt/user/client/ui/FlowPanel.java,50,0
+$add_3,com.google.gwt.user.client.ui.FlowPanel::$add(Lcom/google/gwt/user/client/ui/FlowPanel;Lcom/google/gwt/user/client/ui/Widget;)V,com.google.gwt.user.client.ui.FlowPanel,$add,com/google/gwt/user/client/ui/FlowPanel.java,50,0
 FlowPanel,com.google.gwt.user.client.ui.FlowPanel::FlowPanel() <init>,com.google.gwt.user.client.ui.FlowPanel,FlowPanel,com/google/gwt/user/client/ui/FlowPanel.java,33,0
+FocusListenerCollection,,com.google.gwt.user.client.ui.FocusListenerCollection,,com/google/gwt/user/client/ui/FocusListenerCollection.java,32,-1
+FocusListenerCollection,com.google.gwt.user.client.ui.FocusListenerCollection::FocusListenerCollection() <init>,com.google.gwt.user.client.ui.FocusListenerCollection,FocusListenerCollection,com/google/gwt/user/client/ui/FocusListenerCollection.java,32,0
+deserialize_12,com.google.gwt.user.client.ui.FocusListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/FocusListenerCollection;)V,com.google.gwt.user.client.ui.FocusListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/FocusListenerCollection_FieldSerializer.java,10,0
+instantiate_11,com.google.gwt.user.client.ui.FocusListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/FocusListenerCollection;,com.google.gwt.user.client.ui.FocusListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/FocusListenerCollection_FieldSerializer.java,15,0
 FocusWidget,,com.google.gwt.user.client.ui.FocusWidget,,com/google/gwt/user/client/ui/FocusWidget.java,88,-1
 onAttach_0,com.google.gwt.user.client.ui.FocusWidget::onAttach()V,com.google.gwt.user.client.ui.FocusWidget,onAttach,com/google/gwt/user/client/ui/FocusWidget.java,362,0
+FormHandlerCollection,,com.google.gwt.user.client.ui.FormHandlerCollection,,com/google/gwt/user/client/ui/FormHandlerCollection.java,29,-1
+FormHandlerCollection,com.google.gwt.user.client.ui.FormHandlerCollection::FormHandlerCollection() <init>,com.google.gwt.user.client.ui.FormHandlerCollection,FormHandlerCollection,com/google/gwt/user/client/ui/FormHandlerCollection.java,29,0
+deserialize_13,com.google.gwt.user.client.ui.FormHandlerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/FormHandlerCollection;)V,com.google.gwt.user.client.ui.FormHandlerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/FormHandlerCollection_FieldSerializer.java,10,0
+instantiate_12,com.google.gwt.user.client.ui.FormHandlerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/FormHandlerCollection;,com.google.gwt.user.client.ui.FormHandlerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/FormHandlerCollection_FieldSerializer.java,15,0
 HTML,,com.google.gwt.user.client.ui.HTML,,com/google/gwt/user/client/ui/HTML.java,54,-1
 $setHTML,com.google.gwt.user.client.ui.HTML::$setHTML(Lcom/google/gwt/user/client/ui/HTML;Ljava/lang/String;)V,com.google.gwt.user.client.ui.HTML,$setHTML,com/google/gwt/user/client/ui/HTML.java,182,0
 HTML,com.google.gwt.user.client.ui.HTML::HTML() <init>,com.google.gwt.user.client.ui.HTML,HTML,com/google/gwt/user/client/ui/HTML.java,83,0
 $clinit_HasHorizontalAlignment,com.google.gwt.user.client.ui.HasHorizontalAlignment::$clinit()V,com.google.gwt.user.client.ui.HasHorizontalAlignment,$clinit,com/google/gwt/user/client/ui/HasHorizontalAlignment.java,44,0
+KeyboardListenerCollection,,com.google.gwt.user.client.ui.KeyboardListenerCollection,,com/google/gwt/user/client/ui/KeyboardListenerCollection.java,31,-1
+KeyboardListenerCollection,com.google.gwt.user.client.ui.KeyboardListenerCollection::KeyboardListenerCollection() <init>,com.google.gwt.user.client.ui.KeyboardListenerCollection,KeyboardListenerCollection,com/google/gwt/user/client/ui/KeyboardListenerCollection.java,31,0
+deserialize_14,com.google.gwt.user.client.ui.KeyboardListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/KeyboardListenerCollection;)V,com.google.gwt.user.client.ui.KeyboardListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/KeyboardListenerCollection_FieldSerializer.java,10,0
+instantiate_13,com.google.gwt.user.client.ui.KeyboardListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/KeyboardListenerCollection;,com.google.gwt.user.client.ui.KeyboardListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/KeyboardListenerCollection_FieldSerializer.java,15,0
 Label,,com.google.gwt.user.client.ui.Label,,com/google/gwt/user/client/ui/Label.java,103,-1
 Label,com.google.gwt.user.client.ui.Label::Label(Lcom/google/gwt/dom/client/Element;) <init>,com.google.gwt.user.client.ui.Label,Label,com/google/gwt/user/client/ui/Label.java,198,0
 LabelBase,,com.google.gwt.user.client.ui.LabelBase,,com/google/gwt/user/client/ui/LabelBase.java,31,-1
 LabelBase,com.google.gwt.user.client.ui.LabelBase::LabelBase(Lcom/google/gwt/dom/client/Element;Z) <init>,com.google.gwt.user.client.ui.LabelBase,LabelBase,com/google/gwt/user/client/ui/LabelBase.java,60,0
 directionalTextHelper,com.google.gwt.user.client.ui.LabelBase::directionalTextHelper,com.google.gwt.user.client.ui.LabelBase,directionalTextHelper,com/google/gwt/user/client/ui/LabelBase.java,37,-1
+LoadListenerCollection,,com.google.gwt.user.client.ui.LoadListenerCollection,,com/google/gwt/user/client/ui/LoadListenerCollection.java,28,-1
+LoadListenerCollection,com.google.gwt.user.client.ui.LoadListenerCollection::LoadListenerCollection() <init>,com.google.gwt.user.client.ui.LoadListenerCollection,LoadListenerCollection,com/google/gwt/user/client/ui/LoadListenerCollection.java,28,0
+deserialize_15,com.google.gwt.user.client.ui.LoadListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/LoadListenerCollection;)V,com.google.gwt.user.client.ui.LoadListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/LoadListenerCollection_FieldSerializer.java,10,0
+instantiate_14,com.google.gwt.user.client.ui.LoadListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/LoadListenerCollection;,com.google.gwt.user.client.ui.LoadListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/LoadListenerCollection_FieldSerializer.java,15,0
+MouseListenerCollection,,com.google.gwt.user.client.ui.MouseListenerCollection,,com/google/gwt/user/client/ui/MouseListenerCollection.java,33,-1
+MouseListenerCollection,com.google.gwt.user.client.ui.MouseListenerCollection::MouseListenerCollection() <init>,com.google.gwt.user.client.ui.MouseListenerCollection,MouseListenerCollection,com/google/gwt/user/client/ui/MouseListenerCollection.java,33,0
+deserialize_16,com.google.gwt.user.client.ui.MouseListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/MouseListenerCollection;)V,com.google.gwt.user.client.ui.MouseListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/MouseListenerCollection_FieldSerializer.java,10,0
+instantiate_15,com.google.gwt.user.client.ui.MouseListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/MouseListenerCollection;,com.google.gwt.user.client.ui.MouseListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/MouseListenerCollection_FieldSerializer.java,15,0
+MouseWheelListenerCollection,,com.google.gwt.user.client.ui.MouseWheelListenerCollection,,com/google/gwt/user/client/ui/MouseWheelListenerCollection.java,31,-1
+MouseWheelListenerCollection,com.google.gwt.user.client.ui.MouseWheelListenerCollection::MouseWheelListenerCollection() <init>,com.google.gwt.user.client.ui.MouseWheelListenerCollection,MouseWheelListenerCollection,com/google/gwt/user/client/ui/MouseWheelListenerCollection.java,31,0
+deserialize_17,com.google.gwt.user.client.ui.MouseWheelListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/MouseWheelListenerCollection;)V,com.google.gwt.user.client.ui.MouseWheelListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/MouseWheelListenerCollection_FieldSerializer.java,10,0
+instantiate_16,com.google.gwt.user.client.ui.MouseWheelListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/MouseWheelListenerCollection;,com.google.gwt.user.client.ui.MouseWheelListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/MouseWheelListenerCollection_FieldSerializer.java,15,0
 Panel,,com.google.gwt.user.client.ui.Panel,,com/google/gwt/user/client/ui/Panel.java,24,-1
 doAttachChildren_0,com.google.gwt.user.client.ui.Panel::doAttachChildren()V,com.google.gwt.user.client.ui.Panel,doAttachChildren,com/google/gwt/user/client/ui/Panel.java,128,0
 doDetachChildren_0,com.google.gwt.user.client.ui.Panel::doDetachChildren()V,com.google.gwt.user.client.ui.Panel,doDetachChildren,com/google/gwt/user/client/ui/Panel.java,133,0
+PopupListenerCollection,,com.google.gwt.user.client.ui.PopupListenerCollection,,com/google/gwt/user/client/ui/PopupListenerCollection.java,28,-1
+PopupListenerCollection,com.google.gwt.user.client.ui.PopupListenerCollection::PopupListenerCollection() <init>,com.google.gwt.user.client.ui.PopupListenerCollection,PopupListenerCollection,com/google/gwt/user/client/ui/PopupListenerCollection.java,28,0
+deserialize_18,com.google.gwt.user.client.ui.PopupListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/PopupListenerCollection;)V,com.google.gwt.user.client.ui.PopupListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/PopupListenerCollection_FieldSerializer.java,10,0
+instantiate_17,com.google.gwt.user.client.ui.PopupListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/PopupListenerCollection;,com.google.gwt.user.client.ui.PopupListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/PopupListenerCollection_FieldSerializer.java,15,0
 PotentialElement,,com.google.gwt.user.client.ui.PotentialElement,,com/google/gwt/user/client/ui/PotentialElement.java,40,-1
 $clinit_PotentialElement,com.google.gwt.user.client.ui.PotentialElement::$clinit()V,com.google.gwt.user.client.ui.PotentialElement,$clinit,com/google/gwt/user/client/ui/PotentialElement.java,40,0
 $setResolver,com.google.gwt.user.client.ui.PotentialElement::$setResolver(Lcom/google/gwt/user/client/ui/PotentialElement;Lcom/google/gwt/user/client/ui/UIObject;)Lcom/google/gwt/dom/client/Element;,com.google.gwt.user.client.ui.PotentialElement,$setResolver,com/google/gwt/user/client/ui/PotentialElement.java,154,0
@@ -613,7 +691,7 @@ $clinit_RootPanel,com.google.gwt.user.client.ui.RootPanel::$clinit()V,com.google
 RootPanel,com.google.gwt.user.client.ui.RootPanel::RootPanel(Lcom/google/gwt/dom/client/Element;) <init>,com.google.gwt.user.client.ui.RootPanel,RootPanel,com/google/gwt/user/client/ui/RootPanel.java,291,0
 detachNow,com.google.gwt.user.client.ui.RootPanel::detachNow(Lcom/google/gwt/user/client/ui/Widget;)V,com.google.gwt.user.client.ui.RootPanel,detachNow,com/google/gwt/user/client/ui/RootPanel.java,100,0
 detachWidgets,com.google.gwt.user.client.ui.RootPanel::detachWidgets()V,com.google.gwt.user.client.ui.RootPanel,detachWidgets,com/google/gwt/user/client/ui/RootPanel.java,235,0
-get_0,com.google.gwt.user.client.ui.RootPanel::get(Ljava/lang/String;)Lcom/google/gwt/user/client/ui/RootPanel;,com.google.gwt.user.client.ui.RootPanel,get,com/google/gwt/user/client/ui/RootPanel.java,164,0
+get_1,com.google.gwt.user.client.ui.RootPanel::get(Ljava/lang/String;)Lcom/google/gwt/user/client/ui/RootPanel;,com.google.gwt.user.client.ui.RootPanel,get,com/google/gwt/user/client/ui/RootPanel.java,164,0
 maybeDetachCommand,com.google.gwt.user.client.ui.RootPanel::maybeDetachCommand,com.google.gwt.user.client.ui.RootPanel,maybeDetachCommand,com/google/gwt/user/client/ui/RootPanel.java,69,-1
 rootPanels,com.google.gwt.user.client.ui.RootPanel::rootPanels,com.google.gwt.user.client.ui.RootPanel,rootPanels,com/google/gwt/user/client/ui/RootPanel.java,77,-1
 widgetsToDetach,com.google.gwt.user.client.ui.RootPanel::widgetsToDetach,com.google.gwt.user.client.ui.RootPanel,widgetsToDetach,com/google/gwt/user/client/ui/RootPanel.java,78,-1
@@ -624,6 +702,22 @@ RootPanel$2,,com.google.gwt.user.client.ui.RootPanel$2,,com/google/gwt/user/clie
 RootPanel$2,com.google.gwt.user.client.ui.RootPanel$2::RootPanel$2() <init>,com.google.gwt.user.client.ui.RootPanel$2,RootPanel$2,com/google/gwt/user/client/ui/RootPanel.java,263,0
 RootPanel$DefaultRootPanel,,com.google.gwt.user.client.ui.RootPanel$DefaultRootPanel,,com/google/gwt/user/client/ui/RootPanel.java,49,-1
 RootPanel$DefaultRootPanel,com.google.gwt.user.client.ui.RootPanel$DefaultRootPanel::RootPanel$DefaultRootPanel() <init>,com.google.gwt.user.client.ui.RootPanel$DefaultRootPanel,RootPanel$DefaultRootPanel,com/google/gwt/user/client/ui/RootPanel.java,51,0
+ScrollListenerCollection,,com.google.gwt.user.client.ui.ScrollListenerCollection,,com/google/gwt/user/client/ui/ScrollListenerCollection.java,28,-1
+ScrollListenerCollection,com.google.gwt.user.client.ui.ScrollListenerCollection::ScrollListenerCollection() <init>,com.google.gwt.user.client.ui.ScrollListenerCollection,ScrollListenerCollection,com/google/gwt/user/client/ui/ScrollListenerCollection.java,28,0
+deserialize_19,com.google.gwt.user.client.ui.ScrollListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/ScrollListenerCollection;)V,com.google.gwt.user.client.ui.ScrollListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/ScrollListenerCollection_FieldSerializer.java,10,0
+instantiate_18,com.google.gwt.user.client.ui.ScrollListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/ScrollListenerCollection;,com.google.gwt.user.client.ui.ScrollListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/ScrollListenerCollection_FieldSerializer.java,15,0
+TabListenerCollection,,com.google.gwt.user.client.ui.TabListenerCollection,,com/google/gwt/user/client/ui/TabListenerCollection.java,29,-1
+TabListenerCollection,com.google.gwt.user.client.ui.TabListenerCollection::TabListenerCollection() <init>,com.google.gwt.user.client.ui.TabListenerCollection,TabListenerCollection,com/google/gwt/user/client/ui/TabListenerCollection.java,29,0
+deserialize_20,com.google.gwt.user.client.ui.TabListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/TabListenerCollection;)V,com.google.gwt.user.client.ui.TabListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/TabListenerCollection_FieldSerializer.java,10,0
+instantiate_19,com.google.gwt.user.client.ui.TabListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/TabListenerCollection;,com.google.gwt.user.client.ui.TabListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/TabListenerCollection_FieldSerializer.java,15,0
+TableListenerCollection,,com.google.gwt.user.client.ui.TableListenerCollection,,com/google/gwt/user/client/ui/TableListenerCollection.java,29,-1
+TableListenerCollection,com.google.gwt.user.client.ui.TableListenerCollection::TableListenerCollection() <init>,com.google.gwt.user.client.ui.TableListenerCollection,TableListenerCollection,com/google/gwt/user/client/ui/TableListenerCollection.java,29,0
+deserialize_21,com.google.gwt.user.client.ui.TableListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/TableListenerCollection;)V,com.google.gwt.user.client.ui.TableListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/TableListenerCollection_FieldSerializer.java,10,0
+instantiate_20,com.google.gwt.user.client.ui.TableListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/TableListenerCollection;,com.google.gwt.user.client.ui.TableListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/TableListenerCollection_FieldSerializer.java,15,0
+TreeListenerCollection,,com.google.gwt.user.client.ui.TreeListenerCollection,,com/google/gwt/user/client/ui/TreeListenerCollection.java,28,-1
+TreeListenerCollection,com.google.gwt.user.client.ui.TreeListenerCollection::TreeListenerCollection() <init>,com.google.gwt.user.client.ui.TreeListenerCollection,TreeListenerCollection,com/google/gwt/user/client/ui/TreeListenerCollection.java,28,0
+deserialize_22,com.google.gwt.user.client.ui.TreeListenerCollection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lcom/google/gwt/user/client/ui/TreeListenerCollection;)V,com.google.gwt.user.client.ui.TreeListenerCollection_FieldSerializer,deserialize,gen/com/google/gwt/user/client/ui/TreeListenerCollection_FieldSerializer.java,10,0
+instantiate_21,com.google.gwt.user.client.ui.TreeListenerCollection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lcom/google/gwt/user/client/ui/TreeListenerCollection;,com.google.gwt.user.client.ui.TreeListenerCollection_FieldSerializer,instantiate,gen/com/google/gwt/user/client/ui/TreeListenerCollection_FieldSerializer.java,15,0
 UIObject,,com.google.gwt.user.client.ui.UIObject,,com/google/gwt/user/client/ui/UIObject.java,128,-1
 $addStyleName,com.google.gwt.user.client.ui.UIObject::$addStyleName(Lcom/google/gwt/user/client/ui/UIObject;Ljava/lang/String;)V,com.google.gwt.user.client.ui.UIObject,$addStyleName,com/google/gwt/user/client/ui/UIObject.java,501,0
 $removeStyleName,com.google.gwt.user.client.ui.UIObject::$removeStyleName(Lcom/google/gwt/user/client/ui/UIObject;Ljava/lang/String;)V,com.google.gwt.user.client.ui.UIObject,$removeStyleName,com/google/gwt/user/client/ui/UIObject.java,643,0
@@ -655,14 +749,14 @@ onBrowserEvent,com.google.gwt.user.client.ui.Widget::onBrowserEvent(Lcom/google/
 onDetach,com.google.gwt.user.client.ui.Widget::onDetach()V,com.google.gwt.user.client.ui.Widget,onDetach,com/google/gwt/user/client/ui/Widget.java,386,0
 parent_0,com.google.gwt.user.client.ui.Widget::parent,com.google.gwt.user.client.ui.Widget,parent,com/google/gwt/user/client/ui/Widget.java,59,-1
 WidgetCollection,,com.google.gwt.user.client.ui.WidgetCollection,,com/google/gwt/user/client/ui/WidgetCollection.java,34,-1
-$add_2,com.google.gwt.user.client.ui.WidgetCollection::$add(Lcom/google/gwt/user/client/ui/WidgetCollection;Lcom/google/gwt/user/client/ui/Widget;)V,com.google.gwt.user.client.ui.WidgetCollection,$add,com/google/gwt/user/client/ui/WidgetCollection.java,89,0
-$indexOf,com.google.gwt.user.client.ui.WidgetCollection::$indexOf(Lcom/google/gwt/user/client/ui/WidgetCollection;Lcom/google/gwt/user/client/ui/Widget;)I,com.google.gwt.user.client.ui.WidgetCollection,$indexOf,com/google/gwt/user/client/ui/WidgetCollection.java,125,0
+$add_4,com.google.gwt.user.client.ui.WidgetCollection::$add(Lcom/google/gwt/user/client/ui/WidgetCollection;Lcom/google/gwt/user/client/ui/Widget;)V,com.google.gwt.user.client.ui.WidgetCollection,$add,com/google/gwt/user/client/ui/WidgetCollection.java,89,0
+$indexOf_1,com.google.gwt.user.client.ui.WidgetCollection::$indexOf(Lcom/google/gwt/user/client/ui/WidgetCollection;Lcom/google/gwt/user/client/ui/Widget;)I,com.google.gwt.user.client.ui.WidgetCollection,$indexOf,com/google/gwt/user/client/ui/WidgetCollection.java,125,0
 $insert,com.google.gwt.user.client.ui.WidgetCollection::$insert(Lcom/google/gwt/user/client/ui/WidgetCollection;Lcom/google/gwt/user/client/ui/Widget;I)V,com.google.gwt.user.client.ui.WidgetCollection,$insert,com/google/gwt/user/client/ui/WidgetCollection.java,143,0
 $remove_0,com.google.gwt.user.client.ui.WidgetCollection::$remove(Lcom/google/gwt/user/client/ui/WidgetCollection;I)V,com.google.gwt.user.client.ui.WidgetCollection,$remove,com/google/gwt/user/client/ui/WidgetCollection.java,183,0
 $remove_1,com.google.gwt.user.client.ui.WidgetCollection::$remove(Lcom/google/gwt/user/client/ui/WidgetCollection;Lcom/google/gwt/user/client/ui/Widget;)V,com.google.gwt.user.client.ui.WidgetCollection,$remove,com/google/gwt/user/client/ui/WidgetCollection.java,202,0
 WidgetCollection,com.google.gwt.user.client.ui.WidgetCollection::WidgetCollection(Lcom/google/gwt/user/client/ui/HasWidgets;) <init>,com.google.gwt.user.client.ui.WidgetCollection,WidgetCollection,com/google/gwt/user/client/ui/WidgetCollection.java,79,0
 array,com.google.gwt.user.client.ui.WidgetCollection::array,com.google.gwt.user.client.ui.WidgetCollection,array,com/google/gwt/user/client/ui/WidgetCollection.java,69,-1
-iterator_1,com.google.gwt.user.client.ui.WidgetCollection::iterator()Ljava/util/Iterator;,com.google.gwt.user.client.ui.WidgetCollection,iterator,com/google/gwt/user/client/ui/WidgetCollection.java,173,0
+iterator_2,com.google.gwt.user.client.ui.WidgetCollection::iterator()Ljava/util/Iterator;,com.google.gwt.user.client.ui.WidgetCollection,iterator,com/google/gwt/user/client/ui/WidgetCollection.java,173,0
 size_0,com.google.gwt.user.client.ui.WidgetCollection::size,com.google.gwt.user.client.ui.WidgetCollection,size,com/google/gwt/user/client/ui/WidgetCollection.java,71,-1
 WidgetCollection$WidgetIterator,,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,,com/google/gwt/user/client/ui/WidgetCollection.java,36,-1
 $next,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::$next(Lcom/google/gwt/user/client/ui/WidgetCollection$WidgetIterator;)Lcom/google/gwt/user/client/ui/Widget;,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,$next,com/google/gwt/user/client/ui/WidgetCollection.java,47,0
@@ -670,7 +764,7 @@ WidgetCollection$WidgetIterator,com.google.gwt.user.client.ui.WidgetCollection$W
 currentWidget,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::currentWidget,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,currentWidget,com/google/gwt/user/client/ui/WidgetCollection.java,39,-1
 hasNext,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::hasNext()Z,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,hasNext,com/google/gwt/user/client/ui/WidgetCollection.java,42,0
 index_0,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::index,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,index,com/google/gwt/user/client/ui/WidgetCollection.java,38,-1
-next,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::next()Ljava/lang/Object;,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,next,com/google/gwt/user/client/ui/WidgetCollection.java,47,0
+next_0,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::next()Ljava/lang/Object;,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,next,com/google/gwt/user/client/ui/WidgetCollection.java,47,0
 this$01,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator::this$01,com.google.gwt.user.client.ui.WidgetCollection$WidgetIterator,this$01,com/google/gwt/user/client/ui/WidgetCollection.java,36,-1
 assertCompileTimeUserAgent,com.google.gwt.useragent.client.UserAgentAsserter::assertCompileTimeUserAgent()V,com.google.gwt.useragent.client.UserAgentAsserter,assertCompileTimeUserAgent,com/google/gwt/useragent/client/UserAgentAsserter.java,49,0
 UserAgentAsserter$UserAgentAssertionError,,com.google.gwt.useragent.client.UserAgentAsserter$UserAgentAssertionError,,com/google/gwt/useragent/client/UserAgentAsserter.java,65,-1
@@ -720,7 +814,9 @@ PrintStream,,java.io.PrintStream,,com/google/gwt/emul/java/io/PrintStream.java,2
 AbstractStringBuilder,,java.lang.AbstractStringBuilder,,com/google/gwt/emul/java/lang/AbstractStringBuilder.java,24,-1
 AbstractStringBuilder,java.lang.AbstractStringBuilder::AbstractStringBuilder(Ljava/lang/String;) <init>,java.lang.AbstractStringBuilder,AbstractStringBuilder,com/google/gwt/emul/java/lang/AbstractStringBuilder.java,28,0
 string,java.lang.AbstractStringBuilder::string,java.lang.AbstractStringBuilder,string,com/google/gwt/emul/java/lang/AbstractStringBuilder.java,26,-1
-toString_6,java.lang.AbstractStringBuilder::toString()Ljava/lang/String;,java.lang.AbstractStringBuilder,toString,com/google/gwt/emul/java/lang/AbstractStringBuilder.java,108,0
+toString_7,java.lang.AbstractStringBuilder::toString()Ljava/lang/String;,java.lang.AbstractStringBuilder,toString,com/google/gwt/emul/java/lang/AbstractStringBuilder.java,108,0
+ArrayIndexOutOfBoundsException,,java.lang.ArrayIndexOutOfBoundsException,,com/google/gwt/emul/java/lang/ArrayIndexOutOfBoundsException.java,26,-1
+ArrayIndexOutOfBoundsException,java.lang.ArrayIndexOutOfBoundsException::ArrayIndexOutOfBoundsException() <init>,java.lang.ArrayIndexOutOfBoundsException,ArrayIndexOutOfBoundsException,com/google/gwt/emul/java/lang/ArrayIndexOutOfBoundsException.java,29,0
 ArrayStoreException,,java.lang.ArrayStoreException,,com/google/gwt/emul/java/lang/ArrayStoreException.java,23,-1
 ArrayStoreException,java.lang.ArrayStoreException::ArrayStoreException() <init>,java.lang.ArrayStoreException,ArrayStoreException,com/google/gwt/emul/java/lang/ArrayStoreException.java,25,0
 AssertionError,,java.lang.AssertionError,,com/google/gwt/emul/java/lang/AssertionError.java,21,-1
@@ -752,7 +848,7 @@ modifiers,java.lang.Class::modifiers,java.lang.Class,modifiers,com/google/gwt/em
 nextSequentialId,java.lang.Class::nextSequentialId,java.lang.Class,nextSequentialId,com/google/gwt/emul/java/lang/Class.java,308,-1
 packageName,java.lang.Class::packageName,java.lang.Class,packageName,com/google/gwt/emul/java/lang/Class.java,296,-1
 simpleName,java.lang.Class::simpleName,java.lang.Class,simpleName,com/google/gwt/emul/java/lang/Class.java,290,-1
-toString_7,java.lang.Class::toString()Ljava/lang/String;,java.lang.Class,toString,com/google/gwt/emul/java/lang/Class.java,387,0
+toString_8,java.lang.Class::toString()Ljava/lang/String;,java.lang.Class,toString,com/google/gwt/emul/java/lang/Class.java,387,0
 typeId,java.lang.Class::typeId,java.lang.Class,typeId,com/google/gwt/emul/java/lang/Class.java,300,-1
 typeName,java.lang.Class::typeName,java.lang.Class,typeName,com/google/gwt/emul/java/lang/Class.java,292,-1
 ClassCastException,,java.lang.ClassCastException,,com/google/gwt/emul/java/lang/ClassCastException.java,21,-1
@@ -776,9 +872,9 @@ IndexOutOfBoundsException,java.lang.IndexOutOfBoundsException::IndexOutOfBoundsE
 IndexOutOfBoundsException_0,java.lang.IndexOutOfBoundsException::IndexOutOfBoundsException(Ljava/lang/String;) <init>,java.lang.IndexOutOfBoundsException,IndexOutOfBoundsException,com/google/gwt/emul/java/lang/IndexOutOfBoundsException.java,28,0
 Integer,,java.lang.Integer,,com/google/gwt/emul/java/lang/Integer.java,21,-1
 Integer,java.lang.Integer::Integer(I) <init>,java.lang.Integer,Integer,com/google/gwt/emul/java/lang/Integer.java,255,0
-equals_2,java.lang.Integer::equals(Ljava/lang/Object;)Z,java.lang.Integer,equals,com/google/gwt/emul/java/lang/Integer.java,278,0
-hashCode_4,java.lang.Integer::hashCode()I,java.lang.Integer,hashCode,com/google/gwt/emul/java/lang/Integer.java,288,0
-toString_8,java.lang.Integer::toString()Ljava/lang/String;,java.lang.Integer,toString,com/google/gwt/emul/java/lang/Integer.java,308,0
+equals_3,java.lang.Integer::equals(Ljava/lang/Object;)Z,java.lang.Integer,equals,com/google/gwt/emul/java/lang/Integer.java,278,0
+hashCode_5,java.lang.Integer::hashCode()I,java.lang.Integer,hashCode,com/google/gwt/emul/java/lang/Integer.java,288,0
+toString_9,java.lang.Integer::toString()Ljava/lang/String;,java.lang.Integer,toString,com/google/gwt/emul/java/lang/Integer.java,308,0
 value_0,java.lang.Integer::value,java.lang.Integer,value,com/google/gwt/emul/java/lang/Integer.java,253,-1
 valueOf,java.lang.Integer::valueOf(I)Ljava/lang/Integer;,java.lang.Integer,valueOf,com/google/gwt/emul/java/lang/Integer.java,223,0
 $clinit_Integer$BoxedValues,java.lang.Integer$BoxedValues::$clinit()V,java.lang.Integer$BoxedValues,$clinit,com/google/gwt/emul/java/lang/Integer.java,31,0
@@ -811,17 +907,17 @@ RuntimeException_1,java.lang.RuntimeException::RuntimeException(Ljava/lang/Strin
 StackTraceElement,,java.lang.StackTraceElement,,com/google/gwt/emul/java/lang/StackTraceElement.java,26,-1
 StackTraceElement,java.lang.StackTraceElement::StackTraceElement(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I) <init>,java.lang.StackTraceElement,StackTraceElement,com/google/gwt/emul/java/lang/StackTraceElement.java,39,0
 className_0,java.lang.StackTraceElement::className,java.lang.StackTraceElement,className,com/google/gwt/emul/java/lang/StackTraceElement.java,28,-1
-equals_3,java.lang.StackTraceElement::equals(Ljava/lang/Object;)Z,java.lang.StackTraceElement,equals,com/google/gwt/emul/java/lang/StackTraceElement.java,66,0
+equals_4,java.lang.StackTraceElement::equals(Ljava/lang/Object;)Z,java.lang.StackTraceElement,equals,com/google/gwt/emul/java/lang/StackTraceElement.java,66,0
 fileName,java.lang.StackTraceElement::fileName,java.lang.StackTraceElement,fileName,com/google/gwt/emul/java/lang/StackTraceElement.java,30,-1
-hashCode_5,java.lang.StackTraceElement::hashCode()I,java.lang.StackTraceElement,hashCode,com/google/gwt/emul/java/lang/StackTraceElement.java,78,0
+hashCode_6,java.lang.StackTraceElement::hashCode()I,java.lang.StackTraceElement,hashCode,com/google/gwt/emul/java/lang/StackTraceElement.java,78,0
 lineNumber,java.lang.StackTraceElement::lineNumber,java.lang.StackTraceElement,lineNumber,com/google/gwt/emul/java/lang/StackTraceElement.java,32,-1
 methodName,java.lang.StackTraceElement::methodName,java.lang.StackTraceElement,methodName,com/google/gwt/emul/java/lang/StackTraceElement.java,34,-1
-toString_9,java.lang.StackTraceElement::toString()Ljava/lang/String;,java.lang.StackTraceElement,toString,com/google/gwt/emul/java/lang/StackTraceElement.java,83,0
+toString_10,java.lang.StackTraceElement::toString()Ljava/lang/String;,java.lang.StackTraceElement,toString,com/google/gwt/emul/java/lang/StackTraceElement.java,83,0
 String,,java.lang.String,,com/google/gwt/emul/java/lang/String.java,33,-1
 $charAt,java.lang.String::$charAt(Ljava/lang/String;I)C,java.lang.String,$charAt,com/google/gwt/emul/java/lang/String.java,607,0
 $equals,java.lang.String::$equals(Ljava/lang/String;Ljava/lang/Object;)Z,java.lang.String,$equals,com/google/gwt/emul/java/lang/String.java,656,0
 $equalsIgnoreCase,java.lang.String::$equalsIgnoreCase(Ljava/lang/String;Ljava/lang/String;)Z,java.lang.String,$equalsIgnoreCase,com/google/gwt/emul/java/lang/String.java,662,0
-$indexOf_0,java.lang.String::$indexOf(Ljava/lang/String;Ljava/lang/String;)I,java.lang.String,$indexOf,com/google/gwt/emul/java/lang/String.java,725,0
+$indexOf_2,java.lang.String::$indexOf(Ljava/lang/String;Ljava/lang/String;)I,java.lang.String,$indexOf,com/google/gwt/emul/java/lang/String.java,725,0
 $lastIndexOf,java.lang.String::$lastIndexOf(Ljava/lang/String;Ljava/lang/String;)I,java.lang.String,$lastIndexOf,com/google/gwt/emul/java/lang/String.java,749,0
 $lastIndexOf_0,java.lang.String::$lastIndexOf(Ljava/lang/String;Ljava/lang/String;I)I,java.lang.String,$lastIndexOf,com/google/gwt/emul/java/lang/String.java,753,0
 $split,java.lang.String::$split(Ljava/lang/String;Ljava/lang/String;I)[Ljava/lang/String;,java.lang.String,$split,com/google/gwt/emul/java/lang/String.java,869,0
@@ -859,12 +955,12 @@ $advanceToFind,java.util.AbstractCollection::$advanceToFind(Ljava/util/AbstractC
 $containsAll,java.util.AbstractCollection::$containsAll(Ljava/util/AbstractCollection;Ljava/util/Collection;)Z,java.util.AbstractCollection,$containsAll,com/google/gwt/emul/java/util/AbstractCollection.java,65,0
 $toString,java.util.AbstractCollection::$toString(Ljava/util/AbstractCollection;)Ljava/lang/String;,java.util.AbstractCollection,$toString,com/google/gwt/emul/java/util/AbstractCollection.java,143,0
 contains,java.util.AbstractCollection::contains(Ljava/lang/Object;)Z,java.util.AbstractCollection,contains,com/google/gwt/emul/java/util/AbstractCollection.java,60,0
-toString_10,java.util.AbstractCollection::toString()Ljava/lang/String;,java.util.AbstractCollection,toString,com/google/gwt/emul/java/util/AbstractCollection.java,143,0
+toString_6,java.util.AbstractCollection::toString()Ljava/lang/String;,java.util.AbstractCollection,toString,com/google/gwt/emul/java/util/AbstractCollection.java,143,0
 AbstractHashMap,,java.util.AbstractHashMap,,com/google/gwt/emul/java/util/AbstractHashMap.java,37,-1
 $containsKey,java.util.AbstractHashMap::$containsKey(Ljava/util/AbstractHashMap;Ljava/lang/Object;)Z,java.util.AbstractHashMap,$containsKey,com/google/gwt/emul/java/util/AbstractHashMap.java,170,0
 $elementAdded,java.util.AbstractHashMap::$elementAdded(Ljava/util/AbstractHashMap;)V,java.util.AbstractHashMap,$elementAdded,com/google/gwt/emul/java/util/AbstractHashMap.java,212,0
 $elementRemoved,java.util.AbstractHashMap::$elementRemoved(Ljava/util/AbstractHashMap;)V,java.util.AbstractHashMap,$elementRemoved,com/google/gwt/emul/java/util/AbstractHashMap.java,207,0
-$get,java.util.AbstractHashMap::$get(Ljava/util/AbstractHashMap;Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractHashMap,$get,com/google/gwt/emul/java/util/AbstractHashMap.java,186,0
+$get_0,java.util.AbstractHashMap::$get(Ljava/util/AbstractHashMap;Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractHashMap,$get,com/google/gwt/emul/java/util/AbstractHashMap.java,186,0
 $getStringValue,java.util.AbstractHashMap::$getStringValue(Ljava/util/AbstractHashMap;Ljava/lang/String;)Ljava/lang/Object;,java.util.AbstractHashMap,$getStringValue,com/google/gwt/emul/java/util/AbstractHashMap.java,243,0
 $hasStringValue,java.util.AbstractHashMap::$hasStringValue(Ljava/util/AbstractHashMap;Ljava/lang/String;)Z,java.util.AbstractHashMap,$hasStringValue,com/google/gwt/emul/java/util/AbstractHashMap.java,259,0
 $put,java.util.AbstractHashMap::$put(Ljava/util/AbstractHashMap;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractHashMap,$put,com/google/gwt/emul/java/util/AbstractHashMap.java,192,0
@@ -872,18 +968,18 @@ $putStringValue,java.util.AbstractHashMap::$putStringValue(Ljava/util/AbstractHa
 $remove_2,java.util.AbstractHashMap::$remove(Ljava/util/AbstractHashMap;Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractHashMap,$remove,com/google/gwt/emul/java/util/AbstractHashMap.java,198,0
 $reset,java.util.AbstractHashMap::$reset(Ljava/util/AbstractHashMap;)V,java.util.AbstractHashMap,$reset,com/google/gwt/emul/java/util/AbstractHashMap.java,158,0
 entrySet,java.util.AbstractHashMap::entrySet()Ljava/util/Set;,java.util.AbstractHashMap,entrySet,com/google/gwt/emul/java/util/AbstractHashMap.java,180,0
-get_2,java.util.AbstractHashMap::get(Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractHashMap,get,com/google/gwt/emul/java/util/AbstractHashMap.java,186,0
+get_3,java.util.AbstractHashMap::get(Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractHashMap,get,com/google/gwt/emul/java/util/AbstractHashMap.java,186,0
 hashCodeMap,java.util.AbstractHashMap::hashCodeMap,java.util.AbstractHashMap,hashCodeMap,com/google/gwt/emul/java/util/AbstractHashMap.java,122,-1
 put_0,java.util.AbstractHashMap::put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractHashMap,put,com/google/gwt/emul/java/util/AbstractHashMap.java,192,0
 size_0,java.util.AbstractHashMap::size,java.util.AbstractHashMap,size,com/google/gwt/emul/java/util/AbstractHashMap.java,129,-1
-size_2,java.util.AbstractHashMap::size()I,java.util.AbstractHashMap,size,com/google/gwt/emul/java/util/AbstractHashMap.java,203,0
+size_3,java.util.AbstractHashMap::size()I,java.util.AbstractHashMap,size,com/google/gwt/emul/java/util/AbstractHashMap.java,203,0
 stringMap,java.util.AbstractHashMap::stringMap,java.util.AbstractHashMap,stringMap,com/google/gwt/emul/java/util/AbstractHashMap.java,127,-1
 AbstractHashMap$EntrySet,,java.util.AbstractHashMap$EntrySet,,com/google/gwt/emul/java/util/AbstractHashMap.java,39,-1
 $contains,java.util.AbstractHashMap$EntrySet::$contains(Ljava/util/AbstractHashMap$EntrySet;Ljava/lang/Object;)Z,java.util.AbstractHashMap$EntrySet,$contains,com/google/gwt/emul/java/util/AbstractHashMap.java,47,0
 AbstractHashMap$EntrySet,java.util.AbstractHashMap$EntrySet::AbstractHashMap$EntrySet(Ljava/util/AbstractHashMap;) <init>,java.util.AbstractHashMap$EntrySet,AbstractHashMap$EntrySet,com/google/gwt/emul/java/util/AbstractHashMap.java,39,0
-contains_0,java.util.AbstractHashMap$EntrySet::contains(Ljava/lang/Object;)Z,java.util.AbstractHashMap$EntrySet,contains,com/google/gwt/emul/java/util/AbstractHashMap.java,47,0
-iterator_2,java.util.AbstractHashMap$EntrySet::iterator()Ljava/util/Iterator;,java.util.AbstractHashMap$EntrySet,iterator,com/google/gwt/emul/java/util/AbstractHashMap.java,55,0
-size_3,java.util.AbstractHashMap$EntrySet::size()I,java.util.AbstractHashMap$EntrySet,size,com/google/gwt/emul/java/util/AbstractHashMap.java,70,0
+contains_1,java.util.AbstractHashMap$EntrySet::contains(Ljava/lang/Object;)Z,java.util.AbstractHashMap$EntrySet,contains,com/google/gwt/emul/java/util/AbstractHashMap.java,47,0
+iterator_3,java.util.AbstractHashMap$EntrySet::iterator()Ljava/util/Iterator;,java.util.AbstractHashMap$EntrySet,iterator,com/google/gwt/emul/java/util/AbstractHashMap.java,55,0
+size_4,java.util.AbstractHashMap$EntrySet::size()I,java.util.AbstractHashMap$EntrySet,size,com/google/gwt/emul/java/util/AbstractHashMap.java,70,0
 this$01,java.util.AbstractHashMap$EntrySet::this$01,java.util.AbstractHashMap$EntrySet,this$01,com/google/gwt/emul/java/util/AbstractHashMap.java,39,-1
 AbstractHashMap$EntrySetIterator,,java.util.AbstractHashMap$EntrySetIterator,,com/google/gwt/emul/java/util/AbstractHashMap.java,78,-1
 $hasNext,java.util.AbstractHashMap$EntrySetIterator::$hasNext(Ljava/util/AbstractHashMap$EntrySetIterator;)Z,java.util.AbstractHashMap$EntrySetIterator,$hasNext,com/google/gwt/emul/java/util/AbstractHashMap.java,88,0
@@ -891,22 +987,23 @@ $next_0,java.util.AbstractHashMap$EntrySetIterator::$next(Ljava/util/AbstractHas
 AbstractHashMap$EntrySetIterator,java.util.AbstractHashMap$EntrySetIterator::AbstractHashMap$EntrySetIterator(Ljava/util/AbstractHashMap;) <init>,java.util.AbstractHashMap$EntrySetIterator,AbstractHashMap$EntrySetIterator,com/google/gwt/emul/java/util/AbstractHashMap.java,83,0
 current,java.util.AbstractHashMap$EntrySetIterator::current,java.util.AbstractHashMap$EntrySetIterator,current,com/google/gwt/emul/java/util/AbstractHashMap.java,80,-1
 hasNext_0,java.util.AbstractHashMap$EntrySetIterator::hasNext()Z,java.util.AbstractHashMap$EntrySetIterator,hasNext,com/google/gwt/emul/java/util/AbstractHashMap.java,88,0
-next_0,java.util.AbstractHashMap$EntrySetIterator::next()Ljava/lang/Object;,java.util.AbstractHashMap$EntrySetIterator,next,com/google/gwt/emul/java/util/AbstractHashMap.java,100,0
+next_1,java.util.AbstractHashMap$EntrySetIterator::next()Ljava/lang/Object;,java.util.AbstractHashMap$EntrySetIterator,next,com/google/gwt/emul/java/util/AbstractHashMap.java,100,0
 stringMapEntries,java.util.AbstractHashMap$EntrySetIterator::stringMapEntries,java.util.AbstractHashMap$EntrySetIterator,stringMapEntries,com/google/gwt/emul/java/util/AbstractHashMap.java,79,-1
 this$01,java.util.AbstractHashMap$EntrySetIterator::this$01,java.util.AbstractHashMap$EntrySetIterator,this$01,com/google/gwt/emul/java/util/AbstractHashMap.java,78,-1
 AbstractList,,java.util.AbstractList,,com/google/gwt/emul/java/util/AbstractList.java,32,-1
+$indexOf,java.util.AbstractList::$indexOf(Ljava/util/AbstractList;Ljava/lang/Object;)I,java.util.AbstractList,$indexOf,com/google/gwt/emul/java/util/AbstractList.java,230,0
 add_1,java.util.AbstractList::add(ILjava/lang/Object;)V,java.util.AbstractList,add,com/google/gwt/emul/java/util/AbstractList.java,176,0
 add_2,java.util.AbstractList::add(Ljava/lang/Object;)Z,java.util.AbstractList,add,com/google/gwt/emul/java/util/AbstractList.java,171,0
-equals_6,java.util.AbstractList::equals(Ljava/lang/Object;)Z,java.util.AbstractList,equals,com/google/gwt/emul/java/util/AbstractList.java,198,0
-hashCode_8,java.util.AbstractList::hashCode()I,java.util.AbstractList,hashCode,com/google/gwt/emul/java/util/AbstractList.java,226,0
-iterator_3,java.util.AbstractList::iterator()Ljava/util/Iterator;,java.util.AbstractList,iterator,com/google/gwt/emul/java/util/AbstractList.java,240,0
+equals_2,java.util.AbstractList::equals(Ljava/lang/Object;)Z,java.util.AbstractList,equals,com/google/gwt/emul/java/util/AbstractList.java,198,0
+hashCode_4,java.util.AbstractList::hashCode()I,java.util.AbstractList,hashCode,com/google/gwt/emul/java/util/AbstractList.java,226,0
+iterator_1,java.util.AbstractList::iterator()Ljava/util/Iterator;,java.util.AbstractList,iterator,com/google/gwt/emul/java/util/AbstractList.java,240,0
 listIterator,java.util.AbstractList::listIterator()Ljava/util/ListIterator;,java.util.AbstractList,listIterator,com/google/gwt/emul/java/util/AbstractList.java,253,0
 listIterator_0,java.util.AbstractList::listIterator(I)Ljava/util/ListIterator;,java.util.AbstractList,listIterator,com/google/gwt/emul/java/util/AbstractList.java,257,0
 AbstractList$IteratorImpl,,java.util.AbstractList$IteratorImpl,,com/google/gwt/emul/java/util/AbstractList.java,35,-1
 AbstractList$IteratorImpl,java.util.AbstractList$IteratorImpl::AbstractList$IteratorImpl(Ljava/util/AbstractList;) <init>,java.util.AbstractList$IteratorImpl,AbstractList$IteratorImpl,com/google/gwt/emul/java/util/AbstractList.java,35,0
 hasNext_1,java.util.AbstractList$IteratorImpl::hasNext()Z,java.util.AbstractList$IteratorImpl,hasNext,com/google/gwt/emul/java/util/AbstractList.java,44,0
 i,java.util.AbstractList$IteratorImpl::i,java.util.AbstractList$IteratorImpl,i,com/google/gwt/emul/java/util/AbstractList.java,42,-1
-next_1,java.util.AbstractList$IteratorImpl::next()Ljava/lang/Object;,java.util.AbstractList$IteratorImpl,next,com/google/gwt/emul/java/util/AbstractList.java,48,0
+next_2,java.util.AbstractList$IteratorImpl::next()Ljava/lang/Object;,java.util.AbstractList$IteratorImpl,next,com/google/gwt/emul/java/util/AbstractList.java,48,0
 this$01_0,java.util.AbstractList$IteratorImpl::this$01,java.util.AbstractList$IteratorImpl,this$01,com/google/gwt/emul/java/util/AbstractList.java,35,-1
 AbstractList$ListIteratorImpl,,java.util.AbstractList$ListIteratorImpl,,com/google/gwt/emul/java/util/AbstractList.java,66,-1
 AbstractList$ListIteratorImpl,java.util.AbstractList$ListIteratorImpl::AbstractList$ListIteratorImpl(Ljava/util/AbstractList;I) <init>,java.util.AbstractList$ListIteratorImpl,AbstractList$ListIteratorImpl,com/google/gwt/emul/java/util/AbstractList.java,78,0
@@ -917,24 +1014,24 @@ AbstractMap,,java.util.AbstractMap,,com/google/gwt/emul/java/util/AbstractMap.ja
 $containsEntry,java.util.AbstractMap::$containsEntry(Ljava/util/AbstractMap;Ljava/util/Map$Entry;)Z,java.util.AbstractMap,$containsEntry,com/google/gwt/emul/java/util/AbstractMap.java,140,0
 $implFindEntry,java.util.AbstractMap::$implFindEntry(Ljava/util/AbstractMap;Ljava/lang/Object;Z)Ljava/util/Map$Entry;,java.util.AbstractMap,$implFindEntry,com/google/gwt/emul/java/util/AbstractMap.java,340,0
 $toString_0,java.util.AbstractMap::$toString(Ljava/util/AbstractMap;Ljava/lang/Object;)Ljava/lang/String;,java.util.AbstractMap,$toString,com/google/gwt/emul/java/util/AbstractMap.java,286,0
-equals_4,java.util.AbstractMap::equals(Ljava/lang/Object;)Z,java.util.AbstractMap,equals,com/google/gwt/emul/java/util/AbstractMap.java,161,0
-get_1,java.util.AbstractMap::get(Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractMap,get,com/google/gwt/emul/java/util/AbstractMap.java,182,0
+equals_5,java.util.AbstractMap::equals(Ljava/lang/Object;)Z,java.util.AbstractMap,equals,com/google/gwt/emul/java/util/AbstractMap.java,161,0
+get_2,java.util.AbstractMap::get(Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractMap,get,com/google/gwt/emul/java/util/AbstractMap.java,182,0
 getEntryValueOrNull,java.util.AbstractMap::getEntryValueOrNull(Ljava/util/Map$Entry;)Ljava/lang/Object;,java.util.AbstractMap,getEntryValueOrNull,com/google/gwt/emul/java/util/AbstractMap.java,336,0
-hashCode_6,java.util.AbstractMap::hashCode()I,java.util.AbstractMap,hashCode,com/google/gwt/emul/java/util/AbstractMap.java,187,0
+hashCode_7,java.util.AbstractMap::hashCode()I,java.util.AbstractMap,hashCode,com/google/gwt/emul/java/util/AbstractMap.java,187,0
 put,java.util.AbstractMap::put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;,java.util.AbstractMap,put,com/google/gwt/emul/java/util/AbstractMap.java,247,0
-size_1,java.util.AbstractMap::size()I,java.util.AbstractMap,size,com/google/gwt/emul/java/util/AbstractMap.java,264,0
+size_2,java.util.AbstractMap::size()I,java.util.AbstractMap,size,com/google/gwt/emul/java/util/AbstractMap.java,264,0
 toString_11,java.util.AbstractMap::toString()Ljava/lang/String;,java.util.AbstractMap,toString,com/google/gwt/emul/java/util/AbstractMap.java,269,0
 AbstractMap$1,,java.util.AbstractMap$1,,com/google/gwt/emul/java/util/AbstractMap.java,198,-1
 $iterator,java.util.AbstractMap$1::$iterator(Ljava/util/AbstractMap$1;)Ljava/util/Iterator;,java.util.AbstractMap$1,$iterator,com/google/gwt/emul/java/util/AbstractMap.java,210,0
 AbstractMap$1,java.util.AbstractMap$1::AbstractMap$1(Ljava/util/AbstractMap;) <init>,java.util.AbstractMap$1,AbstractMap$1,com/google/gwt/emul/java/util/AbstractMap.java,198,0
-contains_1,java.util.AbstractMap$1::contains(Ljava/lang/Object;)Z,java.util.AbstractMap$1,contains,com/google/gwt/emul/java/util/AbstractMap.java,205,0
+contains_2,java.util.AbstractMap$1::contains(Ljava/lang/Object;)Z,java.util.AbstractMap$1,contains,com/google/gwt/emul/java/util/AbstractMap.java,205,0
 iterator_4,java.util.AbstractMap$1::iterator()Ljava/util/Iterator;,java.util.AbstractMap$1,iterator,com/google/gwt/emul/java/util/AbstractMap.java,210,0
-size_4,java.util.AbstractMap$1::size()I,java.util.AbstractMap$1,size,com/google/gwt/emul/java/util/AbstractMap.java,241,0
+size_5,java.util.AbstractMap$1::size()I,java.util.AbstractMap$1,size,com/google/gwt/emul/java/util/AbstractMap.java,241,0
 this$01,java.util.AbstractMap$1::this$01,java.util.AbstractMap$1,this$01,com/google/gwt/emul/java/util/AbstractMap.java,198,-1
 AbstractMap$1$1,,java.util.AbstractMap$1$1,,com/google/gwt/emul/java/util/AbstractMap.java,212,-1
 AbstractMap$1$1,java.util.AbstractMap$1$1::AbstractMap$1$1(Ljava/util/AbstractMap$1;) <init>,java.util.AbstractMap$1$1,AbstractMap$1$1,com/google/gwt/emul/java/util/AbstractMap.java,212,0
 hasNext_2,java.util.AbstractMap$1$1::hasNext()Z,java.util.AbstractMap$1$1,hasNext,com/google/gwt/emul/java/util/AbstractMap.java,214,0
-next_2,java.util.AbstractMap$1$1::next()Ljava/lang/Object;,java.util.AbstractMap$1$1,next,com/google/gwt/emul/java/util/AbstractMap.java,219,0
+next_3,java.util.AbstractMap$1$1::next()Ljava/lang/Object;,java.util.AbstractMap$1$1,next,com/google/gwt/emul/java/util/AbstractMap.java,219,0
 val$outerIter2,java.util.AbstractMap$1$1::val$outerIter2,java.util.AbstractMap$1$1,val$outerIter2,com/google/gwt/emul/java/util/AbstractMap.java,212,-1
 AbstractMap$AbstractEntry,,java.util.AbstractMap$AbstractEntry,,com/google/gwt/emul/java/util/AbstractMap.java,65,-1
 equals_7,java.util.AbstractMap$AbstractEntry::equals(Ljava/lang/Object;)Z,java.util.AbstractMap$AbstractEntry,equals,com/google/gwt/emul/java/util/AbstractMap.java,92,0
@@ -951,22 +1048,34 @@ AbstractMapEntry,,java.util.AbstractMapEntry,,com/google/gwt/emul/java/util/Abst
 equals_8,java.util.AbstractMapEntry::equals(Ljava/lang/Object;)Z,java.util.AbstractMapEntry,equals,com/google/gwt/emul/java/util/AbstractMapEntry.java,25,0
 hashCode_10,java.util.AbstractMapEntry::hashCode()I,java.util.AbstractMapEntry,hashCode,com/google/gwt/emul/java/util/AbstractMapEntry.java,38,0
 toString_13,java.util.AbstractMapEntry::toString()Ljava/lang/String;,java.util.AbstractMapEntry,toString,com/google/gwt/emul/java/util/AbstractMapEntry.java,43,0
+AbstractSequentialList,,java.util.AbstractSequentialList,,com/google/gwt/emul/java/util/AbstractSequentialList.java,27,-1
+add_5,java.util.AbstractSequentialList::add(ILjava/lang/Object;)V,java.util.AbstractSequentialList,add,com/google/gwt/emul/java/util/AbstractSequentialList.java,34,0
+get_4,java.util.AbstractSequentialList::get(I)Ljava/lang/Object;,java.util.AbstractSequentialList,get,com/google/gwt/emul/java/util/AbstractSequentialList.java,53,0
+iterator_5,java.util.AbstractSequentialList::iterator()Ljava/util/Iterator;,java.util.AbstractSequentialList,iterator,com/google/gwt/emul/java/util/AbstractSequentialList.java,63,0
 AbstractSet,,java.util.AbstractSet,,com/google/gwt/emul/java/util/AbstractSet.java,27,-1
-equals_5,java.util.AbstractSet::equals(Ljava/lang/Object;)Z,java.util.AbstractSet,equals,com/google/gwt/emul/java/util/AbstractSet.java,31,0
-hashCode_7,java.util.AbstractSet::hashCode()I,java.util.AbstractSet,hashCode,com/google/gwt/emul/java/util/AbstractSet.java,48,0
+equals_6,java.util.AbstractSet::equals(Ljava/lang/Object;)Z,java.util.AbstractSet,equals,com/google/gwt/emul/java/util/AbstractSet.java,31,0
+hashCode_8,java.util.AbstractSet::hashCode()I,java.util.AbstractSet,hashCode,com/google/gwt/emul/java/util/AbstractSet.java,48,0
 ArrayList,,java.util.ArrayList,,com/google/gwt/emul/java/util/ArrayList.java,45,-1
-$add_3,java.util.ArrayList::$add(Ljava/util/ArrayList;Ljava/lang/Object;)Z,java.util.ArrayList,$add,com/google/gwt/emul/java/util/ArrayList.java,87,0
-$indexOf_1,java.util.ArrayList::$indexOf(Ljava/util/ArrayList;Ljava/lang/Object;I)I,java.util.ArrayList,$indexOf,com/google/gwt/emul/java/util/ArrayList.java,227,0
+$add_1,java.util.ArrayList::$add(Ljava/util/ArrayList;ILjava/lang/Object;)V,java.util.ArrayList,$add,com/google/gwt/emul/java/util/ArrayList.java,93,0
+$add_2,java.util.ArrayList::$add(Ljava/util/ArrayList;Ljava/lang/Object;)Z,java.util.ArrayList,$add,com/google/gwt/emul/java/util/ArrayList.java,87,0
+$get,java.util.ArrayList::$get(Ljava/util/ArrayList;I)Ljava/lang/Object;,java.util.ArrayList,$get,com/google/gwt/emul/java/util/ArrayList.java,140,0
+$indexOf_0,java.util.ArrayList::$indexOf(Ljava/util/ArrayList;Ljava/lang/Object;I)I,java.util.ArrayList,$indexOf,com/google/gwt/emul/java/util/ArrayList.java,227,0
 $toArray,java.util.ArrayList::$toArray(Ljava/util/ArrayList;[Ljava/lang/Object;)[Ljava/lang/Object;,java.util.ArrayList,$toArray,com/google/gwt/emul/java/util/ArrayList.java,199,0
 ArrayList,java.util.ArrayList::ArrayList() <init>,java.util.ArrayList,ArrayList,com/google/gwt/emul/java/util/ArrayList.java,73,0
 add_3,java.util.ArrayList::add(ILjava/lang/Object;)V,java.util.ArrayList,add,com/google/gwt/emul/java/util/ArrayList.java,93,0
 add_4,java.util.ArrayList::add(Ljava/lang/Object;)Z,java.util.ArrayList,add,com/google/gwt/emul/java/util/ArrayList.java,87,0
 array,java.util.ArrayList::array,java.util.ArrayList,array,com/google/gwt/emul/java/util/ArrayList.java,64,-1
-contains_2,java.util.ArrayList::contains(Ljava/lang/Object;)Z,java.util.ArrayList,contains,com/google/gwt/emul/java/util/ArrayList.java,131,0
-get_3,java.util.ArrayList::get(I)Ljava/lang/Object;,java.util.ArrayList,get,com/google/gwt/emul/java/util/ArrayList.java,140,0
-size_5,java.util.ArrayList::size()I,java.util.ArrayList,size,com/google/gwt/emul/java/util/ArrayList.java,185,0
+contains_0,java.util.ArrayList::contains(Ljava/lang/Object;)Z,java.util.ArrayList,contains,com/google/gwt/emul/java/util/ArrayList.java,131,0
+get_0,java.util.ArrayList::get(I)Ljava/lang/Object;,java.util.ArrayList,get,com/google/gwt/emul/java/util/ArrayList.java,140,0
+size_1,java.util.ArrayList::size()I,java.util.ArrayList,size,com/google/gwt/emul/java/util/ArrayList.java,185,0
 splice,java.util.ArrayList::splice([Ljava/lang/Object;IILjava/lang/Object;)V,java.util.ArrayList,splice,com/google/gwt/emul/java/util/ArrayList.java,52,0
 hashCode_11,java.util.Arrays::hashCode([Ljava/lang/Object;)I,java.util.Arrays,hashCode,com/google/gwt/emul/java/util/Arrays.java,950,0
+Arrays$ArrayList,,java.util.Arrays$ArrayList,,com/google/gwt/emul/java/util/Arrays.java,39,-1
+Arrays$ArrayList,java.util.Arrays$ArrayList::Arrays$ArrayList([Ljava/lang/Object;) <init>,java.util.Arrays$ArrayList,Arrays$ArrayList,com/google/gwt/emul/java/util/Arrays.java,48,0
+array,java.util.Arrays$ArrayList::array,java.util.Arrays$ArrayList,array,com/google/gwt/emul/java/util/Arrays.java,46,-1
+contains_3,java.util.Arrays$ArrayList::contains(Ljava/lang/Object;)Z,java.util.Arrays$ArrayList,contains,com/google/gwt/emul/java/util/Arrays.java,54,0
+get_5,java.util.Arrays$ArrayList::get(I)Ljava/lang/Object;,java.util.Arrays$ArrayList,get,com/google/gwt/emul/java/util/Arrays.java,59,0
+size_6,java.util.Arrays$ArrayList::size()I,java.util.Arrays$ArrayList,size,com/google/gwt/emul/java/util/Arrays.java,72,0
 $clinit_Collections,java.util.Collections::$clinit()V,java.util.Collections,$clinit,com/google/gwt/emul/java/util/Collections.java,30,0
 EMPTY_LIST,java.util.Collections::EMPTY_LIST,java.util.Collections,EMPTY_LIST,com/google/gwt/emul/java/util/Collections.java,787,-1
 hashCode_12,java.util.Collections::hashCode(Ljava/lang/Iterable;)I,java.util.Collections,hashCode,com/google/gwt/emul/java/util/Collections.java,1169,0
@@ -974,35 +1083,41 @@ hashCode_13,java.util.Collections::hashCode(Ljava/util/List;)I,java.util.Collect
 unmodifiableList,java.util.Collections::unmodifiableList(Ljava/util/List;)Ljava/util/List;,java.util.Collections,unmodifiableList,com/google/gwt/emul/java/util/Collections.java,1141,0
 Collections$EmptyList,,java.util.Collections$EmptyList,,com/google/gwt/emul/java/util/Collections.java,67,-1
 Collections$EmptyList,java.util.Collections$EmptyList::Collections$EmptyList() <init>,java.util.Collections$EmptyList,Collections$EmptyList,com/google/gwt/emul/java/util/Collections.java,67,0
-contains_3,java.util.Collections$EmptyList::contains(Ljava/lang/Object;)Z,java.util.Collections$EmptyList,contains,com/google/gwt/emul/java/util/Collections.java,70,0
-get_4,java.util.Collections$EmptyList::get(I)Ljava/lang/Object;,java.util.Collections$EmptyList,get,com/google/gwt/emul/java/util/Collections.java,75,0
-iterator_5,java.util.Collections$EmptyList::iterator()Ljava/util/Iterator;,java.util.Collections$EmptyList,iterator,com/google/gwt/emul/java/util/Collections.java,81,0
+contains_4,java.util.Collections$EmptyList::contains(Ljava/lang/Object;)Z,java.util.Collections$EmptyList,contains,com/google/gwt/emul/java/util/Collections.java,70,0
+get_6,java.util.Collections$EmptyList::get(I)Ljava/lang/Object;,java.util.Collections$EmptyList,get,com/google/gwt/emul/java/util/Collections.java,75,0
+iterator_6,java.util.Collections$EmptyList::iterator()Ljava/util/Iterator;,java.util.Collections$EmptyList,iterator,com/google/gwt/emul/java/util/Collections.java,81,0
 listIterator_1,java.util.Collections$EmptyList::listIterator()Ljava/util/ListIterator;,java.util.Collections$EmptyList,listIterator,com/google/gwt/emul/java/util/Collections.java,86,0
-size_6,java.util.Collections$EmptyList::size()I,java.util.Collections$EmptyList,size,com/google/gwt/emul/java/util/Collections.java,91,0
+size_7,java.util.Collections$EmptyList::size()I,java.util.Collections$EmptyList,size,com/google/gwt/emul/java/util/Collections.java,91,0
 Collections$EmptyListIterator,,java.util.Collections$EmptyListIterator,,com/google/gwt/emul/java/util/Collections.java,96,-1
 $clinit_Collections$EmptyListIterator,java.util.Collections$EmptyListIterator::$clinit()V,java.util.Collections$EmptyListIterator,$clinit,com/google/gwt/emul/java/util/Collections.java,96,0
 Collections$EmptyListIterator,java.util.Collections$EmptyListIterator::Collections$EmptyListIterator() <init>,java.util.Collections$EmptyListIterator,Collections$EmptyListIterator,com/google/gwt/emul/java/util/Collections.java,96,0
 INSTANCE_0,java.util.Collections$EmptyListIterator::INSTANCE,java.util.Collections$EmptyListIterator,INSTANCE,com/google/gwt/emul/java/util/Collections.java,98,-1
 hasNext_3,java.util.Collections$EmptyListIterator::hasNext()Z,java.util.Collections$EmptyListIterator,hasNext,com/google/gwt/emul/java/util/Collections.java,106,0
 hasPrevious_0,java.util.Collections$EmptyListIterator::hasPrevious()Z,java.util.Collections$EmptyListIterator,hasPrevious,com/google/gwt/emul/java/util/Collections.java,111,0
-next_3,java.util.Collections$EmptyListIterator::next()Ljava/lang/Object;,java.util.Collections$EmptyListIterator,next,com/google/gwt/emul/java/util/Collections.java,116,0
+next_4,java.util.Collections$EmptyListIterator::next()Ljava/lang/Object;,java.util.Collections$EmptyListIterator,next,com/google/gwt/emul/java/util/Collections.java,116,0
 previous_0,java.util.Collections$EmptyListIterator::previous()Ljava/lang/Object;,java.util.Collections$EmptyListIterator,previous,com/google/gwt/emul/java/util/Collections.java,126,0
+Collections$SingletonList,,java.util.Collections$SingletonList,,com/google/gwt/emul/java/util/Collections.java,277,-1
+Collections$SingletonList,java.util.Collections$SingletonList::Collections$SingletonList(Ljava/lang/Object;) <init>,java.util.Collections$SingletonList,Collections$SingletonList,com/google/gwt/emul/java/util/Collections.java,280,0
+contains_5,java.util.Collections$SingletonList::contains(Ljava/lang/Object;)Z,java.util.Collections$SingletonList,contains,com/google/gwt/emul/java/util/Collections.java,284,0
+element,java.util.Collections$SingletonList::element,java.util.Collections$SingletonList,element,com/google/gwt/emul/java/util/Collections.java,278,-1
+get_7,java.util.Collections$SingletonList::get(I)Ljava/lang/Object;,java.util.Collections$SingletonList,get,com/google/gwt/emul/java/util/Collections.java,288,0
+size_8,java.util.Collections$SingletonList::size()I,java.util.Collections$SingletonList,size,com/google/gwt/emul/java/util/Collections.java,293,0
 Collections$UnmodifiableCollection,,java.util.Collections$UnmodifiableCollection,,com/google/gwt/emul/java/util/Collections.java,302,-1
 Collections$UnmodifiableCollection,java.util.Collections$UnmodifiableCollection::Collections$UnmodifiableCollection(Ljava/util/Collection;) <init>,java.util.Collections$UnmodifiableCollection,Collections$UnmodifiableCollection,com/google/gwt/emul/java/util/Collections.java,305,0
-add_5,java.util.Collections$UnmodifiableCollection::add(Ljava/lang/Object;)Z,java.util.Collections$UnmodifiableCollection,add,com/google/gwt/emul/java/util/Collections.java,309,0
+add_6,java.util.Collections$UnmodifiableCollection::add(Ljava/lang/Object;)Z,java.util.Collections$UnmodifiableCollection,add,com/google/gwt/emul/java/util/Collections.java,309,0
 coll,java.util.Collections$UnmodifiableCollection::coll,java.util.Collections$UnmodifiableCollection,coll,com/google/gwt/emul/java/util/Collections.java,303,-1
-iterator_6,java.util.Collections$UnmodifiableCollection::iterator()Ljava/util/Iterator;,java.util.Collections$UnmodifiableCollection,iterator,com/google/gwt/emul/java/util/Collections.java,333,0
-size_7,java.util.Collections$UnmodifiableCollection::size()I,java.util.Collections$UnmodifiableCollection,size,com/google/gwt/emul/java/util/Collections.java,349,0
+iterator_7,java.util.Collections$UnmodifiableCollection::iterator()Ljava/util/Iterator;,java.util.Collections$UnmodifiableCollection,iterator,com/google/gwt/emul/java/util/Collections.java,333,0
+size_9,java.util.Collections$UnmodifiableCollection::size()I,java.util.Collections$UnmodifiableCollection,size,com/google/gwt/emul/java/util/Collections.java,349,0
 toString_14,java.util.Collections$UnmodifiableCollection::toString()Ljava/lang/String;,java.util.Collections$UnmodifiableCollection,toString,com/google/gwt/emul/java/util/Collections.java,361,0
 Collections$UnmodifiableCollectionIterator,,java.util.Collections$UnmodifiableCollectionIterator,,com/google/gwt/emul/java/util/Collections.java,732,-1
 Collections$UnmodifiableCollectionIterator,java.util.Collections$UnmodifiableCollectionIterator::Collections$UnmodifiableCollectionIterator(Ljava/util/Iterator;) <init>,java.util.Collections$UnmodifiableCollectionIterator,Collections$UnmodifiableCollectionIterator,com/google/gwt/emul/java/util/Collections.java,735,0
 hasNext_4,java.util.Collections$UnmodifiableCollectionIterator::hasNext()Z,java.util.Collections$UnmodifiableCollectionIterator,hasNext,com/google/gwt/emul/java/util/Collections.java,739,0
 it,java.util.Collections$UnmodifiableCollectionIterator::it,java.util.Collections$UnmodifiableCollectionIterator,it,com/google/gwt/emul/java/util/Collections.java,733,-1
-next_4,java.util.Collections$UnmodifiableCollectionIterator::next()Ljava/lang/Object;,java.util.Collections$UnmodifiableCollectionIterator,next,com/google/gwt/emul/java/util/Collections.java,743,0
+next_5,java.util.Collections$UnmodifiableCollectionIterator::next()Ljava/lang/Object;,java.util.Collections$UnmodifiableCollectionIterator,next,com/google/gwt/emul/java/util/Collections.java,743,0
 Collections$UnmodifiableList,,java.util.Collections$UnmodifiableList,,com/google/gwt/emul/java/util/Collections.java,366,-1
 Collections$UnmodifiableList,java.util.Collections$UnmodifiableList::Collections$UnmodifiableList(Ljava/util/List;) <init>,java.util.Collections$UnmodifiableList,Collections$UnmodifiableList,com/google/gwt/emul/java/util/Collections.java,370,0
 equals_9,java.util.Collections$UnmodifiableList::equals(Ljava/lang/Object;)Z,java.util.Collections$UnmodifiableList,equals,com/google/gwt/emul/java/util/Collections.java,384,0
-get_5,java.util.Collections$UnmodifiableList::get(I)Ljava/lang/Object;,java.util.Collections$UnmodifiableList,get,com/google/gwt/emul/java/util/Collections.java,388,0
+get_8,java.util.Collections$UnmodifiableList::get(I)Ljava/lang/Object;,java.util.Collections$UnmodifiableList,get,com/google/gwt/emul/java/util/Collections.java,388,0
 hashCode_14,java.util.Collections$UnmodifiableList::hashCode()I,java.util.Collections$UnmodifiableList,hashCode,com/google/gwt/emul/java/util/Collections.java,393,0
 list,java.util.Collections$UnmodifiableList::list,java.util.Collections$UnmodifiableList,list,com/google/gwt/emul/java/util/Collections.java,368,-1
 listIterator_2,java.util.Collections$UnmodifiableList::listIterator()Ljava/util/ListIterator;,java.util.Collections$UnmodifiableList,listIterator,com/google/gwt/emul/java/util/Collections.java,410,0
@@ -1017,19 +1132,19 @@ Collections$UnmodifiableMap,java.util.Collections$UnmodifiableMap::Collections$U
 entrySet,java.util.Collections$UnmodifiableMap::entrySet,java.util.Collections$UnmodifiableMap,entrySet,com/google/gwt/emul/java/util/Collections.java,535,-1
 entrySet_0,java.util.Collections$UnmodifiableMap::entrySet()Ljava/util/Set;,java.util.Collections$UnmodifiableMap,entrySet,com/google/gwt/emul/java/util/Collections.java,556,0
 equals_10,java.util.Collections$UnmodifiableMap::equals(Ljava/lang/Object;)Z,java.util.Collections$UnmodifiableMap,equals,com/google/gwt/emul/java/util/Collections.java,564,0
-get_6,java.util.Collections$UnmodifiableMap::get(Ljava/lang/Object;)Ljava/lang/Object;,java.util.Collections$UnmodifiableMap,get,com/google/gwt/emul/java/util/Collections.java,568,0
+get_9,java.util.Collections$UnmodifiableMap::get(Ljava/lang/Object;)Ljava/lang/Object;,java.util.Collections$UnmodifiableMap,get,com/google/gwt/emul/java/util/Collections.java,568,0
 hashCode_15,java.util.Collections$UnmodifiableMap::hashCode()I,java.util.Collections$UnmodifiableMap,hashCode,com/google/gwt/emul/java/util/Collections.java,573,0
 map_0,java.util.Collections$UnmodifiableMap::map,java.util.Collections$UnmodifiableMap,map,com/google/gwt/emul/java/util/Collections.java,537,-1
 put_1,java.util.Collections$UnmodifiableMap::put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;,java.util.Collections$UnmodifiableMap,put,com/google/gwt/emul/java/util/Collections.java,588,0
-size_8,java.util.Collections$UnmodifiableMap::size()I,java.util.Collections$UnmodifiableMap,size,com/google/gwt/emul/java/util/Collections.java,600,0
+size_10,java.util.Collections$UnmodifiableMap::size()I,java.util.Collections$UnmodifiableMap,size,com/google/gwt/emul/java/util/Collections.java,600,0
 toString_15,java.util.Collections$UnmodifiableMap::toString()Ljava/lang/String;,java.util.Collections$UnmodifiableMap,toString,com/google/gwt/emul/java/util/Collections.java,605,0
 Collections$UnmodifiableMap$UnmodifiableEntrySet,,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet,,com/google/gwt/emul/java/util/Collections.java,433,-1
 Collections$UnmodifiableMap$UnmodifiableEntrySet,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet::Collections$UnmodifiableMap$UnmodifiableEntrySet(Ljava/util/Set;) <init>,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet,Collections$UnmodifiableMap$UnmodifiableEntrySet,com/google/gwt/emul/java/util/Collections.java,472,0
-iterator_7,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet::iterator()Ljava/util/Iterator;,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet,iterator,com/google/gwt/emul/java/util/Collections.java,489,0
+iterator_8,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet::iterator()Ljava/util/Iterator;,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet,iterator,com/google/gwt/emul/java/util/Collections.java,489,0
 Collections$UnmodifiableMap$UnmodifiableEntrySet$1,,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1,,com/google/gwt/emul/java/util/Collections.java,491,-1
 Collections$UnmodifiableMap$UnmodifiableEntrySet$1,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1::Collections$UnmodifiableMap$UnmodifiableEntrySet$1(Ljava/util/Collections$UnmodifiableMap$UnmodifiableEntrySet;) <init>,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1,Collections$UnmodifiableMap$UnmodifiableEntrySet$1,com/google/gwt/emul/java/util/Collections.java,491,0
 hasNext_5,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1::hasNext()Z,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1,hasNext,com/google/gwt/emul/java/util/Collections.java,492,0
-next_5,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1::next()Ljava/lang/Object;,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1,next,com/google/gwt/emul/java/util/Collections.java,496,0
+next_6,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1::next()Ljava/lang/Object;,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1,next,com/google/gwt/emul/java/util/Collections.java,496,0
 val$it2,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1::val$it2,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$1,val$it2,com/google/gwt/emul/java/util/Collections.java,491,-1
 Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry,,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry,,com/google/gwt/emul/java/util/Collections.java,436,-1
 Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry::Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry(Ljava/util/Map$Entry;) <init>,java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry,Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry,com/google/gwt/emul/java/util/Collections.java,439,0
@@ -1066,14 +1181,14 @@ $equals_0,java.util.HashMap::$equals(Ljava/util/HashMap;Ljava/lang/Object;Ljava/
 $getHashCode,java.util.HashMap::$getHashCode(Ljava/util/HashMap;Ljava/lang/Object;)I,java.util.HashMap,$getHashCode,com/google/gwt/emul/java/util/HashMap.java,72,0
 HashMap,java.util.HashMap::HashMap() <init>,java.util.HashMap,HashMap,com/google/gwt/emul/java/util/HashMap.java,47,0
 HashSet,,java.util.HashSet,,com/google/gwt/emul/java/util/HashSet.java,27,-1
-$add_4,java.util.HashSet::$add(Ljava/util/HashSet;Ljava/lang/Object;)Z,java.util.HashSet,$add,com/google/gwt/emul/java/util/HashSet.java,67,0
+$add_5,java.util.HashSet::$add(Ljava/util/HashSet;Ljava/lang/Object;)Z,java.util.HashSet,$add,com/google/gwt/emul/java/util/HashSet.java,67,0
 $contains_0,java.util.HashSet::$contains(Ljava/util/HashSet;Ljava/lang/Object;)Z,java.util.HashSet,$contains,com/google/gwt/emul/java/util/HashSet.java,82,0
 $remove_3,java.util.HashSet::$remove(Ljava/util/HashSet;Ljava/lang/Object;)Z,java.util.HashSet,$remove,com/google/gwt/emul/java/util/HashSet.java,97,0
 HashSet,java.util.HashSet::HashSet() <init>,java.util.HashSet,HashSet,com/google/gwt/emul/java/util/HashSet.java,39,0
-contains_4,java.util.HashSet::contains(Ljava/lang/Object;)Z,java.util.HashSet,contains,com/google/gwt/emul/java/util/HashSet.java,82,0
-iterator_8,java.util.HashSet::iterator()Ljava/util/Iterator;,java.util.HashSet,iterator,com/google/gwt/emul/java/util/HashSet.java,92,0
+contains_6,java.util.HashSet::contains(Ljava/lang/Object;)Z,java.util.HashSet,contains,com/google/gwt/emul/java/util/HashSet.java,82,0
+iterator_9,java.util.HashSet::iterator()Ljava/util/Iterator;,java.util.HashSet,iterator,com/google/gwt/emul/java/util/HashSet.java,92,0
 map_0,java.util.HashSet::map,java.util.HashSet,map,com/google/gwt/emul/java/util/HashSet.java,30,-1
-size_9,java.util.HashSet::size()I,java.util.HashSet,size,com/google/gwt/emul/java/util/HashSet.java,102,0
+size_11,java.util.HashSet::size()I,java.util.HashSet,size,com/google/gwt/emul/java/util/HashSet.java,102,0
 toString_18,java.util.HashSet::toString()Ljava/lang/String;,java.util.HashSet,toString,com/google/gwt/emul/java/util/HashSet.java,107,0
 InternalJsHashCodeMap,,java.util.InternalJsHashCodeMap,,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,36,-1
 $ensureChain,java.util.InternalJsHashCodeMap::$ensureChain(Ljava/util/InternalJsHashCodeMap;Ljava/lang/String;)[Ljava/util/Map$Entry;,java.util.InternalJsHashCodeMap,$ensureChain,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,226,0
@@ -1097,7 +1212,7 @@ hasNext_6,java.util.InternalJsHashCodeMap$1::hasNext()Z,java.util.InternalJsHash
 itemIndex,java.util.InternalJsHashCodeMap$1::itemIndex,java.util.InternalJsHashCodeMap$1,itemIndex,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,167,-1
 keys_0,java.util.InternalJsHashCodeMap$1::keys,java.util.InternalJsHashCodeMap$1,keys,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,166,-1
 lastEntry,java.util.InternalJsHashCodeMap$1::lastEntry,java.util.InternalJsHashCodeMap$1,lastEntry,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,170,-1
-next_6,java.util.InternalJsHashCodeMap$1::next()Ljava/lang/Object;,java.util.InternalJsHashCodeMap$1,next,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,187,0
+next_7,java.util.InternalJsHashCodeMap$1::next()Ljava/lang/Object;,java.util.InternalJsHashCodeMap$1,next,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,187,0
 this$01,java.util.InternalJsHashCodeMap$1::this$01,java.util.InternalJsHashCodeMap$1,this$01,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,165,-1
 InternalJsHashCodeMap$InternalJsHashCodeMapLegacy,,java.util.InternalJsHashCodeMap$InternalJsHashCodeMapLegacy,,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,38,-1
 InternalJsHashCodeMap$InternalJsHashCodeMapLegacy,java.util.InternalJsHashCodeMap$InternalJsHashCodeMapLegacy::InternalJsHashCodeMap$InternalJsHashCodeMapLegacy() <init>,java.util.InternalJsHashCodeMap$InternalJsHashCodeMapLegacy,InternalJsHashCodeMap$InternalJsHashCodeMapLegacy,com/google/gwt/emul/java/util/InternalJsHashCodeMap.java,38,0
@@ -1129,7 +1244,7 @@ InternalJsStringMap,java.util.InternalJsStringMap::InternalJsStringMap() <init>,
 backingMap,java.util.InternalJsStringMap::backingMap,java.util.InternalJsStringMap,backingMap,com/google/gwt/emul/java/util/InternalJsStringMap.java,136,-1
 createMap_1,java.util.InternalJsStringMap::createMap()Lcom/google/gwt/core/client/JavaScriptObject;,java.util.InternalJsStringMap,createMap,com/google/gwt/emul/java/util/InternalJsStringMap.java,139,0
 entries_1,java.util.InternalJsStringMap::entries()Ljava/util/Iterator;,java.util.InternalJsStringMap,entries,com/google/gwt/emul/java/util/InternalJsStringMap.java,194,0
-get_7,java.util.InternalJsStringMap::get(Ljava/lang/String;)Ljava/lang/Object;,java.util.InternalJsStringMap,get,com/google/gwt/emul/java/util/InternalJsStringMap.java,147,0
+get_10,java.util.InternalJsStringMap::get(Ljava/lang/String;)Ljava/lang/Object;,java.util.InternalJsStringMap,get,com/google/gwt/emul/java/util/InternalJsStringMap.java,147,0
 host,java.util.InternalJsStringMap::host,java.util.InternalJsStringMap,host,com/google/gwt/emul/java/util/InternalJsStringMap.java,137,-1
 keys_1,java.util.InternalJsStringMap::keys()[Ljava/lang/String;,java.util.InternalJsStringMap,keys,com/google/gwt/emul/java/util/InternalJsStringMap.java,218,0
 newMapEntry,java.util.InternalJsStringMap::newMapEntry(Ljava/lang/String;)Ljava/util/Map$Entry;,java.util.InternalJsStringMap,newMapEntry,com/google/gwt/emul/java/util/InternalJsStringMap.java,222,0
@@ -1138,7 +1253,7 @@ InternalJsStringMap$1,,java.util.InternalJsStringMap$1,,com/google/gwt/emul/java
 InternalJsStringMap$1,java.util.InternalJsStringMap$1::InternalJsStringMap$1(Ljava/util/InternalJsStringMap;) <init>,java.util.InternalJsStringMap$1,InternalJsStringMap$1,com/google/gwt/emul/java/util/InternalJsStringMap.java,196,0
 hasNext_7,java.util.InternalJsStringMap$1::hasNext()Z,java.util.InternalJsStringMap$1,hasNext,com/google/gwt/emul/java/util/InternalJsStringMap.java,199,0
 i,java.util.InternalJsStringMap$1::i,java.util.InternalJsStringMap$1,i,com/google/gwt/emul/java/util/InternalJsStringMap.java,197,-1
-next_7,java.util.InternalJsStringMap$1::next()Ljava/lang/Object;,java.util.InternalJsStringMap$1,next,com/google/gwt/emul/java/util/InternalJsStringMap.java,203,0
+next_8,java.util.InternalJsStringMap$1::next()Ljava/lang/Object;,java.util.InternalJsStringMap$1,next,com/google/gwt/emul/java/util/InternalJsStringMap.java,203,0
 this$01,java.util.InternalJsStringMap$1::this$01,java.util.InternalJsStringMap$1,this$01,com/google/gwt/emul/java/util/InternalJsStringMap.java,196,-1
 val$keys2,java.util.InternalJsStringMap$1::val$keys2,java.util.InternalJsStringMap$1,val$keys2,com/google/gwt/emul/java/util/InternalJsStringMap.java,196,-1
 InternalJsStringMap$2,,java.util.InternalJsStringMap$2,,com/google/gwt/emul/java/util/InternalJsStringMap.java,223,-1
@@ -1152,7 +1267,7 @@ InternalJsStringMap$InternalJsStringMapLegacy,,java.util.InternalJsStringMap$Int
 InternalJsStringMap$InternalJsStringMapLegacy,java.util.InternalJsStringMap$InternalJsStringMapLegacy::InternalJsStringMap$InternalJsStringMapLegacy() <init>,java.util.InternalJsStringMap$InternalJsStringMapLegacy,InternalJsStringMap$InternalJsStringMapLegacy,com/google/gwt/emul/java/util/InternalJsStringMap.java,42,0
 createMap_2,java.util.InternalJsStringMap$InternalJsStringMapLegacy::createMap()Lcom/google/gwt/core/client/JavaScriptObject;,java.util.InternalJsStringMap$InternalJsStringMapLegacy,createMap,com/google/gwt/emul/java/util/InternalJsStringMap.java,44,0
 entries_2,java.util.InternalJsStringMap$InternalJsStringMapLegacy::entries()Ljava/util/Iterator;,java.util.InternalJsStringMap$InternalJsStringMapLegacy,entries,com/google/gwt/emul/java/util/InternalJsStringMap.java,83,0
-get_8,java.util.InternalJsStringMap$InternalJsStringMapLegacy::get(Ljava/lang/String;)Ljava/lang/Object;,java.util.InternalJsStringMap$InternalJsStringMapLegacy,get,com/google/gwt/emul/java/util/InternalJsStringMap.java,49,0
+get_11,java.util.InternalJsStringMap$InternalJsStringMapLegacy::get(Ljava/lang/String;)Ljava/lang/Object;,java.util.InternalJsStringMap$InternalJsStringMapLegacy,get,com/google/gwt/emul/java/util/InternalJsStringMap.java,49,0
 newEntryList_0,java.util.InternalJsStringMap$InternalJsStringMapLegacy::newEntryList()Ljava/util/ArrayList;,java.util.InternalJsStringMap$InternalJsStringMapLegacy,newEntryList,com/google/gwt/emul/java/util/InternalJsStringMap.java,98,0
 put_3,java.util.InternalJsStringMap$InternalJsStringMapLegacy::put(Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;,java.util.InternalJsStringMap$InternalJsStringMapLegacy,put,com/google/gwt/emul/java/util/InternalJsStringMap.java,54,0
 InternalJsStringMap$InternalJsStringMapLegacy$1,,java.util.InternalJsStringMap$InternalJsStringMapLegacy$1,,com/google/gwt/emul/java/util/InternalJsStringMap.java,99,-1
@@ -1160,10 +1275,48 @@ InternalJsStringMap$InternalJsStringMapLegacy$1,java.util.InternalJsStringMap$In
 InternalJsStringMap$InternalJsStringMapWithKeysWorkaround,,java.util.InternalJsStringMap$InternalJsStringMapWithKeysWorkaround,,com/google/gwt/emul/java/util/InternalJsStringMap.java,114,-1
 InternalJsStringMap$InternalJsStringMapWithKeysWorkaround,java.util.InternalJsStringMap$InternalJsStringMapWithKeysWorkaround::InternalJsStringMap$InternalJsStringMapWithKeysWorkaround() <init>,java.util.InternalJsStringMap$InternalJsStringMapWithKeysWorkaround,InternalJsStringMap$InternalJsStringMapWithKeysWorkaround,com/google/gwt/emul/java/util/InternalJsStringMap.java,114,0
 keys_2,java.util.InternalJsStringMap$InternalJsStringMapWithKeysWorkaround::keys()[Ljava/lang/String;,java.util.InternalJsStringMap$InternalJsStringMapWithKeysWorkaround,keys,com/google/gwt/emul/java/util/InternalJsStringMap.java,127,0
+LinkedList,,java.util.LinkedList,,com/google/gwt/emul/java/util/LinkedList.java,31,-1
+$addNode,java.util.LinkedList::$addNode(Ljava/util/LinkedList;Ljava/lang/Object;Ljava/util/LinkedList$Node;Ljava/util/LinkedList$Node;)V,java.util.LinkedList,$addNode,com/google/gwt/emul/java/util/LinkedList.java,374,0
+$listIterator,java.util.LinkedList::$listIterator(Ljava/util/LinkedList;I)Ljava/util/ListIterator;,java.util.LinkedList,$listIterator,com/google/gwt/emul/java/util/LinkedList.java,257,0
+LinkedList,java.util.LinkedList::LinkedList() <init>,java.util.LinkedList,LinkedList,com/google/gwt/emul/java/util/LinkedList.java,191,0
+add_7,java.util.LinkedList::add(Ljava/lang/Object;)Z,java.util.LinkedList,add,com/google/gwt/emul/java/util/LinkedList.java,201,0
+header,java.util.LinkedList::header,java.util.LinkedList,header,com/google/gwt/emul/java/util/LinkedList.java,179,-1
+listIterator_4,java.util.LinkedList::listIterator(I)Ljava/util/ListIterator;,java.util.LinkedList,listIterator,com/google/gwt/emul/java/util/LinkedList.java,257,0
+size_0,java.util.LinkedList::size,java.util.LinkedList,size,com/google/gwt/emul/java/util/LinkedList.java,189,-1
+size_12,java.util.LinkedList::size()I,java.util.LinkedList,size,com/google/gwt/emul/java/util/LinkedList.java,370,0
+tail,java.util.LinkedList::tail,java.util.LinkedList,tail,com/google/gwt/emul/java/util/LinkedList.java,184,-1
+LinkedList$ListIteratorImpl,,java.util.LinkedList$ListIteratorImpl,,com/google/gwt/emul/java/util/LinkedList.java,61,-1
+LinkedList$ListIteratorImpl,java.util.LinkedList$ListIteratorImpl::LinkedList$ListIteratorImpl(Ljava/util/LinkedList;ILjava/util/LinkedList$Node;) <init>,java.util.LinkedList$ListIteratorImpl,LinkedList$ListIteratorImpl,com/google/gwt/emul/java/util/LinkedList.java,83,0
+currentIndex,java.util.LinkedList$ListIteratorImpl::currentIndex,java.util.LinkedList$ListIteratorImpl,currentIndex,com/google/gwt/emul/java/util/LinkedList.java,66,-1
+currentNode,java.util.LinkedList$ListIteratorImpl::currentNode,java.util.LinkedList$ListIteratorImpl,currentNode,com/google/gwt/emul/java/util/LinkedList.java,71,-1
+hasNext_8,java.util.LinkedList$ListIteratorImpl::hasNext()Z,java.util.LinkedList$ListIteratorImpl,hasNext,com/google/gwt/emul/java/util/LinkedList.java,96,0
+hasPrevious_2,java.util.LinkedList$ListIteratorImpl::hasPrevious()Z,java.util.LinkedList$ListIteratorImpl,hasPrevious,com/google/gwt/emul/java/util/LinkedList.java,101,0
+lastNode,java.util.LinkedList$ListIteratorImpl::lastNode,java.util.LinkedList$ListIteratorImpl,lastNode,com/google/gwt/emul/java/util/LinkedList.java,77,-1
+next_9,java.util.LinkedList$ListIteratorImpl::next()Ljava/lang/Object;,java.util.LinkedList$ListIteratorImpl,next,com/google/gwt/emul/java/util/LinkedList.java,106,0
+previous_2,java.util.LinkedList$ListIteratorImpl::previous()Ljava/lang/Object;,java.util.LinkedList$ListIteratorImpl,previous,com/google/gwt/emul/java/util/LinkedList.java,121,0
+this$01,java.util.LinkedList$ListIteratorImpl::this$01,java.util.LinkedList$ListIteratorImpl,this$01,com/google/gwt/emul/java/util/LinkedList.java,61,-1
+LinkedList$Node,,java.util.LinkedList$Node,,com/google/gwt/emul/java/util/LinkedList.java,163,-1
+LinkedList$Node,java.util.LinkedList$Node::LinkedList$Node() <init>,java.util.LinkedList$Node,LinkedList$Node,com/google/gwt/emul/java/util/LinkedList.java,163,0
+next,java.util.LinkedList$Node::next,java.util.LinkedList$Node,next,com/google/gwt/emul/java/util/LinkedList.java,164,-1
+prev,java.util.LinkedList$Node::prev,java.util.LinkedList$Node,prev,com/google/gwt/emul/java/util/LinkedList.java,165,-1
+value_0,java.util.LinkedList$Node::value,java.util.LinkedList$Node,value,com/google/gwt/emul/java/util/LinkedList.java,166,-1
 NoSuchElementException,,java.util.NoSuchElementException,,com/google/gwt/emul/java/util/NoSuchElementException.java,23,-1
 NoSuchElementException,java.util.NoSuchElementException::NoSuchElementException() <init>,java.util.NoSuchElementException,NoSuchElementException,com/google/gwt/emul/java/util/NoSuchElementException.java,25,0
 equals_14,java.util.Objects::equals(Ljava/lang/Object;Ljava/lang/Object;)Z,java.util.Objects,equals,com/google/gwt/emul/java/util/Objects.java,83,0
 hashCode_19,java.util.Objects::hashCode(Ljava/lang/Object;)I,java.util.Objects,hashCode,com/google/gwt/emul/java/util/Objects.java,87,0
+Stack,,java.util.Stack,,com/google/gwt/emul/java/util/Stack.java,25,-1
+Stack,java.util.Stack::Stack() <init>,java.util.Stack,Stack,com/google/gwt/emul/java/util/Stack.java,25,0
+Vector,,java.util.Vector,,com/google/gwt/emul/java/util/Vector.java,30,-1
+Vector,java.util.Vector::Vector() <init>,java.util.Vector,Vector,com/google/gwt/emul/java/util/Vector.java,42,0
+add_8,java.util.Vector::add(ILjava/lang/Object;)V,java.util.Vector,add,com/google/gwt/emul/java/util/Vector.java,69,0
+add_9,java.util.Vector::add(Ljava/lang/Object;)Z,java.util.Vector,add,com/google/gwt/emul/java/util/Vector.java,64,0
+arrayList,java.util.Vector::arrayList,java.util.Vector,arrayList,com/google/gwt/emul/java/util/Vector.java,33,-1
+checkArrayElementIndex,java.util.Vector::checkArrayElementIndex(II)V,java.util.Vector,checkArrayElementIndex,com/google/gwt/emul/java/util/Vector.java,253,0
+contains_7,java.util.Vector::contains(Ljava/lang/Object;)Z,java.util.Vector,contains,com/google/gwt/emul/java/util/Vector.java,102,0
+get_12,java.util.Vector::get(I)Ljava/lang/Object;,java.util.Vector,get,com/google/gwt/emul/java/util/Vector.java,137,0
+iterator_10,java.util.Vector::iterator()Ljava/util/Iterator;,java.util.Vector,iterator,com/google/gwt/emul/java/util/Vector.java,162,0
+size_13,java.util.Vector::size()I,java.util.Vector,size,com/google/gwt/emul/java/util/Vector.java,220,0
+toString_19,java.util.Vector::toString()Ljava/lang/String;,java.util.Vector,toString,com/google/gwt/emul/java/util/Vector.java,240,0
 Formatter,,java.util.logging.Formatter,,com/google/gwt/emul/java/util/logging/Formatter.java,24,-1
 Handler,,java.util.logging.Handler,,com/google/gwt/emul/java/util/logging/Handler.java,24,-1
 $getLevel,java.util.logging.Handler::$getLevel(Ljava/util/logging/Handler;)Ljava/util/logging/Level;,java.util.logging.Handler,$getLevel,com/google/gwt/emul/java/util/logging/Handler.java,35,0
@@ -1184,7 +1337,7 @@ SEVERE,java.util.logging.Level::SEVERE,java.util.logging.Level,SEVERE,com/google
 WARNING,java.util.logging.Level::WARNING,java.util.logging.Level,WARNING,com/google/gwt/emul/java/util/logging/Level.java,40,-1
 getName_0,java.util.logging.Level::getName()Ljava/lang/String;,java.util.logging.Level,getName,com/google/gwt/emul/java/util/logging/Level.java,93,0
 intValue,java.util.logging.Level::intValue()I,java.util.logging.Level,intValue,com/google/gwt/emul/java/util/logging/Level.java,97,0
-toString_19,java.util.logging.Level::toString()Ljava/lang/String;,java.util.logging.Level,toString,com/google/gwt/emul/java/util/logging/Level.java,102,0
+toString_20,java.util.logging.Level::toString()Ljava/lang/String;,java.util.logging.Level,toString,com/google/gwt/emul/java/util/logging/Level.java,102,0
 Level$LevelAll,,java.util.logging.Level$LevelAll,,com/google/gwt/emul/java/util/logging/Level.java,42,-1
 Level$LevelAll,java.util.logging.Level$LevelAll::Level$LevelAll() <init>,java.util.logging.Level$LevelAll,Level$LevelAll,com/google/gwt/emul/java/util/logging/Level.java,42,0
 getName_1,java.util.logging.Level$LevelAll::getName()Ljava/lang/String;,java.util.logging.Level$LevelAll,getName,com/google/gwt/emul/java/util/logging/Level.java,43,0
@@ -1306,7 +1459,9 @@ Presenter,we.are.bubblesort.MovieApp.client.Presenter::Presenter() <init>,we.are
 $clinit_QueryService_Proxy,we.are.bubblesort.MovieApp.client.QueryService_Proxy::$clinit()V,we.are.bubblesort.MovieApp.client.QueryService_Proxy,$clinit,gen/we/are/bubblesort/MovieApp/client/QueryService_Proxy.java,14,0
 QueryService_TypeSerializer,,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer,,gen/we/are/bubblesort/MovieApp/client/QueryService_TypeSerializer.java,10,-1
 $clinit_QueryService_TypeSerializer,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer::$clinit()V,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer,$clinit,gen/we/are/bubblesort/MovieApp/client/QueryService_TypeSerializer.java,10,0
-QueryService_TypeSerializer,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer::QueryService_TypeSerializer() <init>,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer,QueryService_TypeSerializer,gen/we/are/bubblesort/MovieApp/client/QueryService_TypeSerializer.java,60,0
+QueryService_TypeSerializer,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer::QueryService_TypeSerializer() <init>,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer,QueryService_TypeSerializer,gen/we/are/bubblesort/MovieApp/client/QueryService_TypeSerializer.java,207,0
+loadMethodsNative,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer::loadMethodsNative()Lcom/google/gwt/user/client/rpc/impl/SerializerBase$MethodMap;,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer,loadMethodsNative,gen/we/are/bubblesort/MovieApp/client/QueryService_TypeSerializer.java,21,0
+loadSignaturesNative,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer::loadSignaturesNative()Lcom/google/gwt/core/client/JsArrayString;,we.are.bubblesort.MovieApp.client.QueryService_TypeSerializer,loadSignaturesNative,gen/we/are/bubblesort/MovieApp/client/QueryService_TypeSerializer.java,174,0
 Section,,we.are.bubblesort.MovieApp.client.Section,,we/are/bubblesort/MovieApp/client/Section.java,3,-1
 Section,we.are.bubblesort.MovieApp.client.Section::Section(Ljava/lang/String;) <init>,we.are.bubblesort.MovieApp.client.Section,Section,we/are/bubblesort/MovieApp/client/Section.java,9,0
 id_0,we.are.bubblesort.MovieApp.client.Section::id,we.are.bubblesort.MovieApp.client.Section,id,we/are/bubblesort/MovieApp/client/Section.java,6,-1
@@ -1321,13 +1476,13 @@ getCompositeView_0,we.are.bubblesort.MovieApp.client.SectionNavigationPresenter:
 view,we.are.bubblesort.MovieApp.client.SectionNavigationPresenter::view,we.are.bubblesort.MovieApp.client.SectionNavigationPresenter,view,we/are/bubblesort/MovieApp/client/SectionNavigationPresenter.java,9,-1
 SectionView,,we.are.bubblesort.MovieApp.client.SectionView,,we/are/bubblesort/MovieApp/client/SectionView.java,3,-1
 SectionView,we.are.bubblesort.MovieApp.client.SectionView::SectionView() <init>,we.are.bubblesort.MovieApp.client.SectionView,SectionView,we/are/bubblesort/MovieApp/client/SectionView.java,3,0
-TableSection,,we.are.bubblesort.MovieApp.client.TableSection,,we/are/bubblesort/MovieApp/client/TableSection.java,5,-1
-TableSection,we.are.bubblesort.MovieApp.client.TableSection::TableSection(Lwe/are/bubblesort/MovieApp/client/QueryServiceAsync;) <init>,we.are.bubblesort.MovieApp.client.TableSection,TableSection,we/are/bubblesort/MovieApp/client/TableSection.java,16,0
-getCompositeView_1,we.are.bubblesort.MovieApp.client.TableSection::getCompositeView()Lcom/google/gwt/user/client/ui/Composite;,we.are.bubblesort.MovieApp.client.TableSection,getCompositeView,we/are/bubblesort/MovieApp/client/TableSection.java,25,0
-hide,we.are.bubblesort.MovieApp.client.TableSection::hide()V,we.are.bubblesort.MovieApp.client.TableSection,hide,we/are/bubblesort/MovieApp/client/TableSection.java,35,0
-init_0,we.are.bubblesort.MovieApp.client.TableSection::init()V,we.are.bubblesort.MovieApp.client.TableSection,init,we/are/bubblesort/MovieApp/client/TableSection.java,21,0
-show,we.are.bubblesort.MovieApp.client.TableSection::show()V,we.are.bubblesort.MovieApp.client.TableSection,show,we/are/bubblesort/MovieApp/client/TableSection.java,40,0
-view,we.are.bubblesort.MovieApp.client.TableSection::view,we.are.bubblesort.MovieApp.client.TableSection,view,we/are/bubblesort/MovieApp/client/TableSection.java,8,-1
+TableSection,,we.are.bubblesort.MovieApp.client.TableSection,,we/are/bubblesort/MovieApp/client/TableSection.java,11,-1
+TableSection,we.are.bubblesort.MovieApp.client.TableSection::TableSection(Lwe/are/bubblesort/MovieApp/client/QueryServiceAsync;) <init>,we.are.bubblesort.MovieApp.client.TableSection,TableSection,we/are/bubblesort/MovieApp/client/TableSection.java,22,0
+getCompositeView_1,we.are.bubblesort.MovieApp.client.TableSection::getCompositeView()Lcom/google/gwt/user/client/ui/Composite;,we.are.bubblesort.MovieApp.client.TableSection,getCompositeView,we/are/bubblesort/MovieApp/client/TableSection.java,31,0
+hide,we.are.bubblesort.MovieApp.client.TableSection::hide()V,we.are.bubblesort.MovieApp.client.TableSection,hide,we/are/bubblesort/MovieApp/client/TableSection.java,41,0
+init_0,we.are.bubblesort.MovieApp.client.TableSection::init()V,we.are.bubblesort.MovieApp.client.TableSection,init,we/are/bubblesort/MovieApp/client/TableSection.java,27,0
+show,we.are.bubblesort.MovieApp.client.TableSection::show()V,we.are.bubblesort.MovieApp.client.TableSection,show,we/are/bubblesort/MovieApp/client/TableSection.java,46,0
+view,we.are.bubblesort.MovieApp.client.TableSection::view,we.are.bubblesort.MovieApp.client.TableSection,view,we/are/bubblesort/MovieApp/client/TableSection.java,14,-1
 TableSectionView,,we.are.bubblesort.MovieApp.client.TableSectionView,,we/are/bubblesort/MovieApp/client/TableSectionView.java,9,-1
 TableSectionView,we.are.bubblesort.MovieApp.client.TableSectionView::TableSectionView() <init>,we.are.bubblesort.MovieApp.client.TableSectionView,TableSectionView,we/are/bubblesort/MovieApp/client/TableSectionView.java,20,0
 View,,we.are.bubblesort.MovieApp.client.View,,we/are/bubblesort/MovieApp/client/View.java,8,-1
@@ -1335,18 +1490,21 @@ $addHandler_1,we.are.bubblesort.MovieApp.client.View::$addHandler(Lwe/are/bubble
 $fireEvent_1,we.are.bubblesort.MovieApp.client.View::$fireEvent(Lwe/are/bubblesort/MovieApp/client/View;Lcom/google/web/bindery/event/shared/Event;)V,we.are.bubblesort.MovieApp.client.View,$fireEvent,we/are/bubblesort/MovieApp/client/View.java,15,0
 View,we.are.bubblesort.MovieApp.client.View::View() <init>,we.are.bubblesort.MovieApp.client.View,View,we/are/bubblesort/MovieApp/client/View.java,8,0
 eventBus,we.are.bubblesort.MovieApp.client.View::eventBus,we.are.bubblesort.MovieApp.client.View,eventBus,we/are/bubblesort/MovieApp/client/View.java,9,-1
-WorldMapSection,,we.are.bubblesort.MovieApp.client.WorldMapSection,,we/are/bubblesort/MovieApp/client/WorldMapSection.java,5,-1
-WorldMapSection,we.are.bubblesort.MovieApp.client.WorldMapSection::WorldMapSection(Lwe/are/bubblesort/MovieApp/client/QueryServiceAsync;) <init>,we.are.bubblesort.MovieApp.client.WorldMapSection,WorldMapSection,we/are/bubblesort/MovieApp/client/WorldMapSection.java,16,0
-getCompositeView_2,we.are.bubblesort.MovieApp.client.WorldMapSection::getCompositeView()Lcom/google/gwt/user/client/ui/Composite;,we.are.bubblesort.MovieApp.client.WorldMapSection,getCompositeView,we/are/bubblesort/MovieApp/client/WorldMapSection.java,25,0
-hide_0,we.are.bubblesort.MovieApp.client.WorldMapSection::hide()V,we.are.bubblesort.MovieApp.client.WorldMapSection,hide,we/are/bubblesort/MovieApp/client/WorldMapSection.java,35,0
-init_1,we.are.bubblesort.MovieApp.client.WorldMapSection::init()V,we.are.bubblesort.MovieApp.client.WorldMapSection,init,we/are/bubblesort/MovieApp/client/WorldMapSection.java,21,0
-show_0,we.are.bubblesort.MovieApp.client.WorldMapSection::show()V,we.are.bubblesort.MovieApp.client.WorldMapSection,show,we/are/bubblesort/MovieApp/client/WorldMapSection.java,40,0
-view,we.are.bubblesort.MovieApp.client.WorldMapSection::view,we.are.bubblesort.MovieApp.client.WorldMapSection,view,we/are/bubblesort/MovieApp/client/WorldMapSection.java,8,-1
+WorldMapSection,,we.are.bubblesort.MovieApp.client.WorldMapSection,,we/are/bubblesort/MovieApp/client/WorldMapSection.java,11,-1
+WorldMapSection,we.are.bubblesort.MovieApp.client.WorldMapSection::WorldMapSection(Lwe/are/bubblesort/MovieApp/client/QueryServiceAsync;) <init>,we.are.bubblesort.MovieApp.client.WorldMapSection,WorldMapSection,we/are/bubblesort/MovieApp/client/WorldMapSection.java,22,0
+getCompositeView_2,we.are.bubblesort.MovieApp.client.WorldMapSection::getCompositeView()Lcom/google/gwt/user/client/ui/Composite;,we.are.bubblesort.MovieApp.client.WorldMapSection,getCompositeView,we/are/bubblesort/MovieApp/client/WorldMapSection.java,31,0
+hide_0,we.are.bubblesort.MovieApp.client.WorldMapSection::hide()V,we.are.bubblesort.MovieApp.client.WorldMapSection,hide,we/are/bubblesort/MovieApp/client/WorldMapSection.java,41,0
+init_1,we.are.bubblesort.MovieApp.client.WorldMapSection::init()V,we.are.bubblesort.MovieApp.client.WorldMapSection,init,we/are/bubblesort/MovieApp/client/WorldMapSection.java,27,0
+show_0,we.are.bubblesort.MovieApp.client.WorldMapSection::show()V,we.are.bubblesort.MovieApp.client.WorldMapSection,show,we/are/bubblesort/MovieApp/client/WorldMapSection.java,46,0
+view,we.are.bubblesort.MovieApp.client.WorldMapSection::view,we.are.bubblesort.MovieApp.client.WorldMapSection,view,we/are/bubblesort/MovieApp/client/WorldMapSection.java,14,-1
 WorldMapSectionView,,we.are.bubblesort.MovieApp.client.WorldMapSectionView,,we/are/bubblesort/MovieApp/client/WorldMapSectionView.java,9,-1
 WorldMapSectionView,we.are.bubblesort.MovieApp.client.WorldMapSectionView::WorldMapSectionView() <init>,we.are.bubblesort.MovieApp.client.WorldMapSectionView,WorldMapSectionView,we/are/bubblesort/MovieApp/client/WorldMapSectionView.java,20,0
 Collection,,we.are.bubblesort.MovieApp.shared.Collection,,we/are/bubblesort/MovieApp/shared/Collection.java,10,-1
-$add_5,we.are.bubblesort.MovieApp.shared.Collection::$add(Lwe/are/bubblesort/MovieApp/shared/Collection;Ljava/lang/Object;)V,we.are.bubblesort.MovieApp.shared.Collection,$add,we/are/bubblesort/MovieApp/shared/Collection.java,13,0
+$add_6,we.are.bubblesort.MovieApp.shared.Collection::$add(Lwe/are/bubblesort/MovieApp/shared/Collection;Ljava/lang/Object;)V,we.are.bubblesort.MovieApp.shared.Collection,$add,we/are/bubblesort/MovieApp/shared/Collection.java,13,0
 Collection,we.are.bubblesort.MovieApp.shared.Collection::Collection() <init>,we.are.bubblesort.MovieApp.shared.Collection,Collection,we/are/bubblesort/MovieApp/shared/Collection.java,10,0
 elements,we.are.bubblesort.MovieApp.shared.Collection::elements,we.are.bubblesort.MovieApp.shared.Collection,elements,we/are/bubblesort/MovieApp/shared/Collection.java,11,-1
-iterator_9,we.are.bubblesort.MovieApp.shared.Collection::iterator()Ljava/util/Iterator;,we.are.bubblesort.MovieApp.shared.Collection,iterator,we/are/bubblesort/MovieApp/shared/Collection.java,18,0
+iterator_11,we.are.bubblesort.MovieApp.shared.Collection::iterator()Ljava/util/Iterator;,we.are.bubblesort.MovieApp.shared.Collection,iterator,we/are/bubblesort/MovieApp/shared/Collection.java,18,0
+deserialize_23,we.are.bubblesort.MovieApp.shared.Collection_FieldSerializer::deserialize(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;Lwe/are/bubblesort/MovieApp/shared/Collection;)V,we.are.bubblesort.MovieApp.shared.Collection_FieldSerializer,deserialize,gen/we/are/bubblesort/MovieApp/shared/Collection_FieldSerializer.java,10,0
+instantiate_22,we.are.bubblesort.MovieApp.shared.Collection_FieldSerializer::instantiate(Lcom/google/gwt/user/client/rpc/SerializationStreamReader;)Lwe/are/bubblesort/MovieApp/shared/Collection;,we.are.bubblesort.MovieApp.shared.Collection_FieldSerializer,instantiate,gen/we/are/bubblesort/MovieApp/shared/Collection_FieldSerializer.java,15,0
 Model,,we.are.bubblesort.MovieApp.shared.Model,,we/are/bubblesort/MovieApp/shared/Model.java,4,-1
+serialize_5,we.are.bubblesort.MovieApp.shared.Set_FieldSerializer::serialize(Lcom/google/gwt/user/client/rpc/SerializationStreamWriter;Lwe/are/bubblesort/MovieApp/shared/Set;)V,we.are.bubblesort.MovieApp.shared.Set_FieldSerializer,serialize,gen/we/are/bubblesort/MovieApp/shared/Set_FieldSerializer.java,19,0

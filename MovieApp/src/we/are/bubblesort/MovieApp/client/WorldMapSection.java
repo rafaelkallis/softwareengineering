@@ -1,6 +1,12 @@
 package we.are.bubblesort.MovieApp.client;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+
+import we.are.bubblesort.MovieApp.shared.Collection;
+import we.are.bubblesort.MovieApp.shared.Movie;
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.Set;
 
 public class WorldMapSection extends Section {
 	static final String defaultName = "Karte";
@@ -20,7 +26,7 @@ public class WorldMapSection extends Section {
 	@Override
 	void init() {
 	}
-
+	
 	@Override
 	public Composite getCompositeView() {
 		return (Composite)this.view;
@@ -39,5 +45,20 @@ public class WorldMapSection extends Section {
 	@Override
 	void show() {
 		this.view.show();
+	}
+	
+	public void callQueryService(Set<MovieAttribute> filterSet){
+		queryService.getMovieCollection(filterSet, new AsyncCallback<Collection<Movie>>(){
+			public void onFailure(Throwable caught){
+				/*
+				 * handle Failure
+				 */
+			}
+			public void onSuccess(Collection<Movie> result){
+				/*
+				 * to something with result
+				 */
+			}
+		});
 	}
 }

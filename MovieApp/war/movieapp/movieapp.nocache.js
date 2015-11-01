@@ -374,11 +374,11 @@ function movieapp(){
     }
     var strongName;
     try {
-      unflattenKeylistIntoAnswers(['ie8'], '2A3D1C863361C87BE2E83F21B79C4E9E');
-      unflattenKeylistIntoAnswers(['ie9'], '37F4D9DA22470B79D0C24EEC5AC256E0');
-      unflattenKeylistIntoAnswers(['gecko1_8'], '50F65D3C73634B7F2CABC40DA2E71F10');
-      unflattenKeylistIntoAnswers(['ie10'], '54E6B4A0B6825C9E8000AB9466B46B30');
-      unflattenKeylistIntoAnswers(['safari'], 'F697021B00DEEA0BDE0559F0D09A1C0A');
+      unflattenKeylistIntoAnswers(['ie8'], '0050C966ABE6ADB80DB4E9653D27D58E');
+      unflattenKeylistIntoAnswers(['safari'], '8DB9374188F1DCE56E4C868CA5F7A194');
+      unflattenKeylistIntoAnswers(['ie10'], 'A69CA4F5A3F499E24445F6D2FA25DD07');
+      unflattenKeylistIntoAnswers(['ie9'], 'B3E1573EFE88D86AAA8AD65E2E042237');
+      unflattenKeylistIntoAnswers(['gecko1_8'], 'F8A67CEB5BCB1A2C683D9684A1504217');
       strongName = answers[computePropValue('user.agent')];
       var idx = strongName.indexOf(':');
       if (idx != -1) {
