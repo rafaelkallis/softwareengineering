@@ -1,8 +1,8 @@
 package we.are.bubblesort.MovieApp.shared;
 
 public class MovieID extends MovieAttribute {
-	public static String dbName = "id";
+	public static String dbLabelName = "id";
 	public MovieID(Integer value){
-		super(value,MovieID.dbName);
+		super(value,MovieID.dbLabelName);
 	}
 }
