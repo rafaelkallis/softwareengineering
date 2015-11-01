@@ -12,7 +12,7 @@ import com.google.web.bindery.event.shared.SimpleEventBus;
  */
 public class Set<T extends Keyable> extends SimpleEventBus implements Iterable<T>,IsSerializable{
 		protected HashMap<Object,T> elements;
-		Set(){
+		public Set(){
 			elements = new HashMap<Object,T>();
 		}
 		public void add(T element){
