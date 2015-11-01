@@ -2,8 +2,9 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<g:FlowPanel addStyleNames="section section-worldmap" ui:field="mainPanel">
-	    <g:HTML>
-	        <h1>WorldMapSection</h1>
-	    </g:HTML>
+	    <g:FlowPanel addStyleNames="worldmap" ui:field="worldmap">
+	    </g:FlowPanel>
+		<g:FlowPanel addStyleNames="worldmap-toolbar" ui:field="toolbar">
+		</g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder>
