@@ -6,12 +6,15 @@ import com.google.gwt.user.client.ui.Composite;
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.MovieCountry;
 import we.are.bubblesort.MovieApp.shared.Set;
 
 public class WorldMapSection extends Section {
 	static final String defaultName = "Karte";
 	protected QueryServiceAsync queryService;
 	protected WorldMapSectionView view;
+	protected WorldMapPresenter worldmap;
+	protected FilterBarPresenter filterbar;
 	
 	WorldMapSection(String sectionName, QueryServiceAsync queryService) {
 		super(sectionName);
@@ -25,6 +28,13 @@ public class WorldMapSection extends Section {
 
 	@Override
 	void init() {
+		this.worldmap = new WorldMapPresenter();
+		this.filterbar = new FilterBarPresenter();
+		
+		this.filterbar.addFilterFor(MovieCountry.class);
+		
+		this.view.worldmap.add(this.worldmap.getCompositeView());
+		this.view.toolbar.add(this.filterbar.getCompositeView());
 	}
 	
 	@Override
