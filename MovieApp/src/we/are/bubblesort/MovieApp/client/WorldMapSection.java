@@ -1,8 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Composite;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
@@ -11,11 +10,13 @@ import we.are.bubblesort.MovieApp.shared.Set;
 
 public class WorldMapSection extends Section {
 	static final String defaultName = "Karte";
-	QueryServiceAsync queryService;
+	protected QueryServiceAsync queryService;
+	protected WorldMapSectionView view;
 	
 	WorldMapSection(String sectionName, QueryServiceAsync queryService) {
 		super(sectionName);
 		this.queryService = queryService;
+		this.view = new WorldMapSectionView();
 	}
 	
 	WorldMapSection(QueryServiceAsync queryService) {
@@ -24,10 +25,28 @@ public class WorldMapSection extends Section {
 
 	@Override
 	void init() {
-		this.mainPanel = new FlowPanel();
-		this.mainPanel.add(new HTML("<h1>WorldSection</h1>"));
-		this.setPanelIdentifier("world");
 	}
+	
+	@Override
+	public Composite getCompositeView() {
+		return (Composite)this.view;
+	}
+
+	@Override
+	public View getView() {
+		return (View)this.view;
+	}
+
+	@Override
+	void hide() {
+		this.view.hide();
+	}
+
+	@Override
+	void show() {
+		this.view.show();
+	}
+	
 	public void callQueryService(Set<MovieAttribute> filterSet){
 		queryService.getMovieCollection(filterSet, new AsyncCallback<Collection<Movie>>(){
 			public void onFailure(Throwable caught){

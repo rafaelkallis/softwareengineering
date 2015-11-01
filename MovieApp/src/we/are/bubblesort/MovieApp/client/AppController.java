@@ -1,44 +1,34 @@
 package we.are.bubblesort.MovieApp.client;
 
-import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
 
-public final class AppController extends SimpleEventBus implements AppActivateSectionEventHandler {
-	private Panel appPanel;
-	private FlowPanel headerPanel;
-	private FlowPanel sectionPanel;
+public final class AppController extends Presenter implements AppActivateSectionEventHandler {
+	private AppView view;
 	private QueryServiceAsync queryService;
 	private Collection<Section> sections = new Collection<Section>();
 	private SectionNavigationPresenter mainNavigation;
 	
 	HandlerRegistration AppActivateSectionEventHandlerRegistration;
-
+	
 	public AppController(QueryServiceAsync queryService) {
+		this(queryService, new AppView());
+	}
+
+	public AppController(QueryServiceAsync queryService, AppView view) {
+		this.view = view;
 		this.queryService = queryService;
 		this.mainNavigation = new SectionNavigationPresenter(new ButtonNavigationView(), (SimpleEventBus)this);
 	}
 
 	public void init(Panel appPanel) {
-		this.appPanel = appPanel;
-		this.headerPanel = new FlowPanel();
-		this.sectionPanel = new FlowPanel();
-		
-		this.appPanel.addStyleName("app");
-		this.headerPanel.addStyleName("app-header");
-		this.sectionPanel.addStyleName("app-section-container");
+		this.view.appMainNavigationPanel.add(this.mainNavigation.getCompositeView());
 
-		this.appPanel.add(headerPanel);
-		this.appPanel.add(sectionPanel);
-		
-		FlowPanel mainNavigationPanel = new FlowPanel();
-		mainNavigationPanel.addStyleName("mainnavigation");
-		mainNavigationPanel.add(this.mainNavigation.getCompositeView());
-		this.headerPanel.add(mainNavigationPanel);
-		
+		appPanel.add(this.view);
 		this.bind();
 		this.setupSections();
 	}
@@ -60,7 +50,7 @@ public final class AppController extends SimpleEventBus implements AppActivateSe
 		for (Section currentSection : sections) {
 			currentSection.init();
 			currentSection.hide();
-			this.sectionPanel.add(currentSection.getPanel());
+			this.view.appSectionContainerPanel.add(currentSection.getCompositeView());
 		}
 		
 		this.activateSection(world);
@@ -91,5 +81,15 @@ public final class AppController extends SimpleEventBus implements AppActivateSe
 				break;
 			}
 		}
+	}
+
+	@Override
+	public Composite getCompositeView() {
+		return (Composite)this.view;
+	}
+
+	@Override
+	public View getView() {
+		return (View)this.view;
 	}
 }
