@@ -4,11 +4,12 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.Set;
 
 /**
  * The async counterpart of <code>QueryService</code>.
  */
 public interface QueryServiceAsync {
-
-	void getMovieSet(String database_name, AsyncCallback<Collection<Movie>> callback, AsyncCallback<Void> callback2);
+	void getMovieCollection(Set<MovieAttribute> filterSet, AsyncCallback<Collection<Movie>> callback);
 }
