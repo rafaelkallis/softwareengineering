@@ -8,7 +8,6 @@ import we.are.bubblesort.MovieApp.shared.Set;
 
 import java.sql.SQLException;
 
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
@@ -17,6 +16,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class QueryServiceImpl extends RemoteServiceServlet implements QueryService {
 	Database database;
+	
 	@Override
 	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet) {
 		Collection<Movie> results = null;
@@ -27,5 +27,4 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 		}
 		return results;
 	}
-	
 }

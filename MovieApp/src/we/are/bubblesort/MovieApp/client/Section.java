@@ -4,23 +4,24 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 
 public abstract class Section extends SimpleEventBus{
+	static final String panelPrefix = "section";
 	protected String name;
-	protected Boolean showInMainMenu = false;
 	protected Panel mainPanel;
-	protected SimpleEventBus globalEventBus;
+	private static int idCounter = 0;
+	private int id;
 
-	Section(String sectionName, Boolean showInMainMenu, SimpleEventBus globalEventBus) {
-		this.showInMainMenu = showInMainMenu;
+	Section(String sectionName) {
 		this.name = sectionName;
-		this.globalEventBus = globalEventBus;
+		idCounter++;
+		id = idCounter;
+	}
+	
+	int getId() {
+		return id;
 	}
 
 	String getName() {
 		return this.name;
-	}
-	
-	Boolean showInMainMenu() {
-		return this.showInMainMenu;
 	}
 	
 	abstract void init();
@@ -28,12 +29,18 @@ public abstract class Section extends SimpleEventBus{
 	Panel getPanel() {
 		return this.mainPanel;
 	}
+	
+	void setPanelIdentifier(String panelType) {
+		this.getPanel().addStyleName(panelPrefix + "-" + panelType);
+		this.getPanel().addStyleName(panelPrefix + "-" + Integer.toString(getId()));
+		this.getPanel().addStyleName(panelPrefix);
+	}
 
 	public void hide() {
-		this.mainPanel.getElement().addClassName("section-hidden");
+		this.mainPanel.addStyleName(panelPrefix + "-hidden");
 	}
 
 	public void show() {
-		this.mainPanel.getElement().removeClassName("section-hidden");
+		this.mainPanel.removeStyleName(panelPrefix + "-hidden");
 	}
 }
