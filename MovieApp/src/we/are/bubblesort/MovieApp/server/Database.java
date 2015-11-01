@@ -3,10 +3,13 @@ package we.are.bubblesort.MovieApp.server;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieCountry;
@@ -51,6 +54,17 @@ public final class Database extends RemoteServiceServlet {
     private void initialize() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
     	Class.forName("com.mysql.jdbc.Driver").newInstance();
         conn = DriverManager.getConnection(url, user, pass);
+    }
+    
+    public void checkVersion() throws SQLException{
+    	Statement st = conn.createStatement();
+    	ResultSet rs = st.executeQuery("SELECT VERSION()");
+    	if(rs.next()){
+    		System.out.println(rs.getString(1));
+    	}
+    	if(rs!=null)rs.close();
+    	if(st!=null)st.close();
+    	
     }
     
     /*
@@ -218,6 +232,7 @@ public final class Database extends RemoteServiceServlet {
 	   	}
 	   	return movieCollection;
 	}
+	
 	
 	
 }
