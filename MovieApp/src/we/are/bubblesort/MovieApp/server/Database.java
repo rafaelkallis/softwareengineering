@@ -56,6 +56,9 @@ public final class Database extends RemoteServiceServlet {
         conn = DriverManager.getConnection(url, user, pass);
     }
     
+    /*
+     * used for debugging
+     */
     public void checkVersion() throws SQLException{
     	Statement st = conn.createStatement();
     	ResultSet rs = st.executeQuery("SELECT VERSION()");
@@ -115,62 +118,19 @@ public final class Database extends RemoteServiceServlet {
     	
     	return pst;
     }
+    
     /*
-     * @param FilterSet MovieAttributes for lookup
-     * @exception SQLException if no connection exists
-     * @returns movieColection 
+     * @param attribute used to find the database column label during run-time
+     * @returns PreparedStatement for reverse query
      */
-	public Collection<Movie> query(Set<MovieAttribute> filterSet) throws SQLException{
-	  	PreparedStatement pst = this.makePreparedStatement(filterSet,0,0);
-	   	ResultSet rs = pst.executeQuery();
-	   	Collection<Movie> movieCollection = new Collection<Movie>();
-
-	   	while(rs.next()){
-	   		Set<MovieLanguage> languages = new Set<MovieLanguage>();
-	   		Set<MovieCountry> countries = new Set<MovieCountry>();
-	   		/*
-	   		 * TODO
-	   		 * Handle multiple Languages & Countries here
-	   		 * 
-	   		 */
-	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
-	   									languages,
-	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
-	   		movieCollection.add(new_movie);
-	   	}
-	   	return movieCollection;
-	}
-	
-	/*
-	 * @param search_string
-	 * @exception SQLException if no connection exists
-	 * @returns movieCollection
-	 */
-	public Collection<Movie> query(String search_string) throws SQLException{
-	   	PreparedStatement pst = this.makePreparedStatement(search_string,0,0);
-	   	ResultSet rs = pst.executeQuery();
-	   	Collection<Movie> movieCollection = new Collection<Movie>();
-	   	while(rs.next()){
-	   		Set<MovieLanguage> languages = new Set<MovieLanguage>();
-	   		Set<MovieCountry> countries = new Set<MovieCountry>();
-	   		/*
-	   		 * TODO
-	   		 * Handle multiple Languages & Countries here
-	   		 * 
-	   		 */
-	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
-	   									languages,
-	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
-	   		movieCollection.add(new_movie);
-	   	}
-	   	return movieCollection;
-	}
+    private PreparedStatement makePreparedStatement(MovieAttribute attribute,int offset,int limit) throws SQLException{
+    	String statement = "SELECT DISTINCT "+attribute.dbLabelName+" FROM "+table_name + " ORDERBY "+attribute.dbLabelName ;
+    	if(offset>0) statement += " OFFSET "+offset;
+    	PreparedStatement pst = this.conn.prepareStatement(statement);
+    	if(limit>0)pst.setMaxRows(limit);
+    	return pst;
+    }
+    
 	
 	/*
 	 * @param filterSet
@@ -233,6 +193,33 @@ public final class Database extends RemoteServiceServlet {
 	   	return movieCollection;
 	}
 	
-	
+	/*
+	 * @param attribute used to determine the column label for the reverse query
+	 * @param offset 
+	 * @param limit
+	 * @returns Collection<Movie> of movies that correspond to the reverse queried column
+	 */
+	public Collection<Movie> query(MovieAttribute attribute,int offset,int limit) throws SQLException{
+		PreparedStatement pst = this.makePreparedStatement(attribute,offset,limit);
+		ResultSet rs = pst.executeQuery();
+		Collection<Movie> movieCollection = new Collection<Movie>();
+		while(rs.next()){
+	   		Set<MovieLanguage> languages = new Set<MovieLanguage>();
+	   		Set<MovieCountry> countries = new Set<MovieCountry>();
+	   		/*
+	   		 * TODO
+	   		 * Handle multiple Languages & Countries here
+	   		 * 
+	   		 */
+	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
+	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
+	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
+	   									languages,
+	   									countries,
+	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
+	   		movieCollection.add(new_movie);
+	   	}
+	   	return movieCollection;
+	}
 	
 }
