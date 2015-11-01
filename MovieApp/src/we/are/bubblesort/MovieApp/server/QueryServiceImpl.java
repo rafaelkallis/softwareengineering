@@ -15,13 +15,125 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
  */
 @SuppressWarnings("serial")
 public class QueryServiceImpl extends RemoteServiceServlet implements QueryService {
-	Database database;
 	
+	/*
+	 * Database used for querying
+	 */
+	private Database database;
+	
+	/*
+	 * DEFAULT_LIMIT 	= 0 	-> no limit
+	 * DEFAULT_OFFSET 	= 0 	-> no offset
+	 */
+	public static final int DEFAULT_LIMIT = 0;
+	public static final int DEFAULT_OFFSET = 0;
+	
+	public QueryServiceImpl(Database database){
+		this.database = database;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(we.are.bubblesort.MovieApp.shared.Set)
+	 * @param filterSet the set of filters sent for querying
+	 * @returns Collection<Movie> collection of the queried movies
+	 */
 	@Override
 	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet) {
 		Collection<Movie> results = null;
 		try{
-			results = database.query(filterSet);
+			results = database.query(filterSet,DEFAULT_LIMIT,DEFAULT_OFFSET);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(we.are.bubblesort.MovieApp.shared.Set, int, int)
+	 * @param filterSet the set of filters sent for querying
+	 * @param limit
+	 * @param offset
+	 * @returns Collection<Movie> collection of the queried movies
+	 */
+	@Override
+	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet, int limit, int offset) {
+		Collection<Movie> results = null;
+		try{
+			results = database.query(filterSet,limit,offset);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		return results;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(java.lang.String)
+	 * @param string used to query. Function similar to String.contains("search_string")
+	 * @returns Collection<Movie> collection of the queried movies
+	 */
+	@Override
+	public Collection<Movie> getMovieCollection(String search_string) {
+		Collection<Movie> results = null;
+		try{
+			results = database.query(search_string,DEFAULT_LIMIT,DEFAULT_OFFSET);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(java.lang.String, int, int)
+	 * @param string used to query. Function similar to String.contains("search_string")
+	 * @param limit
+	 * @param offset
+	 * @returns Collection<Movie> collection of the queried movies	
+	 */
+	@Override
+	public Collection<Movie> getMovieCollection(String search_string, int limit, int offset) {
+		Collection<Movie> results = null;
+		try{
+			results = database.query(search_string,limit,offset);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		return results;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(we.are.bubblesort.MovieApp.shared.MovieAttribute)
+	 * @param attribute used for returning the column
+	 * @returns Collection<Movies> of movies that are contained in the reverse queried column
+	 */
+	@Override
+	public Collection<Movie> getMovieCollection(MovieAttribute attribute) {
+		Collection<Movie> results = null;
+		try{
+			results = database.query(attribute,DEFAULT_LIMIT,DEFAULT_OFFSET);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		return results;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(we.are.bubblesort.MovieApp.shared.MovieAttribute, int, int)
+	 * @param attribute used for returning the column
+	 * @param limit
+	 * @param offset
+	 * @returns Collection<Movies> of movies that are contained in the reverse queried column
+	 */
+	@Override
+	public Collection<Movie> getMovieCollection(MovieAttribute attribute, int limit, int offset) {
+		Collection<Movie> results = null;
+		try{
+			results = database.query(attribute,limit,offset);
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
