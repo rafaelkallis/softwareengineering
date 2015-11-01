@@ -1,0 +1,10 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:FlowPanel addStyleNames="app" ui:field="appPanel">
+	    <g:FlowPanel addStyleNames="app-header" ui:field="appHeaderPanel">
+	        <g:FlowPanel addStyleNames="mainnavigation" ui:field="appMainNavigationPanel"></g:FlowPanel>
+	    </g:FlowPanel>
+	    <g:FlowPanel addStyleNames="app-section-container" ui:field="appSectionContainerPanel"></g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder> 
