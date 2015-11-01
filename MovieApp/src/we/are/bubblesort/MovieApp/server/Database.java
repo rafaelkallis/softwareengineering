@@ -3,10 +3,13 @@ package we.are.bubblesort.MovieApp.server;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieCountry;
@@ -27,14 +30,9 @@ public final class Database extends RemoteServiceServlet {
 	 */
 	private static final long serialVersionUID 	= 2252293602456602793L;
 	
-	// num of results per query
-	private static final int RESULTS_PER_QUERY 	= 250;
-
 	private Connection conn 					= null;
-    @SuppressWarnings("unused")
-	private String status; //use enum instead?
     
-    private final String db_name 				= "movies";
+    private final String table_name 			= "movies";
     private final String url  					= "jdbc:mysql://80.74.150.210:3306/movieapp";
     private final String user 					= "se_user";
     private final String pass 					= "SEIsAwesome2015";
@@ -49,34 +47,64 @@ public final class Database extends RemoteServiceServlet {
             lgr.log(Level.SEVERE, e.getMessage(), e);
         }
     }
+    
+    /*
+     * Initializes the database
+     */
     private void initialize() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
     	Class.forName("com.mysql.jdbc.Driver").newInstance();
         conn = DriverManager.getConnection(url, user, pass);
     }
     
-    private static String RESULTS_PER_QUERY(){
-    	return " LIMIT "+Database.RESULTS_PER_QUERY;
+    public void checkVersion() throws SQLException{
+    	Statement st = conn.createStatement();
+    	ResultSet rs = st.executeQuery("SELECT VERSION()");
+    	if(rs.next()){
+    		System.out.println(rs.getString(1));
+    	}
+    	if(rs!=null)rs.close();
+    	if(st!=null)st.close();
+    	
     }
     
-    private PreparedStatement makePreparedStatement(String search_string,int offset) throws SQLException{
-    	String statement = new String(" SELECT * FROM " + db_name + " LIKE movie_name=\"%?%\" ");
-    	statement += (Database.RESULTS_PER_QUERY()+" OFFSET "+offset+";");
+    /*
+     * @param search_string The string sent. Works like String.contains(search_string)
+     * @param offset 		The offset for the results
+     * @param limit 		The limit of results. If 0, then there are unlimited results
+     * @exception SQLException if no connection exists
+     * @return PreparedStatement the Statement for lookup
+     */
+    private PreparedStatement makePreparedStatement(String search_string,int offset,int limit) throws SQLException{
+    	String statement = new String(" SELECT * FROM " + table_name + " LIKE movie_name=\"%?%\" ");
+    	if(offset>0)statement += (" OFFSET "+offset);
+    	//if(limit>0) statement += (" LIMIT "+limit);
+    	statement += ";";
     	PreparedStatement pst = this.conn.prepareStatement(statement);
+    	if(limit>0)pst.setMaxRows(limit);
     	pst.setString(1, search_string);
     	return pst;
     }
-    private PreparedStatement makePreparedStatement(Set<MovieAttribute> filterSet,int offset) throws SQLException{
-    	String statement = new String(" SELECT * FROM " + db_name + " WHERE 1 AND ");
+    
+    /*
+     * @param filterSet 	The set of all MovieAttributes
+     * @param offset 		The offset for the results
+     * @param limit 		The limit of results. If 0, then there are unlimited results
+     * @exception SQLException if no connection exists
+     * @return PreparedStatement the Statement for lookup
+     */
+    private PreparedStatement makePreparedStatement(Set<MovieAttribute> filterSet,int offset,int limit) throws SQLException{
+    	String statement = new String(" SELECT * FROM " + table_name + " WHERE 1 AND ");
     	PreparedStatement pst;
     	int i=1;
     	
     	for(MovieAttribute filter : filterSet){
-    		statement += (" AND "+filter.dbName+"\"?\" ");
+    		statement += (" AND "+filter.dbLabelName+"\"?\" ");
   
     	}
-    	statement += (Database.RESULTS_PER_QUERY()+" OFFSET "+offset+";");
+    	if(offset>0)statement += (" OFFSET "+offset);
+    	//if(limit>0) statement += (" LIMIT "+limit);
     	pst = this.conn.prepareStatement(statement);
-    	
+    	pst.setMaxRows(limit);
     	for(MovieAttribute filter : filterSet){
     		if(filter.value instanceof Integer){
     			pst.setInt(i++, (int) filter.value);
@@ -84,14 +112,16 @@ public final class Database extends RemoteServiceServlet {
     			pst.setString(i++, filter.value.toString());
     		}
     	}
+    	
     	return pst;
     }
     /*
-     * pass FilterSet
-     * returns movieColection
+     * @param FilterSet MovieAttributes for lookup
+     * @exception SQLException if no connection exists
+     * @returns movieColection 
      */
 	public Collection<Movie> query(Set<MovieAttribute> filterSet) throws SQLException{
-	  	PreparedStatement pst = this.makePreparedStatement(filterSet,0);
+	  	PreparedStatement pst = this.makePreparedStatement(filterSet,0,0);
 	   	ResultSet rs = pst.executeQuery();
 	   	Collection<Movie> movieCollection = new Collection<Movie>();
 
@@ -103,22 +133,24 @@ public final class Database extends RemoteServiceServlet {
 	   		 * Handle multiple Languages & Countries here
 	   		 * 
 	   		 */
-	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbname)),
-	   									new MovieYear(rs.getInt(MovieYear.dbName)),
+	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
+	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
+	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
 	   									languages,
 	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbName)));
+	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
 	}
+	
 	/*
-	 * pass search_string
-	 * return movieCollection
+	 * @param search_string
+	 * @exception SQLException if no connection exists
+	 * @returns movieCollection
 	 */
 	public Collection<Movie> query(String search_string) throws SQLException{
-	   	PreparedStatement pst = this.makePreparedStatement(search_string,0);
+	   	PreparedStatement pst = this.makePreparedStatement(search_string,0,0);
 	   	ResultSet rs = pst.executeQuery();
 	   	Collection<Movie> movieCollection = new Collection<Movie>();
 	   	while(rs.next()){
@@ -129,18 +161,26 @@ public final class Database extends RemoteServiceServlet {
 	   		 * Handle multiple Languages & Countries here
 	   		 * 
 	   		 */
-	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbname)),
-	   									new MovieYear(rs.getInt(MovieYear.dbName)),
+	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
+	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
+	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
 	   									languages,
 	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbName)));
+	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
 	}
-	public Collection<Movie> query(Set<MovieAttribute> filterSet,int offset) throws SQLException{
-	  	PreparedStatement pst = this.makePreparedStatement(filterSet,offset);
+	
+	/*
+	 * @param filterSet
+	 * @param offset
+	 * @param limit
+	 * @exception SQLException if no connection exists
+	 * @returns movieCollection
+	 */
+	public Collection<Movie> query(Set<MovieAttribute> filterSet,int offset,int limit) throws SQLException{
+	  	PreparedStatement pst = this.makePreparedStatement(filterSet,offset,limit);
 	   	ResultSet rs = pst.executeQuery();
 	   	Collection<Movie> movieCollection = new Collection<Movie>();
 
@@ -152,22 +192,26 @@ public final class Database extends RemoteServiceServlet {
 	   		 * Handle multiple Languages & Countries here
 	   		 * 
 	   		 */
-	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbname)),
-	   									new MovieYear(rs.getInt(MovieYear.dbName)),
+	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
+	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
+	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
 	   									languages,
 	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbName)));
+	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
 	}
+	
 	/*
-	 * pass search_string
-	 * return movieCollection
+	 * @param searchString
+	 * @param offset
+	 * @param limit
+	 * @exception SQLException if no connection exists
+	 * @returns movieCollection
 	 */
-	public Collection<Movie> query(String search_string, int offset) throws SQLException{
-	   	PreparedStatement pst = this.makePreparedStatement(search_string,offset);
+	public Collection<Movie> query(String search_string, int offset, int limit) throws SQLException{
+	   	PreparedStatement pst = this.makePreparedStatement(search_string,offset,limit);
 	   	ResultSet rs = pst.executeQuery();
 	   	Collection<Movie> movieCollection = new Collection<Movie>();
 	   	while(rs.next()){
@@ -178,16 +222,17 @@ public final class Database extends RemoteServiceServlet {
 	   		 * Handle multiple Languages & Countries here
 	   		 * 
 	   		 */
-	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbname)),
-	   									new MovieYear(rs.getInt(MovieYear.dbName)),
+	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
+	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
+	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
 	   									languages,
 	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbName)));
+	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
 	}
+	
 	
 	
 }
