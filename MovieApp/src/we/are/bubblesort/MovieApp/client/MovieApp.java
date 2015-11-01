@@ -7,8 +7,8 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class MovieApp implements EntryPoint {
 	
   public void onModuleLoad() {
-	  QueryServiceAsync rpcService = GWT.create(QueryService.class);
-	  AppController appViewer = new AppController(rpcService);
+	  QueryServiceAsync queryService = GWT.create(QueryService.class);
+	  AppController appViewer = new AppController(queryService);
 	  appViewer.init(RootPanel.get());
   }
 }
