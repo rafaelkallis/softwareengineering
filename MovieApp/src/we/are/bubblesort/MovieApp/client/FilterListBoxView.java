@@ -18,4 +18,9 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 		this.listBox.addItem(displayName, value);
 	}
 
+	@Override
+	public String getValue() {
+		return this.listBox.getSelectedValue();
+	}
+
 }

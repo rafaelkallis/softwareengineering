@@ -1,21 +1,45 @@
 package we.are.bubblesort.MovieApp.client;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
+import we.are.bubblesort.MovieApp.shared.Keyable;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieAttributeValue;
 
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.Composite;
 
-public class FilterPresenter extends Presenter {
+public class FilterPresenter extends Presenter implements Keyable {
 	protected FilterViewInterface view;
 	protected Class<? extends MovieAttribute> attribute;
 	protected QueryServiceAsync queryService;
+	protected String value = "";
 	
 	public FilterPresenter(Class<? extends MovieAttribute> attributeClass, QueryServiceAsync queryService, FilterViewInterface view) {
 		this.view = view;
 		this.attribute = attributeClass;
 		this.queryService = queryService;
 		this.fillViewValues();
+		
+		this.view.addChangeHandler(new ChangeHandler() {
+			@Override
+			public void onChange(ChangeEvent event) {
+				readValue();
+				fireEvent(new FilterChangedEvent());
+			}
+		});
+	}
+	
+	public Class<? extends MovieAttribute> getAttributeClass() {
+		return this.attribute;
+	}
+
+	private void readValue() {
+		this.value = this.view.getValue();
+	}
+	
+	public String getValue() {
+		return this.value;
 	}
 	
 	private void fillViewValues() {
@@ -56,4 +80,8 @@ public class FilterPresenter extends Presenter {
 		return (View)this.view;
 	}
 
+	@Override
+	public Object getKey() {
+		return this.attribute;
+	}
 }
