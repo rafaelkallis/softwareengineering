@@ -14,9 +14,6 @@ public interface QueryServiceAsync {
 	public void getMovieCollection(Set<MovieAttribute> filterSet, 							AsyncCallback<Collection<Movie>> callback);
 	public void getMovieCollection(Set<MovieAttribute> filterSet, 	int limit, int offset, 	AsyncCallback<Collection<Movie>> callback);
 
-	public void getMovieCollection(String search_string, 									AsyncCallback<Collection<Movie>> callback);
-	public void getMovieCollection(String search_string,			int limit, int offset,	AsyncCallback<Collection<Movie>> callback);
-
-	public void getMovieCollection(MovieAttribute attribute, 								AsyncCallback<Collection<Movie>> callback);
-	public void getMovieCollection(MovieAttribute attribute, 		int limit, int offset,	AsyncCallback<Collection<Movie>> callback);
+	public void getMovieCollection(MovieAttribute filter, 									AsyncCallback<Collection<Movie>> callback);
+	public void getMovieCollection(MovieAttribute filter, 			int limit, int offset, 	AsyncCallback<Collection<Movie>> callback);
 }

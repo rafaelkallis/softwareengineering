@@ -13,14 +13,8 @@ import we.are.bubblesort.MovieApp.shared.Movie;
 @RemoteServiceRelativePath("query")
 public interface QueryService extends RemoteService {
 	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet);
-	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet, int limit, int offset);
+	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet, 	int limit, int offset);
 	
-	public Collection<Movie> getMovieCollection(String search_string);
-	public Collection<Movie> getMovieCollection(String search_string, int limit, int offset);
-	
-	public Collection<Movie> getMovieCollection(MovieAttribute attribute);
-	public Collection<Movie> getMovieCollection(MovieAttribute attribute, int limit, int offset);
-	
-
-	
+	public Collection<Movie> getMovieCollection(MovieAttribute filter);
+	public Collection<Movie> getMovieCollection(MovieAttribute filter, 			int limit, int offset);
 }

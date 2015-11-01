@@ -71,24 +71,6 @@ public final class Database extends RemoteServiceServlet {
     }
     
     /*
-     * @param search_string The string sent. Works like String.contains(search_string)
-     * @param offset 		The offset for the results
-     * @param limit 		The limit of results. If 0, then there are unlimited results
-     * @exception SQLException if no connection exists
-     * @return PreparedStatement the Statement for lookup
-     */
-    private PreparedStatement makePreparedStatement(String search_string,int offset,int limit) throws SQLException{
-    	String statement = new String(" SELECT * FROM " + table_name + " LIKE movie_name=\"%?%\" ");
-    	if(offset>0)statement += (" OFFSET "+offset);
-    	//if(limit>0) statement += (" LIMIT "+limit);
-    	statement += ";";
-    	PreparedStatement pst = this.conn.prepareStatement(statement);
-    	if(limit>0)pst.setMaxRows(limit);
-    	pst.setString(1, search_string);
-    	return pst;
-    }
-    
-    /*
      * @param filterSet 	The set of all MovieAttributes
      * @param offset 		The offset for the results
      * @param limit 		The limit of results. If 0, then there are unlimited results
@@ -101,8 +83,12 @@ public final class Database extends RemoteServiceServlet {
     	int i=1;
     	
     	for(MovieAttribute filter : filterSet){
-    		statement += (" AND "+filter.dbLabelName+"\"?\" ");
-  
+    		if(filter instanceof MovieTitle){
+    			statement += (" LIKE "+filter.dbLabelName+"\"%?%\" ");
+    		}else{
+    			statement += (" AND "+filter.dbLabelName+"\"?\" ");
+    		}
+ 
     	}
     	if(offset>0)statement += (" OFFSET "+offset);
     	//if(limit>0) statement += (" LIMIT "+limit);
@@ -118,19 +104,6 @@ public final class Database extends RemoteServiceServlet {
     	
     	return pst;
     }
-    
-    /*
-     * @param attribute used to find the database column label during run-time
-     * @returns PreparedStatement for reverse query
-     */
-    private PreparedStatement makePreparedStatement(MovieAttribute attribute,int offset,int limit) throws SQLException{
-    	String statement = "SELECT DISTINCT "+attribute.dbLabelName+" FROM "+table_name + " ORDERBY "+attribute.dbLabelName ;
-    	if(offset>0) statement += " OFFSET "+offset;
-    	PreparedStatement pst = this.conn.prepareStatement(statement);
-    	if(limit>0)pst.setMaxRows(limit);
-    	return pst;
-    }
-    
 	
 	/*
 	 * @param filterSet
@@ -162,64 +135,4 @@ public final class Database extends RemoteServiceServlet {
 	   	}
 	   	return movieCollection;
 	}
-	
-	/*
-	 * @param searchString
-	 * @param offset
-	 * @param limit
-	 * @exception SQLException if no connection exists
-	 * @returns movieCollection
-	 */
-	public Collection<Movie> query(String search_string, int offset, int limit) throws SQLException{
-	   	PreparedStatement pst = this.makePreparedStatement(search_string,offset,limit);
-	   	ResultSet rs = pst.executeQuery();
-	   	Collection<Movie> movieCollection = new Collection<Movie>();
-	   	while(rs.next()){
-	   		Set<MovieLanguage> languages = new Set<MovieLanguage>();
-	   		Set<MovieCountry> countries = new Set<MovieCountry>();
-	   		/*
-	   		 * TODO
-	   		 * Handle multiple Languages & Countries here
-	   		 * 
-	   		 */
-	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
-	   									languages,
-	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
-	   		movieCollection.add(new_movie);
-	   	}
-	   	return movieCollection;
-	}
-	
-	/*
-	 * @param attribute used to determine the column label for the reverse query
-	 * @param offset 
-	 * @param limit
-	 * @returns Collection<Movie> of movies that correspond to the reverse queried column
-	 */
-	public Collection<Movie> query(MovieAttribute attribute,int offset,int limit) throws SQLException{
-		PreparedStatement pst = this.makePreparedStatement(attribute,offset,limit);
-		ResultSet rs = pst.executeQuery();
-		Collection<Movie> movieCollection = new Collection<Movie>();
-		while(rs.next()){
-	   		Set<MovieLanguage> languages = new Set<MovieLanguage>();
-	   		Set<MovieCountry> countries = new Set<MovieCountry>();
-	   		/*
-	   		 * TODO
-	   		 * Handle multiple Languages & Countries here
-	   		 * 
-	   		 */
-	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
-	   									languages,
-	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
-	   		movieCollection.add(new_movie);
-	   	}
-	   	return movieCollection;
-	}
-	
 }

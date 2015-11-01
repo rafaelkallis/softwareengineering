@@ -70,73 +70,29 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 
 	/*
 	 * (non-Javadoc)
-	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(java.lang.String)
-	 * @param string used to query. Function similar to String.contains("search_string")
-	 * @returns Collection<Movie> collection of the queried movies
-	 */
-	@Override
-	public Collection<Movie> getMovieCollection(String search_string) {
-		Collection<Movie> results = null;
-		try{
-			results = database.query(search_string,DEFAULT_LIMIT,DEFAULT_OFFSET);
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
-		return results;
-	}
-	
-	/*
-	 * (non-Javadoc)
-	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(java.lang.String, int, int)
-	 * @param string used to query. Function similar to String.contains("search_string")
-	 * @param limit
-	 * @param offset
-	 * @returns Collection<Movie> collection of the queried movies	
-	 */
-	@Override
-	public Collection<Movie> getMovieCollection(String search_string, int limit, int offset) {
-		Collection<Movie> results = null;
-		try{
-			results = database.query(search_string,limit,offset);
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
-		return results;
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(we.are.bubblesort.MovieApp.shared.MovieAttribute)
-	 * @param attribute used for returning the column
-	 * @returns Collection<Movies> of movies that are contained in the reverse queried column
+	 * @param filter inserted into a new filterSet
+	 * @returns Collection<Movie>
 	 */
 	@Override
-	public Collection<Movie> getMovieCollection(MovieAttribute attribute) {
-		Collection<Movie> results = null;
-		try{
-			results = database.query(attribute,DEFAULT_LIMIT,DEFAULT_OFFSET);
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
-		return results;
+	public Collection<Movie> getMovieCollection(MovieAttribute filter) {
+		Set<MovieAttribute> filterSet = new Set<MovieAttribute>();
+		filterSet.add(filter);
+		return this.getMovieCollection(filterSet);
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(we.are.bubblesort.MovieApp.shared.MovieAttribute, int, int)
-	 * @param attribute used for returning the column
+	 * @param filter
 	 * @param limit
 	 * @param offset
-	 * @returns Collection<Movies> of movies that are contained in the reverse queried column
+	 * @returns Collection<Movie>
 	 */
 	@Override
-	public Collection<Movie> getMovieCollection(MovieAttribute attribute, int limit, int offset) {
-		Collection<Movie> results = null;
-		try{
-			results = database.query(attribute,limit,offset);
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
-		return results;
+	public Collection<Movie> getMovieCollection(MovieAttribute filter, int limit, int offset) {
+		Set<MovieAttribute> filterSet = new Set<MovieAttribute>();
+		filterSet.add(filter);
+		return this.getMovieCollection(filterSet,limit,offset);
 	}
 }
