@@ -6,7 +6,7 @@ import com.google.gwt.user.client.ui.Composite;
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.MovieCountry;
+import we.are.bubblesort.MovieApp.shared.MovieYear;
 import we.are.bubblesort.MovieApp.shared.Set;
 
 public class WorldMapSection extends Section {
@@ -29,9 +29,9 @@ public class WorldMapSection extends Section {
 	@Override
 	void init() {
 		this.worldmap = new WorldMapPresenter();
-		this.filterbar = new FilterBarPresenter();
+		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
 		
-		this.filterbar.addFilterFor(MovieCountry.class);
+		this.filterbar.addFilterFor(MovieYear.class, new FilterListBoxView());
 		
 		this.view.worldmap.add(this.worldmap.getCompositeView());
 		this.view.toolbar.add(this.filterbar.getCompositeView());
