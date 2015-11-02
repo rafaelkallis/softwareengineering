@@ -1,30 +1,32 @@
 package we.are.bubblesort.MovieApp.shared;
 
-import we.are.bubblesort.MovieApp.shared.Set;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Movie implements Keyable,IsSerializable{
+public class Movie implements IsSerializable{
 	public MovieID id;
 	public MovieTitle title;
 	public MovieYear year;
-	public Set<MovieLanguage> languages;
-	public Set<MovieCountry> countries;
+	public UnorderedSet<MovieLanguage> languages;
+	public UnorderedSet<MovieCountry> countries;
 	
 	public MovieDuration duration;
 	public Movie(	MovieID id,
 					MovieTitle title,
 					MovieYear year,
-					we.are.bubblesort.MovieApp.shared.Set<MovieLanguage> languages2,
-					we.are.bubblesort.MovieApp.shared.Set<MovieCountry> countries2,
+					we.are.bubblesort.MovieApp.shared.UnorderedSet<MovieLanguage> languages,
+					we.are.bubblesort.MovieApp.shared.UnorderedSet<MovieCountry> countries,
 					MovieDuration duration){
 		this.id = id;
 		this.title= title;
 		this.year = year;
-		this.languages = languages2;
-		this.countries = countries2;
+		this.languages = languages;
+		this.countries = countries;
 		this.duration = duration;
 	}
-	public Object getKey(){
-		return this.id.value;
+
+	@Override
+	public int hashCode(){
+		return id.hashCode();
 	}
 }
