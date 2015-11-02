@@ -134,11 +134,11 @@ public final class Database extends RemoteServiceServlet {
 	   		 * 
 	   		 */
 	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
+	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName),rs.getString(MovieTitle.dbLabelName)),
+	   									new MovieYear(rs.getInt(MovieYear.dbLabelName),String.valueOf(rs.getInt(MovieYear.dbLabelName))),
 	   									languages,
 	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
+	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName),String.valueOf(rs.getInt(MovieDuration.dbLabelName))));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
@@ -162,11 +162,11 @@ public final class Database extends RemoteServiceServlet {
 	   		 * 
 	   		 */
 	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
-	   									languages,
-	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
+	   				new MovieTitle(rs.getString(MovieTitle.dbLabelName),rs.getString(MovieTitle.dbLabelName)),
+						new MovieYear(rs.getInt(MovieYear.dbLabelName),String.valueOf(rs.getInt(MovieYear.dbLabelName))),
+						languages,
+						countries,
+						new MovieDuration(rs.getInt(MovieDuration.dbLabelName),String.valueOf(rs.getInt(MovieDuration.dbLabelName))));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
@@ -193,11 +193,11 @@ public final class Database extends RemoteServiceServlet {
 	   		 * 
 	   		 */
 	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
-	   									languages,
-	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
+	   				new MovieTitle(rs.getString(MovieTitle.dbLabelName),rs.getString(MovieTitle.dbLabelName)),
+						new MovieYear(rs.getInt(MovieYear.dbLabelName),String.valueOf(rs.getInt(MovieYear.dbLabelName))),
+						languages,
+						countries,
+						new MovieDuration(rs.getInt(MovieDuration.dbLabelName),String.valueOf(rs.getInt(MovieDuration.dbLabelName))));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
@@ -223,11 +223,11 @@ public final class Database extends RemoteServiceServlet {
 	   		 * 
 	   		 */
 	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
-	   									languages,
-	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
+	   				new MovieTitle(rs.getString(MovieTitle.dbLabelName),rs.getString(MovieTitle.dbLabelName)),
+						new MovieYear(rs.getInt(MovieYear.dbLabelName),String.valueOf(rs.getInt(MovieYear.dbLabelName))),
+						languages,
+						countries,
+						new MovieDuration(rs.getInt(MovieDuration.dbLabelName),String.valueOf(rs.getInt(MovieDuration.dbLabelName))));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
