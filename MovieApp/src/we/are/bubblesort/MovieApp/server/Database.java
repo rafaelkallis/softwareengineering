@@ -26,13 +26,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public final class Database extends RemoteServiceServlet {
-	/**
-	 * Eclipse Generated UID
-	 */
+	
 	private static final long serialVersionUID 	= 2252293602456602793L;
 	
 	private Connection conn 					= null;
-    
     private final String table_name 			= "movies";
     private final String url  					= "jdbc:mysql://80.74.150.210:3306/movieapp";
     private final String user 					= "se_user";
@@ -106,11 +103,19 @@ public final class Database extends RemoteServiceServlet {
     	return pst;
     }
     
-    private PreparedStatement makePreparedStatementReverseQuery(MovieAttribute attribute, int offset, int limit) throws SQLException{
-    	String statement = new String(" SELECT DISTINCT "+attribute.dbLabelName+" FROM "+table_name+" ORDER BY "+attribute.dbLabelName);
+    /*
+     * @param attributeDbLabelName label used for reverse lookup
+     * @param offset
+     * @param limit
+     * @returns PreparedStatement
+     */
+    private PreparedStatement makePreparedStatementReverseQuery(String attributeDbLabelName, int offset, int limit) throws SQLException{
+    	String statement = new String(" SELECT DISTINCT ? FROM "+table_name+" ORDER BY ?");
     	if(offset>0)statement += " OFFSET "+offset;
     	statement+=";";
     	PreparedStatement pst = conn.prepareStatement(statement);
+    	pst.setString(1, attributeDbLabelName);
+    	pst.setString(2, attributeDbLabelName);
     	if(limit>0)pst.setMaxRows(limit);
     	return pst;
     }
@@ -153,12 +158,12 @@ public final class Database extends RemoteServiceServlet {
 	 * @param offset
 	 * @returns OrderedSet<MovieAttribute> of all available MovieAttributes corresponding to the passed attribute
 	 */
-	public OrderedSet<MovieAttribute> reverseQuery(MovieAttribute attribute,int limit, int offset) throws SQLException{
-		PreparedStatement pst = this.makePreparedStatementReverseQuery(attribute, limit, offset);
+	public OrderedSet<MovieAttribute> reverseQuery(String attributeDbLabelName,int limit, int offset) throws SQLException{
+		PreparedStatement pst = this.makePreparedStatementReverseQuery(attributeDbLabelName, limit, offset);
 		ResultSet rs = pst.executeQuery();
 		OrderedSet<MovieAttribute> attributeSet = new OrderedSet<MovieAttribute>();
 		
-		switch (attribute.dbLabelName) {
+		switch (attributeDbLabelName) {
 			case MovieID.dbLabelName:
 				while (rs.next()) {
 					attributeSet.add(new MovieID(rs.getInt(MovieID.dbLabelName)));
