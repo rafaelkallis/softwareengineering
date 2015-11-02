@@ -114,7 +114,7 @@ public final class Database extends RemoteServiceServlet {
     	if(limit>0)pst.setMaxRows(limit);
     	return pst;
     }
-	
+
 	/*
 	 * @param filterSet
 	 * @param offset
@@ -136,11 +136,11 @@ public final class Database extends RemoteServiceServlet {
 	   		 * 
 	   		 */
 	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-	   									new MovieYear(rs.getInt(MovieYear.dbLabelName)),
-	   									languages,
-	   									countries,
-	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
+	   				new MovieTitle(rs.getString(MovieTitle.dbLabelName),rs.getString(MovieTitle.dbLabelName)),
+						new MovieYear(rs.getInt(MovieYear.dbLabelName),String.valueOf(rs.getInt(MovieYear.dbLabelName))),
+						languages,
+						countries,
+						new MovieDuration(rs.getInt(MovieDuration.dbLabelName),String.valueOf(rs.getInt(MovieDuration.dbLabelName))));
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
@@ -166,27 +166,32 @@ public final class Database extends RemoteServiceServlet {
 				break;
 			case MovieTitle.dbLabelName:
 				while (rs.next()) {
-					attributeSet.add(new MovieTitle(rs.getString(MovieTitle.dbLabelName)));
+					String title = rs.getString(MovieTitle.dbLabelName);
+					attributeSet.add(new MovieTitle(title,title));
 				}
 				break;
 			case MovieYear.dbLabelName:
 				while (rs.next()) {
-					attributeSet.add(new MovieYear(rs.getInt(MovieYear.dbLabelName)));
+					Integer year = rs.getInt(MovieYear.dbLabelName);
+					attributeSet.add(new MovieYear(year,year.toString()));
 				}
 				break;
 			case MovieLanguage.dbLabelName:
 				while (rs.next()) {
-					attributeSet.add(new MovieLanguage(rs.getString(MovieLanguage.dbLabelName)));
+					String lang = rs.getString(MovieLanguage.dbLabelName);
+					attributeSet.add(new MovieLanguage(lang,lang));
 				}
 				break;
 			case MovieCountry.dbLabelName:
 				while (rs.next()) {
-					attributeSet.add(new MovieCountry(rs.getString(MovieCountry.dbLabelName)));
+					String country = rs.getString(MovieCountry.dbLabelName);
+					attributeSet.add(new MovieCountry(country,country));
 				}
 				break;
 			case MovieDuration.dbLabelName:
 				while (rs.next()) {
-					attributeSet.add(new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
+					Integer duration = rs.getInt(MovieDuration.dbLabelName);
+					attributeSet.add(new MovieDuration(duration,duration.toString()));
 				}
 				break;
 			default:

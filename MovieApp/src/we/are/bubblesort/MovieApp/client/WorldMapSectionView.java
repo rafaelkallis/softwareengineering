@@ -14,8 +14,10 @@ public class WorldMapSectionView extends SectionView {
 	interface WorldMapSectionViewUiBinder extends
 			UiBinder<Widget, WorldMapSectionView> {
 	}
-	
+
 	@UiField Panel mainPanel;
+	@UiField Panel toolbar;
+	@UiField Panel worldmap;
 
 	public WorldMapSectionView() {
 		initWidget(uiBinder.createAndBindUi(this));
