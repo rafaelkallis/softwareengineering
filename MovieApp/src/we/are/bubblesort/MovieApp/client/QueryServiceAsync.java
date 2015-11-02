@@ -5,11 +5,19 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.Set;
+import we.are.bubblesort.MovieApp.shared.OrderedSet;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 /**
  * The async counterpart of <code>QueryService</code>.
  */
 public interface QueryServiceAsync {
-	void getMovieCollection(Set<MovieAttribute> filterSet, AsyncCallback<Collection<Movie>> callback);
+	public void getMovieCollection(UnorderedSet<MovieAttribute> filterSet, 							AsyncCallback<Collection<Movie>> callback);
+	public void getMovieCollection(UnorderedSet<MovieAttribute> filterSet, 	int limit, int offset, 	AsyncCallback<Collection<Movie>> callback);
+
+	public void getMovieCollection(MovieAttribute filter, 									AsyncCallback<Collection<Movie>> callback);
+	public void getMovieCollection(MovieAttribute filter, 			int limit, int offset, 	AsyncCallback<Collection<Movie>> callback);
+	
+	public void getFilterSet(MovieAttribute attribute, int limit, int offset, 	AsyncCallback<OrderedSet<MovieAttribute>> callback);
+	public void getFilterSet(MovieAttribute attribute, 							AsyncCallback<OrderedSet<MovieAttribute>> callback);
 }

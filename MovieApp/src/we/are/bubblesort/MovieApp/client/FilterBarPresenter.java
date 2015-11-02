@@ -3,12 +3,12 @@ package we.are.bubblesort.MovieApp.client;
 import com.google.gwt.user.client.ui.Composite;
 
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.Set;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 public class FilterBarPresenter extends Presenter implements FilterChangedEventHandler {
 	protected FilterBarView view;
 	protected QueryServiceAsync queryService;
-	protected Set<FilterPresenter> presenters = new Set<FilterPresenter>();
+	protected UnorderedSet<FilterPresenter> presenters = new UnorderedSet<FilterPresenter>();
 	
 	FilterBarPresenter(QueryServiceAsync queryService, FilterBarView view) {
 		this.view = view;
@@ -22,8 +22,8 @@ public class FilterBarPresenter extends Presenter implements FilterChangedEventH
 		presenter.addHandler(FilterChangedEvent.TYPE, this);
 	}
 	
-	public Set<MovieAttribute> getFilterValues() {
-		Set<MovieAttribute> resultSet = new Set<MovieAttribute>();
+	public UnorderedSet<MovieAttribute> getFilterValues() {
+		UnorderedSet<MovieAttribute> resultSet = new UnorderedSet<MovieAttribute>();
 		
 		for (FilterPresenter presenter : this.presenters) {
 			MovieAttribute attribute = presenter.getAttribute();

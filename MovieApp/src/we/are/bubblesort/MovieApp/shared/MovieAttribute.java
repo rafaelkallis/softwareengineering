@@ -2,7 +2,7 @@ package we.are.bubblesort.MovieApp.shared;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public abstract class MovieAttribute implements Keyable, IsSerializable{
+public abstract class MovieAttribute implements IsSerializable,Comparable<Object>{
 	public Object value;
 	public String displayName;
 	public String dbLabelName;
@@ -12,8 +12,13 @@ public abstract class MovieAttribute implements Keyable, IsSerializable{
 		this.dbLabelName = dbLabelName;
 		this.displayName = displayName;
 	}
+	public int compareTo(Object o){
+		return value.toString().compareTo(o.toString());
+	}
 	
-	public Object getKey(){
-		return this.value;
+	@Override
+	public int hashCode(){
+		return value.hashCode();
+
 	}
 }

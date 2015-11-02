@@ -47,7 +47,7 @@ public class FilterPresenter extends Presenter implements Keyable {
 			Collection<MovieAttribute> values = this.getFilterValues();
 			
 			for (MovieAttribute val : values) {
-				seletableView.addItem(val.displayName, val.value);
+				seletableView.addItem(val.displayName, val.displayName);
 			}
 		}
 	}
