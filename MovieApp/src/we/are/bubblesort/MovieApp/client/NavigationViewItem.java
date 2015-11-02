@@ -1,8 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
-import we.are.bubblesort.MovieApp.shared.Keyable;
-
-public class NavigationViewItem implements Keyable {
+public class NavigationViewItem {
 	protected String displayName;
 	protected String value;
 	
@@ -19,8 +17,11 @@ public class NavigationViewItem implements Keyable {
 		return value;
 	}
 	
+	/*
+	 * value is used as hashing key
+	 */
 	@Override
-	public Object getKey() {
-		return value;
+	public int hashCode(){
+		return value.hashCode();
 	}
 }
