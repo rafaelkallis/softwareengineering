@@ -4,7 +4,9 @@ import we.are.bubblesort.MovieApp.client.QueryService;
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.Set;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
+import we.are.bubblesort.MovieApp.shared.OrderedSet;
+
 
 import java.sql.SQLException;
 
@@ -39,7 +41,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 * @returns Collection<Movie> collection of the queried movies
 	 */
 	@Override
-	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet) {
+	public Collection<Movie> getMovieCollection(UnorderedSet<MovieAttribute> filterSet) {
 		Collection<Movie> results = null;
 		try{
 			results = database.query(filterSet,DEFAULT_LIMIT,DEFAULT_OFFSET);
@@ -58,10 +60,29 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 * @returns Collection<Movie> collection of the queried movies
 	 */
 	@Override
-	public Collection<Movie> getMovieCollection(Set<MovieAttribute> filterSet, int limit, int offset) {
+	public Collection<Movie> getMovieCollection(UnorderedSet<MovieAttribute> filterSet, int limit, int offset) {
 		Collection<Movie> results = null;
 		try{
 			results = database.query(filterSet,limit,offset);
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+		return results;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.QueryService#getFilterSet(we.are.bubblesort.MovieApp.shared.MovieAttribute, int, int)
+	 * @param attribute
+	 * @param limit
+	 * @param offset
+	 * @returns OrderedSet<MovieAttribute>
+	 */
+	@Override
+	public OrderedSet<MovieAttribute> getFilterSet(MovieAttribute attribute, int limit, int offset){
+		OrderedSet<MovieAttribute> results = null;
+		try{
+			results = database.reverseQuery(attribute, limit, offset);
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
@@ -76,7 +97,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 */
 	@Override
 	public Collection<Movie> getMovieCollection(MovieAttribute filter) {
-		Set<MovieAttribute> filterSet = new Set<MovieAttribute>();
+		UnorderedSet<MovieAttribute> filterSet = new UnorderedSet<MovieAttribute>();
 		filterSet.add(filter);
 		return this.getMovieCollection(filterSet);
 	}
@@ -91,8 +112,19 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 */
 	@Override
 	public Collection<Movie> getMovieCollection(MovieAttribute filter, int limit, int offset) {
-		Set<MovieAttribute> filterSet = new Set<MovieAttribute>();
+		UnorderedSet<MovieAttribute> filterSet = new UnorderedSet<MovieAttribute>();
 		filterSet.add(filter);
 		return this.getMovieCollection(filterSet,limit,offset);
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see we.are.bubblesort.MovieApp.client.QueryService#getFilterSet(we.are.bubblesort.MovieApp.shared.MovieAttribute, int, int)
+	 * @param attribute
+	 * @returns OrderedSet<MovieAttribute>
+	 */
+	@Override
+	public OrderedSet<MovieAttribute> getFilterSet(MovieAttribute attribute){
+		return this.getFilterSet(attribute, DEFAULT_LIMIT, DEFAULT_OFFSET);
 	}
 }
