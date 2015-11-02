@@ -6,18 +6,16 @@ import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 import we.are.bubblesort.MovieApp.shared.OrderedSet;
-
-
 import java.sql.SQLException;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
  * The server-side implementation of the RPC service.
  */
-@SuppressWarnings("serial")
 public class QueryServiceImpl extends RemoteServiceServlet implements QueryService {
 	
+	private static final long serialVersionUID = 3188995100231753240L;
+
 	/*
 	 * Database used for querying
 	 */
@@ -79,43 +77,16 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 * @returns OrderedSet<MovieAttribute>
 	 */
 	@Override
-	public OrderedSet<MovieAttribute> getFilterSet(MovieAttribute attribute, int limit, int offset){
+	public OrderedSet<MovieAttribute> getFilterSet(String attributeDbLabelName, int limit, int offset){
 		OrderedSet<MovieAttribute> results = null;
 		try{
-			results = database.reverseQuery(attribute, limit, offset);
+			results = database.reverseQuery(attributeDbLabelName, limit, offset);
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
 		return results;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(we.are.bubblesort.MovieApp.shared.MovieAttribute)
-	 * @param filter inserted into a new filterSet
-	 * @returns Collection<Movie>
-	 */
-	@Override
-	public Collection<Movie> getMovieCollection(MovieAttribute filter) {
-		UnorderedSet<MovieAttribute> filterSet = new UnorderedSet<MovieAttribute>();
-		filterSet.add(filter);
-		return this.getMovieCollection(filterSet);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see we.are.bubblesort.MovieApp.client.QueryService#getMovieCollection(we.are.bubblesort.MovieApp.shared.MovieAttribute, int, int)
-	 * @param filter
-	 * @param limit
-	 * @param offset
-	 * @returns Collection<Movie>
-	 */
-	@Override
-	public Collection<Movie> getMovieCollection(MovieAttribute filter, int limit, int offset) {
-		UnorderedSet<MovieAttribute> filterSet = new UnorderedSet<MovieAttribute>();
-		filterSet.add(filter);
-		return this.getMovieCollection(filterSet,limit,offset);
-	}
 	
 	/*
 	 * (non-Javadoc)
@@ -124,7 +95,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 * @returns OrderedSet<MovieAttribute>
 	 */
 	@Override
-	public OrderedSet<MovieAttribute> getFilterSet(MovieAttribute attribute){
-		return this.getFilterSet(attribute, DEFAULT_LIMIT, DEFAULT_OFFSET);
+	public OrderedSet<MovieAttribute> getFilterSet(String attributeDbLabelName){
+		return this.getFilterSet(attributeDbLabelName, DEFAULT_LIMIT, DEFAULT_OFFSET);
 	}
 }
