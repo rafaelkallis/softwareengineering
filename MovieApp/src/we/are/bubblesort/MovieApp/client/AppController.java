@@ -3,7 +3,6 @@ package we.are.bubblesort.MovieApp.client;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.web.bindery.event.shared.HandlerRegistration;
-import com.google.web.bindery.event.shared.SimpleEventBus;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
 
@@ -22,7 +21,7 @@ public final class AppController extends Presenter implements AppActivateSection
 	public AppController(QueryServiceAsync queryService, AppView view) {
 		this.view = view;
 		this.queryService = queryService;
-		this.mainNavigation = new SectionNavigationPresenter(new ButtonNavigationView(), (SimpleEventBus)this);
+		this.mainNavigation = new SectionNavigationPresenter(new ButtonNavigationView(), this.eventBus);
 	}
 
 	public void init(Panel appPanel) {

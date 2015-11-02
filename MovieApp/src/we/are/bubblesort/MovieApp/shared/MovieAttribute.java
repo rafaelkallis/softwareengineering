@@ -1,19 +1,26 @@
 package we.are.bubblesort.MovieApp.shared;
 
-import com.google.gwt.user.client.rpc.IsSerializable;
+public abstract class MovieAttribute implements java.io.Serializable,Comparable<MovieAttribute>{
 
-public abstract class MovieAttribute implements Keyable, IsSerializable{
-	public Object value;
+	private static final long serialVersionUID = 7986627264620732095L;
+	public java.io.Serializable value;
 	public String displayName;
 	public String dbLabelName;
 	
-	public MovieAttribute(Object value,String dbLabelName,String displayName){
+	public MovieAttribute(java.io.Serializable value,String dbLabelName,String displayName){
 		this.value = value;
 		this.dbLabelName = dbLabelName;
 		this.displayName = displayName;
 	}
 	
-	public Object getKey(){
-		return this.value;
+	@Override
+	public int compareTo(MovieAttribute a){
+		return value.toString().compareTo(a.toString());
+	}
+	
+	@Override
+	public int hashCode(){
+		return value.hashCode();
+
 	}
 }

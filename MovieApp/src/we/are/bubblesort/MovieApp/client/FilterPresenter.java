@@ -1,7 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
-import we.are.bubblesort.MovieApp.shared.Keyable;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieYear;
 
@@ -9,7 +8,7 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.Composite;
 
-public class FilterPresenter extends Presenter implements Keyable {
+public class FilterPresenter extends Presenter {
 	protected FilterViewInterface view;
 	protected MovieAttribute attribute;
 	protected QueryServiceAsync queryService;
@@ -47,7 +46,7 @@ public class FilterPresenter extends Presenter implements Keyable {
 			Collection<MovieAttribute> values = this.getFilterValues();
 			
 			for (MovieAttribute val : values) {
-				seletableView.addItem(val.displayName, val.value);
+				seletableView.addItem(val.displayName, val.displayName);
 			}
 		}
 	}
@@ -78,9 +77,13 @@ public class FilterPresenter extends Presenter implements Keyable {
 	public View getView() {
 		return (View)this.view;
 	}
-
+	
+	/*
+	 * attribute is used as key for hashing
+	 */
 	@Override
-	public Object getKey() {
-		return this.attribute;
+	public int hashCode(){
+		return this.attribute.hashCode();
 	}
+	
 }

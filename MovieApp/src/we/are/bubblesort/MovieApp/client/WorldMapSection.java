@@ -8,7 +8,7 @@ import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieYear;
-import we.are.bubblesort.MovieApp.shared.Set;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 public class WorldMapSection extends Section implements FilterChangedEventHandler {
 	static final String defaultName = "Karte";
@@ -42,7 +42,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 
 	@Override
 	public void onFilterValueChanged() {
-		Set<MovieAttribute> attributes = this.filterbar.getFilterValues();
+		UnorderedSet<MovieAttribute> attributes = this.filterbar.getFilterValues();
 		// Call to RPC Service for new data.
 		Window.alert("New Data is being fetched");
 		callQueryService(attributes);
@@ -68,7 +68,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		this.view.show();
 	}
 	
-	public void callQueryService(Set<MovieAttribute> filterSet){
+	public void callQueryService(UnorderedSet<MovieAttribute> filterSet){
 		queryService.getMovieCollection(filterSet, new AsyncCallback<Collection<Movie>>(){
 			public void onFailure(Throwable caught){
 				Window.alert("That failed");

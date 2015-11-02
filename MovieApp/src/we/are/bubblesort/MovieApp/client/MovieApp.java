@@ -9,7 +9,7 @@ public class MovieApp implements EntryPoint {
 	
   public void onModuleLoad() {
 	  QueryServiceAsync queryService = GWT.create(QueryService.class);
-	  ((ServiceDefTarget) queryService).setServiceEntryPoint(GWT.getModuleBaseURL() + "/Query/QueryService");
+	  ((ServiceDefTarget) queryService).setServiceEntryPoint(GWT.getModuleBaseURL() + "/query/QueryService");
 	  
 	  AppController appViewer = new AppController(queryService);
 	  appViewer.init(RootPanel.get());

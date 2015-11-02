@@ -14,6 +14,18 @@ public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 		this.elements.add(element);
 	}
 
+	public void add(T[] elements){
+		for(T element : elements){
+			this.elements.add(element);
+		}
+	}
+	
+	public T[] get(){
+		@SuppressWarnings("unchecked")
+		T[] array = (T[]) this.elements.toArray();
+		return array;
+	}
+	
 	@Override
 	public Iterator<T> iterator() {
 		return elements.iterator();
