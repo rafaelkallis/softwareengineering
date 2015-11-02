@@ -18,7 +18,8 @@ import we.are.bubblesort.MovieApp.shared.MovieID;
 import we.are.bubblesort.MovieApp.shared.MovieLanguage;
 import we.are.bubblesort.MovieApp.shared.MovieTitle;
 import we.are.bubblesort.MovieApp.shared.MovieYear;
-import we.are.bubblesort.MovieApp.shared.Set;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
+import we.are.bubblesort.MovieApp.shared.OrderedSet;
 import we.are.bubblesort.MovieApp.shared.Collection;
 
 import java.util.logging.Level;
@@ -77,7 +78,7 @@ public final class Database extends RemoteServiceServlet {
      * @exception SQLException if no connection exists
      * @return PreparedStatement the Statement for lookup
      */
-    private PreparedStatement makePreparedStatement(Set<MovieAttribute> filterSet,int offset,int limit) throws SQLException{
+    private PreparedStatement makePreparedStatementQuery(UnorderedSet<MovieAttribute> filterSet,int offset,int limit) throws SQLException{
     	String statement = new String(" SELECT * FROM " + table_name + " WHERE 1 AND ");
     	PreparedStatement pst;
     	int i=1;
@@ -104,6 +105,15 @@ public final class Database extends RemoteServiceServlet {
     	
     	return pst;
     }
+    
+    private PreparedStatement makePreparedStatementReverseQuery(MovieAttribute attribute, int offset, int limit) throws SQLException{
+    	String statement = new String(" SELECT DISTINCT "+attribute.dbLabelName+" FROM "+table_name+" ORDER BY "+attribute.dbLabelName);
+    	if(offset>0)statement += " OFFSET "+offset;
+    	statement+=";";
+    	PreparedStatement pst = conn.prepareStatement(statement);
+    	if(limit>0)pst.setMaxRows(limit);
+    	return pst;
+    }
 	
 	/*
 	 * @param filterSet
@@ -112,14 +122,14 @@ public final class Database extends RemoteServiceServlet {
 	 * @exception SQLException if no connection exists
 	 * @returns movieCollection
 	 */
-	public Collection<Movie> query(Set<MovieAttribute> filterSet,int offset,int limit) throws SQLException{
-	  	PreparedStatement pst = this.makePreparedStatement(filterSet,offset,limit);
+	public Collection<Movie> query(UnorderedSet<MovieAttribute> filterSet,int offset,int limit) throws SQLException{
+	  	PreparedStatement pst = this.makePreparedStatementQuery(filterSet,offset,limit);
 	   	ResultSet rs = pst.executeQuery();
 	   	Collection<Movie> movieCollection = new Collection<Movie>();
 
 	   	while(rs.next()){
-	   		Set<MovieLanguage> languages = new Set<MovieLanguage>();
-	   		Set<MovieCountry> countries = new Set<MovieCountry>();
+	   		UnorderedSet<MovieLanguage> languages = new UnorderedSet<MovieLanguage>();
+	   		UnorderedSet<MovieCountry> countries = new UnorderedSet<MovieCountry>();
 	   		/*
 	   		 * TODO
 	   		 * Handle multiple Languages & Countries here
@@ -134,5 +144,56 @@ public final class Database extends RemoteServiceServlet {
 	   		movieCollection.add(new_movie);
 	   	}
 	   	return movieCollection;
+	}
+	
+	/*
+	 * Returns all available attributes from passed attribute
+	 * @param attribute
+	 * @param limit
+	 * @param offset
+	 * @returns OrderedSet<MovieAttribute> of all available MovieAttributes corresponding to the passed attribute
+	 */
+	public OrderedSet<MovieAttribute> reverseQuery(MovieAttribute attribute,int limit, int offset) throws SQLException{
+		PreparedStatement pst = this.makePreparedStatementReverseQuery(attribute, limit, offset);
+		ResultSet rs = pst.executeQuery();
+		OrderedSet<MovieAttribute> attributeSet = new OrderedSet<MovieAttribute>();
+		
+		switch (attribute.dbLabelName) {
+			case MovieID.dbLabelName:
+				while (rs.next()) {
+					attributeSet.add(new MovieID(rs.getInt(MovieID.dbLabelName)));
+				}
+				break;
+			case MovieTitle.dbLabelName:
+				while (rs.next()) {
+					attributeSet.add(new MovieTitle(rs.getString(MovieTitle.dbLabelName)));
+				}
+				break;
+			case MovieYear.dbLabelName:
+				while (rs.next()) {
+					attributeSet.add(new MovieYear(rs.getInt(MovieYear.dbLabelName)));
+				}
+				break;
+			case MovieLanguage.dbLabelName:
+				while (rs.next()) {
+					attributeSet.add(new MovieLanguage(rs.getString(MovieLanguage.dbLabelName)));
+				}
+				break;
+			case MovieCountry.dbLabelName:
+				while (rs.next()) {
+					attributeSet.add(new MovieCountry(rs.getString(MovieCountry.dbLabelName)));
+				}
+				break;
+			case MovieDuration.dbLabelName:
+				while (rs.next()) {
+					attributeSet.add(new MovieDuration(rs.getInt(MovieDuration.dbLabelName)));
+				}
+				break;
+			default:
+				/*
+				 * Attribute does not exist
+				 */
+		}
+		return attributeSet;
 	}
 }
