@@ -1,8 +1,8 @@
 package we.are.bubblesort.MovieApp.shared;
 
 public class MovieCountry extends MovieAttribute {
-	public static String dbLabelName = "movie_countries";
-	MovieCountry(String value){
+	public static final String dbLabelName = "movie_countries";
+	public MovieCountry(String value){
 		super(value,MovieCountry.dbLabelName);
 	}
 }

@@ -1,8 +1,8 @@
 package we.are.bubblesort.MovieApp.shared;
 
 public class MovieLanguage extends MovieAttribute {
-	public static String dbLabelName = "movie_languages";
-	MovieLanguage(String value){
+	public static final String dbLabelName = "movie_languages";
+	public MovieLanguage(String value){
 		super(value,MovieLanguage.dbLabelName);
 	}
 }
