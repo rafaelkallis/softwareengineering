@@ -15,9 +15,6 @@ public interface QueryServiceAsync {
 	public void getMovieCollection(UnorderedSet<MovieAttribute> filterSet, 							AsyncCallback<Collection<Movie>> callback);
 	public void getMovieCollection(UnorderedSet<MovieAttribute> filterSet, 	int limit, int offset, 	AsyncCallback<Collection<Movie>> callback);
 
-	public void getMovieCollection(MovieAttribute filter, 									AsyncCallback<Collection<Movie>> callback);
-	public void getMovieCollection(MovieAttribute filter, 			int limit, int offset, 	AsyncCallback<Collection<Movie>> callback);
-	
-	public void getFilterSet(MovieAttribute attribute, int limit, int offset, 	AsyncCallback<OrderedSet<MovieAttribute>> callback);
-	public void getFilterSet(MovieAttribute attribute, 							AsyncCallback<OrderedSet<MovieAttribute>> callback);
+	public void getFilterSet(String attributeDbLabelName, int limit, int offset, 	AsyncCallback<OrderedSet<MovieAttribute>> callback);
+	public void getFilterSet(String attributeDbLabelName, 							AsyncCallback<OrderedSet<MovieAttribute>> callback);
 }
