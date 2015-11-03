@@ -164,7 +164,6 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     				while (rs.next()) {
     					String year = rs.getString(MovieYear.dbLabelName);
     					attributeSet.add(new MovieYear(year));
-    					System.out.println(year);
     				}
     				break;
     				
