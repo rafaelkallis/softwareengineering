@@ -17,9 +17,23 @@
     <url-pattern>/movieapp/greet</url-pattern>
   </servlet-mapping>
   -->
+  
+  
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>MovieApp.html</welcome-file>
   </welcome-file-list>
 
+
+	<!-- Query Service -->
+  <servlet>
+    <servlet-name>QueryServiceImpl</servlet-name>
+    <servlet-class>we.are.bubblesort.MovieApp.server.QueryServiceImpl</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>QueryServiceImpl</servlet-name>
+    <url-pattern>/movieapp/query</url-pattern>
+  </servlet-mapping>
 </web-app>
