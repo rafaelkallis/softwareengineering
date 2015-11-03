@@ -7,6 +7,7 @@ import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.OrderedSet;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
+import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
 
 /**
  * The async counterpart of <code>QueryService</code>.
@@ -31,4 +32,6 @@ public interface QueryServiceAsync {
 	 * @param AsyncCallback<OrderedSet<MovieAttribute>> OrderedSet of attributes
 	 */
 	public void getAttributeSet(MovieAttribute attribute, int limit, int offset, 	AsyncCallback<OrderedSet<MovieAttribute>> callback);
+	
+	public void getWorldStatisticsModel(UnorderedSet<MovieAttribute> filterSet, AsyncCallback<WorldStatisticsModel> callback);
 }
