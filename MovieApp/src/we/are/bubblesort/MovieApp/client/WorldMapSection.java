@@ -32,7 +32,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		this.worldmap = new WorldMapPresenter();
 		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
 		
-		this.filterbar.addFilterFor(new MovieYear(0,"0"), new FilterListBoxView());
+		this.filterbar.addFilterFor(new MovieYear("0"), new FilterListBoxView());
 		
 		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 		
