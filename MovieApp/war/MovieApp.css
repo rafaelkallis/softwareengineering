@@ -1,3 +1,9 @@
+.TEST-UI {
+	background:red!important;
+	position:fixed;
+	top:10px;
+	right:10px;
+}
 
 button {
 	outline:none;

@@ -14,9 +14,7 @@ import we.are.bubblesort.MovieApp.shared.Movie;
  */
 @RemoteServiceRelativePath("query")
 public interface QueryService extends RemoteService {
-	public Collection<Movie> getMovieCollection(UnorderedSet<MovieAttribute> filterSet);
 	public Collection<Movie> getMovieCollection(UnorderedSet<MovieAttribute> filterSet, int limit, int offset);
 	
-	public OrderedSet<MovieAttribute> getFilterSet(String attributeDbLabelName);
-	public OrderedSet<MovieAttribute> getFilterSet(String attributeDbLabelName, 		int limit, int offset);
+	public OrderedSet<MovieAttribute> getAttributeSet(MovieAttribute attribute, 		int limit, int offset);
 }

@@ -32,7 +32,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		this.worldmap = new WorldMapPresenter();
 		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
 		
-		this.filterbar.addFilterFor(new MovieYear(0,"0"), new FilterListBoxView());
+		this.filterbar.addFilterFor(new MovieYear("0"), new FilterListBoxView());
 		
 		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 		
@@ -69,7 +69,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 	}
 	
 	public void callQueryService(UnorderedSet<MovieAttribute> filterSet){
-		queryService.getMovieCollection(filterSet, new AsyncCallback<Collection<Movie>>(){
+		queryService.getMovieCollection(filterSet,0,0, new AsyncCallback<Collection<Movie>>(){
 			public void onFailure(Throwable caught){
 				Window.alert("That failed");
 			}

@@ -47,7 +47,7 @@ public class TableSection extends Section {
 		this.view.show();
 	}
 	public void callQueryService(UnorderedSet<MovieAttribute> filterSet){
-		queryService.getMovieCollection(filterSet, new AsyncCallback<Collection<Movie>>(){
+		queryService.getMovieCollection(filterSet,0,0, new AsyncCallback<Collection<Movie>>(){
 			public void onFailure(Throwable caught){
 				/*
 				 * handle Failure
