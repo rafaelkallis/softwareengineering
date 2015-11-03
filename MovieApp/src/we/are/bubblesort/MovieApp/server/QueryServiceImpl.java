@@ -1,12 +1,22 @@
 package we.are.bubblesort.MovieApp.server;
 
 import we.are.bubblesort.MovieApp.client.QueryService;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-import we.are.bubblesort.MovieApp.shared.*;
+import we.are.bubblesort.MovieApp.shared.Collection;
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.MovieID;
+import we.are.bubblesort.MovieApp.shared.MovieYear;
+import we.are.bubblesort.MovieApp.shared.MovieLanguage;
+import we.are.bubblesort.MovieApp.shared.MovieGenre;
+import we.are.bubblesort.MovieApp.shared.MovieDuration;
+import we.are.bubblesort.MovieApp.shared.MovieTitle;
+import we.are.bubblesort.MovieApp.shared.MovieCountry;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
+import we.are.bubblesort.MovieApp.shared.OrderedSet;
+import we.are.bubblesort.MovieApp.shared.Movie;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
@@ -20,23 +30,23 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 */
 	private HashMap<String,String> reverseQueryStatements;
 	
-	public QueryServiceImpl() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
+	public QueryServiceImpl() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		this.initialize_reverseQueryStatements();
 	}
 	
 	/*
 	 * Initializes reverseQueryStatements
 	 */
-	private void initialize_reverseQueryStatements(){
+	private void initialize_reverseQueryStatements() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		if(reverseQueryStatements == null){
 			reverseQueryStatements = new HashMap<String,String>();
-			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+Database.get_table_name()+" ORDER BY `"+MovieID.dbLabelName		+"`;");
-			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+Database.get_table_name()+" ORDER BY `"+MovieTitle.dbLabelName	+"`;");
-			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"` 	FROM "+Database.get_table_name()+" ORDER BY `"+MovieYear.dbLabelName	+"`;");
-			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+Database.get_table_name()+" ORDER BY `"+MovieLanguage.dbLabelName+"`;");
-			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+Database.get_table_name()+" ORDER BY `"+MovieCountry.dbLabelName	+"`;");
-			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+Database.get_table_name()+" ORDER BY `"+MovieGenre.dbLabelName	+"`;");
-			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT `"+MovieDuration.dbLabelName+"`FROM "+Database.get_table_name()+" ORDER BY `"+MovieDuration.dbLabelName+"`;");
+			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieID.dbLabelName		+"`");
+			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"` 	FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieYear.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieLanguage.dbLabelName+"`");
+			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieCountry.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT `"+MovieDuration.dbLabelName+"`FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieDuration.dbLabelName+"`");
 		}
 	}
 	
@@ -58,48 +68,54 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 
     	try{
     		// String that will used as SQL command
-        	statement += " SELECT * FROM " + Database.get_table_name() + " WHERE 1 ";
+        	statement += " SELECT * FROM " + Database.getInstance().get_table_name() + " WHERE 1 ";
         	for(MovieAttribute filter : filterSet){
         		if(filter.dbLabelName.equals(MovieTitle.dbLabelName)){
-        			statement += (" LIKE "+MovieTitle.dbLabelName+" %?% ");
+        			statement += (" AND "+MovieTitle.dbLabelName+" LIKE ? ");
         		}else{
-        			statement += (" AND "+filter.dbLabelName+" ? ");
+        			statement += (" AND "+filter.dbLabelName+"= ? ");
         		}
         	}
         	if(limit>0) statement += (" LIMIT "+limit);
         	if(limit>0 && offset>0)statement += (" OFFSET "+offset);
+        	statement += ";";
         	
         	// Creation of PreparedStatement Template
-        	pst = Database.prepareStatement(statement);
+        	pst = Database.getInstance().prepareStatement(statement);
         	
         	// Insertion of filters in PreparedStatement
         	for(MovieAttribute filter : filterSet){
-        			pst.setString(i++, filter.value.toString());
-        			// No Integer check
+        			if(filter.dbLabelName.equals(MovieTitle.dbLabelName)){
+        				pst.setString(i++, "%"+filter.value+"%");
+            		}else{
+            			pst.setString(i++, filter.value);
+            		}
         	}
         	
         	// Execution
-        	rs = Database.execute(pst);
+        	rs = Database.getInstance().execute(pst);
         	
         	// Move results into movieCollection
         	while(rs.next()){
     	   		UnorderedSet<MovieLanguage> languages = new UnorderedSet<MovieLanguage>();
     	   		UnorderedSet<MovieCountry> countries = new UnorderedSet<MovieCountry>();
+    	   		UnorderedSet<MovieGenre> genres = new UnorderedSet<MovieGenre>();
     	   		/*
     	   		 * TODO
     	   		 * Handle multiple Languages & Countries here
     	   		 * 
     	   		 */
-    	   		Movie new_movie = new Movie(new MovieID(rs.getInt(MovieID.dbLabelName)),
-    	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName),rs.getString(MovieTitle.dbLabelName)),
-    	   									new MovieYear(rs.getInt(MovieYear.dbLabelName),String.valueOf(rs.getInt(MovieYear.dbLabelName))),
+    	   		Movie new_movie = new Movie(new MovieID(rs.getString(MovieID.dbLabelName)),
+    	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
+    	   									new MovieYear(rs.getString(MovieYear.dbLabelName)),
     	   									languages,
     	   									countries,
-    	   									new MovieDuration(rs.getInt(MovieDuration.dbLabelName),String.valueOf(rs.getInt(MovieDuration.dbLabelName))));
+    	   									genres,
+    	   									new MovieDuration(rs.getString(MovieDuration.dbLabelName)));
     	   		movieCollection.add(new_movie);
     	   	}
-    	}catch (SQLException e){
-    		System.err.println("SQLException in MovieApp.QueryServiceImpl.getMovieCollection():\n"+e.getMessage());
+    	}catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e){
+    		System.err.println("Exception in MovieApp.QueryServiceImpl.getMovieCollection(), possibly thrown by Database:\n"+e.getMessage());
     		e.printStackTrace();
     	}
 		return movieCollection;
@@ -124,60 +140,65 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     		if(limit>0) statement += (" LIMIT "+limit);
         	if(limit>0 && offset>0)statement += (" OFFSET "+offset);    	
         	statement+=";";
-        	pst = Database.prepareStatement(statement);
-        	rs = Database.execute(pst);
+
+        	pst = Database.getInstance().prepareStatement(statement);
+        	rs = Database.getInstance().execute(pst);
+
         	switch (attribute.dbLabelName) {
     			case MovieID.dbLabelName:
     				while (rs.next()) {
-    					attributeSet.add(new MovieID(rs.getInt(MovieID.dbLabelName)));
+    					String id = rs.getString(MovieID.dbLabelName);
+    					attributeSet.add(new MovieID((id)));
     				}
     				break;
+    				
     			case MovieTitle.dbLabelName:
     				while (rs.next()) {
     					String title = rs.getString(MovieTitle.dbLabelName);
-    					attributeSet.add(new MovieTitle(title,title));
+    					attributeSet.add(new MovieTitle(title));
     				}
     				break;
+    				
     			case MovieYear.dbLabelName:
     				while (rs.next()) {
-    					Integer year = rs.getInt(MovieYear.dbLabelName);
-    					attributeSet.add(new MovieYear(year,year.toString()));
+    					String year = rs.getString(MovieYear.dbLabelName);
+    					attributeSet.add(new MovieYear(year));
+    					System.out.println(year);
     				}
     				break;
+    				
     			case MovieLanguage.dbLabelName:
     				while (rs.next()) {
     					String lang = rs.getString(MovieLanguage.dbLabelName);
     					attributeSet.add(new MovieLanguage(lang,lang));
     				}
     				break;
+    				
     			case MovieCountry.dbLabelName:
     				while (rs.next()) {
     					String country = rs.getString(MovieCountry.dbLabelName);
     					attributeSet.add(new MovieCountry(country,country));
     				}
     				break;
+    				
     			case MovieDuration.dbLabelName:
     				while (rs.next()) {
-    					Integer duration = rs.getInt(MovieDuration.dbLabelName);
-    					attributeSet.add(new MovieDuration(duration,duration.toString()));
+    					String duration = rs.getString(MovieDuration.dbLabelName);
+    					attributeSet.add(new MovieDuration(duration));
     				}
     				break;
+    				
     			case MovieGenre.dbLabelName:
     				while (rs.next()){
     					String genre = rs.getString(MovieGenre.dbLabelName);
     					attributeSet.add(new MovieGenre(genre,genre));
     				}
     				break;
-    			default:
-    				/*
-    				 * Attribute does not exist
-    				 */
-    				throw new SQLException("No attribute found named "+attribute.dbLabelName);
         	}
-    	}catch(SQLException e){
-    		System.err.println("SQLException in MovieApp.QueryServiceImpl.getAttributeSet():\n"+e.getMessage());
+    	}catch(SQLException | NullPointerException | InstantiationException | IllegalAccessException | ClassNotFoundException e){
     		e.printStackTrace();
     	}
+    	
 		return attributeSet;
 	}
 }
