@@ -2,7 +2,7 @@ package we.are.bubblesort.MovieApp.shared;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class OrderedSet <T extends Comparable<T>> implements IsSerializable,Iterable<T>{
+public class OrderedSet <T extends Comparable<T>> extends Model implements Iterable<T>,IsSerializable{
 	
 	private java.util.TreeSet<T> elements;
 	

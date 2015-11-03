@@ -2,7 +2,7 @@ package we.are.bubblesort.MovieApp.shared;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class UnorderedSet<T> implements IsSerializable,Iterable<T>{
+public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>{
 
 		private java.util.HashSet<T> elements;
 		
