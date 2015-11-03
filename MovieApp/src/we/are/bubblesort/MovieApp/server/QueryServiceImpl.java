@@ -30,6 +30,8 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 */
 	private HashMap<String,String> reverseQueryStatements;
 	
+	private final String movie_table = "movies";
+	
 	public QueryServiceImpl() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		this.initialize_reverseQueryStatements();
 	}
@@ -40,13 +42,13 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	private void initialize_reverseQueryStatements() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		if(reverseQueryStatements == null){
 			reverseQueryStatements = new HashMap<String,String>();
-			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieID.dbLabelName		+"`");
-			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"` 	FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieYear.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieLanguage.dbLabelName+"`");
-			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieCountry.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT `"+MovieDuration.dbLabelName+"`FROM "+Database.getInstance().get_table_name()+" ORDER BY `"+MovieDuration.dbLabelName+"`");
+			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+movie_table+" ORDER BY `"+MovieID.dbLabelName		+"`");
+			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieYear.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieLanguage.dbLabelName+"`");
+			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+movie_table+" ORDER BY `"+MovieCountry.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT `"+MovieDuration.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieDuration.dbLabelName+"`");
 		}
 	}
 	
@@ -68,7 +70,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 
     	try{
     		// String that will used as SQL command
-        	statement += " SELECT * FROM " + Database.getInstance().get_table_name() + " WHERE 1 ";
+        	statement += " SELECT * FROM " + movie_table + " WHERE 1 ";
         	for(MovieAttribute filter : filterSet){
         		if(filter.dbLabelName.equals(MovieTitle.dbLabelName)){
         			statement += (" AND "+MovieTitle.dbLabelName+" LIKE ? ");
@@ -114,8 +116,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     	   									new MovieDuration(rs.getString(MovieDuration.dbLabelName)));
     	   		movieCollection.add(new_movie);
     	   	}
-    	}catch (SQLException | InstantiationException | IllegalAccessException | ClassNotFoundException e){
-    		System.err.println("Exception in MovieApp.QueryServiceImpl.getMovieCollection(), possibly thrown by Database:\n"+e.getMessage());
+    	}catch (SQLException e){
     		e.printStackTrace();
     	}
 		return movieCollection;
@@ -195,7 +196,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     				}
     				break;
         	}
-    	}catch(SQLException | NullPointerException | InstantiationException | IllegalAccessException | ClassNotFoundException e){
+    	}catch(SQLException  e){
     		e.printStackTrace();
     	}
     	
