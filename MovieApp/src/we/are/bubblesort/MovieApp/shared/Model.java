@@ -7,7 +7,7 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public abstract class Model implements IsSerializable{
-	final private SimpleEventBus eventBus;
+	private SimpleEventBus eventBus;
 	
 	public Model(){
 		eventBus = new SimpleEventBus();
