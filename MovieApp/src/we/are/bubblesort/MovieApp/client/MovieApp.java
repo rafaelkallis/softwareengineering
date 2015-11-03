@@ -2,18 +2,18 @@ package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
+import we.are.bubblesort.MovieApp.shared.*;
 
 public class MovieApp implements EntryPoint {
-	
-  public void onModuleLoad() {
 	  QueryServiceAsync queryService = GWT.create(QueryService.class);
-	  ((ServiceDefTarget) queryService).setServiceEntryPoint(GWT.getModuleBaseURL() + "/query/QueryService");
+
+  public void onModuleLoad() {
 	  
 	  AppController appViewer = new AppController(queryService);
 	  appViewer.init(RootPanel.get());
@@ -24,9 +24,22 @@ public class MovieApp implements EntryPoint {
 			@Override
 			public void onClick(ClickEvent event) {
 				// do some shit and log it out
-				Window.alert("DB TEST!");
+				filter_test();
 			}
 		});
 	  RootPanel.get().add(dbTestButton);
+  }
+  public void filter_test(){
+	  queryService.getAttributeSet(new MovieYear(1994,"1994"),1,0, new AsyncCallback<OrderedSet<MovieAttribute>>(){
+		  public void onSuccess(OrderedSet<MovieAttribute> result){
+			  for(MovieAttribute atr : result){
+				  Window.alert("Returned: "+atr.value);
+			  }
+			  
+		  }
+		  public void onFailure(Throwable e){
+			  Window.alert(":(");
+		  }
+	  });
   }
 }
