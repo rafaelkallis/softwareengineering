@@ -7,8 +7,8 @@ import java.util.List;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 
-public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
-	protected List<T> elements = new ArrayList<T>();
+public class Collection<T> implements Iterable<T>,IsSerializable {
+	protected ArrayList<T> elements = new ArrayList<T>();
 	
 	public void add(T element) {
 		this.elements.add(element);

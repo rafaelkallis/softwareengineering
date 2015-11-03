@@ -1,12 +1,13 @@
 package we.are.bubblesort.MovieApp.shared;
+
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import com.google.web.bindery.event.shared.Event.Type;
 import com.google.web.bindery.event.shared.Event;
 import com.google.web.bindery.event.shared.HandlerRegistration;
+import com.google.gwt.user.client.rpc.IsSerializable;
 
-
-public abstract class Model{
-	SimpleEventBus eventBus;
+public abstract class Model implements IsSerializable{
+	transient SimpleEventBus eventBus;
 	
 	public Model(){
 		eventBus = new SimpleEventBus();
