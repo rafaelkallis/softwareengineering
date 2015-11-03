@@ -8,38 +8,48 @@ import java.sql.SQLException;
 
 public final class Database {
 		
-	private static Connection conn 			= null;
-    private static final String table_name 	= "movies";
-    private static final String url  		= "jdbc:mysql://80.74.150.210:3306/movieapp";
-    private static final String user 		= "se_user";
-    private static final String pass 		= "SEIsAwesome2015";
+	private static Database instance = null;
+	
+	private  		Connection 	conn 		= null;
+    private  final 	String 		table_name 	= "movies";
+    private  final 	String 		url  		= "jdbc:mysql://80.74.150.210:3306/movieapp";
+    private  final 	String 		user 		= "se_user";
+    private  final 	String 		pass 		= "SEIsAwesome2015";
     
-    public Database() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    private Database() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
     	Class.forName("com.mysql.jdbc.Driver").newInstance();
-        Database.conn = DriverManager.getConnection(url, user, pass);
+        conn = DriverManager.getConnection(url, user, pass);
+    }
+    
+    public static Database getInstance() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+    	if(instance == null){
+    		instance = new Database();
+    	}
+    	return instance;
     }
 	
     /*
      * @param pst PreparedStatement to be executed
      * @returns ResultSet 
      */
-	public static ResultSet execute(PreparedStatement pst) throws SQLException{
+	public ResultSet execute(PreparedStatement pst) throws SQLException{
 		return pst.executeQuery();
 	}
+	
 	
 	/*
 	 * @param sql string used as a command
 	 * @returns PreparedStatement
 	 */
-	public static PreparedStatement prepareStatement(String sql) throws SQLException{
-		return Database.conn.prepareStatement(sql);
+	public PreparedStatement prepareStatement(String sql) throws SQLException{
+		return conn.prepareStatement(sql);
 	}
 	
 	/*
 	 * @returns table name
 	 */
-	public static String get_table_name(){
-		return Database.table_name;
+	public String get_table_name(){
+		return table_name;
 	}
 	
 }
