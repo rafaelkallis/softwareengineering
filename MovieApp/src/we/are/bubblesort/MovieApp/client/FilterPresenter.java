@@ -54,16 +54,16 @@ public class FilterPresenter extends Presenter {
 	private Collection<MovieAttribute> getFilterValues() {
 		// MOCK until Services work
 		Collection<MovieAttribute> values = new Collection<MovieAttribute>();
-		values.add(new MovieYear(1995,"1995"));
-		values.add(new MovieYear(1996,"1996"));
-		values.add(new MovieYear(1997,"1997"));
-		values.add(new MovieYear(1998,"1998"));
-		values.add(new MovieYear(1999,"1999"));
-		values.add(new MovieYear(2000,"2000"));
-		values.add(new MovieYear(2001,"2001"));
-		values.add(new MovieYear(2002,"2002"));
-		values.add(new MovieYear(2003,"2003"));
-		values.add(new MovieYear(2004,"2004"));
+		values.add(new MovieYear("1995"));
+		values.add(new MovieYear("1996"));
+		values.add(new MovieYear("1997"));
+		values.add(new MovieYear("1998"));
+		values.add(new MovieYear("1999"));
+		values.add(new MovieYear("2000"));
+		values.add(new MovieYear("2001"));
+		values.add(new MovieYear("2002"));
+		values.add(new MovieYear("2003"));
+		values.add(new MovieYear("2004"));
 		
 		return values;
 	}
