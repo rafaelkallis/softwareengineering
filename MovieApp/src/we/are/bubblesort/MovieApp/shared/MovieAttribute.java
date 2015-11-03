@@ -12,15 +12,15 @@ public abstract class MovieAttribute implements IsSerializable,Comparable<MovieA
 		
 	}
 	
-	public MovieAttribute(Object value,String dbLabelName,String displayName){
-		this.value = value.toString();
+	public MovieAttribute(String value,String dbLabelName,String displayName){
+		this.value = value;
 		this.dbLabelName = dbLabelName;
 		this.displayName = displayName;
 	}
 	
 	@Override
 	public int compareTo(MovieAttribute a){
-		return value.toString().compareTo(a.value.toString());
+		return value.compareTo(a.value.toString());
 	}
 	
 	@Override

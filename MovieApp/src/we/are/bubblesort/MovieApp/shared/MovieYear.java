@@ -5,10 +5,10 @@ public class MovieYear extends MovieAttribute {
 	public static final String dbLabelName = "movie_release_year";
 	
 	public MovieYear(){
-		
+		super(null,MovieYear.dbLabelName,null);
 	}
 	
-	public MovieYear(Integer value,String displayName){
-		super(value,MovieYear.dbLabelName,displayName);
+	public MovieYear(String value){
+		super(value,MovieYear.dbLabelName,value);
 	}
 }

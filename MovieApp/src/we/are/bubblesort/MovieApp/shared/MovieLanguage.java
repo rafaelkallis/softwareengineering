@@ -5,7 +5,7 @@ public class MovieLanguage extends MovieAttribute {
 	public static final String dbLabelName = "movie_languages";
 	
 	public MovieLanguage(){
-		
+		super(null,MovieLanguage.dbLabelName,null);
 	}
 	
 	public MovieLanguage(String value,String displayName){

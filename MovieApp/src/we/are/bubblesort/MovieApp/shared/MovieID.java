@@ -5,10 +5,10 @@ public class MovieID extends MovieAttribute{
 	public static final String dbLabelName = "id";
 	
 	public MovieID(){
-		
+		super(null,MovieID.dbLabelName,null);
 	}
 	
-	public MovieID(Integer value){
+	public MovieID(String value){
 		super(value,MovieID.dbLabelName,value.toString());
 	}
 }

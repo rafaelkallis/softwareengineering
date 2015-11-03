@@ -5,10 +5,10 @@ public class MovieDuration extends MovieAttribute {
 	public static final String dbLabelName = "movie_runtime";
 	
 	public MovieDuration(){
-		
+		super(null,MovieDuration.dbLabelName,null);
 	}
 	
-	public MovieDuration(Integer value,String displayName){
-		super(value,MovieDuration.dbLabelName,displayName);
+	public MovieDuration(String value){
+		super(value,MovieDuration.dbLabelName,value);
 	}
 }
