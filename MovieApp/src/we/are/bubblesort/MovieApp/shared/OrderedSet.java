@@ -4,7 +4,8 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class OrderedSet <T extends Comparable<T>> implements IsSerializable,Iterable<T>{
 	
-	protected java.util.TreeSet<T> elements;
+	private java.util.TreeSet<T> elements;
+	
 	public OrderedSet(){
 		elements = new java.util.TreeSet<T>();
 	}

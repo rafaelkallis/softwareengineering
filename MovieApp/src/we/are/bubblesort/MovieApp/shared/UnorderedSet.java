@@ -4,7 +4,8 @@ import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class UnorderedSet<T> implements IsSerializable,Iterable<T>{
 
-		protected java.util.HashSet<T> elements;
+		private java.util.HashSet<T> elements;
+		
 		public UnorderedSet(){
 			elements = new java.util.HashSet<T>();
 		}

@@ -8,6 +8,10 @@ public abstract class MovieAttribute implements IsSerializable,Comparable<MovieA
 	public String displayName;
 	public String dbLabelName;
 	
+	public MovieAttribute(){
+		
+	}
+	
 	public MovieAttribute(Object value,String dbLabelName,String displayName){
 		this.value = value.toString();
 		this.dbLabelName = dbLabelName;
