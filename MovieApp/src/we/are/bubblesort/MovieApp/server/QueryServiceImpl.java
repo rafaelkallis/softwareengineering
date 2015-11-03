@@ -15,6 +15,9 @@ import we.are.bubblesort.MovieApp.shared.MovieDuration;
 import we.are.bubblesort.MovieApp.shared.MovieTitle;
 import we.are.bubblesort.MovieApp.shared.MovieCountry;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
+import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
+import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel.WorldStatisticsModelEntry;
+
 import we.are.bubblesort.MovieApp.shared.OrderedSet;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -30,10 +33,13 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 */
 	private HashMap<String,String> reverseQueryStatements;
 	
-	private final String movie_table = "movies";
+	private String movie_table = "movies";
+	
+	private String statisticsModelCommand;
 	
 	public QueryServiceImpl() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		this.initialize_reverseQueryStatements();
+		this.initialize_statisticsModelCommand();
 	}
 	
 	/*
@@ -50,6 +56,15 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
 			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT `"+MovieDuration.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieDuration.dbLabelName+"`");
 		}
+	}
+	
+	public void initialize_statisticsModelCommand(){
+		this.statisticsModelCommand ="SELECT `freebase_countries_to_common_countries`.`iso3166-1-alpha-2`, `countries`.`iso3166-1-numeric`, COUNT(`movie_countries`.`movie_country`) AS NumberOfMovies FROM `movie_countries`"
+									+"INNER JOIN `freebase_countries_to_common_countries`"
+									+"ON `movie_countries`.`movie_country` = `freebase_countries_to_common_countries`.`freebase_country_name`"
+									+"INNER JOIN `countries`"
+									+"ON `freebase_countries_to_common_countries`.`iso3166-1-alpha-2` = `countries`.`iso3166-1-alpha-2`"
+									+"GROUP BY `iso3166-1-alpha-2`";
 	}
 	
 	/*
@@ -116,9 +131,12 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     	   									new MovieDuration(rs.getString(MovieDuration.dbLabelName)));
     	   		movieCollection.add(new_movie);
     	   	}
+        	rs.close();
+    		pst.close();
     	}catch (SQLException e){
     		e.printStackTrace();
     	}
+    	
 		return movieCollection;
 	}
 	
@@ -195,10 +213,38 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     				}
     				break;
         	}
+        	rs.close();
+    		pst.close();
     	}catch(SQLException  e){
     		e.printStackTrace();
     	}
     	
 		return attributeSet;
+	}
+
+	public WorldStatisticsModel getWorldStatisticsModel(UnorderedSet<MovieAttribute> filterSet){
+		WorldStatisticsModel worldStats = new WorldStatisticsModel();
+		String statement = this.statisticsModelCommand;
+		PreparedStatement pst; 
+		ResultSet rs;
+		
+		try{
+			
+			pst = Database.getInstance().prepareStatement(statement);
+			rs = Database.getInstance().execute(pst);
+
+			while(rs.next()){
+				String iso_alpha = rs.getString(WorldStatisticsModelEntry.iso_alpha_DbLabelName);
+				Integer iso_numeric = rs.getInt(WorldStatisticsModelEntry.iso_numeric_DbLabelName);
+				Integer n_movies = rs.getInt(WorldStatisticsModelEntry.n_movies_DbLabelName);
+				worldStats.add(worldStats.new WorldStatisticsModelEntry(iso_alpha,iso_numeric,n_movies));
+			}
+			rs.close();
+    		pst.close();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+
+		return worldStats;
 	}
 }
