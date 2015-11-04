@@ -6,7 +6,7 @@ import java.util.Iterator;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 
-public class Collection<T> implements Iterable<T>,IsSerializable {
+public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 	protected ArrayList<T> elements;
 	
 	public Collection(){
