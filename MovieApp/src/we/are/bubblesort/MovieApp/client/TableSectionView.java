@@ -18,8 +18,8 @@ public class TableSectionView extends SectionView {
 	}
 	
 	@UiField Panel mainPanel;
-	@UiField Panel toolbar;
-	@UiField Panel changeSideToolbar;
+	// not necessary anymore @UiField Panel toolbar; -> remove from xml too
+	// not necessary anymore @UiField Panel changeSideToolbar; -> remove from xml too
 	
 	private Button filterButton = new Button("Titel"); // Filter button (to made scrolldrown) and "Titel" (or id?) as default 
 	private Button exportButton = new Button("Export");
