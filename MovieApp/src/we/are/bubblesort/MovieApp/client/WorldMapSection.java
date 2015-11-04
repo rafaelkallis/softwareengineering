@@ -14,7 +14,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 	static final String defaultName = "Karte";
 	protected QueryServiceAsync queryService;
 	protected WorldMapSectionView view;
-	protected WorldMapPresenter worldmap;
+	protected MapPresenter worldmap;
 	protected FilterBarPresenter filterbar;
 	
 	WorldMapSection(String sectionName, QueryServiceAsync queryService) {
@@ -29,7 +29,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 
 	@Override
 	void init() {
-		this.worldmap = new WorldMapPresenter();
+		this.worldmap = new MapPresenter(new WorldMapView());
 		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
 		
 		this.filterbar.addFilterFor(new MovieYear("0"), new FilterListBoxView());
