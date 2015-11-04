@@ -28,6 +28,8 @@ public class TableSection extends Section {
 	void init() {
 		
 		// this.view.add(this.getCompositeView());
+		this.view.loadTable();
+		this.view.showMovies();
 	}
 	
 	@Override
