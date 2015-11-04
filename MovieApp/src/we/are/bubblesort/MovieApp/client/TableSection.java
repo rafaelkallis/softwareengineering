@@ -1,5 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
@@ -25,6 +26,8 @@ public class TableSection extends Section {
 
 	@Override
 	void init() {
+		
+		// this.view.add(this.getCompositeView());
 	}
 	
 	@Override
@@ -52,11 +55,13 @@ public class TableSection extends Section {
 				/*
 				 * handle Failure
 				 */
+				Window.alert("That failed: Movie Database cannot be accessed.");
 			}
 			public void onSuccess(Collection<Movie> result){
 				/*
 				 * to something with result
 				 */
+				// get MovieCollection datas
 			}
 		});
 	}
