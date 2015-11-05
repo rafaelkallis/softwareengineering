@@ -61,7 +61,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	}
 	
 	public void initialize_worldStatisticsModelCommand(){
-		worldStatisticsModelCommandPre = "SELECT `countries`.`iso3166-1-alpha-2`, `countries`.`iso3166-1-numeric`, COUNT(`movie_countries`.`movie_country`) As NumberOfMovies, `countries`.`center-latitude` AS `center-lat`, `countries`.`center-longitude` AS `center-long` FROM `movies` " +
+		worldStatisticsModelCommandPre = "SELECT `countries`.`iso3166-1-alpha-2`, COUNT(`movie_countries`.`movie_country`) As NumberOfMovies, `countries`.`center-latitude` AS `center-lat`, `countries`.`center-longitude` AS `center-long` FROM `movies` " +
 										 "JOIN `movie_countries` " + 
 										 "ON `movie_countries`.`movie_id` = `movies`.`id`" +
 										 "JOIN `freebase_countries_to_common_countries`" +

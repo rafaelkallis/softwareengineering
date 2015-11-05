@@ -91,19 +91,18 @@ public class WorldMapView extends View implements MapViewInterface {
 	        var spot = spotdata
 	        	.enter()
 	            .append("g")
-	            .attr("class", "spot");
+	            .attr("class", function(d) { return "spot spot-" + d.iso_alpha; });
 	
 	        spot
 	            .append("circle")
-	            .style("fill", "orange")
-	            .attr("r", 10);
+	            .attr("r", 12);
 	
 	        spot
 	          .append("text")
-	          .attr("x", -5)
-	          .attr("y", 5)
+     		  .attr("text-anchor", "middle")
+     		  .attr("y", 4)
 	          .text(function(d) { return d.n_movies; })
-	          .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 20) / this.getComputedTextLength() * 24) + "px"; });
+	          .style("font-size", "12px");
 
 	        spot.attr("transform", numberoverlay.on("transformfunctionstore"));
             spotdata.exit().remove();
@@ -144,7 +143,9 @@ public class WorldMapView extends View implements MapViewInterface {
 	            .enter()
 	              .append("path")
 	              .attr("class", "country")
-	              .attr("d", path);
+	              .attr("d", path)
+	              .on("mouseover", function(d) { d3.select(this).attr("class", "country active"); svg.selectAll("g.spot-" + d.id).attr("class", "spot spot-" + d.id + " active"); })
+	              .on("mouseout", function(d) { d3.select(this).attr("class", "country"); svg.selectAll("g.spot-" + d.id).attr("class", "spot spot-" + d.id); });
 	              
         	var bounds = g[0][0].getBBox(),
               scale = .9 / Math.max(bounds.width / width, bounds.height / height),
