@@ -43,6 +43,7 @@ public class WorldMapView extends View implements MapViewInterface {
 					@Override
 					public void onSuccess(Void result) {
 						setupMap(topologyUrl, mainPanel.getElement());
+						update();
 					}
 					
 				}).inject();
@@ -76,8 +77,37 @@ public class WorldMapView extends View implements MapViewInterface {
 	}-*/;
 
 	private static native void injectMapData(Element parent, JsArray<JavaScriptObject> data) /*-{
-		console.log(data);
-		d3.select(parent).select("g.numberoverlay").selectAll("g").data(data);
+		if (d3) {
+			var numberoverlay = d3.select(parent).select("g.numberoverlay");
+			
+			if (!numberoverlay.size()) return;
+			
+	        var spotdata = numberoverlay.selectAll("g")
+	          .data([]).exit().remove();
+			
+	        spotdata = numberoverlay.selectAll("g")
+	          .data(data, function(d) { return d.iso_alpha; });
+	          
+	        var spot = spotdata
+	        	.enter()
+	            .append("g")
+	            .attr("class", "spot");
+	
+	        spot
+	            .append("circle")
+	            .style("fill", "orange")
+	            .attr("r", 10);
+	
+	        spot
+	          .append("text")
+	          .attr("x", -5)
+	          .attr("y", 5)
+	          .text(function(d) { return d.n_movies; })
+	          .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 20) / this.getComputedTextLength() * 24) + "px"; });
+
+	        spot.attr("transform", numberoverlay.on("transformfunctionstore"));
+            spotdata.exit().remove();
+		}
 	}-*/;
 
 	private static native void setupMap(String topologyUrl, Element parent) /*-{
@@ -122,14 +152,24 @@ public class WorldMapView extends View implements MapViewInterface {
 		
        		g.attr("transform", "translate(" + translate.join(",") + ")scale(" + scale + ")");
        		
+       		numberoverlay = svg.append("g").attr("class", "numberoverlay");
+       		
+            numberoverlay.on("transformfunctionstore", transform);
+            
 	        zoom = d3.behavior.zoom()
 	          .x(X).y(Y).translate(translate).scale(scale)
 	          .on("zoom",function() {
 	             g.attr("transform","translate("+ 
 	                d3.event.translate.join(",")+")scale("+d3.event.scale+")");
+	             
+             	 numberoverlay.selectAll("g").attr("transform", transform);
 	            });
-	
+	            
 	        svg.call(zoom);
+	                  
+            function transform(d) {
+            	return "translate("+X(projection([d.longitude, d.latitude])[0])+", "+Y(projection([d.longitude, d.latitude])[1])+")"
+            }
 	   	});
 	}-*/;
 

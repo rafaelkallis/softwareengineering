@@ -1,5 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
+import com.google.gwt.core.shared.GWT;
 import com.google.gwt.user.client.ui.Composite;
 
 import we.are.bubblesort.MovieApp.shared.MovieYear;
