@@ -282,7 +282,6 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 				Integer iso_numeric = rs.getInt(WorldStatisticsModel.iso_numeric_DbLabelName);
 				Integer n_movies 	= rs.getInt(WorldStatisticsModel.n_movies_DbLabelName);
 				worldStats.add(new WorldStatisticsModelEntry(iso_alpha,iso_numeric,n_movies));
-				System.out.println(iso_alpha+"\t"+iso_numeric+"\t"+n_movies);
 			}
 			
 			rs.close();
