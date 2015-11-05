@@ -1,2 +1,2 @@
 serviceClass: we.are.bubblesort.MovieApp.client.QueryService
-path: 4ABADA747EED0638509DAFBFAA3BD86C.gwt.rpc
+path: E025A6C82C992435562AEE4E826EB364.gwt.rpc
