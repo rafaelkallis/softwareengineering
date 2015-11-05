@@ -1,10 +1,12 @@
 package we.are.bubblesort.MovieApp.server;
 
 import we.are.bubblesort.MovieApp.client.QueryService;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieID;
@@ -18,6 +20,7 @@ import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModelEntry;
 import we.are.bubblesort.MovieApp.shared.Movie;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 /**
@@ -49,7 +52,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 			reverseQueryStatements = new HashMap<String,String>();
 			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+movie_table+" ORDER BY `"+MovieID.dbLabelName		+"`");
 			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieYear.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT LEFT(`"+MovieYear.dbLabelName+"`, 4) as `movie_release_year` 	FROM "+movie_table+" ORDER BY `"+MovieYear.dbLabelName	+"` DESC");
 			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieLanguage.dbLabelName+"`");
 			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+movie_table+" ORDER BY `"+MovieCountry.dbLabelName	+"`");
 			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
@@ -58,14 +61,15 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	}
 	
 	public void initialize_worldStatisticsModelCommand(){
-		worldStatisticsModelCommandPre 	= "SELECT `freebase_countries_to_common_countries`.`iso3166-1-alpha-2`, `countries`.`iso3166-1-numeric`, COUNT(`movie_countries`.`movie_country`) AS NumberOfMovies FROM `movie_countries` "
-										+ "INNER JOIN `freebase_countries_to_common_countries` "
-										+ "ON `movie_countries`.`movie_country` = `freebase_countries_to_common_countries`.`freebase_country_name` "
-										+ "INNER JOIN `countries`"
-										+ "ON `freebase_countries_to_common_countries`.`iso3166-1-alpha-2` = `countries`.`iso3166-1-alpha-2` "
-										+ "WHERE 1 ";
+		worldStatisticsModelCommandPre = "SELECT `countries`.`iso3166-1-alpha-2`, `countries`.`iso3166-1-numeric`, COUNT(`movie_countries`.`movie_country`) As NumberOfMovies, `countries`.`center-latitude` AS `center-lat`, `countries`.`center-longitude` AS `center-long` FROM `movies` " +
+										 "JOIN `movie_countries` " + 
+										 "ON `movie_countries`.`movie_id` = `movies`.`id`" +
+										 "JOIN `freebase_countries_to_common_countries`" +
+										 "ON `movie_countries`.`movie_country` = `freebase_countries_to_common_countries`.`freebase_country_name` " +
+										 "JOIN `countries` " +
+										 "ON `countries`.`iso3166-1-alpha-2` = `freebase_countries_to_common_countries`.`iso3166-1-alpha-2` ";
 		
-		worldStatisticsModelCommandPost = "GROUP BY `iso3166-1-alpha-2`;";
+		worldStatisticsModelCommandPost = "GROUP BY `countries`.`iso3166-1-alpha-2`;";
 	}
 	
 	/*
@@ -246,7 +250,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 		ResultSet rs 					= null;
 		String statement 				= "";		
 		int i							= 1;
-		
+
 		try{
 			worldStats = new WorldStatisticsModel();
 			statement += worldStatisticsModelCommandPre;
@@ -255,9 +259,13 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 				// Insert Placeholders
 				for (MovieAttribute filter : filterSet) {
 					if (filter.dbLabelName.equals(MovieTitle.dbLabelName)) {
-						statement += (" AND " + MovieTitle.dbLabelName + " LIKE ? ");
+						statement += (" AND `movies`." + MovieTitle.dbLabelName + " LIKE ? ");
 					} else {
-						statement += (" AND " + filter.dbLabelName + "= ? ");
+						// this will break for some movieattributes...
+						// (as they are not in the movies-table necessarily)
+						// a more sophisitacted solution is desirable, but for sprint 1
+						// we go with it
+						statement += (" AND `movies`." + filter.dbLabelName + "= ? ");
 					}
 				} 
 			}
@@ -281,7 +289,9 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 				String iso_alpha 	= rs.getString(WorldStatisticsModel.iso_alpha_DbLabelName);
 				Integer iso_numeric = rs.getInt(WorldStatisticsModel.iso_numeric_DbLabelName);
 				Integer n_movies 	= rs.getInt(WorldStatisticsModel.n_movies_DbLabelName);
-				worldStats.add(new WorldStatisticsModelEntry(iso_alpha,iso_numeric,n_movies));
+				Float longitude 	= rs.getFloat(WorldStatisticsModel.longitude_DbLabelName);
+				Float latitude		= rs.getFloat(WorldStatisticsModel.latitude_DbLabelName);
+				worldStats.add(new WorldStatisticsModelEntry(iso_alpha,iso_numeric,n_movies, latitude, longitude));
 			}
 			
 			rs.close();
