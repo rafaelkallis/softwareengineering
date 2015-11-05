@@ -151,6 +151,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 * @param limit
 	 * @param offset (limit has to be > 0)
 	 * @returns OrderedSet<MovieAttribute>
+	 * @pre attribute != null
 	 */
 	@Override
 	public OrderedSet<MovieAttribute> getAttributeSet(MovieAttribute attribute, int limit, int offset){
