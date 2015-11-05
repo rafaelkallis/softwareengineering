@@ -2,6 +2,10 @@ package we.are.bubblesort.MovieApp.client;
 
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
+import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
+
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
 public class MapPresenter extends Presenter {
@@ -14,17 +18,18 @@ public class MapPresenter extends Presenter {
 	}
 
 	public void loadNewData(UnorderedSet<MovieAttribute> filterSet) {
-		/*
-		queryService.getMovieCollection(filterSet,0,0, new AsyncCallback<Collection<Movie>>(){
-			public void onFailure(Throwable caught){
-				Window.alert("Could not fetch new worldmap data.");
+		queryService.getWorldStatisticsModel(filterSet, new AsyncCallback<WorldStatisticsModel>(){
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Could not load worldmap data.");
 			}
-			public void onSuccess(Collection<Movie> result){
-				Window.alert("That worked.");
+
+			@Override
+			public void onSuccess(WorldStatisticsModel result) {
+				view.setModel(result);
+				view.update();
 			}
 		});
-		*/
-		
 	}
 
 	@Override

@@ -1,8 +1,11 @@
 package we.are.bubblesort.MovieApp.client;
 
-import we.are.bubblesort.MovieApp.shared.WorldStatModel;
+import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
+import we.are.bubblesort.MovieApp.shared.WorldStatisticsModelEntry;
 
 import com.google.gwt.core.client.Callback;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.Window;
@@ -15,7 +18,7 @@ import com.google.gwt.user.client.ui.Panel;
  */
 
 public class WorldMapView extends View implements MapViewInterface {
-	protected WorldStatModel model = new WorldStatModel();
+	protected WorldStatisticsModel model = new WorldStatisticsModel();
 	final static String topologyUrl = "js/ne_110m_admin_0_countries_wo_antarctica.json";
 	final static String d3LibUrl = "js/d3.v3.min.js";
 	final static String topoLibUrl = "js/topojson.v0.min.js";
@@ -46,6 +49,36 @@ public class WorldMapView extends View implements MapViewInterface {
 			}
 		}).inject();
 	}
+	
+	public void update() {
+		JsArray<JavaScriptObject> json = JavaScriptObject.createArray().cast();
+		
+		for (WorldStatisticsModelEntry entry : this.model) {
+			json.push(getStatisticsModelEntryJSObject(
+					entry.iso_alpha,
+					entry.iso_numeric.toString(),
+					entry.n_movies.toString(),
+					entry.latitude.toString(),
+					entry.longitude.toString()));
+		}
+		
+		injectMapData(this.mainPanel.getElement(), json);
+	}
+	
+	private static native JavaScriptObject getStatisticsModelEntryJSObject(
+			String 				iso_alpha,
+			String 				iso_numeric,
+			String 				n_movies,
+			String				latitude,
+			String				longitude
+			)/*-{
+		return {iso_alpha: iso_alpha, iso_numeric: iso_numeric, n_movies: n_movies, latitude: latitude, longitude: longitude};
+	}-*/;
+
+	private static native void injectMapData(Element parent, JsArray<JavaScriptObject> data) /*-{
+		console.log(data);
+		d3.select(parent).select("g.numberoverlay").selectAll("g").data(data);
+	}-*/;
 
 	private static native void setupMap(String topologyUrl, Element parent) /*-{
 		d3.json(topologyUrl, function(topology) {
@@ -101,8 +134,7 @@ public class WorldMapView extends View implements MapViewInterface {
 	}-*/;
 
 	@Override
-	public void setModel(WorldStatModel model) {
+	public void setModel(WorldStatisticsModel model) {
 		this.model = model;
-
 	}
 }

@@ -59,7 +59,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	}
 	
 	public void initialize_worldStatisticsModelCommand(){
-		worldStatisticsModelCommandPre 	= "SELECT `freebase_countries_to_common_countries`.`iso3166-1-alpha-2`, `countries`.`iso3166-1-numeric`, COUNT(`movie_countries`.`movie_country`) AS NumberOfMovies FROM `movie_countries` "
+		worldStatisticsModelCommandPre 	= "SELECT `freebase_countries_to_common_countries`.`iso3166-1-alpha-2`, `countries`.`iso3166-1-numeric`, COUNT(`movie_countries`.`movie_country`) AS NumberOfMovies, `countries`.`center-latitude` AS `center-lat`, `countries`.`center-longitude` AS `center-long` FROM `movie_countries` "
 										+ "INNER JOIN `freebase_countries_to_common_countries` "
 										+ "ON `movie_countries`.`movie_country` = `freebase_countries_to_common_countries`.`freebase_country_name` "
 										+ "INNER JOIN `countries`"
@@ -282,7 +282,9 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 				String iso_alpha 	= rs.getString(WorldStatisticsModel.iso_alpha_DbLabelName);
 				Integer iso_numeric = rs.getInt(WorldStatisticsModel.iso_numeric_DbLabelName);
 				Integer n_movies 	= rs.getInt(WorldStatisticsModel.n_movies_DbLabelName);
-				worldStats.add(new WorldStatisticsModelEntry(iso_alpha,iso_numeric,n_movies));
+				Float longitude 	= rs.getFloat(WorldStatisticsModel.longitude_DbLabelName);
+				Float latitude		= rs.getFloat(WorldStatisticsModel.latitude_DbLabelName);
+				worldStats.add(new WorldStatisticsModelEntry(iso_alpha,iso_numeric,n_movies, latitude, longitude));
 			}
 			
 			rs.close();
