@@ -2,6 +2,7 @@ package we.are.bubblesort.MovieApp.client;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.Window;
@@ -12,6 +13,8 @@ public class FilterPresenter extends Presenter {
 	protected FilterViewInterface view;
 	protected MovieAttribute attribute;
 	protected QueryServiceAsync queryService;
+	protected String initialValue;
+	protected Boolean isLoaded = false;
 	
 	public FilterPresenter(MovieAttribute attribute, QueryServiceAsync queryService, FilterViewInterface view) {
 		this.view = view;
@@ -40,12 +43,27 @@ public class FilterPresenter extends Presenter {
 		return this.attribute.value;
 	}
 	
+	public void setValue(String value) {
+		if (this.isLoaded) {
+			this.view.setValue(value);
+			this.readValue();
+			this.fireEvent(new FilterChangedEvent());
+		}
+		else {
+			this.initialValue = value;
+		}
+	}
+	
 	private void fillViewValues(Collection<MovieAttribute> values) {
 		if (this.view instanceof FilterSelectableViewInterface) {
 			FilterSelectableViewInterface selectableView = (FilterSelectableViewInterface)this.view;
 			
 			for (MovieAttribute val : values) {
 				selectableView.addItem(val.displayName, val.displayName);
+			}
+			
+			if (this.initialValue != null) {
+				this.setValue(this.initialValue);
 			}
 		}
 	}
@@ -60,6 +78,7 @@ public class FilterPresenter extends Presenter {
 
 			@Override
 			public void onSuccess(Collection<MovieAttribute> result) {
+				isLoaded = true;
 				fillViewValues(result);
 			}
 			

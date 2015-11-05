@@ -49,6 +49,33 @@ html {
 	stroke: #8FDBFF;
 	stroke-width: 0.5px;
 	fill: #2F383D;
+	transition:fill 0.2s ease;
+}
+
+.section .mapview path.country.active {
+	fill: #484e55;
+}
+
+.section .mapview .spot circle, 
+.section .mapview .spot text {
+	transition:transform 0.2s ease;
+	pointer-events:none;
+}
+
+.section .mapview .spot.active circle, 
+.section .mapview .spot.active text {
+	transform:scale(1.5);
+}
+
+.section .mapview .spot circle {
+	stroke-width: 0.5px;
+    stroke: #e48806;
+    fill: #faa123!important;
+}
+
+.section .mapview .spot text {
+	fill:white;
+	pointer-events:none;
 }
 
 .section-worldmap .worldmap {

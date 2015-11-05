@@ -1,5 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
+import java.util.Date;
+
 import com.google.gwt.user.client.ui.Composite;
 
 import we.are.bubblesort.MovieApp.shared.MovieYear;
@@ -26,12 +28,18 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		this.worldmap = new MapPresenter(this.queryService, new WorldMapView());
 		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
 		
-		this.filterbar.addFilterFor(new MovieYear("0"), new FilterListBoxView());
+		FilterPresenter yearFilter = new FilterPresenter(new MovieYear("0"), queryService, new FilterListBoxView());
+		this.filterbar.addFilter(yearFilter);
 
 		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 		
 		this.view.worldmap.add(this.worldmap.getCompositeView());
 		this.view.toolbar.add(this.filterbar.getCompositeView());
+		
+		// set yearfilter to current year
+		@SuppressWarnings("deprecation")
+		int year = new Date().getYear();
+		yearFilter.setValue(Integer.toString(year + 1900));
 	}
 
 	@Override
