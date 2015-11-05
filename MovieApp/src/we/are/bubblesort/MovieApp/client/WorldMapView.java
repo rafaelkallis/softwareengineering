@@ -50,30 +50,30 @@ public class WorldMapView extends View implements MapViewInterface {
 	private static native void setupMap(String topologyUrl, Element parent) /*-{
 		d3.json(topologyUrl, function(topology) {
 	        var map = parent;
-	        var width = map.clientWidth;
-	        var height = map.clientHeight;
+	        var width;
+	        var height;
 	
-	        var X = d3.scale.linear()
-	            .domain([0,width])
-	            .range([0, width])
-	        var Y = d3.scale.linear()
-	            .domain([0,height])
-	            .range([0, height])
-	
+	        var X = d3.scale.linear();
+	        var Y = d3.scale.linear();
+
+	        var svg = d3.select(map).append("svg");
 	        var projection = d3.geo.mercator();
+	        var path = d3.geo.path().projection(projection);
 	
-	        window.projection = projection;
-	        
-	        var svg = d3.select(map).append("svg")
-	            .attr("width", width)
-	            .attr("height", height);
+	        var size = function() {
+	          width = map.clientWidth;
+	          height = map.clientHeight;
 	
-	        var path = d3.geo.path()
-	            .projection(projection);
+	          X.domain([0,width]).range([0, width])
+	          Y.domain([0,height]).range([0, height])
 	
-	        var g = svg.append("g");
+	          svg.attr("width", width).attr("height", height);
+	        }
 	
-	        var layer = svg.append("g");
+	        d3.select($wnd).on('resize', size);
+	        size();
+		    
+		    var g = svg.append("g");
 	
 	        g.selectAll("path")
 	            .data(topojson.object(topology, topology.objects.countries)
@@ -82,9 +82,15 @@ public class WorldMapView extends View implements MapViewInterface {
 	              .append("path")
 	              .attr("class", "country")
 	              .attr("d", path);
-	
+	              
+        	var bounds = g[0][0].getBBox(),
+              scale = .9 / Math.max(bounds.width / width, bounds.height / height),
+              translate = [width / 2 - scale * bounds.x - scale * (bounds.width/2), height / 2 - scale * bounds.y - scale*(bounds.height / 2)];
+		
+       		g.attr("transform", "translate(" + translate.join(",") + ")scale(" + scale + ")");
+       		
 	        zoom = d3.behavior.zoom()
-	          .x(X).y(Y)
+	          .x(X).y(Y).translate(translate).scale(scale)
 	          .on("zoom",function() {
 	             g.attr("transform","translate("+ 
 	                d3.event.translate.join(",")+")scale("+d3.event.scale+")");
