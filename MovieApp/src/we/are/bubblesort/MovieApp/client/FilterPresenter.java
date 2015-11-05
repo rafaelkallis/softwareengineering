@@ -1,11 +1,12 @@
 package we.are.bubblesort.MovieApp.client;
 
-import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.MovieYear;
+import we.are.bubblesort.MovieApp.shared.OrderedSet;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
 public class FilterPresenter extends Presenter {
@@ -17,7 +18,7 @@ public class FilterPresenter extends Presenter {
 		this.view = view;
 		this.attribute = attribute;
 		this.queryService = queryService;
-		this.fillViewValues();
+		this.loadValues();
 		
 		this.view.addChangeHandler(new ChangeHandler() {
 			@Override
@@ -40,32 +41,30 @@ public class FilterPresenter extends Presenter {
 		return this.attribute.value;
 	}
 	
-	private void fillViewValues() {
+	private void fillViewValues(OrderedSet<MovieAttribute> values) {
 		if (this.view instanceof FilterSelectableViewInterface) {
-			FilterSelectableViewInterface seletableView = (FilterSelectableViewInterface)this.view;
-			Collection<MovieAttribute> values = this.getFilterValues();
+			FilterSelectableViewInterface selectableView = (FilterSelectableViewInterface)this.view;
 			
 			for (MovieAttribute val : values) {
-				seletableView.addItem(val.displayName, val.displayName);
+				selectableView.addItem(val.displayName, val.displayName);
 			}
 		}
 	}
 
-	private Collection<MovieAttribute> getFilterValues() {
-		// MOCK until Services work
-		Collection<MovieAttribute> values = new Collection<MovieAttribute>();
-		values.add(new MovieYear("1995"));
-		values.add(new MovieYear("1996"));
-		values.add(new MovieYear("1997"));
-		values.add(new MovieYear("1998"));
-		values.add(new MovieYear("1999"));
-		values.add(new MovieYear("2000"));
-		values.add(new MovieYear("2001"));
-		values.add(new MovieYear("2002"));
-		values.add(new MovieYear("2003"));
-		values.add(new MovieYear("2004"));
-		
-		return values;
+	private void loadValues() {
+		this.queryService.getAttributeSet(this.attribute, 0, 0, new AsyncCallback<OrderedSet<MovieAttribute>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Could not load values for attribute");
+			}
+
+			@Override
+			public void onSuccess(OrderedSet<MovieAttribute> result) {
+				fillViewValues(result);
+			}
+			
+		});
 	}
 
 	@Override

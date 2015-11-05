@@ -53,7 +53,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 			reverseQueryStatements = new HashMap<String,String>();
 			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+movie_table+" ORDER BY `"+MovieID.dbLabelName		+"`");
 			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieYear.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT LEFT(`"+MovieYear.dbLabelName+"`, 4) as `movie_release_year` 	FROM "+movie_table+" ORDER BY `"+MovieYear.dbLabelName	+"` DESC");
 			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieLanguage.dbLabelName+"`");
 			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+movie_table+" ORDER BY `"+MovieCountry.dbLabelName	+"`");
 			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
