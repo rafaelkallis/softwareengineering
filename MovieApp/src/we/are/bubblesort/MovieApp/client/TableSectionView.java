@@ -37,8 +37,8 @@ public class TableSectionView extends SectionView {
 	public void loadTable() {
 		
 		// Create table (23x5) for film data.
-	    FlexTable.setWidget(0, 0, new Button("Filter")); //(row, column, widget to add)
-	    FlexTable.setWidget(0, 1, new Button("Export"));
+	    FlexTable.setWidget(0, 0, filterButton); //(row, column, widget to add)
+	    FlexTable.setWidget(0, 1, exportButton);
 		FlexTable.setText(1, 0, "Titel"); //(row, column, text to be displayed)
 	    FlexTable.setText(1, 1, "Land");
 	    FlexTable.setText(1, 2, "Jahr");
@@ -49,7 +49,13 @@ public class TableSectionView extends SectionView {
 	    FlexTable.setWidget(22, 4, nextButton);
 
 	    // Add styles to elements in the movie list table.
-		FlexTable.setCellPadding(6);
+		FlexTable.setCellPadding(0); // in pixels
+		FlexTable.getFlexCellFormatter().setColSpan(0, 2, 4);
+		FlexTable.getFlexCellFormatter().setColSpan(22, 1, 4);
+		
+		
+		// Add movie table to mainPanel
+		mainPanel.add(FlexTable);
 	}
 	
 	public void showMovies() {
