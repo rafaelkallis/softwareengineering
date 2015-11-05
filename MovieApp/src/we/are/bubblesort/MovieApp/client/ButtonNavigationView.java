@@ -19,13 +19,14 @@ public class ButtonNavigationView extends View implements NavigationViewInterfac
 		this.mainPanel = new FlowPanel();
 		
 		initWidget(this.mainPanel);
-		setStyleName("button-navigation");
+		setStyleName("button-navigation btn-group");
 	}
 	
 	@Override
 	public void addItem(NavigationViewItem item) {
 		Button button = new Button();
 		button.setText(item.getDisplayName());
+		button.addStyleName("btn navbar-btn btn-default");
 		valueButtonsMapping.put(item.getValue(), button);
 		this.mainPanel.add(button);
 		

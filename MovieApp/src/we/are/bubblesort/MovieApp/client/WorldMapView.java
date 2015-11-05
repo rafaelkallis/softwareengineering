@@ -22,7 +22,7 @@ public class WorldMapView extends View implements MapViewInterface {
 	protected Panel mainPanel = new FlowPanel();
 	
 	WorldMapView() {
-		this.mainPanel.addStyleName("worldmapview");
+		this.mainPanel.addStyleName("mapview worldmapview");
 		initWidget(this.mainPanel);
 		
 		ScriptInjector.fromUrl(d3LibUrl).setCallback(new Callback<Void, Exception>() {
@@ -80,8 +80,8 @@ public class WorldMapView extends View implements MapViewInterface {
 	                  .geometries)
 	            .enter()
 	              .append("path")
-	              .attr("d", path)
-	              .style("fill", "lightgray");
+	              .attr("class", "country")
+	              .attr("d", path);
 	
 	        zoom = d3.behavior.zoom()
 	          .x(X).y(Y)
