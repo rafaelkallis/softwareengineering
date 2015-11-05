@@ -96,14 +96,15 @@ public class WorldMapView extends View implements MapViewInterface {
 	        spot
 	            .append("circle")
 	            .style("fill", "orange")
-	            .attr("r", 10);
+	            .attr("r", 12);
 	
 	        spot
 	          .append("text")
-	          .attr("x", -5)
-	          .attr("y", 5)
+     		  .attr("text-anchor", "middle")
+     		  .style("fill", "white")
+     		  .attr("y", 4)
 	          .text(function(d) { return d.n_movies; })
-	          .style("font-size", function(d) { return Math.min(2 * d.r, (2 * d.r - 20) / this.getComputedTextLength() * 24) + "px"; });
+	          .style("font-size", "12px");
 
 	        spot.attr("transform", numberoverlay.on("transformfunctionstore"));
             spotdata.exit().remove();
