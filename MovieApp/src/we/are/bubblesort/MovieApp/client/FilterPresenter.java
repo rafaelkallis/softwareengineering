@@ -1,8 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
+import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.OrderedSet;
-
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.Window;
@@ -41,7 +40,7 @@ public class FilterPresenter extends Presenter {
 		return this.attribute.value;
 	}
 	
-	private void fillViewValues(OrderedSet<MovieAttribute> values) {
+	private void fillViewValues(Collection<MovieAttribute> values) {
 		if (this.view instanceof FilterSelectableViewInterface) {
 			FilterSelectableViewInterface selectableView = (FilterSelectableViewInterface)this.view;
 			
@@ -52,7 +51,7 @@ public class FilterPresenter extends Presenter {
 	}
 
 	private void loadValues() {
-		this.queryService.getAttributeSet(this.attribute, 0, 0, new AsyncCallback<OrderedSet<MovieAttribute>>() {
+		this.queryService.getAttributeCollection(this.attribute, 0, 0, new AsyncCallback<Collection<MovieAttribute>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -60,7 +59,7 @@ public class FilterPresenter extends Presenter {
 			}
 
 			@Override
-			public void onSuccess(OrderedSet<MovieAttribute> result) {
+			public void onSuccess(Collection<MovieAttribute> result) {
 				fillViewValues(result);
 			}
 			
