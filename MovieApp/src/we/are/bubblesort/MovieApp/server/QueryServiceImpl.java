@@ -17,7 +17,6 @@ import we.are.bubblesort.MovieApp.shared.MovieCountry;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModelEntry;
-import we.are.bubblesort.MovieApp.shared.OrderedSet;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
@@ -154,14 +153,14 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 * @pre attribute != null
 	 */
 	@Override
-	public OrderedSet<MovieAttribute> getAttributeSet(MovieAttribute attribute, int limit, int offset){
-		OrderedSet<MovieAttribute> attributeSet = null;
-		PreparedStatement pst					= null;
-		ResultSet rs							= null;
-		String statement 						= "";
+	public Collection<MovieAttribute> getAttributeCollection(MovieAttribute attribute, int limit, int offset){
+		Collection<MovieAttribute> attributeCollection 	= null;
+		PreparedStatement pst							= null;
+		ResultSet rs									= null;
+		String statement 								= "";
 		
     	try{
-    		attributeSet = new OrderedSet<MovieAttribute>();
+    		attributeCollection = new Collection<MovieAttribute>();
     		
     		if (attribute != null) {
 				statement += this.reverseQueryStatements.get(attribute.dbLabelName);
@@ -176,49 +175,49 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 					case MovieID.dbLabelName:
 						while (rs.next()) {
 							String id = rs.getString(MovieID.dbLabelName);
-							attributeSet.add(new MovieID((id)));
+							attributeCollection.add(new MovieID((id)));
 						}
 						break;
 	
 					case MovieTitle.dbLabelName:
 						while (rs.next()) {
 							String title = rs.getString(MovieTitle.dbLabelName);
-							attributeSet.add(new MovieTitle(title));
+							attributeCollection.add(new MovieTitle(title));
 						}
 						break;
 	
 					case MovieYear.dbLabelName:
 						while (rs.next()) {
 							String year = rs.getString(MovieYear.dbLabelName);
-							attributeSet.add(new MovieYear(year));
+							attributeCollection.add(new MovieYear(year));
 						}
 						break;
 	
 					case MovieLanguage.dbLabelName:
 						while (rs.next()) {
 							String lang = rs.getString(MovieLanguage.dbLabelName);
-							attributeSet.add(new MovieLanguage(lang, lang));
+							attributeCollection.add(new MovieLanguage(lang, lang));
 						}
 						break;
 	
 					case MovieCountry.dbLabelName:
 						while (rs.next()) {
 							String country = rs.getString(MovieCountry.dbLabelName);
-							attributeSet.add(new MovieCountry(country, country));
+							attributeCollection.add(new MovieCountry(country, country));
 						}
 						break;
 	
 					case MovieDuration.dbLabelName:
 						while (rs.next()) {
 							String duration = rs.getString(MovieDuration.dbLabelName);
-							attributeSet.add(new MovieDuration(duration));
+							attributeCollection.add(new MovieDuration(duration));
 						}
 						break;
 	
 					case MovieGenre.dbLabelName:
 						while (rs.next()) {
 							String genre = rs.getString(MovieGenre.dbLabelName);
-							attributeSet.add(new MovieGenre(genre, genre));
+							attributeCollection.add(new MovieGenre(genre, genre));
 						}
 						break;
 						
@@ -232,7 +231,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     		e.printStackTrace();
     	}
     	
-		return attributeSet;
+		return attributeCollection;
 	}
 
 	/*

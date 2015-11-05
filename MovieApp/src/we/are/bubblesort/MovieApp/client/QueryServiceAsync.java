@@ -5,7 +5,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.OrderedSet;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
 
@@ -31,7 +30,7 @@ public interface QueryServiceAsync {
 	 * @param offset
 	 * @param AsyncCallback<OrderedSet<MovieAttribute>> OrderedSet of attributes
 	 */
-	public void getAttributeSet(MovieAttribute attribute, int limit, int offset, 	AsyncCallback<OrderedSet<MovieAttribute>> callback);
+	public void getAttributeCollection(MovieAttribute attribute, int limit, int offset, 	AsyncCallback<Collection<MovieAttribute>> callback);
 	
 	public void getWorldStatisticsModel(UnorderedSet<MovieAttribute> filterSet, AsyncCallback<WorldStatisticsModel> callback);
 }

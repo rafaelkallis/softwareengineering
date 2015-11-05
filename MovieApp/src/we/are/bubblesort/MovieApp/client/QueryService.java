@@ -5,7 +5,6 @@ import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import we.are.bubblesort.MovieApp.shared.OrderedSet;
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
 
@@ -33,7 +32,7 @@ public interface QueryService extends RemoteService {
 	 * @param offset
 	 * @returns OrderedSet<MovieAttribute> OrderedSet of attributes
 	 */
-	public OrderedSet<MovieAttribute> getAttributeSet(MovieAttribute attribute, 		int limit, int offset);
+	public Collection<MovieAttribute> getAttributeCollection(MovieAttribute attribute, 		int limit, int offset);
 	
 	public WorldStatisticsModel getWorldStatisticsModel(UnorderedSet<MovieAttribute> filterSet);
 }
