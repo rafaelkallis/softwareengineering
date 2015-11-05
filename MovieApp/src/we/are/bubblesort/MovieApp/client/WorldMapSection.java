@@ -1,14 +1,8 @@
 package we.are.bubblesort.MovieApp.client;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
-import we.are.bubblesort.MovieApp.shared.Collection;
-import we.are.bubblesort.MovieApp.shared.Movie;
-import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieYear;
-import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 public class WorldMapSection extends Section implements FilterChangedEventHandler {
 	static final String defaultName = "Karte";
@@ -29,11 +23,11 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 
 	@Override
 	void init() {
-		this.worldmap = new MapPresenter(new WorldMapView());
+		this.worldmap = new MapPresenter(this.queryService, new WorldMapView());
 		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
 		
 		this.filterbar.addFilterFor(new MovieYear("0"), new FilterListBoxView());
-		
+
 		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 		
 		this.view.worldmap.add(this.worldmap.getCompositeView());
@@ -42,10 +36,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 
 	@Override
 	public void onFilterValueChanged() {
-		UnorderedSet<MovieAttribute> attributes = this.filterbar.getFilterValues();
-		// Call to RPC Service for new data.
-		Window.alert("New Data is being fetched");
-		callQueryService(attributes);
+		this.worldmap.loadNewData(this.filterbar.getFilterValues());
 	}
 	
 	@Override
@@ -66,16 +57,5 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 	@Override
 	void show() {
 		this.view.show();
-	}
-	
-	public void callQueryService(UnorderedSet<MovieAttribute> filterSet){
-		queryService.getMovieCollection(filterSet,0,0, new AsyncCallback<Collection<Movie>>(){
-			public void onFailure(Throwable caught){
-				Window.alert("That failed");
-			}
-			public void onSuccess(Collection<Movie> result){
-				Window.alert("That worked");
-			}
-		});
 	}
 }
