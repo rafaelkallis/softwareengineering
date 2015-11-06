@@ -25,3 +25,7 @@ gwt-unitCache/
 
 #gwt junit compilation files
 www-test/
+
+MovieApp/war/movieapp/*.cache.js
+
+MovieApp/war/WEB-INF/deploy/movieapp/symbolMaps/*.symbolMap

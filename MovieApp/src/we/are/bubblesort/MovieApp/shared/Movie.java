@@ -42,4 +42,35 @@ public class Movie implements IsSerializable{
 	public int hashCode(){
 		return id.hashCode();
 	}
+/*	
+	public MovieID getID() {
+		
+		return this.id;
+	}
+
+	public MovieTitle getTitle() {
+		
+		return this.title;
+	}
+	
+	public MovieYear getYear() {
+		
+		return this.year;
+	}
+
+	public UnorderedSet getLanguage() {
+		
+		return this.languages;
+	}
+	
+	public UnorderedSet getCountry() {
+		
+		return this.countries;
+	}
+	
+	public MovieDuration getDuration() {
+		
+		return this.duration;
+	}
+*/
 }
