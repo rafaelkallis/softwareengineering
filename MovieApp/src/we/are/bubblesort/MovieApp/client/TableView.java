@@ -11,6 +11,7 @@ public class TableView extends View {
 	TableView() {
 		FlowPanel panel = new FlowPanel();
 		
+		this.table.addStyleName("table");
 		panel.add(this.table);
 		
 		initWidget(panel);

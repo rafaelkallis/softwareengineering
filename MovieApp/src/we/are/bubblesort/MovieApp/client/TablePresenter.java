@@ -28,8 +28,6 @@ public class TablePresenter extends Presenter {
 		headers.add("Laenge");
 		
 		this.view.setHeader(headers);
-		
-		loadTable();
 	}
 	
 	public void loadTable() {
