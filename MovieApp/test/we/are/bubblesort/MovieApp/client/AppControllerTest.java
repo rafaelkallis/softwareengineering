@@ -1,12 +1,14 @@
 package we.are.bubblesort.MovieApp.client;
-import com.google.gwt.junit.client.GWTTestCase;
 
-public class AppControllerTest extends GWTTestCase {
+import static org.junit.Assert.*;
 
-	public String getModuleName() {
-		return "we.are.bubblesort.MovieApp";
-	}
+import org.junit.*;
+
+
+public class AppControllerTest {
+
 	
+	@Test
 	public void testSimple() {
 		assertTrue(true);
 	}
