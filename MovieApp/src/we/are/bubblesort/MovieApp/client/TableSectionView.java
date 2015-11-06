@@ -7,6 +7,8 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.Widget;
+import we.are.bubblesort.MovieApp.shared.Collection;
+import we.are.bubblesort.MovieApp.shared.Movie;
 
 public class TableSectionView extends SectionView {
 
@@ -16,80 +18,41 @@ public class TableSectionView extends SectionView {
 	interface TableSectionViewUiBinder extends
 			UiBinder<Widget, TableSectionView> {
 	}
-	
+
 	@UiField Panel mainPanel;
-	// not necessary anymore @UiField Panel toolbar; -> remove from xml too
-	// not necessary anymore @UiField Panel changeSideToolbar; -> remove from xml too
+	@UiField Panel tablePanel;
 	
-	private Button filterButton = new Button("Titel"); // Filter button (to made scrolldrown) and "Titel" (or id?) as default 
-	private Button exportButton = new Button("Export");
-	
+	protected TablePresenter table = new TablePresenter();
+		
 	private FlexTable FlexTable = new FlexTable();
-	
-	private Button nextButton = new Button("Weiter");
-	private Button previousButton = new Button("Zurück");
-	
 
 	public TableSectionView() {
 		initWidget(uiBinder.createAndBindUi(this));
 	}
 	
 	public void loadTable() {
-		
-		// Create table (23x5) for film data.
-	    FlexTable.setWidget(0, 0, filterButton); //(row, column, widget to add)
-	    FlexTable.setWidget(0, 1, exportButton);
-		FlexTable.setText(1, 0, "Titel"); //(row, column, text to be displayed)
-	    FlexTable.setText(1, 1, "Land");
-	    FlexTable.setText(1, 2, "Jahr");
-	    FlexTable.setText(1, 3, "Sprache");
-	    FlexTable.setText(1, 4, "Genre");
-	    FlexTable.setText(1, 5, "Dauer");
-	    FlexTable.setWidget(22, 0, previousButton);
-	    FlexTable.setWidget(22, 4, nextButton);
+	    FlexTable.setText(0, 0, "Titel");
+	    FlexTable.setText(0, 1, "Land");
+	    FlexTable.setText(0, 2, "Jahr");
+	    FlexTable.setText(0, 3, "Sprache");
+	    FlexTable.setText(0, 4, "Genre");
+	    FlexTable.setText(0, 5, "Dauer");
 
-	    // Add styles to elements in the movie list table.
-		FlexTable.setCellPadding(0); // in pixels
-		FlexTable.getFlexCellFormatter().setColSpan(0, 2, 4);
-		FlexTable.getFlexCellFormatter().setColSpan(22, 1, 4);
-		
-		
 		// Add movie table to mainPanel
 		mainPanel.add(FlexTable);
 	}
 	
 	public void showMovies() {
-		
-		// handle "nextButtonEvent"
-		for (int i=2; i<22; i++) {
-	    	
-	    	FlexTable.setText(i, 0, ""/*getTitle()*/);
-	    	
-	    }
-	    for (int i=2; i<22; i++) {
-	    	
-	    	FlexTable.setText(i, 1, ""/*getCountry()*/);
-	    	
-	    }
-	    for (int i=2; i<22; i++) {
-	
-	    	FlexTable.setText(i, 2, ""/*getYear()*/);
-	
-	    }
-	    for (int i=2; i<22; i++) {
-	
-	    	FlexTable.setText(i, 3, ""/*getLanguage()*/);
-
-	    }
-	    for (int i=2; i<22; i++) {
-	
-	    	FlexTable.setText(i, 4, ""/*getGenre()*/);
-	
-	    }
-	    for (int i=2; i<22; i++) {
-	    	
-	    	FlexTable.setText(i, 5, ""/*getDuration()*/);
-	
+		Collection<Movie> movies = table.getMovies();
+	    int rownum = 0;
+	    for (Movie movie : movies) {
+	    	FlexTable.setText(rownum, 0, movie.title.displayName);
+	    	FlexTable.setText(rownum, 1, "DAMNIT ALSO COUNTRIES");
+	    	FlexTable.setText(rownum, 2, movie.year.displayName);
+	    	FlexTable.setText(rownum, 3, "GOSHHHHHHH ALSO LANGUAGES");
+	    	FlexTable.setText(rownum, 4, "WE NEED GENRES GENRES FOR THE WORLD");
+	    	FlexTable.setText(rownum, 5, movie.duration.displayName);
+		    rownum++;
 	    }
 	}
 }

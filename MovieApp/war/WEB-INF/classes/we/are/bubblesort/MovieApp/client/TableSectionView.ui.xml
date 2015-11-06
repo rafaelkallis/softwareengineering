@@ -2,12 +2,9 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<g:FlowPanel addStyleNames="section section-table" ui:field="mainPanel" >
-	    <g:FlowPanel addStyleNames="table-toolbar" ui:field="toolbar" >
-	    </g:FlowPanel>
-	    <g:FlowPanel addStyleNames="table-undertoolbar" ui:field="changeSideToolbar" >
-	    </g:FlowPanel>   
 	    <g:HTML>
 	        <h1>TableSection</h1>
 	    </g:HTML>
+	    <g:FlowPanel addStyleNames="table" ui:field="tablePanel"></g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder> 

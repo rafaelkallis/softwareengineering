@@ -12,12 +12,12 @@ import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 public class TableSection extends Section {
 	static final String defaultName = "Tabelle";
 	protected QueryServiceAsync queryService;
-	protected TableSectionView view;
+	protected TableSectionView view = new TableSectionView();
+	protected TablePresenter table = new TablePresenter();
 	
 	TableSection(String sectionName, QueryServiceAsync queryService) {
 		super(sectionName);
 		this.queryService = queryService;
-		this.view = new TableSectionView();
 	}
 	
 	TableSection(QueryServiceAsync queryService) {
@@ -26,11 +26,11 @@ public class TableSection extends Section {
 
 	@Override
 	void init() {
+		this.table = new TablePresenter();
 		
-		// this.view.add(this.getCompositeView());
-		this.view.loadTable();
-		this.view.showMovies();
-	}
+		this.view.tablePanel.add(this.table.getCompositeView());
+		this.table.loadTable();
+	} 
 	
 	@Override
 	public Composite getCompositeView() {
@@ -50,21 +50,5 @@ public class TableSection extends Section {
 	@Override
 	void show() {
 		this.view.show();
-	}
-	public void callQueryService(UnorderedSet<MovieAttribute> filterSet){
-		queryService.getMovieCollection(filterSet, new AsyncCallback<Collection<Movie>>(){
-			public void onFailure(Throwable caught){
-				/*
-				 * handle Failure
-				 */
-				Window.alert("That failed: Movie Database cannot be accessed.");
-			}
-			public void onSuccess(Collection<Movie> result){
-				/*
-				 * to something with result
-				 */
-				// get MovieCollection datas
-			}
-		});
 	}
 }
