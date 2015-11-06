@@ -8,6 +8,8 @@ import com.google.gwt.user.client.ui.Composite;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 public class TablePresenter extends Presenter {
 	private TableView view = new TableView();
@@ -30,14 +32,27 @@ public class TablePresenter extends Presenter {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
 	    	columnValues.add(movie.title.displayName);
-	    	columnValues.add("DAMNIT ALSO COUNTRIES");
+	    	columnValues.add(this.getDisplayableAttribute(movie.countries));
 	    	columnValues.add(movie.year.displayName);
-	    	columnValues.add("GOSHHHHHHH ALSO LANGUAGES");
-	    	columnValues.add("WE NEED GENRES GENRES FOR THE WORLD");
+	    	columnValues.add(this.getDisplayableAttribute(movie.languages));
+	    	columnValues.add(getDisplayableAttribute(movie.genres));
 	    	columnValues.add(movie.duration.displayName);
 		    
 		    this.view.addItem(columnValues);
+		    
 	    }
+	}
+	
+	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
+		
+		ArrayList<String> arr = new ArrayList<String>();
+		
+		for (MovieAttribute attr : attributes) {
+			
+			arr.add(attr.displayName);
+		}
+		
+		return String.join(", ", arr);
 	}
 	
 	@Override
