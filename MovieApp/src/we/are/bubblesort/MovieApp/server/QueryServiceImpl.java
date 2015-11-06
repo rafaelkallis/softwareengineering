@@ -287,11 +287,10 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 
 			while(rs.next()){
 				String iso_alpha 	= rs.getString(WorldStatisticsModel.iso_alpha_DbLabelName);
-				Integer iso_numeric = rs.getInt(WorldStatisticsModel.iso_numeric_DbLabelName);
 				Integer n_movies 	= rs.getInt(WorldStatisticsModel.n_movies_DbLabelName);
 				Float longitude 	= rs.getFloat(WorldStatisticsModel.longitude_DbLabelName);
 				Float latitude		= rs.getFloat(WorldStatisticsModel.latitude_DbLabelName);
-				worldStats.add(new WorldStatisticsModelEntry(iso_alpha,iso_numeric,n_movies, latitude, longitude));
+				worldStats.add(new WorldStatisticsModelEntry(iso_alpha,n_movies, latitude, longitude));
 			}
 			
 			rs.close();

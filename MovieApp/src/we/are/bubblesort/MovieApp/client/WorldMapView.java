@@ -57,7 +57,6 @@ public class WorldMapView extends View implements MapViewInterface {
 		for (WorldStatisticsModelEntry entry : this.model) {
 			json.push(getStatisticsModelEntryJSObject(
 					entry.iso_alpha,
-					entry.iso_numeric.toString(),
 					entry.n_movies.toString(),
 					entry.latitude.toString(),
 					entry.longitude.toString()));
@@ -68,12 +67,11 @@ public class WorldMapView extends View implements MapViewInterface {
 	
 	private static native JavaScriptObject getStatisticsModelEntryJSObject(
 			String 				iso_alpha,
-			String 				iso_numeric,
 			String 				n_movies,
 			String				latitude,
 			String				longitude
 			)/*-{
-		return {iso_alpha: iso_alpha, iso_numeric: iso_numeric, n_movies: n_movies, latitude: latitude, longitude: longitude};
+		return {iso_alpha: iso_alpha, n_movies: n_movies, latitude: latitude, longitude: longitude};
 	}-*/;
 
 	private static native void injectMapData(Element parent, JsArray<JavaScriptObject> data) /*-{
