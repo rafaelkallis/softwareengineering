@@ -261,9 +261,9 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 					if (filter.dbLabelName.equals(MovieTitle.dbLabelName)) {
 						statement += (" AND `movies`." + MovieTitle.dbLabelName + " LIKE ? ");
 					} else {
-						// this will break for some movieattributes...
+						// this will break for some movieAttribute...
 						// (as they are not in the movies-table necessarily)
-						// a more sophisitacted solution is desirable, but for sprint 1
+						// a more sophisticated solution is desirable, but for sprint 1
 						// we go with it
 						statement += (" AND `movies`." + filter.dbLabelName + "= ? ");
 					}

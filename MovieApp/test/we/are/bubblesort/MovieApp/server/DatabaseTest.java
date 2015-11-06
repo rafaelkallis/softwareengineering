@@ -1,11 +1,9 @@
 package we.are.bubblesort.MovieApp.server;
 
+import org.junit.Before;
 import org.junit.Test;
-
 import we.are.bubblesort.MovieApp.server.Database;
-import we.are.bubblesort.MovieApp.shared.*;
 import static org.junit.Assert.*;
-
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,15 +11,32 @@ import java.sql.SQLException;
 
 public class DatabaseTest {
 	
+	protected Database db;
+	final protected String testQuery = "SELECT * FROM `movieapp`.`movies`;";
 
+	
+	@Before
+	public void setUp(){
+		db 						= Database.getInstance();
+	}
+	
 	@Test
-	public void test_database() throws SQLException{
-		Database db			= Database.getInstance();
+	public void test_database_instance() throws SQLException{
 		assertNotNull(db);
+	}
+	
+	
+	@Test
+	public void test_database_prepareStatements() throws SQLException{
+		PreparedStatement pst 	= db.prepareStatement(testQuery);
 		
-		ResultSet rs;
+		assertNotNull(pst);
+	}
+	
+	@Test 
+	public void test_database_execute() throws SQLException{
+		ResultSet rs 			= db.execute(db.prepareStatement(testQuery));
 		
-		rs = db.execute(db.prepareStatement("SELECT * FROM `movieapp`.`movies`;"));
 		assertNotNull(rs);
 		assertTrue(rs.next());
 	}
