@@ -11,7 +11,7 @@ public final class Database {
 	private static Database instance = new Database();
 	
 	private  		Connection 	conn 		= null;
-    private  final 	String 		url  		= "jdbc:mysql://80.74.150.210:3306/movieapp";
+    private  final 	String 		url  		= "jdbc:mysql://movieapp-1121:movieapp/main";
     private  final 	String 		user 		= "se_user";
     private  final 	String 		pass 		= "SEIsAwesome2015";
     
