@@ -79,6 +79,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	 * @param limit
 	 * @param offset (limit has to be > 0)
 	 * @returns Collection<Movie> collection of the queried movies
+	 * @pre filterSet != null
 	 */
 	@Override
 	public Collection<Movie> getMovieCollection(UnorderedSet<MovieAttribute> filterSet, int limit, int offset) {
@@ -129,6 +130,15 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     	   		 * Handle multiple Languages & Countries here
     	   		 * 
     	   		 */
+    	   		languages.add(new MovieLanguage("Dummy","Dummy"));
+    	   		languages.add(new MovieLanguage("Dummy","Dummy"));
+    	   		
+    	   		countries.add(new MovieCountry("Dummy","Dummy"));
+    	   		
+    	   		genres.add(new MovieGenre("Dummy","Dummy"));
+    	   		genres.add(new MovieGenre("Dummy","Dummy"));
+    	   		genres.add(new MovieGenre("Dummy","Dummy"));
+    	   		
     	   		Movie new_movie = new Movie(new MovieID(rs.getString(MovieID.dbLabelName)),
     	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
     	   									new MovieYear(rs.getString(MovieYear.dbLabelName)),
