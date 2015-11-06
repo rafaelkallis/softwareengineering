@@ -13,6 +13,7 @@ import we.are.bubblesort.MovieApp.shared.MovieYear;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 import we.are.bubblesort.MovieApp.shared.MovieLanguage;
 import we.are.bubblesort.MovieApp.shared.MovieDuration;
+import we.are.bubblesort.MovieApp.shared.MovieGenre;
 
 public class TablePresenter extends Presenter {
 	private TableView view = new TableView();
@@ -61,8 +62,8 @@ public class TablePresenter extends Presenter {
 		 
 		Collection<Movie> movies = new Collection<Movie>();
 		 
-		movies.add(new Movie(new MovieID(1), new MovieTitle("Film 1", "Film 1"), new MovieYear(2014, null), new UnorderedSet<MovieLanguage>(), new UnorderedSet<MovieCountry>(), new MovieDuration(197, null)));
-		movies.add(new Movie(new MovieID(2), new MovieTitle("Film 2", "Film 2"), new MovieYear(2008, null), new UnorderedSet<MovieLanguage>(), new UnorderedSet<MovieCountry>(), new MovieDuration(84, null)));
+		movies.add(new Movie(new MovieID(), new MovieTitle("Film 1"), new MovieYear("1999"), new UnorderedSet<MovieLanguage>(), new UnorderedSet<MovieCountry>(), new UnorderedSet<MovieGenre>(), new MovieDuration("3")));
+		movies.add(new Movie(new MovieID(), new MovieTitle("Film 2"), new MovieYear("2000"), new UnorderedSet<MovieLanguage>(), new UnorderedSet<MovieCountry>(), new UnorderedSet<MovieGenre>(), new MovieDuration("33")));
 		 
 		return movies;
 		

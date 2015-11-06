@@ -1,13 +1,18 @@
 package we.are.bubblesort.MovieApp.shared;
 
-public abstract class MovieAttribute implements java.io.Serializable,Comparable<MovieAttribute>{
+import com.google.gwt.user.client.rpc.IsSerializable;
 
-	private static final long serialVersionUID = 7986627264620732095L;
-	public java.io.Serializable value;
+public abstract class MovieAttribute implements IsSerializable,Comparable<MovieAttribute>{
+
+	public String value;
 	public String displayName;
 	public String dbLabelName;
 	
-	public MovieAttribute(java.io.Serializable value,String dbLabelName,String displayName){
+	public MovieAttribute(){
+		
+	}
+	
+	public MovieAttribute(String value,String dbLabelName,String displayName){
 		this.value = value;
 		this.dbLabelName = dbLabelName;
 		this.displayName = displayName;
@@ -15,7 +20,7 @@ public abstract class MovieAttribute implements java.io.Serializable,Comparable<
 	
 	@Override
 	public int compareTo(MovieAttribute a){
-		return value.toString().compareTo(a.toString());
+		return value.compareTo(a.value.toString());
 	}
 	
 	@Override

@@ -2,22 +2,25 @@ package we.are.bubblesort.MovieApp.client;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.MovieYear;
 
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
 public class FilterPresenter extends Presenter {
 	protected FilterViewInterface view;
 	protected MovieAttribute attribute;
 	protected QueryServiceAsync queryService;
+	protected String initialValue;
+	protected Boolean isLoaded = false;
 	
 	public FilterPresenter(MovieAttribute attribute, QueryServiceAsync queryService, FilterViewInterface view) {
 		this.view = view;
 		this.attribute = attribute;
 		this.queryService = queryService;
-		this.fillViewValues();
+		this.loadValues();
 		
 		this.view.addChangeHandler(new ChangeHandler() {
 			@Override
@@ -40,32 +43,46 @@ public class FilterPresenter extends Presenter {
 		return this.attribute.value;
 	}
 	
-	private void fillViewValues() {
+	public void setValue(String value) {
+		if (this.isLoaded) {
+			this.view.setValue(value);
+			this.readValue();
+			this.fireEvent(new FilterChangedEvent());
+		}
+		else {
+			this.initialValue = value;
+		}
+	}
+	
+	private void fillViewValues(Collection<MovieAttribute> values) {
 		if (this.view instanceof FilterSelectableViewInterface) {
-			FilterSelectableViewInterface seletableView = (FilterSelectableViewInterface)this.view;
-			Collection<MovieAttribute> values = this.getFilterValues();
+			FilterSelectableViewInterface selectableView = (FilterSelectableViewInterface)this.view;
 			
 			for (MovieAttribute val : values) {
-				seletableView.addItem(val.displayName, val.displayName);
+				selectableView.addItem(val.displayName, val.displayName);
+			}
+			
+			if (this.initialValue != null) {
+				this.setValue(this.initialValue);
 			}
 		}
 	}
 
-	private Collection<MovieAttribute> getFilterValues() {
-		// MOCK until Services work
-		Collection<MovieAttribute> values = new Collection<MovieAttribute>();
-		values.add(new MovieYear(1995,"1995"));
-		values.add(new MovieYear(1996,"1996"));
-		values.add(new MovieYear(1997,"1997"));
-		values.add(new MovieYear(1998,"1998"));
-		values.add(new MovieYear(1999,"1999"));
-		values.add(new MovieYear(2000,"2000"));
-		values.add(new MovieYear(2001,"2001"));
-		values.add(new MovieYear(2002,"2002"));
-		values.add(new MovieYear(2003,"2003"));
-		values.add(new MovieYear(2004,"2004"));
-		
-		return values;
+	private void loadValues() {
+		this.queryService.getAttributeCollection(this.attribute, 0, 0, new AsyncCallback<Collection<MovieAttribute>>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Could not load values for attribute");
+			}
+
+			@Override
+			public void onSuccess(Collection<MovieAttribute> result) {
+				isLoaded = true;
+				fillViewValues(result);
+			}
+			
+		});
 	}
 
 	@Override

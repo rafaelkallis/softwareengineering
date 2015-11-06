@@ -1,9 +1,11 @@
 package we.are.bubblesort.MovieApp.shared;
 
-public class UnorderedSet<T> extends Model implements java.io.Serializable,Iterable<T>{
+import com.google.gwt.user.client.rpc.IsSerializable;
 
-	private static final long serialVersionUID = 1317107501326760543L;
-		protected java.util.HashSet<T> elements;
+public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>{
+
+		private java.util.HashSet<T> elements;
+		
 		public UnorderedSet(){
 			elements = new java.util.HashSet<T>();
 		}

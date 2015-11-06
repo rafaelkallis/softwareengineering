@@ -1,9 +1,11 @@
 package we.are.bubblesort.MovieApp.shared;
 
-public class OrderedSet <T extends Comparable<T>> extends Model implements java.io.Serializable,Iterable<T>{
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public class OrderedSet <T extends Comparable<T>> extends Model implements Iterable<T>,IsSerializable{
 	
-	private static final long serialVersionUID = 5907640708328632853L;
-	protected java.util.TreeSet<T> elements;
+	private java.util.TreeSet<T> elements;
+	
 	public OrderedSet(){
 		elements = new java.util.TreeSet<T>();
 	}

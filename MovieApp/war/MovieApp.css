@@ -1,24 +1,103 @@
+.TEST-UI {
+	background:red!important;
+	position:fixed;
+	top:10px;
+	right:10px;
+}
 
-button {
-	outline:none;
+html {
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
+	outline:none!important;
 }
 
 .app-header {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	height:50px;
 	text-align:center;
+	box-sizing:border-box;
 }
 
-.app-header .mainnavigation {
-	margin:auto;
+.app-section-container {
+	position:absolute;
+	top:50px;;
+	left:0;
+	right:0;
+	bottom:0;
+	box-sizing:border-box;
 }
 
 .section {
-	
+	position:relative;
+	width:100%;
+	height:100%;
 }
+
+.section .mapview {
+	position:absolute;
+	left:0;
+	right:0;
+	bottom:0;
+	top:0;
+}
+
+.section .mapview path.country {
+	stroke: #8FDBFF;
+	stroke-width: 0.5px;
+	fill: #2F383D;
+	transition:fill 0.2s ease;
+}
+
+.section .mapview path.country.active {
+	fill: #484e55;
+}
+
+.section .mapview .spot circle, 
+.section .mapview .spot text {
+	transition:transform 0.2s ease;
+	pointer-events:none;
+}
+
+.section .mapview .spot.active circle, 
+.section .mapview .spot.active text {
+	transform:scale(1.5);
+}
+
+.section .mapview .spot circle {
+	stroke-width: 0.5px;
+    stroke: #e48806;
+    fill: #faa123!important;
+}
+
+.section .mapview .spot text {
+	fill:white;
+	pointer-events:none;
+}
+
+.section-worldmap .worldmap {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:60px;
+	box-sizing:border-box;
+	background-color:#8FDBFF;
+}
+.section-worldmap .worldmap-footer {
+	position:absolute;
+	height:60px;
+	bottom:0;
+	left:0;
+	right:0;
+	box-sizing:border-box;
+	border-top:1px solid #61686B;
+}
+
 
 .section-hidden {
 	display:none;
-}
-
-.button-navigation .active {
-	font-weight:bold;
 }

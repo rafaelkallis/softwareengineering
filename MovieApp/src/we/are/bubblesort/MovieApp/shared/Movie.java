@@ -7,21 +7,34 @@ public class Movie implements IsSerializable{
 	public MovieID id;
 	public MovieTitle title;
 	public MovieYear year;
+	public MovieDuration duration;
+
+
 	public UnorderedSet<MovieLanguage> languages;
+	
+
 	public UnorderedSet<MovieCountry> countries;
 	
-	public MovieDuration duration;
+
+	public UnorderedSet<MovieGenre> genres;
+	
+	public Movie(){
+		
+	}
+	
 	public Movie(	MovieID id,
 					MovieTitle title,
 					MovieYear year,
-					we.are.bubblesort.MovieApp.shared.UnorderedSet<MovieLanguage> languages,
-					we.are.bubblesort.MovieApp.shared.UnorderedSet<MovieCountry> countries,
+					UnorderedSet<MovieLanguage> languages,
+					UnorderedSet<MovieCountry> countries,
+					UnorderedSet<MovieGenre> genres,
 					MovieDuration duration){
 		this.id = id;
 		this.title= title;
 		this.year = year;
 		this.languages = languages;
 		this.countries = countries;
+		this.genres = genres;
 		this.duration = duration;
 	}
 
