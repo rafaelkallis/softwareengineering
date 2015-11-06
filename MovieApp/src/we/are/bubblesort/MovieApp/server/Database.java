@@ -5,25 +5,50 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.google.appengine.api.utils.SystemProperty;
 
 public final class Database {
 		
 	private static Database instance = new Database();
 	
 	private  		Connection 	conn 		= null;
-    private  final 	String 		url  		= "jdbc:mysql://movieapp-1121:movieapp/main";
+    private  	 	String 		url  		= "";/*"jdbc:mysql://themovieapp-1121:movieapp/main";*/
     private  final 	String 		user 		= "se_user";
     private  final 	String 		pass 		= "SEIsAwesome2015";
     
     private Database(){
     	try {
-    		
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			conn = DriverManager.getConnection(url, user, pass);
-			
-		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+    	      if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
+    	        // Load the class that provides the new "jdbc:google:mysql://" prefix.
+    	        Class.forName("com.mysql.jdbc.GoogleDriver");
+    	        //url = "jdbc:google:mysql://your-project-id:your-instance-name/guestbook?user=root";
+    	        url = "jdbc:mysql://themovieapp-1121:movieapp/main";
+    	      } else {
+    	        // Local MySQL instance to use during development.
+    	        Class.forName("com.mysql.jdbc.Driver");
+    	        url = "jdbc:mysql://80.74.150.210:3306/movieapp";
+
+    	        // Alternatively, connect to a Google Cloud SQL instance using:
+    	        // jdbc:mysql://ip-address-of-google-cloud-sql-instance:3306/guestbook?user=root
+    	        
+    	        conn = DriverManager.getConnection(url, user, pass);
+    	      }
+    	    } catch (Exception e) {
+    	      e.printStackTrace();
+    	      return;
+    	    }
+    	
+    	
+//    	try {
+//    		
+//    		
+//    		
+//			//Class.forName("com.mysql.jdbc.GoogleDriver").newInstance();
+//			//conn = DriverManager.getConnection(url, user, pass);
+//			
+//		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+//			e.printStackTrace();
+//		}
     }
     
     /*
