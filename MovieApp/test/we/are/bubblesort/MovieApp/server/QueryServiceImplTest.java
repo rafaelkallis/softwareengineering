@@ -20,33 +20,29 @@ public class QueryServiceImplTest {
 	}
 
 	@Test
-	public void test_getMovieCollection(){
+	public void test_getMovieCollection() throws SQLException{
 		Database db 			= Database.getInstance();
 		final String query1		= "SELECT * FROM `movieapp`.`movies` WHERE `movie_name` LIKE \"%American Pie%\"  AND `movie_genres` LIKE \"%Comedy%\" AND `movie_languages` LIKE \"%French%\";";
 		PreparedStatement pst1 	= null;	
 		ResultSet rs1			= null;
-		try {
-			pst1 				= db.prepareStatement(query1);
-			assertNotNull(pst1);
+		
+		pst1 				= db.prepareStatement(query1);
+		assertNotNull(pst1);
+		
+		rs1 				= db.execute(pst1);			
+		assertNotNull(rs1);
+		
+		while(rs1.next()){
+			String title 	= rs1.getString(MovieTitle.dbLabelName);
 			
-			rs1 				= db.execute(pst1);			
-			assertNotNull(rs1);
-			
-			while(rs1.next()){
-				String title 	= rs1.getString(MovieTitle.dbLabelName);
-				
-				assertFalse(rs1.next());
-				assertEquals("American Pie Presents: The Book of Love",title);				
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+			assertFalse(rs1.next());
+			assertEquals("American Pie Presents: The Book of Love",title);				
+		}
+	
 	}
 	
 	//TODO
-	public void test_getAttributeSet(){
+	public void test_getAttributeCollection(){
 		Database db 									= Database.getInstance();
 		String getAttributeSetS1 						= "";
 		PreparedStatement getAttributeSetPS1 			= null;
