@@ -22,7 +22,7 @@ public final class Database {
     	        // Load the class that provides the new "jdbc:google:mysql://" prefix.
     	        Class.forName("com.mysql.jdbc.GoogleDriver");
     	        //url = "jdbc:google:mysql://your-project-id:your-instance-name/guestbook?user=root";
-    	        url = "jdbc:mysql://themovieapp-1121:movieapp/main";
+    	        url = "jdbc:google:mysql://themovieapp-1121:movieapp/main";
     	      } else {
     	        // Local MySQL instance to use during development.
     	        Class.forName("com.mysql.jdbc.Driver");
