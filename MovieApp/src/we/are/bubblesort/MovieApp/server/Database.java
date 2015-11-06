@@ -12,31 +12,31 @@ public final class Database {
 	private static Database instance = new Database();
 	
 	private  		Connection 	conn 		= null;
-    private  	 	String 		url  		= "";/*"jdbc:mysql://themovieapp-1121:movieapp/main";*/
     private  final 	String 		user 		= "se_user";
     private  final 	String 		pass 		= "SEIsAwesome2015";
     
     private Database(){
     	try {
-    	      if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
-    	        // Load the class that provides the new "jdbc:google:mysql://" prefix.
-    	        Class.forName("com.mysql.jdbc.GoogleDriver");
-    	        //url = "jdbc:google:mysql://your-project-id:your-instance-name/guestbook?user=root";
-    	        url = "jdbc:google:mysql://themovieapp-1121:movieapp/main";
-    	      } else {
-    	        // Local MySQL instance to use during development.
-    	        Class.forName("com.mysql.jdbc.Driver");
-    	        url = "jdbc:mysql://80.74.150.210:3306/movieapp";
+        	String url = "";
+    		if (SystemProperty.environment.value() ==
+    		    SystemProperty.Environment.Value.Production) {
+    			
+    			// Connect to Google SQL
+    			Class.forName("com.mysql.jdbc.GoogleDriver");
+    		  url = "jdbc:google:mysql://themovieapp-1121:movieapp/main?user=root";
+      		  conn = DriverManager.getConnection(url);
+    		} else {
+    		 // Connecting from an external network.
+    			Class.forName("com.mysql.jdbc.Driver");
+    			url = "jdbc:mysql://80.74.150.210:3306/movieapp";
+        		conn = DriverManager.getConnection(url, user, pass);
+    		}
 
-    	        // Alternatively, connect to a Google Cloud SQL instance using:
-    	        // jdbc:mysql://ip-address-of-google-cloud-sql-instance:3306/guestbook?user=root
-    	        
-    	        conn = DriverManager.getConnection(url, user, pass);
-    	      }
-    	    } catch (Exception e) {
-    	      e.printStackTrace();
-    	      return;
-    	    }
+    		
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	      return;
+	    }
     	
     	
 //    	try {

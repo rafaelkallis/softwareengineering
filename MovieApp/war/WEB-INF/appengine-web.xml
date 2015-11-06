@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
-  <application>movieapp-1121</application>
+  <application>themovieapp-1121</application>
   <version>1</version>
-
   <!--
     Allows App Engine to send multiple requests to one instance in parallel:
   -->
@@ -39,4 +38,5 @@
     http://code.google.com/appengine/docs/java/config/appconfig.html#Enabling_Sessions
   -->
 
+  <use-google-connector-j>true</use-google-connector-j>
 </appengine-web-app>
