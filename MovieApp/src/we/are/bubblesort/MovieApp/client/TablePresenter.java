@@ -35,7 +35,7 @@ public class TablePresenter extends Presenter {
 	    	columnValues.add(this.getDisplayableAttribute(movie.countries));
 	    	columnValues.add(movie.year.displayName);
 	    	columnValues.add(this.getDisplayableAttribute(movie.languages));
-	    	columnValues.add(getDisplayableAttribute(movie.genres));
+	    	columnValues.add(this.getDisplayableAttribute(movie.genres));
 	    	columnValues.add(movie.duration.displayName);
 		    
 		    this.view.addItem(columnValues);
