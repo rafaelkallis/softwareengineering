@@ -7,9 +7,9 @@ import org.junit.*;
 
 public class AppControllerTest {
 
-	
 	@Test
 	public void testSimple() {
 		assertTrue(true);
 	}
+
 }
