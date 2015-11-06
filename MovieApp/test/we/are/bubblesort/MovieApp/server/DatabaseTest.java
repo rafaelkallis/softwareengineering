@@ -1,6 +1,7 @@
 package we.are.bubblesort.MovieApp.server;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import we.are.bubblesort.MovieApp.server.Database;
 import static org.junit.Assert.*;
@@ -15,7 +16,7 @@ public class DatabaseTest {
 	final protected String testQuery = "SELECT * FROM `movieapp`.`movies`;";
 
 	
-	@Before
+	@BeforeClass
 	public void setUp(){
 		db 						= Database.getInstance();
 	}
