@@ -2,23 +2,19 @@ package we.are.bubblesort.MovieApp.client;
 
 import java.util.ArrayList;
 
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
-import we.are.bubblesort.MovieApp.shared.MovieID;
-import we.are.bubblesort.MovieApp.shared.MovieTitle;
-import we.are.bubblesort.MovieApp.shared.MovieCountry;
-import we.are.bubblesort.MovieApp.shared.MovieYear;
-import we.are.bubblesort.MovieApp.shared.UnorderedSet;
-import we.are.bubblesort.MovieApp.shared.MovieLanguage;
-import we.are.bubblesort.MovieApp.shared.MovieDuration;
-import we.are.bubblesort.MovieApp.shared.MovieGenre;
 
 public class TablePresenter extends Presenter {
 	private TableView view = new TableView();
+	private QueryServiceAsync queryService;
 	
-	TablePresenter() {
+	TablePresenter(QueryServiceAsync queryService) {
+		this.queryService = queryService;
 		ArrayList<String> headers = new ArrayList<String>();
 		headers.add("Titel");
 		headers.add("Laender");
@@ -30,9 +26,7 @@ public class TablePresenter extends Presenter {
 		this.view.setHeader(headers);
 	}
 	
-	public void loadTable() {
-		Collection<Movie> movies = this.getMovies();
-		
+	private void displayTable(Collection<Movie> movies) {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
 	    	columnValues.add(movie.title.displayName);
@@ -56,14 +50,19 @@ public class TablePresenter extends Presenter {
 		return (View)this.view;
 	}
 	
-	public Collection<Movie> getMovies() {
-		 
-		Collection<Movie> movies = new Collection<Movie>();
-		 
-		movies.add(new Movie(new MovieID(), new MovieTitle("Film 1"), new MovieYear("1999"), new UnorderedSet<MovieLanguage>(), new UnorderedSet<MovieCountry>(), new UnorderedSet<MovieGenre>(), new MovieDuration("3")));
-		movies.add(new Movie(new MovieID(), new MovieTitle("Film 2"), new MovieYear("2000"), new UnorderedSet<MovieLanguage>(), new UnorderedSet<MovieCountry>(), new UnorderedSet<MovieGenre>(), new MovieDuration("33")));
-		 
-		return movies;
-		
+	public void loadTable() {
+		queryService.getMovieCollection(null, 20, 0, new AsyncCallback<Collection<Movie>>(){
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Could not get table data.");
+			}
+
+			@Override
+			public void onSuccess(Collection<Movie> result) {
+				displayTable(result);
+			}
+			
+		});
 	}
 }

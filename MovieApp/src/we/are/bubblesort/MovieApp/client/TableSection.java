@@ -13,7 +13,7 @@ public class TableSection extends Section {
 	static final String defaultName = "Tabelle";
 	protected QueryServiceAsync queryService;
 	protected TableSectionView view = new TableSectionView();
-	protected TablePresenter table = new TablePresenter();
+	protected TablePresenter table;
 	
 	TableSection(String sectionName, QueryServiceAsync queryService) {
 		super(sectionName);
@@ -26,7 +26,7 @@ public class TableSection extends Section {
 
 	@Override
 	void init() {
-		this.table = new TablePresenter();
+		this.table = new TablePresenter(this.queryService);
 		
 		this.view.tablePanel.add(this.table.getCompositeView());
 		this.table.loadTable();
