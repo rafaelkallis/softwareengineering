@@ -19,11 +19,11 @@ public class TablePresenter extends Presenter {
 		this.queryService = queryService;
 		ArrayList<String> headers = new ArrayList<String>();
 		headers.add("Titel");
-		headers.add("Laender");
+		headers.add("Länder");
 		headers.add("Jahr");
 		headers.add("Sprachen");
 		headers.add("Genres");
-		headers.add("Laenge");
+		headers.add("Länge");
 		
 		this.view.setHeader(headers);
 	}
@@ -45,14 +45,13 @@ public class TablePresenter extends Presenter {
 	
 	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
 		
-		ArrayList<String> arr = new ArrayList<String>();
-		
+		String display_attribute = "";
 		for (MovieAttribute attr : attributes) {
 			
-			arr.add(attr.displayName);
+			//arr.add(attr.displayName);
+			display_attribute += attr.displayName + ", ";
 		}
-		
-		return String.join(", ", arr);
+		return display_attribute.substring(0, display_attribute.length()-2);
 	}
 	
 	@Override
@@ -66,7 +65,7 @@ public class TablePresenter extends Presenter {
 	}
 	
 	public void loadTable() {
-		queryService.getMovieCollection(null, 20, 0, new AsyncCallback<Collection<Movie>>(){
+		queryService.getMovieCollection(new UnorderedSet<MovieAttribute>() , 20, 0, new AsyncCallback<Collection<Movie>>(){
 
 			@Override
 			public void onFailure(Throwable caught) {
