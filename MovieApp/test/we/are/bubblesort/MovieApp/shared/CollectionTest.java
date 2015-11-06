@@ -1,4 +1,4 @@
-package shared;
+package we.are.bubblesort.MovieApp.shared;
 
 import static org.junit.Assert.*;
 
