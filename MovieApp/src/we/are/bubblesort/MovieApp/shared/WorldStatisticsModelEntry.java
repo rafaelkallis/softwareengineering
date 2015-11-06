@@ -8,7 +8,6 @@ public class WorldStatisticsModelEntry implements IsSerializable,Comparable<Worl
 	 * Values of each entry
 	 */
 	public String 				iso_alpha;
-	public Integer 				iso_numeric;
 	public Integer 				n_movies;
 	public Float				latitude;
 	public Float				longitude;
@@ -18,9 +17,8 @@ public class WorldStatisticsModelEntry implements IsSerializable,Comparable<Worl
 		
 	}
 	
-	public WorldStatisticsModelEntry(String iso_alpha,Integer iso_numeric,Integer n_movies, Float latitude, Float longitude){
+	public WorldStatisticsModelEntry(String iso_alpha, Integer n_movies, Float latitude, Float longitude){
 		this.iso_alpha 		= iso_alpha;
-		this.iso_numeric 	= iso_numeric;
 		this.n_movies 		= n_movies;
 		this.latitude		= latitude;
 		this.longitude		= longitude;
