@@ -14,9 +14,10 @@ MovieApp/gwt-unitCache/
 .apt_generated/
 
 # more caches and things from deploy #
-MovieApp/war/WEB-INF/deploy/
+MovieApp/war/WEB-INF/deploy/movieapp/
 MovieApp/war/WEB-INF/classes/
-MovieApp/war/movieapp/*
+MovieApp/war/movieapp/*.cache.js
+MovieApp/war/movieapp/
 
 #compilation logs
 .gwt/
@@ -26,3 +27,9 @@ MovieApp/gwt-unitCache/
 
 #gwt junit compilation files
 MovieApp/www-test/
+
+
+#Added by Rafael
+*.cache.js
+*.gwt.rpc
+*.symbolMap
