@@ -1,3 +1,0 @@
-# Module movieapp
-# RPC service class, partial path of RPC policy file
-we.are.bubblesort.MovieApp.client.QueryService, D44EDFC8A35CBBD1C3AB545F0369373A.gwt.rpc
