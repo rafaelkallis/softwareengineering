@@ -1,5 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
@@ -11,12 +12,12 @@ import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 public class TableSection extends Section {
 	static final String defaultName = "Tabelle";
 	protected QueryServiceAsync queryService;
-	protected TableSectionView view;
+	protected TableSectionView view = new TableSectionView();
+	protected TablePresenter table;
 	
 	TableSection(String sectionName, QueryServiceAsync queryService) {
 		super(sectionName);
 		this.queryService = queryService;
-		this.view = new TableSectionView();
 	}
 	
 	TableSection(QueryServiceAsync queryService) {
@@ -25,7 +26,11 @@ public class TableSection extends Section {
 
 	@Override
 	void init() {
-	}
+		this.table = new TablePresenter(this.queryService);
+		
+		this.view.tablePanel.add(this.table.getCompositeView());
+		this.table.loadTable();
+	} 
 	
 	@Override
 	public Composite getCompositeView() {
@@ -45,19 +50,5 @@ public class TableSection extends Section {
 	@Override
 	void show() {
 		this.view.show();
-	}
-	public void callQueryService(UnorderedSet<MovieAttribute> filterSet){
-		queryService.getMovieCollection(filterSet,0,0, new AsyncCallback<Collection<Movie>>(){
-			public void onFailure(Throwable caught){
-				/*
-				 * handle Failure
-				 */
-			}
-			public void onSuccess(Collection<Movie> result){
-				/*
-				 * to something with result
-				 */
-			}
-		});
 	}
 }

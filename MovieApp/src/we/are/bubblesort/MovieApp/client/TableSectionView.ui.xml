@@ -1,11 +1,12 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<g:FlowPanel addStyleNames="section section-table" ui:field="mainPanel">
-	    <g:FlowPanel addStyleNames="container">
+	<g:FlowPanel addStyleNames="section section-table" ui:field="mainPanel" >
+	   <g:FlowPanel addStyleNames="container">
 		    <g:HTML>
 		        <h1>TableSection</h1>
 		    </g:HTML>
+	    	<g:FlowPanel ui:field="tablePanel"></g:FlowPanel>
 	    </g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder> 

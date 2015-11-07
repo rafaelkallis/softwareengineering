@@ -14,8 +14,9 @@ public class TableSectionView extends SectionView {
 	interface TableSectionViewUiBinder extends
 			UiBinder<Widget, TableSectionView> {
 	}
-	
+
 	@UiField Panel mainPanel;
+	@UiField Panel tablePanel;
 
 	public TableSectionView() {
 		initWidget(uiBinder.createAndBindUi(this));
