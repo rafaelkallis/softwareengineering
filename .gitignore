@@ -7,25 +7,29 @@ target/
 *.class
 
 # gwt caches and compiled units #
-war/gwt_bree/
-gwt-unitCache/
+MovieApp/war/gwt_bree/
+MovieApp/gwt-unitCache/
 
 # boilerplate generated classes #
 .apt_generated/
 
 # more caches and things from deploy #
-war/WEB-INF/deploy/
-war/WEB-INF/classes/
+MovieApp/war/WEB-INF/deploy/movieapp/
+MovieApp/war/WEB-INF/classes/
+MovieApp/war/movieapp/
 
 #compilation logs
 .gwt/
 
 #caching for already compiled files
-gwt-unitCache/
+MovieApp/gwt-unitCache/*
 
 #gwt junit compilation files
-www-test/
+MovieApp/www-test/*
 
-MovieApp/war/movieapp/*.cache.js
 
-MovieApp/war/WEB-INF/deploy/movieapp/symbolMaps/*.symbolMap
+#Added by Rafael
+*.cache.js
+*.gwt.rpc
+*.symbolMap
+

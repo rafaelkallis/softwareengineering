@@ -14,7 +14,7 @@ public class FilterBarPresenterTest {
 		
 		testPresenter.addFilter(new FilterPresenter(null, null, filterView));
 		
-		
+		assertTrue(true);
 	}
 
 }

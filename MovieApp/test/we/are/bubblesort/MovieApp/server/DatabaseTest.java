@@ -21,7 +21,7 @@ public class DatabaseTest {
 	}
 	
 	@Test
-	public void test_database_instance() throws SQLException{
+	public void test_database_getInstance() throws SQLException{
 		assertNotNull(db);
 	}
 	
