@@ -13,9 +13,13 @@ import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
-public class TablePresenter extends Presenter {
-	private TableViewInterface view;
+
+public class TablePresenter extends Presenter implements LoadMoreEventHandler {
+	private TableView view = new TableView();
+
 	private QueryServiceAsync queryService;
+	static Integer movieStep = 20;
+	private Integer moviePointer = 0;
 	
 	TablePresenter(QueryServiceAsync queryService, TableViewInterface view) {
 		this.view = view;
@@ -24,30 +28,31 @@ public class TablePresenter extends Presenter {
 		headers.add("Titel");
 		headers.add("Länder");
 		headers.add("Jahr");
-		headers.add("Sprachen");
-		headers.add("Genres");
 		headers.add("Länge");
+		// erst in Sprint 2, wenn Datenbanktabellen ready:
+		// headers.add("Sprachen");
+		// headers.add("Genres");
 		
 		this.view.setHeader(headers);
+		this.view.addHandler(LoadMoreEvent.TYPE, this);
 	}
 	
-	private void displayTable(Collection<Movie> movies) {
+	private void addToTable(Collection<Movie> movies) {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
 	    	columnValues.add(movie.title.displayName);
 	    	columnValues.add(this.getDisplayableAttribute(movie.countries));
 	    	columnValues.add(movie.year.displayName);
-	    	columnValues.add(this.getDisplayableAttribute(movie.languages));
-	    	columnValues.add(this.getDisplayableAttribute(movie.genres));
 	    	columnValues.add(movie.duration.displayName);
+	    	// erst in Sprint 2, wenn Datenbanktabellen ready
+	    	// columnValues.add(this.getDisplayableAttribute(movie.languages));
+	    	// columnValues.add(this.getDisplayableAttribute(movie.genres));
 		    
 		    this.view.addItem(columnValues);
-		    
 	    }
 	}
 	
 	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
-		
 		String display_attribute = "";
 		if(attributes.size()==0){
 			return display_attribute;
@@ -68,9 +73,17 @@ public class TablePresenter extends Presenter {
 		return (View)this.view;
 	}
 	
-	public void loadTable() {
-		queryService.getMovieCollection(new UnorderedSet<MovieAttribute>() , 20, 0, new AsyncCallback<Collection<Movie>>(){
+	public void update() {
+		this.moviePointer = 0;
+		this.loadTable();
+	}
 
+	private void clearTable() {
+		this.view.clearRows();
+	}
+	
+	protected void loadTable() {
+		queryService.getMovieCollection(new UnorderedSet<MovieAttribute>() , movieStep, moviePointer, new AsyncCallback<Collection<Movie>>(){
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Could not get table data.");
@@ -78,9 +91,18 @@ public class TablePresenter extends Presenter {
 
 			@Override
 			public void onSuccess(Collection<Movie> result) {
-				displayTable(result);
+				if (moviePointer == 0) {
+					clearTable();
+				}
+				
+				addToTable(result);
 			}
-			
 		});
+	}
+
+	@Override
+	public void onLoadMore() {
+		this.moviePointer += movieStep;
+		this.loadTable();
 	}
 }

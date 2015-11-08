@@ -3,8 +3,8 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<g:FlowPanel addStyleNames="section section-table" ui:field="mainPanel" >
 	   <g:FlowPanel addStyleNames="container">
-		    <g:HTML>
-		        <h1>TableSection</h1>
+		    <g:HTML addStyleNames="page-header">
+		        <h1>Filme</h1>
 		    </g:HTML>
 	    	<g:FlowPanel ui:field="tablePanel"></g:FlowPanel>
 	    </g:FlowPanel>
