@@ -12,10 +12,11 @@ import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 public class TablePresenter extends Presenter {
-	private TableView view = new TableView();
+	private TableViewInterface view;
 	private QueryServiceAsync queryService;
 	
-	TablePresenter(QueryServiceAsync queryService) {
+	TablePresenter(QueryServiceAsync queryService, TableViewInterface view) {
+		this.view = view;
 		this.queryService = queryService;
 		ArrayList<String> headers = new ArrayList<String>();
 		headers.add("Titel");

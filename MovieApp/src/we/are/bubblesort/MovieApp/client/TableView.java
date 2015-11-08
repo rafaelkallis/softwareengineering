@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 
-public class TableView extends View {
+public class TableView extends View implements TableViewInterface {
 	protected FlexTable table = new FlexTable();
 	
 	TableView() {
