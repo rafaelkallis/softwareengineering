@@ -2,14 +2,9 @@ package we.are.bubblesort.MovieApp.client;
 
 import java.util.ArrayList;
 
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
-import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.web.bindery.event.shared.Event.Type;
 
-import we.are.bubblesort.MovieApp.shared.Movie;
-
 public class TableViewMock implements TableViewInterface{
-
 	public ArrayList<String> rows = new ArrayList<String>();
 	@Override
 	public void setHeader(ArrayList<String> headers) {
@@ -34,8 +29,7 @@ public class TableViewMock implements TableViewInterface{
 		
 	}
 
-	@Override
-	public int getRowCount() {
+	public int getItemsCount() {
 		return rows.size();
 	}
 	

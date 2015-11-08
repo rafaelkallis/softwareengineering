@@ -2,7 +2,6 @@ package we.are.bubblesort.MovieApp.client;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,9 +16,15 @@ import we.are.bubblesort.MovieApp.shared.MovieYear;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 public class TablePresenterTest {
-
-	TablePresenter presenter = new TablePresenter(null,new TableViewMock());
-
+	TableViewMock view;
+	TablePresenter presenter;
+	
+	@Before
+	public void setUp(){
+		view = new TableViewMock();
+		presenter = new TablePresenter(null, view);
+	}
+	
 	@Test
 	public void testGetDisplayableAttribute(){
 		UnorderedSet<MovieAttribute> attributes = new UnorderedSet<MovieAttribute>();
@@ -36,7 +41,7 @@ public class TablePresenterTest {
 		Collection<Movie> movies = new Collection<Movie>();
 		presenter.addToTable(movies);
 		
-		assertEquals(0,presenter.view.getRowCount());
+		assertEquals(0, view.getItemsCount());
 		
 		Movie movie 	= new Movie();
 		movie.title		= new MovieTitle("Dummy");
@@ -47,7 +52,7 @@ public class TablePresenterTest {
 		movies.add(movie);
 		presenter.addToTable(movies);
 		
-		assertEquals(1,presenter.view.getRowCount());
+		assertEquals(1, view.getItemsCount());
 	}
 
 }

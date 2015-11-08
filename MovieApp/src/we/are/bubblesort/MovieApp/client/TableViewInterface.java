@@ -9,5 +9,4 @@ public interface TableViewInterface {
 	public void addItem(ArrayList<String> item);
 	public void addHandler(Type<LoadMoreEventHandler> tYPE, TablePresenter tablePresenter);
 	public void clearRows();
-	public int getRowCount();
 }

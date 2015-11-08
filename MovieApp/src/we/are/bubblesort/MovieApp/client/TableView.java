@@ -61,7 +61,7 @@ public class TableView extends View implements TableViewInterface {
 	}
 	
 	public void addItem(ArrayList<String> item) {
-		int start = this.getRowCount();
+		int start = this.table.getRowCount();
 		
 		int column = 0;
 		for (String value : item) {
@@ -84,11 +84,5 @@ public class TableView extends View implements TableViewInterface {
 	@Override
 	public void addHandler(Type<LoadMoreEventHandler> tYPE, TablePresenter tablePresenter) {
 		super.addHandler(tYPE, tablePresenter);
-		
-	}
-
-	@Override
-	public int getRowCount() {
-		return this.table.getRowCount();
 	}
 }
