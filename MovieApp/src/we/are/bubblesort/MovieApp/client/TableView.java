@@ -1,7 +1,5 @@
 package we.are.bubblesort.MovieApp.client;
 
-import java.text.NumberFormat;
-import java.text.ParsePosition;
 import java.util.ArrayList;
 
 import com.google.gwt.dom.client.Element;
