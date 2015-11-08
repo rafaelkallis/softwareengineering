@@ -6,39 +6,37 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class UnorderedSetTest {
+public class OrderedSetTest {
 
 	final String testString = "Hello, World";
-	
 	final String [] testArray = {"Hello",",","World"};
-	
-	UnorderedSet<String> set;
+	OrderedSet<String> set;
 	
 	@Before
-	public void setUp(){
-		set = new UnorderedSet<String>();
+	public void setUp() throws Exception {
+		set = new OrderedSet<String>();
 	}
-	
+
 	@After
-	public void tearDown(){
+	public void tearDown() throws Exception {
 		set = null;
 	}
-	
+
 	@Test
 	public void testAdd() {
-		set.add(testString);
-		set.add(testString);
+		set.add(new String(testString));	
+		set.add(new String(testString));	
+		
 		
 		for(String s : set){
 			assertEquals(testString,s);
 		}
 		assertEquals(1,set.size());
 	}
-
+	
 	@Test
 	public void testAddGetArray(){
 		set.add(testArray);
 		assertEquals(3, set.size());
 	}
-
 }
