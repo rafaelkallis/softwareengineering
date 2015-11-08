@@ -4,35 +4,14 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import org.junit.Test;
 import we.are.bubblesort.MovieApp.client.TableView;
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.MovieLanguage;
+import we.are.bubblesort.MovieApp.shared.MovieYear;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 public class TableViewTest {
 	
-	TableView view = new TableView();
+	TableViewMock view = new TableViewMock();
 	
-	@Test
-	public void testAddItem() {
-		fail();
-	}
 	
-	@Test
-	public void testSetHeaders(){
-		ArrayList<String> headers = new ArrayList<String>();
-		
-		headers.add("Titel");
-		headers.add("Länder");
-		headers.add("Jahr");
-		headers.add("Sprachen");
-		headers.add("Genres");
-		headers.add("Länge");
-		
-		this.view.setHeader(headers);
-		
-		assertEquals(1,this.view.table.getRowCount());
-	}
-	
-	@Test
-	public void testAddHandler(){
-		fail();
-	}
-
 }
