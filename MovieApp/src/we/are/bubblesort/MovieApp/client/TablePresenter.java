@@ -2,6 +2,8 @@ package we.are.bubblesort.MovieApp.client;
 
 import java.util.ArrayList;
 
+import javax.swing.text.html.HTML.Attribute;
+
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
@@ -47,9 +49,10 @@ public class TablePresenter extends Presenter {
 	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
 		
 		String display_attribute = "";
+		if(attributes.size()==0){
+			return display_attribute;
+		}
 		for (MovieAttribute attr : attributes) {
-			
-			//arr.add(attr.displayName);
 			display_attribute += attr.displayName + ", ";
 		}
 		return display_attribute.substring(0, display_attribute.length()-2);
