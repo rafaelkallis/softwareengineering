@@ -1,49 +1,21 @@
 package we.are.bubblesort.MovieApp.server;
 
 import static org.junit.Assert.*;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-
-import we.are.bubblesort.MovieApp.client.QueryService;
-import we.are.bubblesort.MovieApp.client.QueryServiceAsync;
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieGenre;
-import we.are.bubblesort.MovieApp.shared.MovieID;
 import we.are.bubblesort.MovieApp.shared.MovieLanguage;
 import we.are.bubblesort.MovieApp.shared.MovieTitle;
+import we.are.bubblesort.MovieApp.shared.MovieYear;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
+import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
 
 public class QueryServiceImplTest {
 	
-	QueryServiceAsync queryService;
-	String query;
-	
-	@BeforeClass
-	public void setUpClass() throws Exception {
-		queryService = GWT.create(QueryService.class);
-	}
-	
-	@Before
-	public void setUp(){
-		query		= null;
-	}
-	
-	@After
-	public void tearDown() throws SQLException{
-		
-	}
+	QueryServiceImpl queryService = new QueryServiceImpl();
 
 	@Test
 	public void test_getMovieCollection() throws SQLException{
@@ -55,47 +27,30 @@ public class QueryServiceImplTest {
 		
 		Collection<Movie> movies = null;
 		
-		queryService.getMovieCollection(filters, 0, 0, new AsyncCallback<Collection<Movie>>(){
-			@Override
-			public void onFailure(Throwable e){
-				fail(e.getMessage());
-			}
-			@Override
-			public void onSuccess(Collection<Movie> movies){
-				assertNotNull(movies);
-				for(Movie m : movies){
-					assertEquals("American Pie Presents: The Book of Love",m.title);
-				}
-			}
-		});
-//		query				= "SELECT * FROM `movieapp`.`movies` WHERE `movie_name` LIKE \"%American Pie%\"  AND `movie_genres` LIKE \"%Comedy%\" AND `movie_languages` LIKE \"%French%\";";
-//		
-//		pst 				= db.prepareStatement(query);
-//		assertNotNull(pst);
-//		
-//		rs					= db.execute(pst);			
-//		assertNotNull(rs);
-//		
-//		while(rs.next()){
-//			String title 	= rs.getString(MovieTitle.dbLabelName);
-//			
-//			assertFalse(rs.next());
-//			assertEquals("American Pie Presents: The Book of Love",title);				
-//		}
+		 movies = queryService.getMovieCollection(filters, 0, 0);	
 	
+		 assertNotNull(movies);
+		 for(Movie movie : movies){
+			 assertEquals("American Pie Presents: The Book of Love",movie.title);
+		 }
 	}
 	
-	//TODO
-	public void test_getAttributeCollection() throws SQLException{
+	
+	@Test
+	public void test_getAttributeCollection() throws SQLException{		
+		Collection<MovieAttribute> yearCollection = queryService.getAttributeCollection(new MovieYear("1996"), 0, 0);
 		
-		
-		
-		
+		assertNotNull(yearCollection);
 	}
 	
-	//TODO
+	@Test
 	public void test_getWorldStatisticsModel(){
+		UnorderedSet<MovieAttribute> filters = new UnorderedSet<MovieAttribute>();
 		
+		filters.add(new MovieYear("1996"));
+		WorldStatisticsModel model = queryService.getWorldStatisticsModel(filters);
+		
+		assertNotNull(model);
 	}
 
 
