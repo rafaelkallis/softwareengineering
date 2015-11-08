@@ -92,9 +92,19 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     	try{
     		movieCollection = new Collection<Movie>();
 
-    		statement += " SELECT * FROM " + movie_table + " WHERE 1 ";
-        	
-        	// Placeholder insertion
+    		// statement += " SELECT * FROM " + movie_table + " WHERE 1 ";
+    		statement += "SELECT m.`" + MovieID.dbLabelName + "`," +
+    							"m.`" + MovieTitle.dbLabelName + "`," +
+    							"LEFT(m.`" + MovieYear.dbLabelName + "`, 4) AS `" + MovieYear.dbLabelName + "`," +
+    							"m.`" + MovieDuration.dbLabelName + "`," +
+    							" GROUP_CONCAT(movie_countries.movie_country SEPARATOR ',') as movie_countries," +
+    							" 'DUMMY,DUMMY' as movie_genres," +
+    							" 'DUMMY, DUMMY' as movie_languages" +
+    							" FROM " + movie_table + " AS m " +
+    							" JOIN movie_countries ON m.id = movie_countries.movie_id " +
+    							" WHERE 1";
+    		
+    		// Placeholder insertion
         	for(MovieAttribute filter : filterSet){
         		if(filter.dbLabelName.equals(MovieTitle.dbLabelName)){
         			statement += (" AND "+MovieTitle.dbLabelName+" LIKE ? ");
@@ -102,9 +112,13 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
         			statement += (" AND "+filter.dbLabelName+"= ? ");
         		}
         	}
+        	
+        	statement +=  " GROUP BY m.id";
+        	
         	if(limit>0) statement += (" LIMIT "+limit);
         	if(limit>0 && offset>0)statement += (" OFFSET "+offset);
         	statement += ";";
+     	   System.out.println(statement);
         	
         	pst = Database.getInstance().prepareStatement(statement);
         	
@@ -125,19 +139,21 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     	   		UnorderedSet<MovieLanguage> languages 	= new UnorderedSet<MovieLanguage>();
     	   		UnorderedSet<MovieCountry> countries 	= new UnorderedSet<MovieCountry>();
     	   		UnorderedSet<MovieGenre> genres 		= new UnorderedSet<MovieGenre>();
-    	   		/*
-    	   		 * TODO
-    	   		 * Handle multiple Languages & Countries here
-    	   		 * 
-    	   		 */
-    	   		languages.add(new MovieLanguage("Dummy","Dummy"));
-    	   		languages.add(new MovieLanguage("Dummy","Dummy"));
+
+    	   		String[] strLanguages = rs.getString("movie_languages").split(",");
+    	   		for (String language : strLanguages) {
+        	   		languages.add(new MovieLanguage(language, language));
+    	   		}
     	   		
-    	   		countries.add(new MovieCountry("Dummy","Dummy"));
+    	   		String[] strCountries = rs.getString("movie_countries").split(",");
+    	   		for (String country : strCountries) {
+        	   		countries.add(new MovieCountry(country, country));
+    	   		}
     	   		
-    	   		genres.add(new MovieGenre("Dummy","Dummy"));
-    	   		genres.add(new MovieGenre("Dummy","Dummy"));
-    	   		genres.add(new MovieGenre("Dummy","Dummy"));
+    	   		String[] strGenres = rs.getString("movie_genres").split(",");
+    	   		for (String genre : strGenres) {
+        	   		genres.add(new MovieGenre(genre, genre));
+    	   		}
     	   		
     	   		Movie new_movie = new Movie(new MovieID(rs.getString(MovieID.dbLabelName)),
     	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),

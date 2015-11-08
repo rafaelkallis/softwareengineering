@@ -21,9 +21,10 @@ public class TablePresenter extends Presenter {
 		headers.add("Titel");
 		headers.add("Länder");
 		headers.add("Jahr");
-		headers.add("Sprachen");
-		headers.add("Genres");
 		headers.add("Länge");
+		// erst in Sprint 2, wenn Datenbanktabellen ready:
+		// headers.add("Sprachen");
+		// headers.add("Genres");
 		
 		this.view.setHeader(headers);
 	}
@@ -34,9 +35,10 @@ public class TablePresenter extends Presenter {
 	    	columnValues.add(movie.title.displayName);
 	    	columnValues.add(this.getDisplayableAttribute(movie.countries));
 	    	columnValues.add(movie.year.displayName);
-	    	columnValues.add(this.getDisplayableAttribute(movie.languages));
-	    	columnValues.add(this.getDisplayableAttribute(movie.genres));
 	    	columnValues.add(movie.duration.displayName);
+	    	// erst in Sprint 2, wenn Datenbanktabellen ready
+	    	// columnValues.add(this.getDisplayableAttribute(movie.languages));
+	    	// columnValues.add(this.getDisplayableAttribute(movie.genres));
 		    
 		    this.view.addItem(columnValues);
 		    
