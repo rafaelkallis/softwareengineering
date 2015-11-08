@@ -19,7 +19,7 @@ public class TableSection extends Section {
 
 	@Override
 	void init() {
-		this.table = new TablePresenter(this.queryService);
+		this.table = new TablePresenter(this.queryService, new TableView());
 		
 		this.view.tablePanel.add(this.table.getCompositeView());
 		this.table.update();

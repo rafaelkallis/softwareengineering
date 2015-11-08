@@ -22,6 +22,9 @@ public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 			this.elements.add(element);
 		}
 	}
+	public int size(){
+		return elements.size();
+	}
 	
 	public T[] get(){
 		@SuppressWarnings("unchecked")

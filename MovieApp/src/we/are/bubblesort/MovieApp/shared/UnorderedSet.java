@@ -19,6 +19,9 @@ public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>
 				this.elements.add(element);
 			}
 		}
+		public int size(){
+			return elements.size();
+		}
 		
 		public T[] get(){
 			@SuppressWarnings("unchecked")

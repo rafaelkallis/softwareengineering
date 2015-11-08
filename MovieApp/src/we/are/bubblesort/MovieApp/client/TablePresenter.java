@@ -11,13 +11,16 @@ import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
+
 public class TablePresenter extends Presenter implements LoadMoreEventHandler {
-	private TableView view = new TableView();
+	public TableViewInterface view;
+
 	private QueryServiceAsync queryService;
 	static Integer movieStep = 20;
 	private Integer moviePointer = 0;
 	
-	TablePresenter(QueryServiceAsync queryService) {
+	TablePresenter(QueryServiceAsync queryService, TableViewInterface view) {
+		this.view = view;
 		this.queryService = queryService;
 		ArrayList<String> headers = new ArrayList<String>();
 		headers.add("Titel");
@@ -32,7 +35,7 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 		this.view.addHandler(LoadMoreEvent.TYPE, this);
 	}
 	
-	private void addToTable(Collection<Movie> movies) {
+	public void addToTable(Collection<Movie> movies) {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
 	    	columnValues.add(movie.title.displayName);
@@ -49,6 +52,9 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	
 	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
 		String display_attribute = "";
+		if(attributes.size()==0){
+			return display_attribute;
+		}
 		for (MovieAttribute attr : attributes) {
 			display_attribute += attr.displayName + ", ";
 		}
