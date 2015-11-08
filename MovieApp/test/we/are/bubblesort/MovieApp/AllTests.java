@@ -9,7 +9,7 @@ import we.are.bubblesort.MovieApp.server.*;
 
 
 @RunWith(Suite.class)
-@SuiteClasses({ CollectionTest.class, UnorderedSetTest.class, OrderedSetTest.class, DatabaseTest.class, QueryServiceImplTest.class, TablePresenterTest.class})
+@SuiteClasses({ CollectionTest.class, UnorderedSetTest.class, OrderedSetTest.class, DatabaseTest.class, QueryServiceImplTest.class, TablePresenterTest.class, WorldStatisticsModelTest.class, AppControllerTest.class, FilterBarPresenterTest.class, FilterPresenterTest.class, MapPresenterTest.class})
 public class AllTests {
 
 }
