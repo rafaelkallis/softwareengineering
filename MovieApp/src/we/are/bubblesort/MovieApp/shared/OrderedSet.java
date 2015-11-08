@@ -19,6 +19,9 @@ public class OrderedSet <T extends Comparable<T>> extends Model implements Itera
 			this.elements.add(element);
 		}
 	}
+	public int size(){
+		return elements.size();
+	}
 	
 	public T[] get(){
 		@SuppressWarnings("unchecked")
