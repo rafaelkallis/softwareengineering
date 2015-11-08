@@ -1,5 +1,9 @@
 package we.are.bubblesort.MovieApp.client;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 
@@ -58,9 +62,16 @@ public class FilterPresenter extends Presenter {
 		if (this.view instanceof FilterSelectableViewInterface) {
 			FilterSelectableViewInterface selectableView = (FilterSelectableViewInterface)this.view;
 			
+			List<HashMap<String, String>> viewItems = new ArrayList<HashMap<String, String>>();
+			
 			for (MovieAttribute val : values) {
-				selectableView.addItem(val.displayName, val.displayName);
+				HashMap<String, String> itemPair = new HashMap<String, String>();
+				itemPair.put("displayName", val.displayName);
+				itemPair.put("value", val.value);
+				viewItems.add(itemPair);
 			}
+			
+			selectableView.setItems(viewItems);
 			
 			if (this.initialValue != null) {
 				this.setValue(this.initialValue);

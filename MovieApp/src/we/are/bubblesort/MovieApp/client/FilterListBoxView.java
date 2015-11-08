@@ -1,6 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -24,11 +25,22 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 	public HandlerRegistration addChangeHandler(ChangeHandler handler) {
 		return this.listBox.addChangeHandler(handler);
 	}
-
+	
 	@Override
-	public void addItem(String displayName, String value) {
-		this.listBox.addItem(displayName, value);
-		this.indexByValue.put(value, this.listBox.getItemCount() - 1);
+	public void setItems(List<HashMap<String, String>> items) {
+		this.clearItems();
+		
+		int i = 0;
+		for (HashMap<String, String> itemPair : items) {
+			this.listBox.addItem(itemPair.get("displayName"), itemPair.get("value"));
+			this.indexByValue.put(itemPair.get("value"), i);
+			i++;
+		}
+	}
+	
+	protected void clearItems() {
+		this.indexByValue.clear();
+		this.listBox.clear();
 	}
 
 	@Override
@@ -46,5 +58,4 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 			}
 		}
 	}
-
 }
