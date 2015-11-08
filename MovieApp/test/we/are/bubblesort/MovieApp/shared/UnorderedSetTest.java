@@ -2,6 +2,8 @@ package we.are.bubblesort.MovieApp.shared;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +11,14 @@ import org.junit.Test;
 public class UnorderedSetTest {
 
 	final String testString = "Hello, World";
+	
 	final String [] testArray = {"Hello",",","World"};
+	final String [] testArray1 = {"Hello","World",","};
+	final String [] testArray2 = {"World","Hello",","};
+	final String [] testArray3 = {"World","Hello","World"};
+	final String [] testArray4 = {",","Hello","World"};
+	final String [] testArray5 = {",","World","Hello"};
+	
 	UnorderedSet<String> set;
 	
 	@Before
@@ -24,19 +33,19 @@ public class UnorderedSetTest {
 	
 	@Test
 	public void testAdd() {
-		for(int i=0; i< 10; i++){
-			set.add(new String(testString));	
-		}
+		set.add(testString);
+		set.add(testString);
 		
 		for(String s : set){
 			assertEquals(testString,s);
 		}
+		assertEquals(1,set.size());
 	}
 
 	@Test
 	public void testAddGetArray(){
 		set.add(testArray);
-		assertArrayEquals(testArray, set.get());
+		assertEquals(3, set.size());
 	}
 
 }
