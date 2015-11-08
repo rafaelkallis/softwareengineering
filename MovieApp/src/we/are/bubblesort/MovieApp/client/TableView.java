@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
+import com.google.web.bindery.event.shared.Event.Type;
 
 public class TableView extends View implements TableViewInterface {
 	protected FlexTable table = new FlexTable();
@@ -60,7 +61,7 @@ public class TableView extends View implements TableViewInterface {
 	}
 	
 	public void addItem(ArrayList<String> item) {
-		int start = table.getRowCount();
+		int start = this.getRowCount();
 		
 		int column = 0;
 		for (String value : item) {
@@ -78,5 +79,16 @@ public class TableView extends View implements TableViewInterface {
 
 	public void clearRows() {
 		this.table.clear();
+	}
+
+	@Override
+	public void addHandler(Type<LoadMoreEventHandler> tYPE, TablePresenter tablePresenter) {
+		super.addHandler(tYPE, tablePresenter);
+		
+	}
+
+	@Override
+	public int getRowCount() {
+		return this.table.getRowCount();
 	}
 }
