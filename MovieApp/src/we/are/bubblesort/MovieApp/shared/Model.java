@@ -6,6 +6,10 @@ import com.google.web.bindery.event.shared.Event;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
+/*
+ * Doesn't require Unit testing because it involves only functions from GWT, which are already tested
+ */
+
 public abstract class Model implements IsSerializable{
 	private SimpleEventBus eventBus;
 	

@@ -27,6 +27,10 @@ public class WorldStatisticsModel extends Model implements IsSerializable,Iterab
 	public void add(WorldStatisticsModelEntry new_entry){
 		model.add(new_entry);
 	}
+	
+	public int size(){
+		return model.size();
+	}
 
 	/*
 	 * (non-Javadoc)
