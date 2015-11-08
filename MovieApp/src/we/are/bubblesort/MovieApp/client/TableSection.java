@@ -1,13 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
-
-import we.are.bubblesort.MovieApp.shared.Collection;
-import we.are.bubblesort.MovieApp.shared.Movie;
-import we.are.bubblesort.MovieApp.shared.MovieAttribute;
-import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 public class TableSection extends Section {
 	static final String defaultName = "Tabelle";
