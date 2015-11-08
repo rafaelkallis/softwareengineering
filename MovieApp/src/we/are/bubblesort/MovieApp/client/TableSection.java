@@ -22,7 +22,7 @@ public class TableSection extends Section {
 		this.table = new TablePresenter(this.queryService);
 		
 		this.view.tablePanel.add(this.table.getCompositeView());
-		this.table.loadTable();
+		this.table.update();
 	} 
 	
 	@Override

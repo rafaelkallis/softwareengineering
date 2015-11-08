@@ -123,7 +123,6 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
         	if(limit>0) statement += (" LIMIT "+limit);
         	if(limit>0 && offset>0)statement += (" OFFSET "+offset);
         	statement += ";";
-     	   System.out.println(statement);
         	
         	pst = Database.getInstance().prepareStatement(statement);
         	

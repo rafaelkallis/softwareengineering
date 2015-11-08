@@ -3,7 +3,10 @@ package we.are.bubblesort.MovieApp.client;
 import java.util.ArrayList;
 
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -15,14 +18,29 @@ public class TableView extends View {
 	
 	TableView() {
 		FlowPanel panel = new FlowPanel();
+		panel.setStyleName("filter-list-box");
+		
+		FlowPanel footerContainer = new FlowPanel();
+		FlowPanel footer = new FlowPanel();
+		footerContainer.addStyleName("tablefooter panel panel-default");
+		footer.addStyleName("panel-body");
+		Button loadMoreButton = new Button("Mehr anzeigen");
+		loadMoreButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				fireEvent(new LoadMoreEvent());
+			}
+		});
+		loadMoreButton.addStyleName("btn btn-primary");
+		footer.add(loadMoreButton);
+		footerContainer.add(footer);
 		
 		this.table.addStyleName("table table-hover table-fixed");
-		panel.add(this.table);
-		
 		this.setupHeader();
+		panel.add(this.table);
+		panel.add(footerContainer);
 		
 		initWidget(panel);
-		setStyleName("filter-list-box");
 	}
 	
 	public void setupHeader() {
@@ -56,5 +74,9 @@ public class TableView extends View {
 	public static boolean isNumeric(String str)
 	{
 	  return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
+	}
+
+	public void clearRows() {
+		this.table.clear();
 	}
 }
