@@ -3,9 +3,12 @@ package we.are.bubblesort.MovieApp.client;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
+import we.are.bubblesort.MovieApp.shared.Collection;
+import we.are.bubblesort.MovieApp.shared.Movie;
+
 public class FilterViewMock implements FilterViewInterface {
 
-	Collection<>
+	Collection<Movie> movies = new Collection<Movie>();
 	
 	@Override
 	public String getValue() {
