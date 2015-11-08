@@ -25,5 +25,10 @@ public class TablePresenterTest {
 		attributes = new UnorderedSet<MovieAttribute>();		
 		assertEquals("",presenter.getDisplayableAttribute(attributes));
 	}
+	
+	@Test
+	public void testAddToTable(){
+		
+	}
 
 }

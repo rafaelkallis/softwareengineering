@@ -5,6 +5,8 @@ import com.google.web.bindery.event.shared.HandlerRegistration;
 
 public class FilterViewMock implements FilterViewInterface {
 
+	Collection<>
+	
 	@Override
 	public String getValue() {
 		return "FilterViewMock";
