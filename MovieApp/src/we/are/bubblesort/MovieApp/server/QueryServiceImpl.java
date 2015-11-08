@@ -39,9 +39,14 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	private String worldStatisticsModelCommandPre;
 	private String worldStatisticsModelCommandPost;
 	
-	public QueryServiceImpl() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-		this.initialize_reverseQueryStatements();
-		this.initialize_worldStatisticsModelCommand();
+	public QueryServiceImpl() {
+		try {
+			this.initialize_reverseQueryStatements();
+			this.initialize_worldStatisticsModelCommand();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/*

@@ -9,46 +9,32 @@ import com.google.appengine.api.utils.SystemProperty;
 
 public final class Database {
 		
-	private static Database instance = new Database();
-	
+	private static 	Database 	instance 	= new Database();
+	private 		String 		url 		= "";
 	private  		Connection 	conn 		= null;
     private  final 	String 		user 		= "se_user";
     private  final 	String 		pass 		= "SEIsAwesome2015";
     
     private Database(){
     	try {
-        	String url = "";
-    		if (SystemProperty.environment.value() ==
-    		    SystemProperty.Environment.Value.Production) {
+        	
+    		if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
     			
     			// Connect to Google SQL
     			Class.forName("com.mysql.jdbc.GoogleDriver");
-    		  url = "jdbc:google:mysql://themovieapp-1121:movieapp/main?user=root";
-      		  conn = DriverManager.getConnection(url);
+    			url 						= "jdbc:google:mysql://themovieapp-1121:movieapp/main?user=root";
+      		  	conn 						= DriverManager.getConnection(url);
     		} else {
-    		 // Connecting from an external network.
+    			
+    			// Connecting from an external network.
     			Class.forName("com.mysql.jdbc.Driver");
-    			url = "jdbc:mysql://80.74.150.210:3306/movieapp";
-        		conn = DriverManager.getConnection(url, user, pass);
+    			url 						= "jdbc:mysql://80.74.150.210:3306/movieapp";
+        		conn 						= DriverManager.getConnection(url, user, pass);
     		}
 
-    		
-	    } catch (Exception e) {
+	    } catch (ClassNotFoundException | SQLException e) {
 	      e.printStackTrace();
-	      return;
 	    }
-    	
-    	
-//    	try {
-//    		
-//    		
-//    		
-//			//Class.forName("com.mysql.jdbc.GoogleDriver").newInstance();
-//			//conn = DriverManager.getConnection(url, user, pass);
-//			
-//		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-//			e.printStackTrace();
-//		}
     }
     
     /*
