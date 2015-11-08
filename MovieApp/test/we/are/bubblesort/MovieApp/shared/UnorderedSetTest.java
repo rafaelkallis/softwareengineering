@@ -13,11 +13,6 @@ public class UnorderedSetTest {
 	final String testString = "Hello, World";
 	
 	final String [] testArray = {"Hello",",","World"};
-	final String [] testArray1 = {"Hello","World",","};
-	final String [] testArray2 = {"World","Hello",","};
-	final String [] testArray3 = {"World","Hello","World"};
-	final String [] testArray4 = {",","Hello","World"};
-	final String [] testArray5 = {",","World","Hello"};
 	
 	UnorderedSet<String> set;
 	
