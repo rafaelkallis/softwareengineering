@@ -2,8 +2,6 @@ package we.are.bubblesort.MovieApp.client;
 
 import java.util.ArrayList;
 
-import javax.swing.text.html.HTML.Attribute;
-
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
@@ -15,7 +13,7 @@ import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 
 public class TablePresenter extends Presenter implements LoadMoreEventHandler {
-	private TableView view = new TableView();
+	public TableViewInterface view;
 
 	private QueryServiceAsync queryService;
 	static Integer movieStep = 20;
@@ -37,7 +35,7 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 		this.view.addHandler(LoadMoreEvent.TYPE, this);
 	}
 	
-	private void addToTable(Collection<Movie> movies) {
+	public void addToTable(Collection<Movie> movies) {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
 	    	columnValues.add(movie.title.displayName);
