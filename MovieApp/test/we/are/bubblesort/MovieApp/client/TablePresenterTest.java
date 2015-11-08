@@ -6,22 +6,24 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.MovieLanguage;
+import we.are.bubblesort.MovieApp.shared.MovieYear;
+import we.are.bubblesort.MovieApp.shared.UnorderedSet;
+
 public class TablePresenterTest {
 
-	TableView view = new TableView();
-	TablePresenter presenter = new TablePresenter(null);
-	
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+	TablePresenter presenter = new TablePresenter(null,new TableViewMock());
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testGetDisplayableAttribute(){
+		UnorderedSet<MovieAttribute> attributes = new UnorderedSet<MovieAttribute>();
+		attributes.add(new MovieYear("1997"));
+		attributes.add(new MovieLanguage("English","English"));		
+		assertEquals("1997, English",presenter.getDisplayableAttribute(attributes));
+		
+		attributes = new UnorderedSet<MovieAttribute>();		
+		assertEquals("",presenter.getDisplayableAttribute(attributes));
 	}
 
 }
