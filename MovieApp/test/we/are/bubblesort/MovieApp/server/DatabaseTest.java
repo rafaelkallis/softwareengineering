@@ -1,7 +1,6 @@
 package we.are.bubblesort.MovieApp.server;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import we.are.bubblesort.MovieApp.server.Database;
 import static org.junit.Assert.*;
@@ -16,13 +15,13 @@ public class DatabaseTest {
 	final protected String testQuery = "SELECT * FROM `movieapp`.`movies`;";
 
 	
-	@BeforeClass
+	@Before
 	public void setUp(){
 		db 						= Database.getInstance();
 	}
 	
 	@Test
-	public void test_database_instance() throws SQLException{
+	public void test_database_getInstance() throws SQLException{
 		assertNotNull(db);
 	}
 	
