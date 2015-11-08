@@ -34,6 +34,7 @@ public class CollectionTest {
 		for(String s : collection){
 			assertEquals(testString,s);
 		}
+		assertEquals(10,collection.size());
 	}
 
 	@Test
