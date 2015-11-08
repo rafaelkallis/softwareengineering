@@ -6,8 +6,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import we.are.bubblesort.MovieApp.shared.Collection;
+import we.are.bubblesort.MovieApp.shared.Movie;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
+import we.are.bubblesort.MovieApp.shared.MovieCountry;
+import we.are.bubblesort.MovieApp.shared.MovieDuration;
 import we.are.bubblesort.MovieApp.shared.MovieLanguage;
+import we.are.bubblesort.MovieApp.shared.MovieTitle;
 import we.are.bubblesort.MovieApp.shared.MovieYear;
 import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
@@ -28,7 +33,21 @@ public class TablePresenterTest {
 	
 	@Test
 	public void testAddToTable(){
+		Collection<Movie> movies = new Collection<Movie>();
+		presenter.addToTable(movies);
 		
+		assertEquals(0,presenter.view.getRowCount());
+		
+		Movie movie 	= new Movie();
+		movie.title		= new MovieTitle("Dummy");
+		movie.countries = new UnorderedSet<MovieCountry>();
+		movie.year 		= new MovieYear("1996");
+		movie.duration 	= new MovieDuration("92");
+		
+		movies.add(movie);
+		presenter.addToTable(movies);
+		
+		assertEquals(1,presenter.view.getRowCount());
 	}
 
 }
