@@ -1,17 +1,14 @@
 package we.are.bubblesort.MovieApp.client;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FilterPresenterTest {
-	FilterPresenter filterPresenter;
+public class SectionNavigationPresenterTest {
+	SectionNavigationPresenter sectionNavigationPresenter;
 
 	@Before
 	public void setUp() throws Exception {
-		this.filterPresenter = new FilterPresenter(null, null, null);
 	}
 
 	@After
@@ -19,11 +16,14 @@ public class FilterPresenterTest {
 	}
 
 	@Test
-	public void testaddFilter() {
+	public void testOnItemSelected() {
 	}
 
 	@Test
-	public void testGetFilterValues() {
+	public void testAddMenu() {
 	}
 
+	@Test
+	public void testOnSectionActivated() {
+	}
 }

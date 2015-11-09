@@ -1,17 +1,15 @@
 package we.are.bubblesort.MovieApp.client;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MapPresenterTest {
-	MapPresenter mapPresenter;
+public class TableSectionTest {
+	TableSection tableSection;
 
 	@Before
 	public void setUp() throws Exception {
-		this.mapPresenter = new MapPresenter(null, null);
+		this.tableSection = new TableSection(null, null);
 	}
 
 	@After
@@ -19,7 +17,6 @@ public class MapPresenterTest {
 	}
 
 	@Test
-	public void testLoadNewData() {
+	public void testInit() {
 	}
-
 }
