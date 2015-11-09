@@ -9,7 +9,6 @@ public class WorldMapSectionTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.worldMapSection = new WorldMapSection(null, null);
 	}
 
 	@After

@@ -11,7 +11,6 @@ public class FilterPresenterTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.filterPresenter = new FilterPresenter(null, null, null);
 	}
 
 	@After

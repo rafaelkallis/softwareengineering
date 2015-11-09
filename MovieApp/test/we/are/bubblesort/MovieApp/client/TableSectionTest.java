@@ -9,7 +9,6 @@ public class TableSectionTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.tableSection = new TableSection(null, null);
 	}
 
 	@After

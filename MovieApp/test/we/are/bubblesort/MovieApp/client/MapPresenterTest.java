@@ -11,7 +11,6 @@ public class MapPresenterTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.mapPresenter = new MapPresenter(null, null);
 	}
 
 	@After

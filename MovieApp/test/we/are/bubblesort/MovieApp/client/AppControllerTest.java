@@ -15,8 +15,6 @@ public class AppControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.appView = new AppViewMock();
-		this.appController = new AppController(null, this.appView);
 	}
 
 	@After
@@ -25,11 +23,6 @@ public class AppControllerTest {
 
 	@Test
 	public void testInitAddAppViewToPanel() {
-		Panel panel = new FlowPanel();
-		panel.setStyleName("myapppanel");
-		this.appController.init(panel);
-		
-		assertEquals("myapppanel", appView.asWidget().getParent().getStyleName());
 	}
 
 	@Test
