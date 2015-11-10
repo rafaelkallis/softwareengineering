@@ -6,6 +6,9 @@ import we.are.bubblesort.MovieApp.shared.MovieGenre;
 import we.are.bubblesort.MovieApp.shared.MovieTitle;
 import we.are.bubblesort.MovieApp.shared.MovieYear;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 
 public class TableSection extends Section implements FilterChangedEventHandler {
@@ -44,13 +47,26 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 		FilterPresenter durationFilter = new FilterPresenter(new MovieDuration("0"), queryService, new FilterListBoxView());
 		this.filterbar.addFilter(durationFilter);
 
-		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
+		titleFilter.addHandler(FilterChangedEvent.TYPE, this);
 
 		this.view.tablePanel.add(this.table.getCompositeView());
 		this.view.filterbarPanel.add(this.filterbar.getCompositeView());
 		
-		this.table.update();
-	} 
+		Button updateButton = new Button("Suchen");
+		updateButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				onFilterValueChanged();
+			}
+		});
+		this.view.filterbar.add(updateButton);
+		
+		this.update();
+	}
+	
+	private void update() {
+		this.table.update(this.filterbar.getFilterValues());
+	}
 	
 	@Override
 	public Composite getCompositeView() {
@@ -74,6 +90,6 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 
 	@Override
 	public void onFilterValueChanged() {
-		this.table.update(this.filterbar.getFilterValues());
+		this.update();
 	}
 }

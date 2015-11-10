@@ -33,8 +33,8 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 	public void setItems(List<HashMap<String, String>> items) {
 		this.clearItems();
 		
-		this.listBox.addItem("Alle", "RESET");
-		this.indexByValue.put("RESET", 0);
+		this.listBox.addItem("Alle", "");
+		this.indexByValue.put("", 0);
 		this.listBox.setSelectedIndex(0);
 		
 		int i = 1;

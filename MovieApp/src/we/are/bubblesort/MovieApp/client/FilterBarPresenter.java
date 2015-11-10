@@ -1,5 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
@@ -27,11 +28,11 @@ public class FilterBarPresenter extends Presenter implements FilterChangedEventH
 
 		for (FilterPresenter presenter : this.presenters) {
 			MovieAttribute attribute = presenter.getAttribute();
-			if (attribute.value != "RESET") {
+			if (attribute.value != "") {
 				resultSet.add(attribute);
 			}
 		}
-		
+
 		return resultSet;
 	}
 
