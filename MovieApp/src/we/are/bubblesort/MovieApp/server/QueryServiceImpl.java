@@ -57,10 +57,13 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+movie_table+" ORDER BY `"+MovieID.dbLabelName		+"`");
 			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
 			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT LEFT(`"+MovieYear.dbLabelName+"`, 4) as `movie_release_year` 	FROM "+movie_table+" WHERE `movie_release_year` != 0 ORDER BY `"+MovieYear.dbLabelName	+"` DESC");
-			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieLanguage.dbLabelName+"`");
-			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+movie_table+" ORDER BY `"+MovieCountry.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT `"+MovieDuration.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieDuration.dbLabelName+"`");
+			// reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieLanguage.dbLabelName+"`");
+			// reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+movie_table+" ORDER BY `"+MovieCountry.dbLabelName	+"`");
+			// reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT 'DUMMY' AS `"+MovieLanguage.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieLanguage.dbLabelName+"` LIMIT 1");
+			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT 'DUMMY' AS `"+MovieCountry.dbLabelName+"` FROM "+movie_table+" ORDER BY `"+MovieCountry.dbLabelName	+"` LIMIT 1");
+			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT 'DUMMY' AS `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"` LIMIT 1");
+			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT CEIL(`"+MovieDuration.dbLabelName+"`) as `"+MovieDuration.dbLabelName+"` FROM "+movie_table+" WHERE `"+MovieDuration.dbLabelName+"` IS NOT NULL ORDER BY `"+MovieDuration.dbLabelName+"` ASC");
 		}
 	}
 	
@@ -191,7 +194,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 		PreparedStatement pst							= null;
 		ResultSet rs									= null;
 		String statement 								= "";
-		
+
     	try{
     		attributeCollection = new Collection<MovieAttribute>();
     		
@@ -203,6 +206,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 					statement += (" OFFSET " + offset);
 				statement += ";";
 				pst = Database.getInstance().prepareStatement(statement);
+				
 				rs = Database.getInstance().execute(pst);
 				switch (attribute.dbLabelName) {
 					case MovieID.dbLabelName:
