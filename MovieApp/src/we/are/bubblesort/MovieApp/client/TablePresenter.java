@@ -27,10 +27,9 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 		headers.add("Titel");
 		headers.add("Länder");
 		headers.add("Jahr");
+		headers.add("Sprachen");
+		headers.add("Genres");
 		headers.add("Länge");
-		// erst in Sprint 2, wenn Datenbanktabellen ready:
-		// headers.add("Sprachen");
-		// headers.add("Genres");
 		
 		this.view.setHeader(headers);
 		this.view.addHandler(LoadMoreEvent.TYPE, this);
@@ -42,10 +41,9 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	    	columnValues.add(movie.title.displayName);
 	    	columnValues.add(this.getDisplayableAttribute(movie.countries));
 	    	columnValues.add(movie.year.displayName);
+	    	columnValues.add(this.getDisplayableAttribute(movie.languages));
+	    	columnValues.add(this.getDisplayableAttribute(movie.genres));
 	    	columnValues.add(movie.duration.displayName);
-	    	// erst in Sprint 2, wenn Datenbanktabellen ready
-	    	// columnValues.add(this.getDisplayableAttribute(movie.languages));
-	    	// columnValues.add(this.getDisplayableAttribute(movie.genres));
 		    
 		    this.view.addItem(columnValues);
 	    }
@@ -80,7 +78,7 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 		this.moviePointer = 0;
 		this.filters = filters;
 		this.clearTable();
-		this.view.showMoreButton();
+		this.view.hideMoreButton();
 		this.loadTable();
 	}
 
@@ -103,8 +101,8 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 				
 				addToTable(result);
 				
-				if (result.size() < movieStep) {
-					view.hideMoreButton();
+				if (result.size() == movieStep) {
+					view.showMoreButton();
 				}
 			}
 		});
