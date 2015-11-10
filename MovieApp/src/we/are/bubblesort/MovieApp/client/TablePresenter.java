@@ -80,6 +80,7 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 		this.moviePointer = 0;
 		this.filters = filters;
 		this.clearTable();
+		this.view.showMoreButton();
 		this.loadTable();
 	}
 
@@ -101,6 +102,10 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 				}
 				
 				addToTable(result);
+				
+				if (result.size() < movieStep) {
+					view.hideMoreButton();
+				}
 			}
 		});
 	}

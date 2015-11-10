@@ -1,5 +1,8 @@
 package we.are.bubblesort.MovieApp.client;
 
+import we.are.bubblesort.MovieApp.shared.MovieCountry;
+import we.are.bubblesort.MovieApp.shared.MovieDuration;
+import we.are.bubblesort.MovieApp.shared.MovieGenre;
 import we.are.bubblesort.MovieApp.shared.MovieYear;
 
 import com.google.gwt.user.client.ui.Composite;
@@ -24,9 +27,18 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 	void init() {
 		this.table = new TablePresenter(this.queryService, new TableView());
 		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
-		
+
 		FilterPresenter yearFilter = new FilterPresenter(new MovieYear("0"), queryService, new FilterListBoxView());
 		this.filterbar.addFilter(yearFilter);
+		
+		FilterPresenter genreFilter = new FilterPresenter(new MovieGenre("0", "0"), queryService, new FilterListBoxView());
+		this.filterbar.addFilter(genreFilter);
+		
+		FilterPresenter countryFilter = new FilterPresenter(new MovieCountry("0", "0"), queryService, new FilterListBoxView());
+		this.filterbar.addFilter(countryFilter);
+		
+		FilterPresenter durationFilter = new FilterPresenter(new MovieDuration("0"), queryService, new FilterListBoxView());
+		this.filterbar.addFilter(durationFilter);
 
 		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 
