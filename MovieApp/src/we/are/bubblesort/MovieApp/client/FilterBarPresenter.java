@@ -27,7 +27,9 @@ public class FilterBarPresenter extends Presenter implements FilterChangedEventH
 
 		for (FilterPresenter presenter : this.presenters) {
 			MovieAttribute attribute = presenter.getAttribute();
-			resultSet.add(attribute);
+			if (attribute.value != "RESET") {
+				resultSet.add(attribute);
+			}
 		}
 		
 		return resultSet;

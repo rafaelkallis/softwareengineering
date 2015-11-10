@@ -3,7 +3,9 @@ package we.are.bubblesort.MovieApp.client;
 import java.util.HashMap;
 import java.util.List;
 
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.DomEvent;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.web.bindery.event.shared.HandlerRegistration;
@@ -31,12 +33,18 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 	public void setItems(List<HashMap<String, String>> items) {
 		this.clearItems();
 		
-		int i = 0;
+		this.listBox.addItem("Alle", "RESET");
+		this.indexByValue.put("RESET", 0);
+		this.listBox.setSelectedIndex(0);
+		
+		int i = 1;
 		for (HashMap<String, String> itemPair : items) {
 			this.listBox.addItem(itemPair.get("displayName"), itemPair.get("value"));
 			this.indexByValue.put(itemPair.get("value"), i);
 			i++;
 		}
+		
+		DomEvent.fireNativeEvent(Document.get().createChangeEvent(), this.listBox);
 	}
 	
 	protected void clearItems() {
