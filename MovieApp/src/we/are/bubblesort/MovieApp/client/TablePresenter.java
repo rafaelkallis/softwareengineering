@@ -18,6 +18,7 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	private QueryServiceAsync queryService;
 	static Integer movieStep = 20;
 	private Integer moviePointer = 0;
+	private UnorderedSet<MovieAttribute> filters;
 	
 	TablePresenter(QueryServiceAsync queryService, TableViewInterface view) {
 		this.view = view;
@@ -72,7 +73,13 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	}
 	
 	public void update() {
+		this.update(new UnorderedSet<MovieAttribute>());
+	}
+	
+	public void update(UnorderedSet<MovieAttribute> filters) {
 		this.moviePointer = 0;
+		this.filters = filters;
+		this.clearTable();
 		this.loadTable();
 	}
 
@@ -81,7 +88,7 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	}
 	
 	protected void loadTable() {
-		queryService.getMovieCollection(new UnorderedSet<MovieAttribute>() , movieStep, moviePointer, new AsyncCallback<Collection<Movie>>(){
+		queryService.getMovieCollection(this.filters, movieStep, moviePointer, new AsyncCallback<Collection<Movie>>(){
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Could not get table data.");

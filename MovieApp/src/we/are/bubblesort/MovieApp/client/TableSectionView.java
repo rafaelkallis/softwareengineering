@@ -17,6 +17,7 @@ public class TableSectionView extends SectionView {
 
 	@UiField Panel mainPanel;
 	@UiField Panel tablePanel;
+	@UiField Panel filterbarPanel;
 
 	public TableSectionView() {
 		initWidget(uiBinder.createAndBindUi(this));
