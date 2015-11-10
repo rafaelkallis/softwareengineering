@@ -16,9 +16,10 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 		FlowPanel panel = new FlowPanel();
 		
 		panel.add(this.listBox);
+		this.listBox.addStyleName("form-control");
 		
 		initWidget(panel);
-		setStyleName("filter-list-box");
+		setStyleName("filter-list-box form-group");
 	}
 
 	@Override

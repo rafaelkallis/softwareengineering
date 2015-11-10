@@ -6,7 +6,7 @@
 		    <g:HTML addStyleNames="page-header">
 		        <h1>Filme</h1>
 		    </g:HTML>
-	    	<g:FlowPanel ui:field="filterbarPanel"></g:FlowPanel>
+	    	<g:FlowPanel addStyleNames="form-group" ui:field="filterbarPanel"></g:FlowPanel>
 	    	<g:FlowPanel ui:field="tablePanel"></g:FlowPanel>
 	    </g:FlowPanel>
 	</g:FlowPanel>
