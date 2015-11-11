@@ -22,7 +22,7 @@ public final class Database {
     			
     			// Connect to Google SQL
     			Class.forName("com.mysql.jdbc.GoogleDriver");
-    			url 						= "jdbc:google:mysql://themovieapp-1121:movieapp/main?user=root";
+    			url 						= "jdbc:google:mysql://themovieappvnext:themovieappnext/main?user=root";
       		  	conn 						= DriverManager.getConnection(url);
     		} else {
     			
