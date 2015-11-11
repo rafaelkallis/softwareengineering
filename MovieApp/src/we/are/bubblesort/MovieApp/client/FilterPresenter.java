@@ -30,7 +30,6 @@ public class FilterPresenter extends Presenter {
 			@Override
 			public void onChange(ChangeEvent event) {
 				readValue();
-				fireEvent(new FilterChangedEvent());
 			}
 		});
 	}
@@ -40,7 +39,12 @@ public class FilterPresenter extends Presenter {
 	}
 
 	private void readValue() {
+		String currentValue = this.attribute.value;
 		this.attribute.value = this.view.getValue();
+		
+		if (currentValue != this.attribute.value) {
+			this.fireEvent(new FilterChangedEvent());
+		}
 	}
 	
 	public Object getValue() {

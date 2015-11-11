@@ -3,12 +3,12 @@ package we.are.bubblesort.MovieApp.client;
 import we.are.bubblesort.MovieApp.shared.MovieCountry;
 import we.are.bubblesort.MovieApp.shared.MovieDuration;
 import we.are.bubblesort.MovieApp.shared.MovieGenre;
+import we.are.bubblesort.MovieApp.shared.MovieLanguage;
 import we.are.bubblesort.MovieApp.shared.MovieTitle;
 import we.are.bubblesort.MovieApp.shared.MovieYear;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 
 public class TableSection extends Section implements FilterChangedEventHandler {
@@ -30,36 +30,42 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 	@Override
 	void init() {
 		this.table = new TablePresenter(this.queryService, new TableView());
-		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
+		this.filterbar = new FilterBarPresenter(this.queryService);
 
-		FilterPresenter titleFilter = new FilterPresenter(new MovieTitle("0"), queryService, new FilterTextBoxView());
+		FilterPresenter titleFilter = new FilterPresenter(new MovieTitle(""), queryService, new FilterTextBoxView());
 		this.filterbar.addFilter(titleFilter);
+		this.view.titleFilter.add(titleFilter.getCompositeView());
 		
-		FilterPresenter yearFilter = new FilterPresenter(new MovieYear("0"), queryService, new FilterListBoxView());
+		FilterPresenter yearFilter = new FilterPresenter(new MovieYear(""), queryService, new FilterListBoxView());
 		this.filterbar.addFilter(yearFilter);
+		this.view.yearFilter.add(yearFilter.getCompositeView());
 		
-		FilterPresenter genreFilter = new FilterPresenter(new MovieGenre("0", "0"), queryService, new FilterListBoxView());
+		FilterPresenter genreFilter = new FilterPresenter(new MovieGenre("", ""), queryService, new FilterListBoxView());
 		this.filterbar.addFilter(genreFilter);
+		this.view.genreFilter.add(genreFilter.getCompositeView());
 		
-		FilterPresenter countryFilter = new FilterPresenter(new MovieCountry("0", "0"), queryService, new FilterListBoxView());
+		FilterPresenter countryFilter = new FilterPresenter(new MovieCountry("", ""), queryService, new FilterListBoxView());
 		this.filterbar.addFilter(countryFilter);
+		this.view.countryFilter.add(countryFilter.getCompositeView());
 		
-		FilterPresenter durationFilter = new FilterPresenter(new MovieDuration("0"), queryService, new FilterListBoxView());
+		FilterPresenter durationFilter = new FilterPresenter(new MovieDuration(""), queryService, new FilterListBoxView());
 		this.filterbar.addFilter(durationFilter);
+		this.view.durationFilter.add(durationFilter.getCompositeView());
+		
+		FilterPresenter languageFilter = new FilterPresenter(new MovieLanguage("", ""), queryService, new FilterListBoxView());
+		this.filterbar.addFilter(languageFilter);
+		this.view.languageFilter.add(languageFilter.getCompositeView());
 
-		titleFilter.addHandler(FilterChangedEvent.TYPE, this);
+		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 
 		this.view.tablePanel.add(this.table.getCompositeView());
-		this.view.filterbarPanel.add(this.filterbar.getCompositeView());
 		
-		Button updateButton = new Button("Suchen");
-		updateButton.addClickHandler(new ClickHandler() {
+		this.view.searchButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
 				onFilterValueChanged();
 			}
 		});
-		this.view.filterbar.add(updateButton);
 		
 		this.update();
 	}
