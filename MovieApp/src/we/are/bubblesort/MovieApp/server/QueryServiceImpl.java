@@ -101,17 +101,22 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     							"m.`" + MovieTitle.dbLabelName + "`," +
     							"LEFT(m.`" + MovieYear.dbLabelName + "`, 4) AS `" + MovieYear.dbLabelName + "`," +
     							"m.`" + MovieDuration.dbLabelName + "`," +
-    							" GROUP_CONCAT(movie_countries.movie_country SEPARATOR ',') as movie_countries," +
-    							" 'DUMMY,DUMMY' as movie_genres," +
-    							" 'DUMMY, DUMMY' as movie_languages" +
+    							" GROUP_CONCAT(DISTINCT movie_countries.movie_country SEPARATOR ',') as movie_countries," +
+    							" GROUP_CONCAT(DISTINCT movie_genres.genre SEPARATOR ',') as `" + MovieGenre.dbLabelName + "`," +
+    							" GROUP_CONCAT(DISTINCT movie_languages.language SEPARATOR ',') as `" + MovieLanguage.dbLabelName + "`" +
     							" FROM " + movie_table + " AS m " +
     							" JOIN movie_countries ON m.id = movie_countries.movie_id " +
+    							" JOIN movie_languages ON m.id = movie_languages.movie_id " +
+    							" JOIN movie_genres ON m.id = movie_genres.movie_id" +
     							" WHERE 1";
     		
     		// Placeholder insertion
         	for(MovieAttribute filter : filterSet){
-        		if(filter.dbLabelName.equals(MovieTitle.dbLabelName)){
-        			statement += (" AND "+MovieTitle.dbLabelName+" LIKE ? ");
+        		if(		filter.dbLabelName.equals(MovieTitle.dbLabelName)
+        				|| filter.dbLabelName.equals(MovieGenre.dbLabelName)
+        				|| filter.dbLabelName.equals(MovieLanguage.dbLabelName)
+        				|| filter.dbLabelName.equals(MovieCountry.dbLabelName)){
+        			statement += (" AND "+filter.dbLabelName+" LIKE ? ");
         		}else{
         			statement += (" AND "+filter.dbLabelName+"= ? ");
         		}
@@ -127,7 +132,10 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
         	
         	// Placeholder replace with actual filter
         	for(MovieAttribute filter : filterSet){
-        			if(filter.dbLabelName.equals(MovieTitle.dbLabelName)){
+        			if(filter.dbLabelName.equals(MovieTitle.dbLabelName)
+            				|| filter.dbLabelName.equals(MovieGenre.dbLabelName)
+            				|| filter.dbLabelName.equals(MovieLanguage.dbLabelName)
+            				|| filter.dbLabelName.equals(MovieCountry.dbLabelName)){
         				pst.setString(i++, "%"+filter.value+"%");
             		}else{
             			pst.setString(i++, filter.value);

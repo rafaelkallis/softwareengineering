@@ -49,7 +49,6 @@ public final class Database {
      * @returns ResultSet 
      */
 	public ResultSet execute(PreparedStatement pst) throws SQLException{
-		System.out.println(pst.toString());
 		return pst.executeQuery();
 	}
 	
