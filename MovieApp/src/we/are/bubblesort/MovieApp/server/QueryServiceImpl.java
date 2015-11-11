@@ -56,13 +56,10 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 			reverseQueryStatements = new HashMap<String,String>();
 			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+movie_table+" ORDER BY `"+MovieID.dbLabelName		+"`");
 			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT LEFT(`"+MovieYear.dbLabelName+"`, 4) as `movie_release_year` 	FROM "+movie_table+" WHERE `movie_release_year` != 0 ORDER BY `"+MovieYear.dbLabelName	+"` DESC");
-			// reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT `"+MovieLanguage.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieLanguage.dbLabelName+"`");
-			// reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT `"+MovieCountry.dbLabelName+"` FROM "+movie_table+" ORDER BY `"+MovieCountry.dbLabelName	+"`");
-			// reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT 'DUMMY' AS `"+MovieLanguage.dbLabelName+"`FROM "+movie_table+" ORDER BY `"+MovieLanguage.dbLabelName+"` LIMIT 1");
-			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT 'DUMMY' AS `"+MovieCountry.dbLabelName+"` FROM "+movie_table+" ORDER BY `"+MovieCountry.dbLabelName	+"` LIMIT 1");
-			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT 'DUMMY' AS `"+MovieGenre.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieGenre.dbLabelName	+"` LIMIT 1");
+			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"`    FROM "+movie_table+" WHERE `movie_release_year` != 0 ORDER BY `"+MovieYear.dbLabelName	+"` DESC");
+			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT language AS `"+MovieLanguage.dbLabelName	+"`	FROM movie_languages ORDER BY language");
+			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT movie_country AS `"+MovieCountry.dbLabelName	+"`	FROM movie_countries ORDER BY movie_country");
+			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT genre AS `"+MovieGenre.dbLabelName	+"` FROM movie_genres ORDER BY `"+MovieGenre.dbLabelName	+"`");
 			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT CEIL(`"+MovieDuration.dbLabelName+"`) as `"+MovieDuration.dbLabelName+"` FROM "+movie_table+" WHERE `"+MovieDuration.dbLabelName+"` IS NOT NULL ORDER BY `"+MovieDuration.dbLabelName+"` ASC");
 		}
 	}
