@@ -1,26 +1,33 @@
 package we.are.bubblesort.MovieApp.shared;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import com.google.gwt.http.client.URL;
+import com.google.gwt.core.client.GWT;
 
-import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.lang3.StringUtils;
-
-public class ExportHelper {
+public class ExportServiceHelper {
 	
 	/*
 	 * @param filters the filterSet to be encoded into an url-String
 	 * @returns String the encoded url-String
 	 */
-	public static String filterSetToUrlString(UnorderedSet<MovieAttribute> filters) throws UnsupportedEncodingException{
-		ArrayList<String> filterUrls = new ArrayList<String>();
+	public static String filterSetToUrlString(UnorderedSet<MovieAttribute> filters) {
+		Collection<String> filterUrls = new Collection<String>();
 		for(MovieAttribute filter : filters){
-			filterUrls.add(ExportHelper.filterToUrlString(filter));
+			filterUrls.add(ExportServiceHelper.filterToQueryString(filter));
 		}
-		return StringUtils.join(filterUrls, "&");
+		return GWT.getHostPageBaseURL()+"export?"+filterUrls.toJoinedString("&");
+	}
+	
+	/*
+	 * @param filter the filter to be encoded
+	 * @returns String the encoded filter
+	 */
+	public static String filterToQueryString(MovieAttribute filter){
+		if(filter.value.equals(filter.displayName)){
+			return URL.encode(filter.urlName)+"="+URL.encode(filter.value);
+		}else{
+			return URL.encode(filter.urlName)+"="+URL.encode(filter.value+"~"+filter.displayName);
+		}
 	}
 	
 	/*
@@ -32,33 +39,18 @@ public class ExportHelper {
 
 		String[] queryParameters = queryString.split("&", -1);
 		
-		for(String queryparameter : queryParameters){
-			String[] name_value = queryparameter.split("=", -1);
-			String[] value_displayName = name_value[1].split("|", -1);
-			filterSet.add(ExportHelper.paramToFilter(name_value[0], value_displayName));
+		for(String queryParameter : queryParameters){
+			if (queryParameter.contains("=")) {
+				String[] name_valueDisplayName = queryParameter.split("=", -1);
+				String[] value_displayName = name_valueDisplayName[1].split("~", -1);
+				filterSet.add(ExportServiceHelper.paramToFilter(name_valueDisplayName[0], value_displayName));
+			}else{
+				System.err.println("Error converting queryParameter to filter: <"+queryParameter+">");
+			}
 		}
 		return filterSet;
 	}
 		
-	public static String movieCollectionToString(Collection<Movie> movies){
-		return null;
-	}
-	public static Collection<Movie> stringToMovieCollection(String url){
-		return null;
-	}
-	
-	/*
-	 * @param filter the filter to be encoded
-	 * @returns String the encoded filter
-	 */
-	public static String filterToUrlString(MovieAttribute filter) throws UnsupportedEncodingException{
-		if(filter.value.equals(filter.displayName)){
-			return URLEncoder.encode(filter.urlName,"UTF-8")+"="+URLEncoder.encode(filter.value, "UTF-8");
-		}else{
-			return URLEncoder.encode(filter.urlName,"UTF-8")+"="+URLEncoder.encode(filter.value+"|"+filter.displayName, "UTF-8");
-		}
-	}
-	
 	/*
 	 * @param paramName the attribute name decoded from the url
 	 * @param paramValue the attribute value(s) decoded from the url
@@ -94,11 +86,14 @@ public class ExportHelper {
 	    }
 	}
 
+	
 	public static String toSV(Collection<Movie> movies, String delimiter){
-		List<String> join_list = new ArrayList<String>(movies.size());
+		Collection<String> join_list = new Collection<String>(movies.size());
 		for(Movie movie : movies){
 			join_list.add(movie.toJoinedString(delimiter));
 		}
-		return StringUtils.join("\n", join_list);
+		return join_list.toJoinedString("\n");
 	}
+	
+	
 }

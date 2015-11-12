@@ -1,6 +1,6 @@
 package we.are.bubblesort.MovieApp.shared;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.Iterator;
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class OrderedSet <T extends Comparable<T>> extends Model implements Iterable<T>,IsSerializable{
@@ -36,6 +36,14 @@ public class OrderedSet <T extends Comparable<T>> extends Model implements Itera
 	}
 
 	public String toJoinedString(String delimiter){
-		return StringUtils.join(elements, delimiter);
+		Iterator<T> object = elements.iterator();
+		String joined = "";
+		while(object.hasNext()){
+			joined += object.next().toString();
+			if(object.hasNext()){
+				joined+=delimiter;
+			}
+		}
+		return joined;
 	}
 }

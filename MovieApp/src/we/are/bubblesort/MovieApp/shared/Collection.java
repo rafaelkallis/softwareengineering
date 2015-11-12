@@ -2,9 +2,7 @@ package we.are.bubblesort.MovieApp.shared;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.apache.commons.lang3.StringUtils;
 import com.google.gwt.user.client.rpc.IsSerializable;
-
 
 public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 	protected ArrayList<T> elements;
@@ -42,6 +40,14 @@ public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 	}
 	
 	public String toJoinedString(String delimiter){
-		return StringUtils.join(elements, delimiter);
+		Iterator<T> object = elements.iterator();
+		String joined = "";
+		while(object.hasNext()){
+			joined += object.next().toString();
+			if(object.hasNext()){
+				joined+=delimiter;
+			}
+		}
+		return joined;
 	}
 }
