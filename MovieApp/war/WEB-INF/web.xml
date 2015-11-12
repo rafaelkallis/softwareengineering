@@ -36,4 +36,14 @@
     <servlet-name>QueryServiceImpl</servlet-name>
     <url-pattern>/movieapp/query</url-pattern>
   </servlet-mapping>
+  
+  <!-- Export Http Service -->
+  	<servlet>  
+ 		<servlet-name>ExportService</servlet-name>  
+ 		<servlet-class>we.are.bubblesort.MovieApp.server.ExportService</servlet-class>  
+  	</servlet>  
+	<servlet-mapping>  
+ 		<servlet-name>ExportService</servlet-name>  
+ 		<url-pattern>/export</url-pattern>  
+	</servlet-mapping>  
 </web-app>
