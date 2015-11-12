@@ -24,16 +24,18 @@ public class ExportHelper {
 	}
 	
 	/*
-	 * @param request the url from which we will extract the filters
+	 * @param queryString the String from request.getQueryString()
 	 * @returns UnorderedSet<MovieAttribute> the set of filters
 	 */
-	public static UnorderedSet<MovieAttribute> urlToFilterSet(HttpServletRequest request) throws UnsupportedEncodingException{
+	public static UnorderedSet<MovieAttribute> queryStringToFilterSet(String queryString) throws UnsupportedEncodingException{
 		UnorderedSet<MovieAttribute> filterSet = new UnorderedSet<MovieAttribute>();	
-		Enumeration headerNames = request.getHeaderNames();
+
+		String[] queryParameters = queryString.split("&", -1);
 		
-		while(headerNames.hasMoreElements()){
-			String paramName = (String) headerNames.nextElement();
-	        filterSet.add(ExportHelper.urlToFilter(request, paramName));
+		for(String queryparameter : queryParameters){
+			String[] name_value = queryparameter.split("=", -1);
+			String[] value_displayName = name_value[1].split("|", -1);
+			filterSet.add(ExportHelper.paramToFilter(name_value[0], value_displayName));
 		}
 		return filterSet;
 	}
@@ -58,22 +60,13 @@ public class ExportHelper {
 	}
 	
 	/*
-	 * @param request the encoded url snippet to be processed
-	 * @param paramName name of the header to be processed
-	 * @returns MovieAttribute 
-	 */
-	public static MovieAttribute urlToFilter(HttpServletRequest request, String paramName){
-        String[] paramValue = request.getHeader(paramName).split("|", -1);
-        return ExportHelper.paramToFilter(paramName, paramValue);
-	}
-	
-	/*
 	 * @param paramName the attribute name decoded from the url
 	 * @param paramValue the attribute value(s) decoded from the url
 	 * @returns MovieAttribute the new filter
 	 * @pre paramName,paramValue already decoded
 	 */
 	public static MovieAttribute paramToFilter(String paramName,String[] paramValue){
+		
 		switch(paramName){
 			case MovieID.urlName:
 				return new MovieID(paramValue[0]);
