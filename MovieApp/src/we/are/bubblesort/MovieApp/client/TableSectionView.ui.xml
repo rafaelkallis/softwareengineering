@@ -6,6 +6,38 @@
 		    <g:HTML addStyleNames="page-header">
 		        <h1>Filme</h1>
 		    </g:HTML>
+		    <g:FlowPanel addStyleNames="filterbar panel" ui:field="filterbar">
+		        <g:FlowPanel addStyleNames="panel-body">
+			        <g:FlowPanel addStyleNames="filter titleFilter pull-left">
+			            <g:Label>Titel</g:Label>
+		    			<g:FlowPanel addStyleNames="form-group" ui:field="titleFilter"></g:FlowPanel>
+			        </g:FlowPanel>
+			        <g:FlowPanel addStyleNames="filter countryFilter pull-left">
+			            <g:Label>Land</g:Label>
+		    			<g:FlowPanel addStyleNames="form-group" ui:field="countryFilter"></g:FlowPanel>
+		    		</g:FlowPanel>
+			        <g:FlowPanel addStyleNames="filter yearFilter pull-left">
+			            <g:Label>Jahr</g:Label>
+		    			<g:FlowPanel addStyleNames="form-group" ui:field="yearFilter"></g:FlowPanel>
+		    		</g:FlowPanel>
+			        <g:FlowPanel addStyleNames="filter languageFilter pull-left">
+			            <g:Label>Sprache</g:Label>
+		    			<g:FlowPanel addStyleNames="form-group" ui:field="languageFilter"></g:FlowPanel>
+		    		</g:FlowPanel>
+			        <g:FlowPanel addStyleNames="filter genreFilter pull-left">
+			            <g:Label>Genre</g:Label>
+		    			<g:FlowPanel addStyleNames="form-group" ui:field="genreFilter"></g:FlowPanel>
+		    		</g:FlowPanel>
+			        <g:FlowPanel addStyleNames="filter durationFilter pull-left">
+			            <g:Label>Länge</g:Label>
+		    			<g:FlowPanel addStyleNames="form-group" ui:field="durationFilter"></g:FlowPanel>
+		    		</g:FlowPanel>
+			        <g:FlowPanel addStyleNames="pull-right">
+			            <g:Label>&nbsp;</g:Label>
+		    			<g:Button addStyleNames="btn btn-primary" ui:field="searchButton">Suchen</g:Button>
+		    		</g:FlowPanel>
+	    		</g:FlowPanel>
+		    </g:FlowPanel>
 	    	<g:FlowPanel ui:field="tablePanel"></g:FlowPanel>
 	    </g:FlowPanel>
 	</g:FlowPanel>
