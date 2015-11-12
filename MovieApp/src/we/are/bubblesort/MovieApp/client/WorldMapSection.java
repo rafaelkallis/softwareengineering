@@ -25,6 +25,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 
 	@Override
 	void init() {
+		this.initialized = true;
 		this.worldmap = new MapPresenter(this.queryService, new WorldMapView());
 		this.filterbar = new FilterBarPresenter(this.queryService);
 		

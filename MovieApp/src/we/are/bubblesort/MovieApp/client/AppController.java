@@ -47,7 +47,6 @@ public final class AppController extends Presenter implements AppActivateSection
 		this.mainNavigation.addMenu(table);
 		
 		for (Section currentSection : sections) {
-			currentSection.init();
 			currentSection.hide();
 			this.view.appSectionContainerPanel.add(currentSection.getCompositeView());
 		}
@@ -56,6 +55,10 @@ public final class AppController extends Presenter implements AppActivateSection
 	}
 	
 	public void activateSection(Section section) {
+		if (!section.isInitialized()) {
+			section.init();
+		}
+		
 		hideAllSections();
 		section.show();
 		this.fireEvent(new AppSectionActivatedEvent(section.getId()));

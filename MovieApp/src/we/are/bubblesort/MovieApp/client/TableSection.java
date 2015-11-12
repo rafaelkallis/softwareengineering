@@ -29,6 +29,7 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 
 	@Override
 	void init() {
+		this.initialized = true;
 		this.table = new TablePresenter(this.queryService, new TableView());
 		this.filterbar = new FilterBarPresenter(this.queryService);
 
