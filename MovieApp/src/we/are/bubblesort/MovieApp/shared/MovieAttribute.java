@@ -26,6 +26,10 @@ public abstract class MovieAttribute implements IsSerializable,Comparable<MovieA
 	@Override
 	public int hashCode(){
 		return value.hashCode();
-
+	}
+	
+	@Override
+	public String toString(){
+		return displayName;
 	}
 }
