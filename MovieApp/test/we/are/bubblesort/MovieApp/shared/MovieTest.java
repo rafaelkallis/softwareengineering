@@ -40,8 +40,8 @@ public class MovieTest {
 		genres.add(new MovieGenre("Drama","Drama"));
 		movie.genres = genres;
 		
-		assertEquals("123456789,Bubblesort,2015,92,\"German,German,German\",\"Switzerland\",\"Drama,Drama\"",movie.toJoinedString(","));
-		assertEquals("123456789\tBubblesort\t2015\t92\t\"German\tGerman\tGerman\"\t\"Switzerland\"\t\"Drama\tDrama\"",movie.toJoinedString("\t"));
+		assertEquals("\"123456789\",\"Bubblesort\",\"2015\",\"92\",\"German,German,German\",\"Switzerland\",\"Drama,Drama\"",movie.toJoinedString(","));
+		assertEquals("\"123456789\"\t\"Bubblesort\"\t\"2015\"\t\"92\"\t\"German\tGerman\tGerman\"\t\"Switzerland\"\t\"Drama\tDrama\"",movie.toJoinedString("\t"));
 	}
 
 }
