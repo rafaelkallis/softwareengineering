@@ -39,17 +39,21 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
 	    	columnValues.add(movie.title.displayName);
-	    	columnValues.add(this.getDisplayableAttribute(movie.countries));
+	    	columnValues.add(movie.countries.toJoinedString(", "));
 	    	columnValues.add(movie.year.displayName);
 	    	columnValues.add(movie.duration.displayName);
 	    	// erst in Sprint 2, wenn Datenbanktabellen ready
-	    	// columnValues.add(this.getDisplayableAttribute(movie.languages));
-	    	// columnValues.add(this.getDisplayableAttribute(movie.genres));
+	    	//columnValues.add(movie.languages.toJoinedString(", "));
+	    	//columnValues.add(movie.genres.toJoinedString(", "));
 		    
 		    this.view.addItem(columnValues);
 	    }
 	}
 	
+	/*
+	 * each UnorderedSet has a toJoinedString function now
+	 */
+	@Deprecated
 	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
 		String display_attribute = "";
 		if(attributes.size()==0){
