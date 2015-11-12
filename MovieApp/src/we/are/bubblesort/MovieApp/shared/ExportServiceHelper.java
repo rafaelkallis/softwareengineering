@@ -8,9 +8,9 @@ public class ExportServiceHelper {
 	
 	/*
 	 * @param filters the filterSet to be encoded into an url-String
-	 * @returns String the encoded url-String
+	 * @returns String the URL for downloading the file
 	 */
-	public static String filterSetToUrlString(UnorderedSet<MovieAttribute> filters) {
+	public static String filterSetToUrl(UnorderedSet<MovieAttribute> filters) {
 		Collection<String> filterUrls = new Collection<String>();
 		for(MovieAttribute filter : filters){
 			filterUrls.add(ExportServiceHelper.filterToQueryString(filter));
@@ -87,8 +87,12 @@ public class ExportServiceHelper {
 		return null;
 	}
 
-	
-	public static String toSV(Collection<Movie> movies, String delimiter){
+	/*
+	 * @param movies the movie collection
+	 * @param delimiter the separating character, usually a coma or tab
+	 * @returns String
+	 */
+	public static String movieCollectionToSeparatedValues(Collection<Movie> movies, String delimiter){
 		Collection<String> join_list = new Collection<String>(movies.size());
 		for(Movie movie : movies){
 			join_list.add(movie.toJoinedString(delimiter));

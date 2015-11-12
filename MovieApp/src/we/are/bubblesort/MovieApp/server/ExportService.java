@@ -38,7 +38,7 @@ public class ExportService extends HttpServlet {
 		response.setContentType("text/csv");
 		response.setHeader("Content-Disposition", "attachment; filename=\"MovieExport.csv\"");
 		OutputStream o = response.getOutputStream();
-		o.write(("id,Title,Year,Duration,Languages,Countries,Genres\n"+ExportServiceHelper.toSV(movies, ",")).getBytes());
+		o.write(("id,Title,Year,Duration,Languages,Countries,Genres\n"+ExportServiceHelper.movieCollectionToSeparatedValues(movies, ",")).getBytes());
 		o.flush();
 	}
 }
