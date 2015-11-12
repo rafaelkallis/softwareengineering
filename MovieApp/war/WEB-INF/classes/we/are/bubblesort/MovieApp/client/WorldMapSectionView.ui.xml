@@ -5,8 +5,7 @@
 	    <g:FlowPanel addStyleNames="worldmap" ui:field="worldmap">
 	    </g:FlowPanel>
 	    <g:FlowPanel addStyleNames="container worldmap-footer">
-			<g:FlowPanel ui:field="toolbar">
-			</g:FlowPanel>
+			<g:FlowPanel ui:field="yearFilter"></g:FlowPanel>
 	    </g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder>

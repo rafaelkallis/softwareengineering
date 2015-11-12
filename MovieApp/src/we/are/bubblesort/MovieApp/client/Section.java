@@ -5,6 +5,7 @@ public abstract class Section extends Presenter {
 	private static int idCounter = 0;
 	private int id;
 	protected SectionView view;
+	protected Boolean initialized = false;
 
 	Section(String sectionName) {
 		this.name = sectionName;
@@ -18,6 +19,10 @@ public abstract class Section extends Presenter {
 
 	String getName() {
 		return this.name;
+	}
+	
+	Boolean isInitialized() {
+		return this.initialized;
 	}
 	
 	abstract void init();

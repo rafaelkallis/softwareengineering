@@ -110,6 +110,25 @@ html {
 	text-align:center;
 }
 
+.section-table .filter {
+	padding-right:15px;
+}
+
+.section-table .yearFilter,
+.section-table .durationFilter {
+	width:10%;
+}
+
+.section-table .titleFilter {
+	width:25%;
+}
+
+.section-table .languageFilter,
+.section-table .genreFilter,
+.section-table .countryFilter {
+	width:15%;
+}
+
 .rangeslider .slider .background {
   cursor:-webkit-grab!important;
 }

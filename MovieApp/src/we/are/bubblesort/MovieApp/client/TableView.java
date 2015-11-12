@@ -16,6 +16,7 @@ import com.google.web.bindery.event.shared.Event.Type;
 public class TableView extends View implements TableViewInterface {
 	protected FlexTable table = new FlexTable();
 	protected Element tableHeader;
+	protected Button loadMoreButton;
 	
 	TableView() {
 		FlowPanel panel = new FlowPanel();
@@ -35,6 +36,7 @@ public class TableView extends View implements TableViewInterface {
 		loadMoreButton.addStyleName("btn btn-primary");
 		footer.add(loadMoreButton);
 		footerContainer.add(footer);
+		this.loadMoreButton = loadMoreButton;
 		
 		this.table.addStyleName("table table-hover table-fixed");
 		this.setupHeader();
@@ -78,11 +80,21 @@ public class TableView extends View implements TableViewInterface {
 	}
 
 	public void clearRows() {
-		this.table.clear();
+		this.table.removeAllRows();
 	}
 
 	@Override
 	public void addHandler(Type<LoadMoreEventHandler> tYPE, TablePresenter tablePresenter) {
 		super.addHandler(tYPE, tablePresenter);
+	}
+
+	@Override
+	public void hideMoreButton() {
+		this.loadMoreButton.setVisible(false);
+	}
+
+	@Override
+	public void showMoreButton() {
+		this.loadMoreButton.setVisible(true);
 	}
 }

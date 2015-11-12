@@ -25,16 +25,17 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 
 	@Override
 	void init() {
+		this.initialized = true;
 		this.worldmap = new MapPresenter(this.queryService, new WorldMapView());
-		this.filterbar = new FilterBarPresenter(this.queryService, new FilterBarView());
+		this.filterbar = new FilterBarPresenter(this.queryService);
 		
-		FilterPresenter yearFilter = new FilterPresenter(new MovieYear("0"), queryService, new RangeSliderView());
+		FilterPresenter yearFilter = new FilterPresenter(new MovieYear(""), queryService, new RangeSliderView());
 		this.filterbar.addFilter(yearFilter);
 
 		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 		
 		this.view.worldmap.add(this.worldmap.getCompositeView());
-		this.view.toolbar.add(this.filterbar.getCompositeView());
+		this.view.yearFilter.add(yearFilter.getCompositeView());
 		
 		// set yearfilter to current year
 		@SuppressWarnings("deprecation")

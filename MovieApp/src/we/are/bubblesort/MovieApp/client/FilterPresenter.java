@@ -30,7 +30,6 @@ public class FilterPresenter extends Presenter {
 			@Override
 			public void onChange(ChangeEvent event) {
 				readValue();
-				fireEvent(new FilterChangedEvent());
 			}
 		});
 	}
@@ -40,7 +39,12 @@ public class FilterPresenter extends Presenter {
 	}
 
 	private void readValue() {
+		String currentValue = this.attribute.value;
 		this.attribute.value = this.view.getValue();
+		
+		if (currentValue != this.attribute.value) {
+			this.fireEvent(new FilterChangedEvent());
+		}
 	}
 	
 	public Object getValue() {
@@ -80,20 +84,22 @@ public class FilterPresenter extends Presenter {
 	}
 
 	private void loadValues() {
-		this.queryService.getAttributeCollection(this.attribute, 0, 0, new AsyncCallback<Collection<MovieAttribute>>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Could not load values for attribute");
-			}
-
-			@Override
-			public void onSuccess(Collection<MovieAttribute> result) {
-				isLoaded = true;
-				fillViewValues(result);
-			}
-			
-		});
+		if (this.view instanceof FilterSelectableViewInterface) {
+			this.queryService.getAttributeCollection(this.attribute, 0, 0, new AsyncCallback<Collection<MovieAttribute>>() {
+	
+				@Override
+				public void onFailure(Throwable caught) {
+					Window.alert("Could not load values for attribute");
+				}
+	
+				@Override
+				public void onSuccess(Collection<MovieAttribute> result) {
+					isLoaded = true;
+					fillViewValues(result);
+				}
+				
+			});
+		}
 	}
 
 	@Override

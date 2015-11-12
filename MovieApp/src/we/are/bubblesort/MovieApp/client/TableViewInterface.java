@@ -9,4 +9,6 @@ public interface TableViewInterface {
 	public void addItem(ArrayList<String> item);
 	public void addHandler(Type<LoadMoreEventHandler> tYPE, TablePresenter tablePresenter);
 	public void clearRows();
+	public void hideMoreButton();
+	public void showMoreButton();
 }
