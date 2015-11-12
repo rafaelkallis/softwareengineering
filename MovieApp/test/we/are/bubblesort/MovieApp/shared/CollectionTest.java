@@ -42,4 +42,15 @@ public class CollectionTest {
 		collection.add(testArray);
 		assertArrayEquals(testArray, collection.get());
 	}
+	
+	@Test
+	public void testToString(){
+		collection.add("English");
+		collection.add("German");
+		collection.add("French");
+		
+		String delimiter = "-";
+		
+		assertEquals("English"+delimiter+"German"+delimiter+"French",collection.toJoinedString(delimiter));
+	}
 }
