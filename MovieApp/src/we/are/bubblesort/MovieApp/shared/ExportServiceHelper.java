@@ -40,12 +40,13 @@ public class ExportServiceHelper {
 		String[] queryParameters = queryString.split("&", -1);
 		
 		for(String queryParameter : queryParameters){
-			if (queryParameter.contains("=")) {
+			if(queryParameter.contains("=")){
 				String[] name_valueDisplayName = queryParameter.split("=", -1);
 				String[] value_displayName = name_valueDisplayName[1].split("~", -1);
-				filterSet.add(ExportServiceHelper.paramToFilter(name_valueDisplayName[0], value_displayName));
-			}else{
-				System.err.println("Error converting queryParameter to filter: <"+queryParameter+">");
+				MovieAttribute filter = ExportServiceHelper.paramToFilter(name_valueDisplayName[0], value_displayName);
+				if(filter != null){
+					filterSet.add(filter);
+				}	
 			}
 		}
 		return filterSet;
@@ -58,32 +59,32 @@ public class ExportServiceHelper {
 	 * @pre paramName,paramValue already decoded
 	 */
 	public static MovieAttribute paramToFilter(String paramName,String[] paramValue){
+		if(paramValue.length == 1 || paramValue.length == 2){
+			switch(paramName){
+				case MovieID.urlName:
+					return new MovieID(paramValue[0]);
+					
+				case MovieTitle.urlName:
+					return new MovieTitle(paramValue[0]);
+					
+				case MovieGenre.urlName:
+					return new MovieGenre(paramValue[0],paramValue[1]);
+					
+				case MovieDuration.urlName:
+					return new MovieDuration(paramValue[0]);
+					
+				case MovieCountry.urlName:
+					return new MovieCountry(paramValue[0],paramValue[1]);
+					
+				case MovieLanguage.urlName:
+					return new MovieLanguage(paramValue[0],paramValue[1]);
+					
+				case MovieYear.urlName:
+					return new MovieYear(paramValue[0]);
+			}
+		}
 		
-		switch(paramName){
-			case MovieID.urlName:
-				return new MovieID(paramValue[0]);
-				
-			case MovieTitle.urlName:
-				return new MovieTitle(paramValue[0]);
-				
-			case MovieGenre.urlName:
-				return new MovieGenre(paramValue[0],paramValue[1]);
-				
-			case MovieDuration.urlName:
-				return new MovieDuration(paramValue[0]);
-				
-			case MovieCountry.urlName:
-				return new MovieCountry(paramValue[0],paramValue[1]);
-				
-			case MovieLanguage.urlName:
-				return new MovieLanguage(paramValue[0],paramValue[1]);
-				
-			case MovieYear.urlName:
-				return new MovieYear(paramValue[0]);
-				
-			default:
-				return null;
-	    }
+		return null;
 	}
 
 	
