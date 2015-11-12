@@ -38,12 +38,12 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	public void addToTable(Collection<Movie> movies) {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
-	    	columnValues.add(movie.title);
+	    	columnValues.add(movie.title.toString());
 	    	columnValues.add(movie.countries.toJoinedString(", "));
-	    	columnValues.add(movie.year);
+	    	columnValues.add(movie.year.toString());
 	    	columnValues.add(movie.languages.toJoinedString(", "));
 	    	columnValues.add(movie.genres.toJoinedString(", "));
-	    	columnValues.add(movie.duration);
+	    	columnValues.add(movie.duration.toString());
 
 		    this.view.addItem(columnValues);
 	    }
