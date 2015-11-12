@@ -104,7 +104,7 @@ public class ExportHelper {
 	public static String toSV(Collection<Movie> movies, String delimiter){
 		List<String> join_list = new ArrayList<String>(movies.size());
 		for(Movie movie : movies){
-			join_list.add(movie.toString(delimiter));
+			join_list.add(movie.toJoinedString(delimiter));
 		}
 		return StringUtils.join("\n", join_list);
 	}
