@@ -23,7 +23,7 @@ public class ExportHelperTest {
 		filterSet.add(new MovieYear("1994"));
 		filterSet.add(new MovieCountry("DE","Germany"));
 		
-		assertEquals("movie_countries=DE%7CGermany&movie_release_year=1994&movie_name=Pulp+Fiction",ExportServiceHelper.filterSetToUrlString(filterSet));
+		assertEquals("movie_countries=DE%7CGermany&movie_release_year=1994&movie_name=Pulp+Fiction",ExportServiceHelper.filterSetToUrl(filterSet));
 	}
 	
 	@Test
