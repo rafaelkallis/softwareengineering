@@ -30,10 +30,10 @@ public class TablePresenterTest {
 		UnorderedSet<MovieAttribute> attributes = new UnorderedSet<MovieAttribute>();
 		attributes.add(new MovieYear("1997"));
 		attributes.add(new MovieLanguage("English","English"));		
-		assertEquals("1997, English",presenter.getDisplayableAttribute(attributes));
+		assertEquals("1997, English",attributes.toJoinedString(", "));
 		
 		attributes = new UnorderedSet<MovieAttribute>();		
-		assertEquals("",presenter.getDisplayableAttribute(attributes));
+		assertEquals("",attributes.toJoinedString(", "));
 	}
 	
 	@Test

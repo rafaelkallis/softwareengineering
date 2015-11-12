@@ -38,17 +38,29 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	public void addToTable(Collection<Movie> movies) {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
-	    	columnValues.add(movie.title.displayName);
-	    	columnValues.add(this.getDisplayableAttribute(movie.countries));
-	    	columnValues.add(movie.year.displayName);
-	    	columnValues.add(this.getDisplayableAttribute(movie.languages));
-	    	columnValues.add(this.getDisplayableAttribute(movie.genres));
-	    	columnValues.add(movie.duration.displayName);
-		    
+			
+			String title 		= movie.title 		!= null ? movie.title.toString() 				: "";
+			String countries 	= movie.countries 	!= null ? movie.countries.toJoinedString(", ") 	: "";
+			String year 		= movie.year 		!= null ? movie.year.toString() 				: "";
+			String languages 	= movie.languages 	!= null ? movie.languages.toJoinedString(", ") 	: "";
+			String genres		= movie.genres 		!= null ? movie.genres.toJoinedString(", ") 	: "";
+			String duration 	= movie.duration 	!= null ? movie.duration.toString() 			: "";
+			
+	    	columnValues.add(title);
+	    	columnValues.add(countries);
+	    	columnValues.add(year);
+	    	columnValues.add(languages);
+	    	columnValues.add(genres);
+	    	columnValues.add(duration);
+
 		    this.view.addItem(columnValues);
 	    }
 	}
 	
+	/*
+	 * each UnorderedSet has a toJoinedString function now
+	 */
+	@Deprecated
 	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
 		String display_attribute = "";
 		if(attributes.size()==0){

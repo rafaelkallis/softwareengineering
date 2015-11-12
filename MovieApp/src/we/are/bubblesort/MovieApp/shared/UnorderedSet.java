@@ -1,5 +1,7 @@
 package we.are.bubblesort.MovieApp.shared;
 
+import java.util.Iterator;
+
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>{
@@ -32,5 +34,17 @@ public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>
 		@Override
 		public java.util.Iterator<T> iterator(){
 			return elements.iterator();
+		}
+		
+		public String toJoinedString(String delimiter){
+			Iterator<T> object = elements.iterator();
+			String joined = "";
+			while(object.hasNext()){
+				joined += object.next().toString();
+				if(object.hasNext()){
+					joined+=delimiter;
+				}
+			}
+			return joined;
 		}
 }
