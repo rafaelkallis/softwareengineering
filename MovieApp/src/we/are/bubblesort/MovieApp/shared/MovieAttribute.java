@@ -32,6 +32,6 @@ public abstract class MovieAttribute implements IsSerializable,Comparable<MovieA
 	
 	@Override
 	public String toString(){
-		return displayName;
+		return displayName == null ? "" : displayName;
 	}
 }
