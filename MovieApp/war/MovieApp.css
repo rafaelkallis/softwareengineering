@@ -12,6 +12,11 @@ html {
 	outline:none!important;
 }
 
+.btn-tableExport {
+	top: 19px;
+    position: relative;
+}
+
 .app-header {
 	position:absolute;
 	top:0;

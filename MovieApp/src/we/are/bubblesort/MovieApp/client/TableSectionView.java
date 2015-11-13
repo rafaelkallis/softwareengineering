@@ -26,6 +26,7 @@ public class TableSectionView extends SectionView {
 	@UiField Panel countryFilter;
 	@UiField Panel titleFilter;
 	@UiField Button searchButton;
+	@UiField Button exportButton;
 
 	public TableSectionView() {
 		initWidget(uiBinder.createAndBindUi(this));
