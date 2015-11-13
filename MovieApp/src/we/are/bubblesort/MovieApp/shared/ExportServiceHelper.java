@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import com.google.gwt.http.client.URL;
 import com.google.gwt.core.client.GWT;
 
-public class ExportServiceHelper {
+public final class ExportServiceHelper {
 	
 	/*
 	 * @param filters the filterSet to be encoded into an url-String
@@ -21,8 +21,9 @@ public class ExportServiceHelper {
 	/*
 	 * @param filter the filter to be encoded
 	 * @returns String the encoded filter
+	 * Used by ExportServiceHelper.filterSetToUrl()
 	 */
-	public static String filterToQueryString(MovieAttribute filter){
+	static String filterToQueryString(MovieAttribute filter){
 		if(filter.value.equals(filter.displayName)){
 			return URL.encode(filter.urlName)+"="+URL.encode(filter.value);
 		}else{
@@ -57,8 +58,9 @@ public class ExportServiceHelper {
 	 * @param paramValue the attribute value(s) decoded from the url
 	 * @returns MovieAttribute the new filter
 	 * @pre paramName,paramValue already decoded
+	 * Used by ExportServiceHelper.queryStringToFilterSet()
 	 */
-	public static MovieAttribute paramToFilter(String paramName,String[] paramValue){
+	static MovieAttribute paramToFilter(String paramName,String[] paramValue){
 		if(paramValue.length == 1 || paramValue.length == 2){
 			switch(paramName){
 				case MovieID.urlName:
