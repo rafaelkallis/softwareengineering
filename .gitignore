@@ -32,4 +32,5 @@ MovieApp/www-test/*
 *.cache.js
 *.gwt.rpc
 *.symbolMap
+.idea/
 
