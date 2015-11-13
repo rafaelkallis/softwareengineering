@@ -32,5 +32,17 @@ public class TableViewMock implements TableViewInterface{
 	public int getItemsCount() {
 		return rows.size();
 	}
+
+	@Override
+	public void hideMoreButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showMoreButton() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

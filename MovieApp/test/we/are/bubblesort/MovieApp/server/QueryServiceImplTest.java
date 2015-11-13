@@ -31,7 +31,7 @@ public class QueryServiceImplTest {
 	
 		 assertNotNull(movies);
 		 for(Movie movie : movies){
-			 assertEquals("American Pie Presents: The Book of Love",movie.title);
+			 assertEquals("American Pie Presents: The Book of Love",movie.title.toString());
 		 }
 	}
 	
