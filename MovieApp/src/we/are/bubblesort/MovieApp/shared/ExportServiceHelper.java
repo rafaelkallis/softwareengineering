@@ -38,18 +38,17 @@ public final class ExportServiceHelper {
 	public static UnorderedSet<MovieAttribute> queryStringToFilterSet(String queryString) throws UnsupportedEncodingException{
 		UnorderedSet<MovieAttribute> filterSet = new UnorderedSet<MovieAttribute>();	
 
-		String[] queryParameters = queryString.split("&", -1);
-		
-		for(String queryParameter : queryParameters){
-			if(queryParameter.contains("=")){
-				String[] name_valueDisplayName = queryParameter.split("=", -1);
-				String[] value_displayName = name_valueDisplayName[1].split("~", -1);
-				MovieAttribute filter = ExportServiceHelper.paramToFilter(name_valueDisplayName[0], value_displayName);
-				if(filter != null){
-					filterSet.add(filter);
-				}	
-			}
-		}
+			String[] queryParameters = queryString.split("&", -1);
+			for (String queryParameter : queryParameters) {
+				if (queryParameter.contains("=")) {
+					String[] name_valueDisplayName = queryParameter.split("=", -1);
+					String[] value_displayName = name_valueDisplayName[1].split("~", -1);
+					MovieAttribute filter = ExportServiceHelper.paramToFilter(name_valueDisplayName[0],value_displayName);
+					if (filter != null) {
+						filterSet.add(filter);
+					}
+				}
+			} 
 		return filterSet;
 	}
 		
@@ -84,23 +83,7 @@ public final class ExportServiceHelper {
 				case MovieYear.urlName:
 					return new MovieYear(paramValue[0]);
 			}
-		}
-		
+		}	
 		return null;
 	}
-
-	/*
-	 * @param movies the movie collection
-	 * @param delimiter the separating character, usually a coma or tab
-	 * @returns String
-	 */
-	public static String movieCollectionToSeparatedValues(Collection<Movie> movies, String delimiter){
-		Collection<String> join_list = new Collection<String>(movies.size());
-		for(Movie movie : movies){
-			join_list.add(movie.toJoinedString(delimiter));
-		}
-		return join_list.toJoinedString("\n");
-	}
-	
-	
 }
