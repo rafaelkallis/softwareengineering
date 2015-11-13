@@ -18,6 +18,7 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	private QueryServiceAsync queryService;
 	static Integer movieStep = 20;
 	private Integer moviePointer = 0;
+	private UnorderedSet<MovieAttribute> filters;
 	
 	TablePresenter(QueryServiceAsync queryService, TableViewInterface view) {
 		this.view = view;
@@ -26,10 +27,9 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 		headers.add("Titel");
 		headers.add("Länder");
 		headers.add("Jahr");
+		headers.add("Sprachen");
+		headers.add("Genres");
 		headers.add("Länge");
-		// erst in Sprint 2, wenn Datenbanktabellen ready:
-		// headers.add("Sprachen");
-		// headers.add("Genres");
 		
 		this.view.setHeader(headers);
 		this.view.addHandler(LoadMoreEvent.TYPE, this);
@@ -38,18 +38,29 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	public void addToTable(Collection<Movie> movies) {
 	    for (Movie movie : movies) {
 			ArrayList<String> columnValues = new ArrayList<String>();
-	    	columnValues.add(movie.title.displayName);
-	    	columnValues.add(this.getDisplayableAttribute(movie.countries));
-	    	columnValues.add(movie.year.displayName);
-	    	columnValues.add(movie.duration.displayName);
-	    	// erst in Sprint 2, wenn Datenbanktabellen ready
-	    	// columnValues.add(this.getDisplayableAttribute(movie.languages));
-	    	// columnValues.add(this.getDisplayableAttribute(movie.genres));
-		    
+			
+			String title 		= movie.title 		!= null ? movie.title.toString() 				: "";
+			String countries 	= movie.countries 	!= null ? movie.countries.toJoinedString(", ") 	: "";
+			String year 		= movie.year 		!= null ? movie.year.toString() 				: "";
+			String languages 	= movie.languages 	!= null ? movie.languages.toJoinedString(", ") 	: "";
+			String genres		= movie.genres 		!= null ? movie.genres.toJoinedString(", ") 	: "";
+			String duration 	= movie.duration 	!= null ? movie.duration.toString() 			: "";
+			
+	    	columnValues.add(title);
+	    	columnValues.add(countries);
+	    	columnValues.add(year);
+	    	columnValues.add(languages);
+	    	columnValues.add(genres);
+	    	columnValues.add(duration);
+
 		    this.view.addItem(columnValues);
 	    }
 	}
 	
+	/*
+	 * each UnorderedSet has a toJoinedString function now
+	 */
+	@Deprecated
 	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
 		String display_attribute = "";
 		if(attributes.size()==0){
@@ -72,7 +83,14 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	}
 	
 	public void update() {
+		this.update(new UnorderedSet<MovieAttribute>());
+	}
+	
+	public void update(UnorderedSet<MovieAttribute> filters) {
 		this.moviePointer = 0;
+		this.filters = filters;
+		this.clearTable();
+		this.view.hideMoreButton();
 		this.loadTable();
 	}
 
@@ -81,7 +99,7 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	}
 	
 	protected void loadTable() {
-		queryService.getMovieCollection(new UnorderedSet<MovieAttribute>() , movieStep, moviePointer, new AsyncCallback<Collection<Movie>>(){
+		queryService.getMovieCollection(this.filters, movieStep, moviePointer, new AsyncCallback<Collection<Movie>>(){
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Could not get table data.");
@@ -94,6 +112,10 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 				}
 				
 				addToTable(result);
+				
+				if (result.size() == movieStep) {
+					view.showMoreButton();
+				}
 			}
 		});
 	}
