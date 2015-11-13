@@ -6,11 +6,18 @@
 	        <g:FlowPanel addStyleNames="container">
 		        <g:FlowPanel addStyleNames="navbar-collapse collapse" ui:field="appHeaderPanel">
 		            <g:FlowPanel addStyleNames="mainnavigation" ui:field="appMainNavigationPanel">
-		                
-		            </g:FlowPanel>
+					</g:FlowPanel>
+							<g:HTMLPanel addStyleNames="placeholder">
+    							<img src="images/placeholder-banner.png" width="190" height="33" style= "position:absolute;top:10px;right:10px;" />
+    							
+							</g:HTMLPanel>
 		        </g:FlowPanel>
 	        </g:FlowPanel>
 	    </g:FlowPanel>
-	    <g:FlowPanel addStyleNames="app-section-container" ui:field="appSectionContainerPanel"></g:FlowPanel>
+	    <g:FlowPanel addStyleNames="app-section-container" ui:field="appSectionContainerPanel">
+	     <g:HTMLPanel addStyleNames="movie-source">
+	         <a href="MovieAppSource.html" title="Klicken, um die Quelle der Daten anzusehen." target="_blank" >Datenquelle</a>
+	     </g:HTMLPanel>
+	    </g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder> 
