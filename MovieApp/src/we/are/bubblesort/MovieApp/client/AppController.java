@@ -1,5 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.web.bindery.event.shared.HandlerRegistration;
@@ -11,6 +13,7 @@ public final class AppController extends Presenter implements AppActivateSection
 	private QueryServiceAsync queryService;
 	private Collection<Section> sections = new Collection<Section>();
 	private SectionNavigationPresenter mainNavigation;
+	private ImprintSection imprint;
 	
 	HandlerRegistration AppActivateSectionEventHandlerRegistration;
 	
@@ -36,12 +39,16 @@ public final class AppController extends Presenter implements AppActivateSection
 		this.mainNavigation.addHandler(AppActivateSectionEvent.TYPE, this);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void setupSections() {		
 		WorldMapSection world = new WorldMapSection(this.queryService);
 		TableSection table = new TableSection(this.queryService);
+		ImprintSection imprint = new ImprintSection();
+		this.imprint = imprint;
 		
 		sections.add(world);
 		sections.add(table);
+		sections.add(imprint);
 
 		this.mainNavigation.addMenu(world);
 		this.mainNavigation.addMenu(table);
@@ -52,8 +59,19 @@ public final class AppController extends Presenter implements AppActivateSection
 		}
 		
 		this.activateSection(world);
+		
+		this.view.sourceLink.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				activateImprintSection();
+			}
+		});
 	}
 	
+	protected void activateImprintSection() {
+		activateSection(this.imprint);
+	}
+
 	public void activateSection(Section section) {
 		if (!section.isInitialized()) {
 			section.init();

@@ -15,9 +15,9 @@
 	        </g:FlowPanel>
 	    </g:FlowPanel>
 	    <g:FlowPanel addStyleNames="app-section-container" ui:field="appSectionContainerPanel">
-	     <g:HTMLPanel addStyleNames="movie-source">
-	         <a href="MovieAppSource.html" title="Klicken, um die Quelle der Daten anzusehen." target="_blank" >Datenquelle</a>
-	     </g:HTMLPanel>
+	     <g:FlowPanel addStyleNames="movie-source">
+	         <g:Hyperlink ui:field="sourceLink">Quelle</g:Hyperlink>
+	     </g:FlowPanel>
 	    </g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder> 
