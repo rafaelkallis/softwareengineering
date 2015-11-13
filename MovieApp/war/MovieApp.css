@@ -27,6 +27,13 @@ html {
 	box-sizing:border-box;
 }
 
+.movie-source{
+	position:absolute;
+	top:30px;
+	right:10px;
+	
+}
+
 .app-section-container {
 	position:absolute;
 	top:50px;;

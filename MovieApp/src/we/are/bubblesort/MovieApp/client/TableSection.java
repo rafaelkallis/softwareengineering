@@ -73,7 +73,7 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 		this.view.exportButton.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				Window.open(ExportServiceHelper.filterSetToUrl(filterbar.getFilterValues()), "", "");
+				Window.Location.replace(ExportServiceHelper.filterSetToUrl(filterbar.getFilterValues()));
 			}
 		});
 		
