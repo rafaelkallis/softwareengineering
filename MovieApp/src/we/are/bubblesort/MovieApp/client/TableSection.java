@@ -1,5 +1,6 @@
 package we.are.bubblesort.MovieApp.client;
 
+import we.are.bubblesort.MovieApp.shared.ExportServiceHelper;
 import we.are.bubblesort.MovieApp.shared.MovieCountry;
 import we.are.bubblesort.MovieApp.shared.MovieDuration;
 import we.are.bubblesort.MovieApp.shared.MovieGenre;
@@ -9,6 +10,7 @@ import we.are.bubblesort.MovieApp.shared.MovieYear;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 
 public class TableSection extends Section implements FilterChangedEventHandler {
@@ -65,6 +67,13 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 			@Override
 			public void onClick(ClickEvent event) {
 				onFilterValueChanged();
+			}
+		});
+		
+		this.view.exportButton.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				Window.open(ExportServiceHelper.filterSetToUrl(filterbar.getFilterValues()), "", "");
 			}
 		});
 		
