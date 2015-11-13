@@ -3,6 +3,10 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<g:FlowPanel addStyleNames="section section-table" ui:field="mainPanel" >
 	   <g:FlowPanel addStyleNames="container">
+		    <g:FlowPanel addStyleNames="pull-right">
+		        <g:Label>&nbsp;</g:Label>
+		        <g:Button addStyleNames="btn btn-primary btn-tableExport" ui:field="exportButton">Tabelle exportieren</g:Button>
+		    </g:FlowPanel>
 		    <g:HTML addStyleNames="page-header">
 		        <h1>Filme</h1>
 		    </g:HTML>

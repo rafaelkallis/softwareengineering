@@ -4,7 +4,7 @@ import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 
-public class Movie implements IsSerializable{
+public class Movie implements IsSerializable,Comparable<Movie>{
 	
 	public MovieID id;
 	public MovieTitle title;
@@ -51,5 +51,10 @@ public class Movie implements IsSerializable{
 		attribute_list.add("\"" + genres.toJoinedString(delimiter)		+ "\"");
 		
 		return attribute_list.toJoinedString(delimiter);
+	}
+
+	@Override
+	public int compareTo(Movie o) {
+		return id.compareTo(o.id);
 	}
 }
