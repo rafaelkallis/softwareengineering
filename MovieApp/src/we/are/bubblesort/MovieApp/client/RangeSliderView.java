@@ -43,7 +43,7 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 	
 	private static native void display(Element parent, JsArrayInteger values, RangeSliderView instance) /*-{
 		if (values.length == 0) return;
-		var margin = {top: 0, right: 50, bottom: 0, left: 50},
+		var margin = {top: 0, right: 25, bottom: 0, left: 25},
 		    width = Math.max(parent.clientWidth, 100) - margin.right - margin.left,
 		    height = Math.max(parent.clientHeight, 50) - margin.top - margin.bottom;
 
@@ -119,11 +119,11 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 		slider.selectAll(".extent").remove();
 		slider.selectAll(".resize").remove();
 		
-		slider.select(".background")
-		    .attr("transform", "translate(" + (-(margin.left)) + ", " + (-(margin.top + height / 2)) + ")")
+		var bg = slider.select(".background")
+		    .attr("width", width)
 		    .attr("height", height + margin.top + margin.bottom)
-		    .attr("width", height + margin.left + margin.right)
-		
+		    .attr("transform", "translate(0, " + (-(margin.top + height / 2)) + ")")
+		    
 		var handle = slider.append("g")
 		
 		handle.append("circle")

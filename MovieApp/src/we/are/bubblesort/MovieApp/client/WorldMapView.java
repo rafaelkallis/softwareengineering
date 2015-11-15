@@ -3,13 +3,23 @@ package we.are.bubblesort.MovieApp.client;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModelEntry;
 
+import com.google.gwt.canvas.client.Canvas;
+import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
+import com.google.gwt.event.dom.client.ErrorHandler;
 import com.google.gwt.core.client.ScriptInjector;
+import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.ImageElement;
+import com.google.gwt.event.dom.client.ErrorEvent;
+import com.google.gwt.event.dom.client.LoadEvent;
+import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Panel;
 
 /*
@@ -116,7 +126,9 @@ public class WorldMapView extends View implements MapViewInterface {
 	        var X = d3.scale.linear();
 	        var Y = d3.scale.linear();
 
-	        var svg = d3.select(map).append("svg");
+	        var svg = d3.select(map).append("svg")
+	        	.attr("version", 1.1)
+	        	.attr("xmlns", "http://www.w3.org/2000/svg");
 	        var projection = d3.geo.mercator();
 	        var path = d3.geo.path().projection(projection);
 	
@@ -176,4 +188,59 @@ public class WorldMapView extends View implements MapViewInterface {
 	public void setModel(WorldStatisticsModel model) {
 		this.model = model;
 	}
+
+	@Override
+	public void startExport() {
+		String svgDataUri = "data:image/svg+xml;base64," + btoa(this.mainPanel.getElement().getInnerHTML());
+		final Image imgRender = new Image();
+		final Canvas pngCanvas = Canvas.createIfSupported();
+		
+		if (pngCanvas == null) {
+			return;
+		}
+		
+		this.mainPanel.add(imgRender);
+		this.mainPanel.add(pngCanvas);
+		imgRender.setUrl(svgDataUri);
+		
+		imgRender.addLoadHandler(new LoadHandler() {
+			@Override
+			public void onLoad(LoadEvent event) {
+				pngCanvas.setCoordinateSpaceWidth(imgRender.getWidth());
+				pngCanvas.setCoordinateSpaceHeight(imgRender.getHeight());
+				Context2d context = pngCanvas.getContext2d();
+				context.drawImage(ImageElement.as(imgRender.getElement()), 0, 0);
+				String pngDataUri = pngCanvas.toDataUrl("image/png");
+
+				openLink(pngDataUri);
+				
+				cleanUpExport(imgRender, pngCanvas);
+			}
+		});
+		
+		imgRender.addErrorHandler(new ErrorHandler() {
+			@Override
+			public void onError(ErrorEvent event) {
+				Window.alert("Export fehlgeschlagen.");
+				cleanUpExport(imgRender, pngCanvas);
+			}
+		});
+	}
+	
+	private void cleanUpExport(Image imgRender, Canvas pngCanvas) {
+		imgRender.removeFromParent();
+		pngCanvas.removeFromParent();
+	}
+	
+	native void openLink(String url) /*-{
+		var a = document.createElement("a");
+		a.download = "MovieApp-Export.png";
+		a.target = "_blank";
+		a.href = url;
+		a.click();
+	}-*/;
+	
+	native String btoa(String b64) /*-{
+	    return btoa(b64);
+	}-*/;
 }

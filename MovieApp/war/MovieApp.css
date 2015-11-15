@@ -99,14 +99,23 @@ html {
 	box-sizing:border-box;
 	background-color:#8FDBFF;
 }
+
 .section-worldmap .worldmap-footer {
 	position:absolute;
 	height:100px;
+	overflow:hidden;
 	bottom:0;
 	left:0;
 	right:0;
 	box-sizing:border-box;
 	border-top:1px solid #61686B;
+}
+
+.section-worldmap .worldmap-footer .options {
+	position:absolute;
+	top:50%;
+	margin-top:-20px;
+	right:15px;
 }
 
 

@@ -41,4 +41,8 @@ public class MapPresenter extends Presenter {
 	public View getView() {
 		return (View)this.view;
 	}
+
+	public void export() {
+		this.view.startExport();
+	}
 }
