@@ -10,14 +10,12 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.dom.client.ErrorHandler;
 import com.google.gwt.core.client.ScriptInjector;
-import com.google.gwt.dom.client.CanvasElement;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.event.dom.client.ErrorEvent;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Panel;
@@ -191,6 +189,7 @@ public class WorldMapView extends View implements MapViewInterface {
 
 	@Override
 	public void startExport() {
+		inlineStyles(this.mainPanel.getElement());
 		String svgDataUri = "data:image/svg+xml;base64," + btoa(this.mainPanel.getElement().getInnerHTML());
 		final Image imgRender = new Image();
 		final Canvas pngCanvas = Canvas.createIfSupported();
@@ -212,7 +211,8 @@ public class WorldMapView extends View implements MapViewInterface {
 				context.drawImage(ImageElement.as(imgRender.getElement()), 0, 0);
 				String pngDataUri = pngCanvas.toDataUrl("image/png");
 
-				openLink(pngDataUri);
+				//openLink(pngDataUri);
+				Window.Location.assign(pngDataUri);
 				
 				cleanUpExport(imgRender, pngCanvas);
 			}
@@ -232,15 +232,34 @@ public class WorldMapView extends View implements MapViewInterface {
 		pngCanvas.removeFromParent();
 	}
 	
+	native void inlineStyles(Element parent) /*-{
+		function computedToInline(element, recursive) {
+			if (recursive) {
+				Array.prototype.forEach.call(element.children, function(child) {
+				computedToInline(child, recursive);
+				});
+			}
+			
+			var computedStyle = getComputedStyle(element, null);
+			for (var i = 0; i < computedStyle.length; i++) {
+				var property = computedStyle.item(i);
+				var value = computedStyle.getPropertyValue(property);
+				element.style[property] = value;
+			}
+		}
+		
+		computedToInline(parent.firstChild, true);
+	}-*/;
+	
 	native void openLink(String url) /*-{
 		var a = document.createElement("a");
-		a.download = "MovieApp-Export.png";
+		//a.download = "MovieApp-Export.png";
 		a.target = "_blank";
 		a.href = url;
 		a.click();
 	}-*/;
 	
-	native String btoa(String b64) /*-{
-	    return btoa(b64);
+	native String btoa(String source) /*-{
+	    return btoa(unescape(encodeURIComponent(source)));
 	}-*/;
 }
