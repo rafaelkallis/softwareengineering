@@ -34,3 +34,5 @@ MovieApp/www-test/*
 *.symbolMap
 .idea/
 
+
+*.iml
