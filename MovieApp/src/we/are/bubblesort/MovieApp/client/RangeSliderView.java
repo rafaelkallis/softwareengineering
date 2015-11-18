@@ -19,7 +19,6 @@ import com.google.gwt.user.client.ui.Panel;
 public class RangeSliderView extends View implements FilterSelectableViewInterface, HasChangeHandlers {
 	protected Panel mainPanel;
 	protected String currentValue = "";
-	protected Boolean libLoaded = false;
 	private JsArrayInteger values = JsArrayInteger.createArray().cast();
 	
 	RangeSliderView() {
@@ -31,7 +30,6 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 
 		ScriptInjector.fromString(ClientResources.INSTANCE.d3().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
 
-		libLoaded = true;
 		display(mainPanel.getElement(), values, instance);
 	}
 	
@@ -176,9 +174,7 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 	public void setItems(List<HashMap<String, String>> items) {
 		this.values = toValueArray(items);
 		
-		if (this.libLoaded) {
-			display(this.mainPanel.getElement(), toValueArray(items), this);
-		}
+		display(this.mainPanel.getElement(), toValueArray(items), this);
 	}
 	
 	public static JsArrayInteger toValueArray(List<HashMap<String, String>> items) {
@@ -198,9 +194,7 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 	@Override
 	public void setValue(String value) {
 		this.currentValue = value;
-		if (libLoaded) {
-			setSlider(this.mainPanel.getElement(), Integer.parseInt(value));
-		}
+		setSlider(this.mainPanel.getElement(), Integer.parseInt(value));
 	}
 	
 	protected void fireChangeEvent() {
