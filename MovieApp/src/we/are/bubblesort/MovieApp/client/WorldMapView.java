@@ -5,7 +5,6 @@ import we.are.bubblesort.MovieApp.shared.WorldStatisticsModelEntry;
 
 import com.google.gwt.canvas.client.Canvas;
 import com.google.gwt.canvas.dom.client.Context2d;
-import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.dom.client.ErrorHandler;
@@ -20,43 +19,22 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Panel;
 
-/*
- * requires the following libraries provided:
- * d3.min.js, topojson.v0.min.js
- */
+import we.are.bubblesort.MovieApp.client.resources.ClientResources;
 
 public class WorldMapView extends View implements MapViewInterface {
 	protected WorldStatisticsModel model = new WorldStatisticsModel();
-	final static String topologyUrl = "js/ne_110m_admin_0_countries_wo_antarctica.json";
-	final static String d3LibUrl = "js/d3.v3.min.js";
-	final static String topoLibUrl = "js/topojson.v0.min.js";
 	protected Panel mainPanel = new FlowPanel();
 	
 	WorldMapView() {
 		this.mainPanel.addStyleName("mapview worldmapview");
 		initWidget(this.mainPanel);
-		
-		ScriptInjector.fromUrl(d3LibUrl).setCallback(new Callback<Void, Exception>() {
-			public void onFailure(Exception reason) {
-				Window.alert("Script d3 load failed.");
-			}
-			public void onSuccess(Void result) {
-				ScriptInjector.fromUrl(topoLibUrl).setCallback(new Callback<Void, Exception>() {
 
-					@Override
-					public void onFailure(Exception reason) {
-						Window.alert("Script topojson load failed.");
-					}
+		ScriptInjector.fromString(ClientResources.INSTANCE.d3().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		ScriptInjector.fromString(ClientResources.INSTANCE.topojson().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+		String topology = ClientResources.INSTANCE.worldmap().getText();
 
-					@Override
-					public void onSuccess(Void result) {
-						setupMap(topologyUrl, mainPanel.getElement());
-						update();
-					}
-					
-				}).inject();
-			}
-		}).inject();
+		setupMap(topology, mainPanel.getElement());
+		update();
 	}
 	
 	public void update() {
@@ -83,7 +61,8 @@ public class WorldMapView extends View implements MapViewInterface {
 	}-*/;
 
 	private static native void injectMapData(Element parent, JsArray<JavaScriptObject> data) /*-{
-		if (d3) {
+		if ($wnd.d3) {
+			var d3 = $wnd.d3;
 			var numberoverlay = d3.select(parent).select("g.numberoverlay");
 			
 			if (!numberoverlay.size()) return;
@@ -115,38 +94,40 @@ public class WorldMapView extends View implements MapViewInterface {
 		}
 	}-*/;
 
-	private static native void setupMap(String topologyUrl, Element parent) /*-{
-		d3.json(topologyUrl, function(topology) {
-	        var map = parent;
-	        var width;
-	        var height;
-	
-	        var X = d3.scale.linear();
-	        var Y = d3.scale.linear();
+	private static native void setupMap(String jsonTopology, Element parent) /*-{
+		var topology = JSON.parse(jsonTopology);
+        var map = parent;
+        var width;
+        var height;
+        var d3 = $wnd.d3;
 
-	        var svg = d3.select(map).append("svg")
-	        	.attr("version", 1.1)
-	        	.attr("xmlns", "http://www.w3.org/2000/svg");
-	        var projection = d3.geo.mercator();
-	        var path = d3.geo.path().projection(projection);
-	
-	        var size = function() {
-	          width = map.clientWidth;
-	          height = map.clientHeight;
-	
-	          X.domain([0,width]).range([0, width])
-	          Y.domain([0,height]).range([0, height])
-	
-	          svg.attr("width", width).attr("height", height);
-	        }
-	
-	        d3.select($wnd).on('resize', size);
+        var X = d3.scale.linear();
+        var Y = d3.scale.linear();
+
+        var svg = d3.select(map).append("svg")
+        	.attr("version", 1.1)
+        	.attr("xmlns", "http://www.w3.org/2000/svg");
+        var projection = d3.geo.mercator();
+        var path = d3.geo.path().projection(projection);
+
+        var size = function() {
+          width = map.clientWidth;
+          height = map.clientHeight;
+
+          X.domain([0,width]).range([0, width])
+          Y.domain([0,height]).range([0, height])
+
+          svg.attr("width", width).attr("height", height);
+        }
+
+		setTimeout(function() {
+			d3.select($wnd).on('resize', size);
 	        size();
 		    
 		    var g = svg.append("g");
 	
 	        g.selectAll("path")
-	            .data(topojson.object(topology, topology.objects.countries)
+	            .data($wnd.topojson.object(topology, topology.objects.countries)
 	                  .geometries)
 	            .enter()
 	              .append("path")
@@ -155,31 +136,31 @@ public class WorldMapView extends View implements MapViewInterface {
 	              .on("mouseover", function(d) { d3.select(this).attr("class", "country active"); svg.selectAll("g.spot-" + d.id).attr("class", "spot spot-" + d.id + " active"); })
 	              .on("mouseout", function(d) { d3.select(this).attr("class", "country"); svg.selectAll("g.spot-" + d.id).attr("class", "spot spot-" + d.id); });
 	              
-        	var bounds = g[0][0].getBBox(),
-              scale = .9 / Math.max(bounds.width / width, bounds.height / height),
-              translate = [width / 2 - scale * bounds.x - scale * (bounds.width/2), height / 2 - scale * bounds.y - scale*(bounds.height / 2)];
+	    	var bounds = g[0][0].getBBox(),
+	          scale = .9 / Math.max(bounds.width / width, bounds.height / height),
+	          translate = [width / 2 - scale * bounds.x - scale * (bounds.width/2), height / 2 - scale * bounds.y - scale*(bounds.height / 2)];
 		
-       		g.attr("transform", "translate(" + translate.join(",") + ")scale(" + scale + ")");
-       		
-       		numberoverlay = svg.append("g").attr("class", "numberoverlay");
-       		
-            numberoverlay.on("transformfunctionstore", transform);
-            
+	   		g.attr("transform", "translate(" + translate.join(",") + ")scale(" + scale + ")");
+	   		
+	   		numberoverlay = svg.append("g").attr("class", "numberoverlay");
+	   		
+	        numberoverlay.on("transformfunctionstore", transform);
+	        
 	        zoom = d3.behavior.zoom()
 	          .x(X).y(Y).translate(translate).scale(scale)
 	          .on("zoom",function() {
 	             g.attr("transform","translate("+ 
 	                d3.event.translate.join(",")+")scale("+d3.event.scale+")");
 	             
-             	 numberoverlay.selectAll("g").attr("transform", transform);
+	         	 numberoverlay.selectAll("g").attr("transform", transform);
 	            });
 	            
 	        svg.call(zoom);
 	                  
-            function transform(d) {
-            	return "translate("+X(projection([d.longitude, d.latitude])[0])+", "+Y(projection([d.longitude, d.latitude])[1])+")"
-            }
-	   	});
+	        function transform(d) {
+	        	return "translate("+X(projection([d.longitude, d.latitude])[0])+", "+Y(projection([d.longitude, d.latitude])[1])+")"
+	        }
+		}, 1);
 	}-*/;
 
 	@Override
