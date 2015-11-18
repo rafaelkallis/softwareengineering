@@ -2,8 +2,6 @@ package we.are.bubblesort.MovieApp.client;
 
 import java.util.Date;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Composite;
 
 import we.are.bubblesort.MovieApp.shared.MovieYear;
@@ -44,12 +42,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		int year = new Date().getYear();
 		yearFilter.setValue(Integer.toString(year + 1900));
 		
-		this.view.exportbutton.addClickHandler(new ClickHandler() {
-			@Override
-			public void onClick(ClickEvent event) {
-				worldmap.export();
-			}			
-		});
+		new ExportPresenter(this.worldmap, this.view.exportbutton);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 
-public class MapPresenter extends Presenter {
+public class MapPresenter extends Presenter implements ExportableInterface {
 	protected MapViewInterface view;
 	protected QueryServiceAsync queryService;
 
@@ -42,7 +42,7 @@ public class MapPresenter extends Presenter {
 		return (View)this.view;
 	}
 
-	public void export() {
-		this.view.startExport();
+	public void startExport(ExportReadyEventHandler handler) {
+		this.view.startExport(handler);
 	}
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:FlowPanel addStyleNames="modal fade" ui:field="main">
+		<g:FlowPanel addStyleNames="modal-dialog">
+			<g:FlowPanel addStyleNames="modal-content">
+			    <g:HTML addStyleNames="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Ihr Export ist bereit</h4>
+				</g:HTML>
+				<g:FlowPanel addStyleNames="modal-footer">
+				    <g:InlineHTML>
+				        <button type="button" style="margin-right:5px;" class="btn btn-default" data-dismiss="modal">Schliessen</button>
+				    </g:InlineHTML>
+					<g:Anchor addStyleNames="btn btn-success" ui:field="downloadLink">Herunterladen</g:Anchor>
+				</g:FlowPanel>
+			</g:FlowPanel>
+		</g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder>

@@ -170,7 +170,7 @@ public class WorldMapView extends View implements MapViewInterface {
 	}
 
 	@Override
-	public void startExport() {
+	public void startExport(ExportReadyEventHandler handler) {
 		inlineStyles(this.mainPanel.getElement());
 		String svgDataUri = "data:image/svg+xml;base64," + btoa(this.mainPanel.getElement().getInnerHTML());
 		final Image imgRender = new Image();
@@ -184,6 +184,8 @@ public class WorldMapView extends View implements MapViewInterface {
 		this.mainPanel.add(pngCanvas);
 		imgRender.setUrl(svgDataUri);
 		
+		final ExportReadyEventHandler readyHandler = handler;
+		
 		imgRender.addLoadHandler(new LoadHandler() {
 			@Override
 			public void onLoad(LoadEvent event) {
@@ -193,8 +195,7 @@ public class WorldMapView extends View implements MapViewInterface {
 				context.drawImage(ImageElement.as(imgRender.getElement()), 0, 0);
 				String pngDataUri = pngCanvas.toDataUrl("image/png");
 
-				//openLink(pngDataUri);
-				Window.Location.assign(pngDataUri);
+				readyHandler.onExportReady(pngDataUri);
 				
 				cleanUpExport(imgRender, pngCanvas);
 			}
@@ -231,14 +232,6 @@ public class WorldMapView extends View implements MapViewInterface {
 		}
 		
 		computedToInline(parent.firstChild, true);
-	}-*/;
-	
-	native void openLink(String url) /*-{
-		var a = document.createElement("a");
-		//a.download = "MovieApp-Export.png";
-		a.target = "_blank";
-		a.href = url;
-		a.click();
 	}-*/;
 	
 	native String btoa(String source) /*-{
