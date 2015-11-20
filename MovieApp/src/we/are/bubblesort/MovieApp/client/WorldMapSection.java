@@ -41,6 +41,8 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		@SuppressWarnings("deprecation")
 		int year = new Date().getYear();
 		yearFilter.setValue(Integer.toString(year + 1900));
+		
+		new ExportPresenter(this.worldmap, this.view.exportbutton);
 	}
 
 	@Override

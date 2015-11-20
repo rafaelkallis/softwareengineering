@@ -5,7 +5,10 @@
 	    <g:FlowPanel addStyleNames="worldmap" ui:field="worldmap">
 	    </g:FlowPanel>
 	    <g:FlowPanel addStyleNames="container worldmap-footer">
-			<g:FlowPanel ui:field="yearFilter"></g:FlowPanel>
+			<g:FlowPanel ui:field="yearFilter" addStyleNames="col-md-10"></g:FlowPanel>
+			<g:FlowPanel ui:field="options" addStyleNames="options">
+			    <g:Button ui:field="exportbutton" addStyleNames="btn btn-default pull-right">Export</g:Button>
+			</g:FlowPanel>
 	    </g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder>
