@@ -35,6 +35,8 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 		this.initialized = true;
 		this.table = new TablePresenter(this.queryService, new TableView());
 		this.filterbar = new FilterBarPresenter(this.queryService);
+		
+		this.update();
 
 		FilterPresenter titleFilter = new FilterPresenter(new MovieTitle(""), queryService, new FilterTextBoxView());
 		this.filterbar.addFilter(titleFilter);
@@ -77,12 +79,10 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 				Window.Location.replace(ExportServiceHelper.filterSetToUrl(filterbar.getFilterValues()));
 			}
 		});
-		
+
 		Hyperlink sourceLink = new Hyperlink("Quelle", "");
 		new SourcePresenter(sourceLink);
 		this.view.source.add(sourceLink);
-		
-		this.update();
 	}
 	
 	private void update() {
