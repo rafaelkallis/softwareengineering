@@ -12,6 +12,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Hyperlink;
 
 public class TableSection extends Section implements FilterChangedEventHandler {
 	static final String defaultName = "Tabelle";
@@ -78,6 +79,10 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 				Window.Location.replace(ExportServiceHelper.filterSetToUrl(filterbar.getFilterValues()));
 			}
 		});
+
+		Hyperlink sourceLink = new Hyperlink("Quelle", "");
+		new SourcePresenter(sourceLink);
+		this.view.source.add(sourceLink);
 	}
 	
 	private void update() {
