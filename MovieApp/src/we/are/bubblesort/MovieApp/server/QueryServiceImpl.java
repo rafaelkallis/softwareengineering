@@ -2,6 +2,7 @@ package we.are.bubblesort.MovieApp.server;
 
 import we.are.bubblesort.MovieApp.client.QueryService;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,6 +37,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	private static String movie_table = "movies";	
 	private static String worldStatisticsModelCommandPre;
 	private static String worldStatisticsModelCommandPost;
+	private static Database db = Database.getInstance();
 	
 	public QueryServiceImpl() {
 		try {
@@ -106,90 +108,97 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     	int i								= 1;
 
     	try{
-    		movieCollection = new Collection<Movie>();
-
-    		// statement += " SELECT * FROM " + movie_table + " WHERE 1 ";
-    		statement += "SELECT m.`" + MovieID.dbLabelName + "`," +
-    							"m.`" + MovieTitle.dbLabelName + "`," +
-    							"LEFT(m.`" + MovieYear.dbLabelName + "`, 4) AS `" + MovieYear.dbLabelName + "`," +
-    							"m.`" + MovieDuration.dbLabelName + "`," +
-    							" GROUP_CONCAT(DISTINCT movie_countries.movie_country SEPARATOR ',') as movie_countries," +
-    							" GROUP_CONCAT(DISTINCT movie_genres.genre SEPARATOR ',') as `" + MovieGenre.dbLabelName + "`," +
-    							" GROUP_CONCAT(DISTINCT movie_languages.language SEPARATOR ',') as `" + MovieLanguage.dbLabelName + "`" +
-    							" FROM " + movie_table + " AS m " +
-    							" JOIN movie_countries ON m.id = movie_countries.movie_id " +
-    							" JOIN movie_languages ON m.id = movie_languages.movie_id " +
-    							" JOIN movie_genres ON m.id = movie_genres.movie_id" +
-    							" WHERE 1";
-    		
-    		// Placeholder insertion
-        	for(MovieAttribute filter : filterSet){
-        		if(		filter.dbLabelName.equals(MovieTitle.dbLabelName)
-        				|| filter.dbLabelName.equals(MovieGenre.dbLabelName)
-        				|| filter.dbLabelName.equals(MovieLanguage.dbLabelName)
-        				|| filter.dbLabelName.equals(MovieCountry.dbLabelName)){
-        			statement += (" AND "+filter.dbLabelName+" LIKE ? ");
-        		}else{
-        			statement += (" AND "+filter.dbLabelName+"= ? ");
-        		}
+        	Connection connection = db.getConnection();
+        	try {
+	    		movieCollection = new Collection<Movie>();
+	
+	    		// statement += " SELECT * FROM " + movie_table + " WHERE 1 ";
+	    		statement += "SELECT m.`" + MovieID.dbLabelName + "`," +
+	    							"m.`" + MovieTitle.dbLabelName + "`," +
+	    							"LEFT(m.`" + MovieYear.dbLabelName + "`, 4) AS `" + MovieYear.dbLabelName + "`," +
+	    							"m.`" + MovieDuration.dbLabelName + "`," +
+	    							" GROUP_CONCAT(DISTINCT movie_countries.movie_country SEPARATOR ',') as movie_countries," +
+	    							" GROUP_CONCAT(DISTINCT movie_genres.genre SEPARATOR ',') as `" + MovieGenre.dbLabelName + "`," +
+	    							" GROUP_CONCAT(DISTINCT movie_languages.language SEPARATOR ',') as `" + MovieLanguage.dbLabelName + "`" +
+	    							" FROM " + movie_table + " AS m " +
+	    							" JOIN movie_countries ON m.id = movie_countries.movie_id " +
+	    							" JOIN movie_languages ON m.id = movie_languages.movie_id " +
+	    							" JOIN movie_genres ON m.id = movie_genres.movie_id" +
+	    							" WHERE 1";
+	    		
+	    		// Placeholder insertion
+	        	for(MovieAttribute filter : filterSet){
+	        		if(		filter.dbLabelName.equals(MovieTitle.dbLabelName)
+	        				|| filter.dbLabelName.equals(MovieGenre.dbLabelName)
+	        				|| filter.dbLabelName.equals(MovieLanguage.dbLabelName)
+	        				|| filter.dbLabelName.equals(MovieCountry.dbLabelName)){
+	        			statement += (" AND "+filter.dbLabelName+" LIKE ? ");
+	        		}else{
+	        			statement += (" AND "+filter.dbLabelName+"= ? ");
+	        		}
+	        	}
+	        	
+	        	statement +=  " GROUP BY m.id";
+	        	
+	        	if(limit>0) statement += (" LIMIT "+limit);
+	        	if(limit>0 && offset>0)statement += (" OFFSET "+offset);
+	        	statement += ";";
+	
+	        	pst = connection.prepareStatement(statement);
+	        	
+	        	// Placeholder replace with actual filter
+	        	for(MovieAttribute filter : filterSet){
+	        			if(filter.dbLabelName.equals(MovieTitle.dbLabelName)
+	            				|| filter.dbLabelName.equals(MovieGenre.dbLabelName)
+	            				|| filter.dbLabelName.equals(MovieLanguage.dbLabelName)
+	            				|| filter.dbLabelName.equals(MovieCountry.dbLabelName)){
+	        				pst.setString(i++, "%"+filter.value+"%");
+	            		}else{
+	            			pst.setString(i++, filter.value);
+	            		}
+	        	}
+	        	
+	        	// Execution
+	        	rs = pst.executeQuery();
+	        	
+	        	// Move results into movieCollection
+	        	while(rs.next()){
+	    	   		UnorderedSet<MovieLanguage> languages 	= new UnorderedSet<MovieLanguage>();
+	    	   		UnorderedSet<MovieCountry> countries 	= new UnorderedSet<MovieCountry>();
+	    	   		UnorderedSet<MovieGenre> genres 		= new UnorderedSet<MovieGenre>();
+	
+	    	   		String[] strLanguages = rs.getString("movie_languages").split(",");
+	    	   		for (String language : strLanguages) {
+	        	   		languages.add(new MovieLanguage(language, language));
+	    	   		}
+	    	   		
+	    	   		String[] strCountries = rs.getString("movie_countries").split(",");
+	    	   		for (String country : strCountries) {
+	        	   		countries.add(new MovieCountry(country, country));
+	    	   		}
+	    	   		
+	    	   		String[] strGenres = rs.getString("movie_genres").split(",");
+	    	   		for (String genre : strGenres) {
+	        	   		genres.add(new MovieGenre(genre, genre));
+	    	   		}
+	    	   		
+	    	   		Movie new_movie = new Movie(new MovieID(rs.getString(MovieID.dbLabelName)),
+	    	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
+	    	   									new MovieYear(rs.getString(MovieYear.dbLabelName)),
+	    	   									languages,
+	    	   									countries,
+	    	   									genres,
+	    	   									new MovieDuration(rs.getString(MovieDuration.dbLabelName)));
+	    	   		movieCollection.add(new_movie);
+	    	   	}
+	        	rs.close();
+	    		pst.close();
         	}
-        	
-        	statement +=  " GROUP BY m.id";
-        	
-        	if(limit>0) statement += (" LIMIT "+limit);
-        	if(limit>0 && offset>0)statement += (" OFFSET "+offset);
-        	statement += ";";
-
-        	pst = Database.getInstance().prepareStatement(statement);
-        	
-        	// Placeholder replace with actual filter
-        	for(MovieAttribute filter : filterSet){
-        			if(filter.dbLabelName.equals(MovieTitle.dbLabelName)
-            				|| filter.dbLabelName.equals(MovieGenre.dbLabelName)
-            				|| filter.dbLabelName.equals(MovieLanguage.dbLabelName)
-            				|| filter.dbLabelName.equals(MovieCountry.dbLabelName)){
-        				pst.setString(i++, "%"+filter.value+"%");
-            		}else{
-            			pst.setString(i++, filter.value);
-            		}
+        	finally {
+        		connection.close();
         	}
-        	
-        	// Execution
-        	rs = Database.getInstance().execute(pst);
-        	
-        	// Move results into movieCollection
-        	while(rs.next()){
-    	   		UnorderedSet<MovieLanguage> languages 	= new UnorderedSet<MovieLanguage>();
-    	   		UnorderedSet<MovieCountry> countries 	= new UnorderedSet<MovieCountry>();
-    	   		UnorderedSet<MovieGenre> genres 		= new UnorderedSet<MovieGenre>();
-
-    	   		String[] strLanguages = rs.getString("movie_languages").split(",");
-    	   		for (String language : strLanguages) {
-        	   		languages.add(new MovieLanguage(language, language));
-    	   		}
-    	   		
-    	   		String[] strCountries = rs.getString("movie_countries").split(",");
-    	   		for (String country : strCountries) {
-        	   		countries.add(new MovieCountry(country, country));
-    	   		}
-    	   		
-    	   		String[] strGenres = rs.getString("movie_genres").split(",");
-    	   		for (String genre : strGenres) {
-        	   		genres.add(new MovieGenre(genre, genre));
-    	   		}
-    	   		
-    	   		Movie new_movie = new Movie(new MovieID(rs.getString(MovieID.dbLabelName)),
-    	   									new MovieTitle(rs.getString(MovieTitle.dbLabelName)),
-    	   									new MovieYear(rs.getString(MovieYear.dbLabelName)),
-    	   									languages,
-    	   									countries,
-    	   									genres,
-    	   									new MovieDuration(rs.getString(MovieDuration.dbLabelName)));
-    	   		movieCollection.add(new_movie);
-    	   	}
-        	rs.close();
-    		pst.close();
-    	}catch (SQLException e){
+    	}
+		catch (SQLException e){
     		e.printStackTrace();
     	}
     	
@@ -212,75 +221,82 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 		ResultSet rs									= null;
 		String statement 								= "";
 
-    	try{
-    		attributeCollection = new Collection<MovieAttribute>();
+    	try {
+    		Connection connection = db.getConnection();
     		
-    		if (attribute != null) {
-				statement += reverseQueryStatements.get(attribute.dbLabelName);
-				if (limit > 0)
-					statement += (" LIMIT " + limit);
-				if (limit > 0 && offset > 0)
-					statement += (" OFFSET " + offset);
-				statement += ";";
-				pst = Database.getInstance().prepareStatement(statement);
-				
-				rs = Database.getInstance().execute(pst);
-				switch (attribute.dbLabelName) {
-					case MovieID.dbLabelName:
-						while (rs.next()) {
-							String id = rs.getString(MovieID.dbLabelName);
-							attributeCollection.add(new MovieID((id)));
-						}
-						break;
-	
-					case MovieTitle.dbLabelName:
-						while (rs.next()) {
-							String title = rs.getString(MovieTitle.dbLabelName);
-							attributeCollection.add(new MovieTitle(title));
-						}
-						break;
-	
-					case MovieYear.dbLabelName:
-						while (rs.next()) {
-							String year = rs.getString(MovieYear.dbLabelName);
-							attributeCollection.add(new MovieYear(year));
-						}
-						break;
-	
-					case MovieLanguage.dbLabelName:
-						while (rs.next()) {
-							String lang = rs.getString(MovieLanguage.dbLabelName);
-							attributeCollection.add(new MovieLanguage(lang, lang));
-						}
-						break;
-	
-					case MovieCountry.dbLabelName:
-						while (rs.next()) {
-							String country = rs.getString(MovieCountry.dbLabelName);
-							attributeCollection.add(new MovieCountry(country, country));
-						}
-						break;
-	
-					case MovieDuration.dbLabelName:
-						while (rs.next()) {
-							String duration = rs.getString(MovieDuration.dbLabelName);
-							attributeCollection.add(new MovieDuration(duration));
-						}
-						break;
-	
-					case MovieGenre.dbLabelName:
-						while (rs.next()) {
-							String genre = rs.getString(MovieGenre.dbLabelName);
-							attributeCollection.add(new MovieGenre(genre, genre));
-						}
-						break;
-						
+    		try {
+	    		attributeCollection = new Collection<MovieAttribute>();
+	    		
+	    		if (attribute != null) {
+					statement += reverseQueryStatements.get(attribute.dbLabelName);
+					if (limit > 0)
+						statement += (" LIMIT " + limit);
+					if (limit > 0 && offset > 0)
+						statement += (" OFFSET " + offset);
+					statement += ";";
+					pst = connection.prepareStatement(statement);
+					
+					rs = pst.executeQuery();
+					switch (attribute.dbLabelName) {
+						case MovieID.dbLabelName:
+							while (rs.next()) {
+								String id = rs.getString(MovieID.dbLabelName);
+								attributeCollection.add(new MovieID((id)));
+							}
+							break;
+		
+						case MovieTitle.dbLabelName:
+							while (rs.next()) {
+								String title = rs.getString(MovieTitle.dbLabelName);
+								attributeCollection.add(new MovieTitle(title));
+							}
+							break;
+		
+						case MovieYear.dbLabelName:
+							while (rs.next()) {
+								String year = rs.getString(MovieYear.dbLabelName);
+								attributeCollection.add(new MovieYear(year));
+							}
+							break;
+		
+						case MovieLanguage.dbLabelName:
+							while (rs.next()) {
+								String lang = rs.getString(MovieLanguage.dbLabelName);
+								attributeCollection.add(new MovieLanguage(lang, lang));
+							}
+							break;
+		
+						case MovieCountry.dbLabelName:
+							while (rs.next()) {
+								String country = rs.getString(MovieCountry.dbLabelName);
+								attributeCollection.add(new MovieCountry(country, country));
+							}
+							break;
+		
+						case MovieDuration.dbLabelName:
+							while (rs.next()) {
+								String duration = rs.getString(MovieDuration.dbLabelName);
+								attributeCollection.add(new MovieDuration(duration));
+							}
+							break;
+		
+						case MovieGenre.dbLabelName:
+							while (rs.next()) {
+								String genre = rs.getString(MovieGenre.dbLabelName);
+								attributeCollection.add(new MovieGenre(genre, genre));
+							}
+							break;
+							
+					}
+					rs.close();
+					pst.close();
+				}else{
+					throw new NullPointerException("QueryServiceImpl.getAttributeSet: Passed attribute has not been initialized!");
 				}
-				rs.close();
-				pst.close();
-			}else{
-				throw new NullPointerException("QueryServiceImpl.getAttributeSet: Passed attribute has not been initialized!");
-			}
+    		}
+    		finally {
+    			connection.close();
+    		}
     	}catch(SQLException e){
     		e.printStackTrace();
     	}
@@ -301,50 +317,57 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 		String statement 				= "";		
 		int i							= 1;
 
-		try{
-			worldStats = new WorldStatisticsModel();
-			statement += worldStatisticsModelCommandPre;
+		try {
+			Connection connection = db.getConnection();
 			
-			if (filterSet != null) {
-				// Insert Placeholders
-				for (MovieAttribute filter : filterSet) {
-					if (filter.dbLabelName.equals(MovieTitle.dbLabelName)) {
-						statement += (" AND `movies`." + MovieTitle.dbLabelName + " LIKE ? ");
-					} else {
-						// this will break for some movieAttribute...
-						// (as they are not in the movies-table necessarily)
-						// a more sophisticated solution is desirable, but for sprint 1
-						// we go with it
-						statement += (" AND `movies`." + filter.dbLabelName + "= ? ");
-					}
-				} 
+			try {
+				worldStats = new WorldStatisticsModel();
+				statement += worldStatisticsModelCommandPre;
+				
+				if (filterSet != null) {
+					// Insert Placeholders
+					for (MovieAttribute filter : filterSet) {
+						if (filter.dbLabelName.equals(MovieTitle.dbLabelName)) {
+							statement += (" AND `movies`." + MovieTitle.dbLabelName + " LIKE ? ");
+						} else {
+							// this will break for some movieAttribute...
+							// (as they are not in the movies-table necessarily)
+							// a more sophisticated solution is desirable, but for sprint 1
+							// we go with it
+							statement += (" AND `movies`." + filter.dbLabelName + "= ? ");
+						}
+					} 
+				}
+				statement += worldStatisticsModelCommandPost;
+				
+				pst = connection.prepareStatement(statement);
+				
+				if (filterSet != null) {
+					// Replace Placeholders with actual filters
+					for (MovieAttribute filter : filterSet) {
+						if (filter.dbLabelName.equals(MovieTitle.dbLabelName)) {
+							pst.setString(i++, "%" + filter.value + "%");
+						} else {
+							pst.setString(i++, filter.value);
+						}
+					} 
+				}
+				rs = pst.executeQuery();
+	
+				while(rs.next()){
+					String iso_alpha 	= rs.getString(WorldStatisticsModel.iso_alpha_DbLabelName);
+					Integer n_movies 	= rs.getInt(WorldStatisticsModel.n_movies_DbLabelName);
+					Float longitude 	= rs.getFloat(WorldStatisticsModel.longitude_DbLabelName);
+					Float latitude		= rs.getFloat(WorldStatisticsModel.latitude_DbLabelName);
+					worldStats.add(new WorldStatisticsModelEntry(iso_alpha,n_movies, latitude, longitude));
+				}
+				
+				rs.close();
+	    		pst.close();
 			}
-			statement += worldStatisticsModelCommandPost;
-			
-			pst = Database.getInstance().prepareStatement(statement);
-			
-			if (filterSet != null) {
-				// Replace Placeholders with actual filters
-				for (MovieAttribute filter : filterSet) {
-					if (filter.dbLabelName.equals(MovieTitle.dbLabelName)) {
-						pst.setString(i++, "%" + filter.value + "%");
-					} else {
-						pst.setString(i++, filter.value);
-					}
-				} 
+			finally {
+				connection.close();
 			}
-			rs = Database.getInstance().execute(pst);
-
-			while(rs.next()){
-				String iso_alpha 	= rs.getString(WorldStatisticsModel.iso_alpha_DbLabelName);
-				Integer n_movies 	= rs.getInt(WorldStatisticsModel.n_movies_DbLabelName);
-				Float longitude 	= rs.getFloat(WorldStatisticsModel.longitude_DbLabelName);
-				Float latitude		= rs.getFloat(WorldStatisticsModel.latitude_DbLabelName);
-				worldStats.add(new WorldStatisticsModelEntry(iso_alpha,n_movies, latitude, longitude));
-			}
-			
-			rs.close();
-    		pst.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
