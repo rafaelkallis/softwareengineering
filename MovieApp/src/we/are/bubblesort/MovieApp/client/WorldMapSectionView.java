@@ -19,6 +19,7 @@ public class WorldMapSectionView extends SectionView {
 	@UiField Panel mainPanel;
 	@UiField Panel yearFilter;
 	@UiField Panel worldmap;
+	@UiField Panel mapannotations;
 	@UiField Button exportbutton;
 
 	public WorldMapSectionView() {

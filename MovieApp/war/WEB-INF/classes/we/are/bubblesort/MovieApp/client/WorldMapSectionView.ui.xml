@@ -4,6 +4,8 @@
 	<g:FlowPanel addStyleNames="section section-worldmap" ui:field="mainPanel">
 	    <g:FlowPanel addStyleNames="worldmap" ui:field="worldmap">
 	    </g:FlowPanel>
+	    <g:FlowPanel addStyleNames="mapannotations" ui:field="mapannotations">
+	    </g:FlowPanel>
 	    <g:FlowPanel addStyleNames="container worldmap-footer">
 			<g:FlowPanel ui:field="yearFilter" addStyleNames="col-md-10"></g:FlowPanel>
 			<g:FlowPanel ui:field="options" addStyleNames="options">

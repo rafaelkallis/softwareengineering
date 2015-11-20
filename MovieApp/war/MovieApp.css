@@ -23,15 +23,17 @@ html {
 	left:0;
 	right:0;
 	height:50px;
-	text-align:center;
 	box-sizing:border-box;
 }
 
-.movie-source{
+.app-header .mainnavigation {
+	text-align:center;
+}
+
+.movie-source {
 	position:absolute;
 	top:30px;
 	right:10px;
-	
 }
 
 .app-section-container {
@@ -55,6 +57,13 @@ html {
 	right:0;
 	bottom:0;
 	top:0;
+}
+
+.section .mapannotations {
+	position:absolute;
+	right:10px;
+	display:inline-block;
+	bottom:110px;
 }
 
 .section .mapview path.country {
