@@ -148,7 +148,7 @@ public class WorldMapView extends View implements MapViewInterface {
             numberoverlay.on("transformfunctionstore", transform);
             
 	        zoom = d3.behavior.zoom()
-	          .x(X).y(Y).translate(translate).scale(scale)
+	          .x(X).y(Y).translate(translate).scale(scale).scaleExtent([0.5, 15])
 	          .on("zoom",function() {
 	             g.attr("transform","translate("+ 
 	                d3.event.translate.join(",")+")scale("+d3.event.scale+")");
