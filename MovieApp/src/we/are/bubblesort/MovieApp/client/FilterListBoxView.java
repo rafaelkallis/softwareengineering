@@ -22,6 +22,8 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 		
 		initWidget(panel);
 		setStyleName("filter-list-box form-group");
+		
+		this.clearItems();
 	}
 
 	@Override
@@ -32,10 +34,6 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 	@Override
 	public void setItems(List<HashMap<String, String>> items) {
 		this.clearItems();
-		
-		this.listBox.addItem("Alle", "");
-		this.indexByValue.put("", 0);
-		this.listBox.setSelectedIndex(0);
 		
 		int i = 1;
 		for (HashMap<String, String> itemPair : items) {
@@ -50,6 +48,10 @@ public class FilterListBoxView extends View implements FilterSelectableViewInter
 	protected void clearItems() {
 		this.indexByValue.clear();
 		this.listBox.clear();
+		
+		this.listBox.addItem("Alle", "");
+		this.indexByValue.put("", 0);
+		this.listBox.setSelectedIndex(0);
 	}
 
 	@Override
