@@ -111,9 +111,14 @@ public class WorldMapView extends View implements MapViewInterface {
         var path = d3.geo.path().projection(projection);
         
 		var draw = function() { 
-			svg.selectAll("*").remove();
 	        width = map.clientWidth;
 	        height = map.clientHeight;
+	        
+	        if (width == 0 || height == 0) {
+	        	return;
+	        }
+	        
+			svg.selectAll("*").remove();
 	
 	        X.domain([0,width]).range([0, width])
 	        Y.domain([0,height]).range([0, height])
