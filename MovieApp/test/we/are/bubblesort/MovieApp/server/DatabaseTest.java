@@ -35,7 +35,7 @@ public class DatabaseTest {
 	
 	@Test 
 	public void test_database_execute() throws SQLException{
-		ResultSet rs 			= db.execute(db.prepareStatement(testQuery));
+		ResultSet rs 			= (db.prepareStatement(testQuery)).executeQuery();
 		
 		assertNotNull(rs);
 		assertTrue(rs.next());
