@@ -164,7 +164,7 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 		slider
 		  .call(slider.on("brushstore").event)
 		  .transition()
-		    .duration(750)
+		    .duration(400)
 		    .call(slider.on("brushstore").extent([value, value]))
 		    .call(slider.on("brushstore").event);
 		

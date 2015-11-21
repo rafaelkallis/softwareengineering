@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:FlowPanel addStyleNames="section section-worldmap section-heatmap" ui:field="mainPanel">
+	    <g:FlowPanel addStyleNames="worldmap" ui:field="worldmap">
+	    </g:FlowPanel>
+	    <g:FlowPanel addStyleNames="mapannotations" ui:field="mapannotations">
+	    </g:FlowPanel>
+	    <g:FlowPanel addStyleNames="container worldmap-footer">
+	        <g:FlowPanel addStyleNames="row">
+				<g:FlowPanel ui:field="yearFilter" addStyleNames="col-md-push-1 col-md-10"></g:FlowPanel>
+				<g:FlowPanel ui:field="options" addStyleNames="options">
+			    	<g:Button ui:field="exportbutton" addStyleNames="btn btn-default pull-right">Export</g:Button>
+				</g:FlowPanel>
+			</g:FlowPanel>
+	    </g:FlowPanel>
+	</g:FlowPanel>
+</ui:UiBinder>
