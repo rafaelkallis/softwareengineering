@@ -57,21 +57,6 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 	    }
 	}
 	
-	/*
-	 * each UnorderedSet has a toJoinedString function now
-	 */
-	@Deprecated
-	public String getDisplayableAttribute(UnorderedSet<? extends MovieAttribute> attributes) {
-		String display_attribute = "";
-		if(attributes.size()==0){
-			return display_attribute;
-		}
-		for (MovieAttribute attr : attributes) {
-			display_attribute += attr.displayName + ", ";
-		}
-		return display_attribute.substring(0, display_attribute.length()-2);
-	}
-	
 	@Override
 	public Composite getCompositeView() {
 		return (Composite)this.view;
@@ -112,9 +97,12 @@ public class TablePresenter extends Presenter implements LoadMoreEventHandler {
 				}
 				
 				addToTable(result);
-				
+
 				if (result.size() == movieStep) {
 					view.showMoreButton();
+				}
+				else {
+					view.hideMoreButton();
 				}
 			}
 		});

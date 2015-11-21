@@ -3,7 +3,8 @@ package we.are.bubblesort.MovieApp.client;
 import java.util.HashMap;
 import java.util.List;
 
-import com.google.gwt.core.client.Callback;
+import we.are.bubblesort.MovieApp.client.resources.ClientResources;
+
 import com.google.gwt.core.client.JsArrayInteger;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.Document;
@@ -12,15 +13,12 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.DomEvent;
 import com.google.gwt.event.dom.client.HasChangeHandlers;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Panel;
 
 public class RangeSliderView extends View implements FilterSelectableViewInterface, HasChangeHandlers {
 	protected Panel mainPanel;
-	final static String d3LibUrl = "js/d3.v3.min.js";
 	protected String currentValue = "";
-	protected Boolean libLoaded = false;
 	private JsArrayInteger values = JsArrayInteger.createArray().cast();
 	
 	RangeSliderView() {
@@ -29,24 +27,18 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 		this.mainPanel.addStyleName("range-slider-view");
 		
 		final RangeSliderView instance = this;
-		
-		ScriptInjector.fromUrl(d3LibUrl).setCallback(new Callback<Void, Exception>() {
-			public void onFailure(Exception reason) {
-				Window.alert("Script d3 load failed.");
-			}
-			public void onSuccess(Void result) {
-				libLoaded = true;
-				display(mainPanel.getElement(), values, instance);
-			}
-		}).inject();
+
+		ScriptInjector.fromString(ClientResources.INSTANCE.d3().getText()).setWindow(ScriptInjector.TOP_WINDOW).inject();
+
+		display(mainPanel.getElement(), values, instance);
 	}
 	
 	private static native void display(Element parent, JsArrayInteger values, RangeSliderView instance) /*-{
 		if (values.length == 0) return;
-		var margin = {top: 0, right: 50, bottom: 0, left: 50},
+		var margin = {top: 0, right: 25, bottom: 0, left: 25},
 		    width = Math.max(parent.clientWidth, 100) - margin.right - margin.left,
 		    height = Math.max(parent.clientHeight, 50) - margin.top - margin.bottom;
-
+		var d3 = $wnd.d3;
 		var x = d3.scale.linear()
 			.range([0, width])
 		    .clamp(true);
@@ -119,11 +111,11 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 		slider.selectAll(".extent").remove();
 		slider.selectAll(".resize").remove();
 		
-		slider.select(".background")
-		    .attr("transform", "translate(" + (-(margin.left)) + ", " + (-(margin.top + height / 2)) + ")")
+		var bg = slider.select(".background")
+		    .attr("width", width)
 		    .attr("height", height + margin.top + margin.bottom)
-		    .attr("width", height + margin.left + margin.right)
-		
+		    .attr("transform", "translate(0, " + (-(margin.top + height / 2)) + ")")
+		    
 		var handle = slider.append("g")
 		
 		handle.append("circle")
@@ -167,6 +159,7 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 	}-*/;
 	
 	private static native void setSlider(Element parent, Integer value) /*-{
+		var d3 = $wnd.d3;
 		var slider = d3.select(parent).select("g.slider");
 		slider
 		  .call(slider.on("brushstore").event)
@@ -181,9 +174,7 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 	public void setItems(List<HashMap<String, String>> items) {
 		this.values = toValueArray(items);
 		
-		if (this.libLoaded) {
-			display(this.mainPanel.getElement(), toValueArray(items), this);
-		}
+		display(this.mainPanel.getElement(), toValueArray(items), this);
 	}
 	
 	public static JsArrayInteger toValueArray(List<HashMap<String, String>> items) {
@@ -203,9 +194,7 @@ public class RangeSliderView extends View implements FilterSelectableViewInterfa
 	@Override
 	public void setValue(String value) {
 		this.currentValue = value;
-		if (libLoaded) {
-			setSlider(this.mainPanel.getElement(), Integer.parseInt(value));
-		}
+		setSlider(this.mainPanel.getElement(), Integer.parseInt(value));
 	}
 	
 	protected void fireChangeEvent() {

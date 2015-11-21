@@ -43,6 +43,10 @@
 	    		</g:FlowPanel>
 		    </g:FlowPanel>
 	    	<g:FlowPanel ui:field="tablePanel"></g:FlowPanel>
+	    	<g:FlowPanel addStyleNames="tableFooter">
+	    	    <g:FlowPanel ui:field="source" addStyleNames="pull-right">
+	    	    </g:FlowPanel>
+	    	</g:FlowPanel>
 	    </g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder> 

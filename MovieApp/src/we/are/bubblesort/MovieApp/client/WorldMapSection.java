@@ -3,6 +3,7 @@ package we.are.bubblesort.MovieApp.client;
 import java.util.Date;
 
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Hyperlink;
 
 import we.are.bubblesort.MovieApp.shared.MovieYear;
 
@@ -41,6 +42,12 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		@SuppressWarnings("deprecation")
 		int year = new Date().getYear();
 		yearFilter.setValue(Integer.toString(year + 1900));
+		
+		new ExportPresenter(this.worldmap, this.view.exportbutton);
+		
+		Hyperlink sourceLink = new Hyperlink("Quelle", "");
+		new SourcePresenter(sourceLink);
+		this.view.mapannotations.add(sourceLink);
 	}
 
 	@Override

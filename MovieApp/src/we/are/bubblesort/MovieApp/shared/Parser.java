@@ -65,30 +65,58 @@ public class Parser {
 		return records;
 	}
 	
+	/*
+	 * @param value
+	 * @returns String
+	 */
 	private String extractTitle(String value){
     	return value;
     }
     
+	/*
+	 * @param value
+	 * @returns String
+	 */
     private String extractYear(String value){     	
     	return value.substring(0, 4);
     }
     
+    /*
+     * @param value
+     * @returns String
+     */
     private String extractRevenue(String value){
     	return value;
     }
     
+    /*
+     * @param value
+     * @returns String
+     */
     private String extractDuration(String value){    	
     	return value;
     }
     
+    /*
+     * @param value
+     * @returns String
+     */
     private String extractLanguages(String value){
     	return value.replaceAll("\"/m/[0-9a-zA-Z_]*\": |[\"{}]", "");
     }
     
+    /*
+     * @param value
+     * @returns String
+     */
     private String extractCountries(String value){
     	return value.replaceAll("\"/m/[0-9a-zA-Z_]*\": |[\"{}]", "");
     }
     
+    /*
+     * @param value
+     * @returns String
+     */
     private String extractGenres(String value){
     	return value.replaceAll("\"/m/[0-9a-zA-Z_]*\": |[\"{}]", "");
     }
