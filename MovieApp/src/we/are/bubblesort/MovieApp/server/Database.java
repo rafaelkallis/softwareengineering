@@ -11,21 +11,29 @@ public final class Database {
 		
 	private static 	Database 	instance 	= new Database();
 	private 		String 		url 		= "";
-	private  		Connection 	conn 		= null;
     private  final 	String 		user 		= "se_user";
     private  final 	String 		pass 		= "SEIsAwesome2015";
     
     private Database(){
+    	
+    }
+    
+    /*
+     * @returns Database instance of Database
+     */
+    public static Database getInstance() {
+    	return instance;
+    }
+    
+    public Connection getConnection() {
+    	Connection conn = null;
     	try {
-        	
     		if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
-    			
     			// Connect to Google SQL
     			Class.forName("com.mysql.jdbc.GoogleDriver");
     			url 						= "jdbc:google:mysql://themovieappvnext:themovieappnext/main?user=root";
       		  	conn 						= DriverManager.getConnection(url);
     		} else {
-    			
     			// Connecting from an external network.
     			Class.forName("com.mysql.jdbc.Driver");
     			url 						= "jdbc:mysql://80.74.150.210:3306/movieapp";
@@ -35,13 +43,8 @@ public final class Database {
 	    } catch (ClassNotFoundException | SQLException e) {
 	      e.printStackTrace();
 	    }
-    }
-    
-    /*
-     * @returns Database instance of Database
-     */
-    public static Database getInstance() {
-    	return instance;
+    	
+    	return conn;
     }
 	
     /*
@@ -57,7 +60,7 @@ public final class Database {
 	 * @returns PreparedStatement
 	 */
 	public PreparedStatement prepareStatement(String sql) throws SQLException{
-		return conn.prepareStatement(sql);
+		return getConnection().prepareStatement(sql);
 	}
 	
 }
