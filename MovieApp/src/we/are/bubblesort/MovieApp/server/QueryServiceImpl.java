@@ -155,7 +155,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
         	}
         	
         	// Execution
-        	rs = Database.getInstance().execute(pst);
+        	rs = pst.executeQuery();
         	
         	// Move results into movieCollection
         	while(rs.next()){
@@ -224,7 +224,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 				statement += ";";
 				pst = Database.getInstance().prepareStatement(statement);
 				
-				rs = Database.getInstance().execute(pst);
+				rs = pst.executeQuery();
 				switch (attribute.dbLabelName) {
 					case MovieID.dbLabelName:
 						while (rs.next()) {
@@ -333,7 +333,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 					}
 				} 
 			}
-			rs = Database.getInstance().execute(pst);
+			rs = pst.executeQuery();
 
 			while(rs.next()){
 				String iso_alpha 	= rs.getString(WorldStatisticsModel.iso_alpha_DbLabelName);
