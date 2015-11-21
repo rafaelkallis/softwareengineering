@@ -37,7 +37,7 @@
     <url-pattern>/movieapp/query</url-pattern>
   </servlet-mapping>
   
-  <!-- Export Http Service -->
+  <!-- Export Service -->
   	<servlet>  
  		<servlet-name>ExportService</servlet-name>  
  		<servlet-class>we.are.bubblesort.MovieApp.server.ExportService</servlet-class>  
@@ -54,7 +54,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadService</servlet-name>
-        <url-pattern>*.gupld</url-pattern>
+        <url-pattern>/upload</url-pattern>
     </servlet-mapping>
 </web-app>
 
