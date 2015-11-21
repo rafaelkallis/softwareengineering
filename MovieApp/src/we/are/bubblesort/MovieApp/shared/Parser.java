@@ -54,13 +54,13 @@ public class Parser {
 		CSVRecord movieRecord 	= CSVParser.parse(line, format).getRecords().get(0);
 		String records[] 		= new String[7];
 		
-		records[0] 				= this.extractTitle		(movieRecord.get(3));
-		records[1] 				= this.extractYear		(movieRecord.get(4));
-		records[2] 				= this.extractRevenue	(movieRecord.get(5));
-		records[3] 				= this.extractDuration	(movieRecord.get(6));
-		records[4] 				= this.extractLanguages	(movieRecord.get(7));
-		records[5]				= this.extractCountries	(movieRecord.get(8));
-		records[6] 				= this.extractGenres	(movieRecord.get(9));
+		records[0] 				= this.extractTitle		(movieRecord.get(2));
+		records[1] 				= this.extractYear		(movieRecord.get(3));
+		records[2] 				= this.extractRevenue	(movieRecord.get(4));
+		records[3] 				= this.extractDuration	(movieRecord.get(5));
+		records[4] 				= this.extractLanguages	(movieRecord.get(6));
+		records[5]				= this.extractCountries	(movieRecord.get(7));
+		records[6] 				= this.extractGenres	(movieRecord.get(8));
 		
 		return records;
 	}
