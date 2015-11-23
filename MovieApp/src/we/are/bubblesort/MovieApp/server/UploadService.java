@@ -31,7 +31,6 @@ public class UploadService extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		String line = null;
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
         List<BlobKey> blobKeyList = blobs.get("importCSV");
         for(BlobKey blobKey : blobKeyList){
@@ -44,7 +43,11 @@ public class UploadService extends HttpServlet {
         }
 	}
 	
-	public String getContent(BlobKey blobKey) throws IOException{
+	/*
+	 * @param blobKey the BlobKey from BlobstoreService
+	 * @returns String the content of the BlobKey
+	 */
+	private String getContent(BlobKey blobKey) throws IOException{
 		String line;
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br =new BufferedReader(new InputStreamReader(new BlobstoreInputStream(blobKey)));
@@ -54,8 +57,9 @@ public class UploadService extends HttpServlet {
 		br.close();
 		return sb.toString();
 	}
+	
 	/*
-	 * @param content
+	 * @param content the content to be imported to the DB
 	 */
 	public void importContent(String content){
 		try {
@@ -99,6 +103,11 @@ public class UploadService extends HttpServlet {
 		return makeSplittedInsertStatement("movie_genres",MovieGenre.dbLabelName,movieImportDAO);
 	}
 	
+	/*
+	 * @param tableName the table name in the DB
+	 * @param dbLabelName the label of the second column to be added
+	 * @param movieImportDAO the object that contains the extracted information
+	 */
 	private PreparedStatement makeSplittedInsertStatement(String tableName,String dbLabelName,MovieImportDAO movieImportDAO) throws SQLException{
 		String[] ids = movieImportDAO.getIDs();
 		String[] attributes = movieImportDAO.getAttributes(dbLabelName);
@@ -229,6 +238,8 @@ public class UploadService extends HttpServlet {
 
     /*
      * @pre rs.size == movieImportDAO.getNMovies()
+     * @param rs the ResultSet from the insert, containing all generated ids
+     * @param movieImportDAO the object the ids are being inserted
      */
     private void addIDsToMovieImportDAO(ResultSet rs, MovieImportDAO movieImportDAO) throws SQLException{
     	String[] ids = new String[movieImportDAO.getNMovies()];
