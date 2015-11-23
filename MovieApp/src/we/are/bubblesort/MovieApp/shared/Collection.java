@@ -39,6 +39,10 @@ public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 		return elements.iterator();
 	}
 	
+	public void clear(){
+		elements.clear();
+	}
+	
 	public String toJoinedString(String delimiter){
 		Iterator<T> object = elements.iterator();
 		String joined = "";

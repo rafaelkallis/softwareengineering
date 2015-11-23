@@ -36,6 +36,10 @@ public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>
 			return elements.iterator();
 		}
 		
+		public void clear(){
+			elements.clear();
+		}
+		
 		public String toJoinedString(String delimiter){
 			Iterator<T> object = elements.iterator();
 			String joined = "";

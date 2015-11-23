@@ -30,6 +30,10 @@ public class OrderedSet <T extends Comparable<T>> extends Model implements Itera
 		return array;
 	}
 	
+	public void clear(){
+		elements.clear();
+	}
+	
 	@Override
 	public java.util.Iterator<T> iterator(){
 		return elements.iterator();
