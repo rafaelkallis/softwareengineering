@@ -33,10 +33,6 @@ public class MovieImportDAO {
 		this.records[0] = records;
 	}
 	
-	public String[][] getRecords(){
-		return records;
-	}
-	
 	public String[] getIDs(){
 		return records[0];
 	}
@@ -61,16 +57,8 @@ public class MovieImportDAO {
 		return records[5];
 	}
 	
-	public String[] getSplittedLanguages(int movie_idx){
-		return records[5][movie_idx].split(", ",-1);
-	}
-	
 	public String[] getCountries(){
 		return records[6];
-	}
-	
-	public String[] getSplittedCountries(int movie_idx){
-		return records[5][movie_idx].split(", ",-1);
 	}
 		
 	public String[] getGenres(){
