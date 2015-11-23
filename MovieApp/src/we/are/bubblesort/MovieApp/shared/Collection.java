@@ -45,13 +45,13 @@ public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 	
 	public String toJoinedString(String delimiter){
 		Iterator<T> object = elements.iterator();
-		String joined = "";
+		StringBuilder sb = new StringBuilder();
 		while(object.hasNext()){
-			joined += object.next().toString();
+			sb.append(object.next());
 			if(object.hasNext()){
-				joined+=delimiter;
+				sb.append(delimiter);
 			}
 		}
-		return joined;
+		return sb.toString();
 	}
 }
