@@ -37,23 +37,27 @@ public class UploadService extends HttpServlet {
         for(BlobKey blobKey : blobKeyList){
         	if(blobKey == null){
         		response.sendRedirect("/");
-        	}else{
-        		StringBuilder sb = new StringBuilder();
-        		BufferedReader br =new BufferedReader(new InputStreamReader(new BlobstoreInputStream(blobKey)));
-        		while(!(line = br.readLine()).isEmpty()){
-        			sb.append(line+"\n");
-        		}
-        		this.importContext(sb.toString());
-        		br.close();
+        	}else{       		
+        		this.importContent(getContent(blobKey));      		
         		response.sendRedirect("/upload-success?blob-key=" + blobKey.getKeyString());
         	}
         }
 	}
 	
+	public String getContent(BlobKey blobKey) throws IOException{
+		String line;
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br =new BufferedReader(new InputStreamReader(new BlobstoreInputStream(blobKey)));
+		while(!(line = br.readLine()).isEmpty()){
+			sb.append(line+"\n");
+		}
+		br.close();
+		return sb.toString();
+	}
 	/*
 	 * @param content
 	 */
-	public void importContext(String content){
+	public void importContent(String content){
 		try {
 			MovieImportDAO movieImportDAO = new MovieImportDAO(content,CSVFormat.TDF);
 			{
