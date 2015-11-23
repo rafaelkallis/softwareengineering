@@ -2,10 +2,13 @@ package we.are.bubblesort.MovieApp.server;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLDecoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.ExportServiceHelper;
 import we.are.bubblesort.MovieApp.shared.Movie;
@@ -23,7 +26,7 @@ public class ExportService extends HttpServlet {
 			return;
 		}	
 		
-		UnorderedSet<MovieAttribute> filterSet = ExportServiceHelper.queryStringToFilterSet(queryString);
+		UnorderedSet<MovieAttribute> filterSet = ExportServiceHelper.queryStringToFilterSet(URLDecoder.decode(queryString, "UTF-8"));
 		
 		Collection<Movie> movies = QueryServiceImpl.getMovieCollectionSync(filterSet, 0, 0);
 	
