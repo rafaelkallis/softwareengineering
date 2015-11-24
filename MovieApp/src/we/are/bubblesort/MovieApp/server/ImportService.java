@@ -1,6 +1,5 @@
 package we.are.bubblesort.MovieApp.server;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServlet;
@@ -310,7 +309,7 @@ public class ImportService extends HttpServlet {
      */
     private String[] extractIDs(ResultSet rs){
     	try {
-    		ArrayList<String> id_list = new ArrayList<String>();
+    		Collection<String> id_list = new Collection<String>();
     		int size = 0;
     		while(rs.next()){
     			id_list.add(Integer.toString(rs.getInt(1)));
