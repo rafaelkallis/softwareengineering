@@ -81,7 +81,7 @@ public class TableSection extends Section implements FilterChangedEventHandler {
 		});
 
 		Hyperlink sourceLink = new Hyperlink("Quelle", "");
-		new SourcePresenter(sourceLink);
+		new SectionChangerPresenter(sourceLink, "imprint");
 		this.view.source.add(sourceLink);
 	}
 	

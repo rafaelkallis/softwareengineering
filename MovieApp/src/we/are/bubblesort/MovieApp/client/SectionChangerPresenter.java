@@ -5,27 +5,25 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.HasClickHandlers;
 import com.google.gwt.user.client.ui.Composite;
 
-public class SourcePresenter extends Presenter {
+public class SectionChangerPresenter extends Presenter {
 	protected HasClickHandlers view = null;
+	protected String sectionName;
 
-	SourcePresenter(HasClickHandlers view) {
+	SectionChangerPresenter(HasClickHandlers view, String targetSectionName) {
 		this.view = view;
+		this.sectionName = targetSectionName;
 
 		this.view.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
-				emitImprintEvent();
+				AppController controller = MovieApp.controller;
+				Section section = controller.getSectionByName(sectionName);
+				
+				if (section != null) {
+					MovieApp.controller.eventBus.fireEvent(new AppActivateSectionEvent(section.getId()));
+				}
 			}
 		});
-	}
-	
-	public void emitImprintEvent() {
-		AppController controller = MovieApp.controller;
-		Section imprintSection = controller.getSectionByName("imprint");
-		
-		if (imprintSection != null) {
-			MovieApp.controller.eventBus.fireEvent(new AppActivateSectionEvent(imprintSection.getId()));
-		}
 	}
 	
 	@Override

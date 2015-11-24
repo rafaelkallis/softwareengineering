@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:FormPanel ui:field="form" addStyleNames="form-horizontal">
+	    <g:FlowPanel>
+		    <g:FlowPanel addStyleNames="form-group">
+		        <g:Label addStyleNames="col-sm-2 control-label">TSV-Datei</g:Label>
+		        <g:FlowPanel addStyleNames="col-sm-6">
+	            	<g:FileUpload addStyleNames="form-control" ui:field="file"></g:FileUpload>
+	            </g:FlowPanel>
+		    </g:FlowPanel>
+		   	<g:FlowPanel addStyleNames="form-group">
+		        <g:FlowPanel addStyleNames="col-sm-offset-2 col-sm-6">
+	            	<g:Button addStyleNames="btn btn-primary" ui:field="submit">Hochladen</g:Button>
+	            </g:FlowPanel>
+		    </g:FlowPanel>
+	    </g:FlowPanel>
+    </g:FormPanel>
+</ui:UiBinder> 
