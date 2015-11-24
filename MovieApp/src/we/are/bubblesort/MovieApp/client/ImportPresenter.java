@@ -1,6 +1,5 @@
 package we.are.bubblesort.MovieApp.client;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -53,7 +52,7 @@ public class ImportPresenter extends Presenter {
 	protected void resetForm() {
 		this.view.indicateSetup();
 		
-		String url = "/import";
+		String url = "/upload";
 		RequestBuilder builder = new RequestBuilder(
 		                            RequestBuilder.GET, url);
 		builder.setCallback(new RequestCallback() {

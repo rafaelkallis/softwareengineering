@@ -59,7 +59,7 @@ public class UploadService extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-        String uploadUrl = blobstoreService.createUploadUrl("/import");
+        String uploadUrl = blobstoreService.createUploadUrl("/upload");
         
 		OutputStream o = response.getOutputStream();
 		o.write((uploadUrl).getBytes());

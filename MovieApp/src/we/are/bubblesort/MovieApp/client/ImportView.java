@@ -1,8 +1,10 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
@@ -17,13 +19,18 @@ public class ImportView extends View {
 	@UiField Button submit;
 	@UiField FormPanel form;
 	@UiField FileUpload file;
+	
+	@UiHandler("submit")
+	void onSubmit(ClickEvent e) {
+		form.submit();
+	}
 
 	public ImportView() {
 		initWidget(uiBinder.createAndBindUi(this));
 
         this.form.setEncoding(FormPanel.ENCODING_MULTIPART);
         this.form.setMethod(FormPanel.METHOD_POST);
-        this.file.setName("importTSV");
+        this.file.setName("importCSV");
 	}
 	
 	public void indicateSetup() {
