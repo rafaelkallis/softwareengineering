@@ -15,7 +15,6 @@ public class WorldStatisticsModel extends Model implements IsSerializable,Iterab
 	 * Database Labels
 	 */
 	public static final String	iso_alpha_DbLabelName 	= "iso3166-1-alpha-2";
-	public static final String 	iso_numeric_DbLabelName = "iso3166-1-numeric";
 	public static final String 	n_movies_DbLabelName 	= "NumberOfMovies";
 	public static final String 	latitude_DbLabelName	= "center-lat";
 	public static final String 	longitude_DbLabelName	= "center-long";

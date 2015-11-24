@@ -1,29 +1,15 @@
 package we.are.bubblesort.MovieApp.client;
 
-import we.are.bubblesort.MovieApp.shared.WorldStatisticsModel;
 import we.are.bubblesort.MovieApp.shared.WorldStatisticsModelEntry;
 
-import com.google.gwt.canvas.client.Canvas;
-import com.google.gwt.canvas.dom.client.Context2d;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
-import com.google.gwt.event.dom.client.ErrorHandler;
 import com.google.gwt.core.client.ScriptInjector;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.dom.client.ImageElement;
-import com.google.gwt.event.dom.client.ErrorEvent;
-import com.google.gwt.event.dom.client.LoadEvent;
-import com.google.gwt.event.dom.client.LoadHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Panel;
 
 import we.are.bubblesort.MovieApp.client.resources.ClientResources;
 
-public class WorldMapView extends View implements MapViewInterface {
-	protected WorldStatisticsModel model = new WorldStatisticsModel();
-	protected Panel mainPanel = new FlowPanel();
+public class WorldMapView extends MapView {
 	
 	WorldMapView() {
 		this.mainPanel.addStyleName("mapview worldmapview");
@@ -51,7 +37,7 @@ public class WorldMapView extends View implements MapViewInterface {
 		injectMapData(this.mainPanel.getElement(), json);
 	}
 	
-	private static native JavaScriptObject getStatisticsModelEntryJSObject(
+	protected static native JavaScriptObject getStatisticsModelEntryJSObject(
 			String 				iso_alpha,
 			String 				n_movies,
 			String				latitude,
@@ -60,7 +46,7 @@ public class WorldMapView extends View implements MapViewInterface {
 		return {iso_alpha: iso_alpha, n_movies: n_movies, latitude: latitude, longitude: longitude};
 	}-*/;
 
-	private static native void injectMapData(Element parent, JsArray<JavaScriptObject> data) /*-{
+	protected static native void injectMapData(Element parent, JsArray<JavaScriptObject> data) /*-{
 		if ($wnd.d3) {
 			var d3 = $wnd.d3;
 			var numberoverlay = d3.select(parent).select("g.numberoverlay");
@@ -94,7 +80,7 @@ public class WorldMapView extends View implements MapViewInterface {
 		}
 	}-*/;
 
-	private static native void setupMap(WorldMapView instance, String jsonTopology, Element parent) /*-{
+	protected static native void setupMap(WorldMapView instance, String jsonTopology, Element parent) /*-{
 		var topology = JSON.parse(jsonTopology);
         var map = parent;
         var width, height, g, zoom, numberoverlay;
@@ -133,6 +119,7 @@ public class WorldMapView extends View implements MapViewInterface {
 	            .enter()
 	              .append("path")
 	              .attr("class", "country")
+	              .attr("data-code", function(d) { return d.id; })
 	              .attr("d", path)
 	              .on("mouseover", function(d) { d3.select(this).attr("class", "country active"); svg.selectAll("g.spot-" + d.id).attr("class", "spot spot-" + d.id + " active"); })
 	              .on("mouseout", function(d) { d3.select(this).attr("class", "country"); svg.selectAll("g.spot-" + d.id).attr("class", "spot spot-" + d.id); });
@@ -167,79 +154,5 @@ public class WorldMapView extends View implements MapViewInterface {
 		
 		setTimeout(draw, 1);
 	 	d3.select($wnd).on('resize', draw);
-	}-*/;
-
-	@Override
-	public void setModel(WorldStatisticsModel model) {
-		this.model = model;
-	}
-
-	@Override
-	public void startExport(ExportReadyEventHandler handler) {
-		inlineStyles(this.mainPanel.getElement());
-		String svgDataUri = "data:image/svg+xml;base64," + btoa(this.mainPanel.getElement().getInnerHTML());
-		final Image imgRender = new Image();
-		final Canvas pngCanvas = Canvas.createIfSupported();
-		
-		if (pngCanvas == null) {
-			return;
-		}
-		
-		this.mainPanel.add(imgRender);
-		this.mainPanel.add(pngCanvas);
-		imgRender.setUrl(svgDataUri);
-		
-		final ExportReadyEventHandler readyHandler = handler;
-		
-		imgRender.addLoadHandler(new LoadHandler() {
-			@Override
-			public void onLoad(LoadEvent event) {
-				pngCanvas.setCoordinateSpaceWidth(imgRender.getWidth());
-				pngCanvas.setCoordinateSpaceHeight(imgRender.getHeight());
-				Context2d context = pngCanvas.getContext2d();
-				context.drawImage(ImageElement.as(imgRender.getElement()), 0, 0);
-				String pngDataUri = pngCanvas.toDataUrl("image/png");
-
-				readyHandler.onExportReady(pngDataUri);
-				
-				cleanUpExport(imgRender, pngCanvas);
-			}
-		});
-		
-		imgRender.addErrorHandler(new ErrorHandler() {
-			@Override
-			public void onError(ErrorEvent event) {
-				Window.alert("Export fehlgeschlagen.");
-				cleanUpExport(imgRender, pngCanvas);
-			}
-		});
-	}
-	
-	private void cleanUpExport(Image imgRender, Canvas pngCanvas) {
-		imgRender.removeFromParent();
-		pngCanvas.removeFromParent();
-	}
-	
-	native void inlineStyles(Element parent) /*-{
-		function computedToInline(element, recursive) {
-			if (recursive) {
-				Array.prototype.forEach.call(element.children, function(child) {
-				computedToInline(child, recursive);
-				});
-			}
-			
-			var computedStyle = getComputedStyle(element, null);
-			for (var i = 0; i < computedStyle.length; i++) {
-				var property = computedStyle.item(i);
-				var value = computedStyle.getPropertyValue(property);
-				element.style[property] = value;
-			}
-		}
-		
-		computedToInline(parent.firstChild, true);
-	}-*/;
-	
-	native String btoa(String source) /*-{
-	    return btoa(unescape(encodeURIComponent(source)));
 	}-*/;
 }
