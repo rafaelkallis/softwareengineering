@@ -31,11 +31,11 @@ public final class Database {
     			// Connect to Google SQL
     			Class.forName("com.mysql.jdbc.GoogleDriver");
     			url 						= "jdbc:google:mysql://themovieappvnext:themovieappnext/main?user=root";
-      		  	conn 						= DriverManager.getConnection(url);
+      		  	//conn 						= DriverManager.getConnection(url);
     		} else {
     			// Connecting from an external network.
     			Class.forName("com.mysql.jdbc.Driver");
-    			url 						= "jdbc:mysql://80.74.150.210:3306/movieapp";
+    			url 						= "jdbc:mysql://80.74.150.210:3306/movieapp_test";
         		conn 						= DriverManager.getConnection(url, user, pass);
     		}
 
