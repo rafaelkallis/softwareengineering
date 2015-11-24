@@ -1,12 +1,12 @@
 package we.are.bubblesort.MovieApp.server;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.io.IOUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -67,23 +67,23 @@ public class UploadService extends HttpServlet {
 		try {
 			MovieImportDAO movieImportDAO = new MovieImportDAO(content,format);
 			{
-				PreparedStatement pst = makeMovieInsertStatement(movieImportDAO);
-				//pst.executeUpdate();
-				addIDsToMovieImportDAO(pst.getGeneratedKeys(), movieImportDAO);
+				PreparedStatement pst = makeInsertStatement_movies(movieImportDAO);
+				pst.executeUpdate();
+				movieImportDAO.setMovieIDs(extractIDs(pst.getGeneratedKeys()));
 			}
 			{
-				PreparedStatement pst = makeLanguagesInsertStatement(movieImportDAO);
-				//pst.executeUpdate();
-			}
-			{
-				
-				PreparedStatement pst = makeCountriesInsertStatement(movieImportDAO);
-				//pst.executeUpdate();
+				PreparedStatement pst = makeInsertStatement_languages(movieImportDAO);
+				pst.executeUpdate();
 			}
 			{
 				
-				PreparedStatement pst = makeGenresInsertStatement(movieImportDAO);
-				//pst.executeUpdate();
+				PreparedStatement pst = makeInsertStatement_countries(movieImportDAO);
+				pst.executeUpdate();
+			}
+			{
+				
+				PreparedStatement pst = makeInsertStatement_genres(movieImportDAO);
+				pst.executeUpdate();
 			} 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,47 +92,99 @@ public class UploadService extends HttpServlet {
 		}
 
 	}
-	
-	public PreparedStatement makeLanguagesInsertStatement(MovieImportDAO movieImportDAO) throws SQLException{
-		return makeSplittedInsertStatement("movie_languages",MovieLanguage.dbLabelName,movieImportDAO);
-	}
-	
-	public PreparedStatement makeCountriesInsertStatement(MovieImportDAO movieImportDAO) throws SQLException{
-		return makeSplittedInsertStatement("movie_countries",MovieCountry.dbLabelName,movieImportDAO);
-	}
-	
-	public PreparedStatement makeGenresInsertStatement(MovieImportDAO movieImportDAO) throws SQLException{
-		return makeSplittedInsertStatement("movie_genres",MovieGenre.dbLabelName,movieImportDAO);
+
+	/*
+	 * @param tableName the table name in the DB
+	 * @param dbLabelName the label of the second column to be added
+	 * @param movieImportDAO the object that contains the extracted information
+	 * @returns PreparedStatement for execution of insert
+	 */
+	public PreparedStatement makeInsertStatement_languages(MovieImportDAO movieImportDAO) throws SQLException{
+		String[] ids = movieImportDAO.getIDs();
+		String[] languages = movieImportDAO.getLanguages();
+		int placeholderCounter = 0;
+		
+		//find out how many placeholders are needed
+		for(int idx = ids.length; idx-- > 0;){
+			if(!languages[idx].equals("")){
+				placeholderCounter += languages[idx].split(", ",-1).length;				
+			}
+		}
+		
+		String sql = "INSERT INTO `movie_languages` (`movie_id`,`language`) VALUES "+placeholderMaker(2,placeholderCounter)+";";
+		PreparedStatement pst = Database.getInstance().prepareStatement(sql);
+		
+		for(int idx = 0, placeholder_count = 1; idx < ids.length; idx++){
+			for(String language : languages[idx].split(", ", -1)){
+				if(!language.equals("")){
+					pst.setString(placeholder_count++,ids[idx]);
+					pst.setString(placeholder_count++, language);					
+				}
+			}
+		}
+		
+		return pst;
 	}
 	
 	/*
 	 * @param tableName the table name in the DB
 	 * @param dbLabelName the label of the second column to be added
 	 * @param movieImportDAO the object that contains the extracted information
+	 * @returns PreparedStatement for execution of insert
 	 */
-	private PreparedStatement makeSplittedInsertStatement(String tableName,String dbLabelName,MovieImportDAO movieImportDAO) throws SQLException{
+	public PreparedStatement makeInsertStatement_countries(MovieImportDAO movieImportDAO) throws SQLException{
 		String[] ids = movieImportDAO.getIDs();
-		String[] attributes = movieImportDAO.getAttributes(dbLabelName);
+		String[] countries = movieImportDAO.getCountries();
 		int placeholderCounter = 0;
 		
 		//find out how many placeholders are needed
 		for(int idx = ids.length; idx-- > 0;){
-			if(!attributes[idx].equals("")){
-				placeholderCounter += attributes[idx].split(", ",-1).length;				
+			if(!countries[idx].equals("")){
+				placeholderCounter += countries[idx].split(", ",-1).length;				
 			}
 		}
 		
-		String sql = "INSERT INTO `"+tableName+"` (?,?) VALUES "+placeholderMaker(2,placeholderCounter)+";";
+		String sql = "INSERT INTO `movie_countries` (`movie_id`,`movie_country`) VALUES "+placeholderMaker(2,placeholderCounter)+";";
 		PreparedStatement pst = Database.getInstance().prepareStatement(sql);
 		
-		pst.setString(1, MovieID.dbLabelName);
-		pst.setString(2, dbLabelName);
-		
-		for(int idx = 0, placeholder_count = 3; idx < ids.length; idx++){
-			for(String attribute : attributes[idx].split(", ", -1)){
-				if(!attribute.equals("")){
+		for(int idx = 0, placeholder_count = 1; idx < ids.length; idx++){
+			for(String country : countries[idx].split(", ", -1)){
+				if(!country.equals("")){
 					pst.setString(placeholder_count++,ids[idx]);
-					pst.setString(placeholder_count++, attribute);					
+					pst.setString(placeholder_count++, country);					
+				}
+			}
+		}
+		
+		return pst;
+	}
+	
+	/*
+	 * @param tableName the table name in the DB
+	 * @param dbLabelName the label of the second column to be added
+	 * @param movieImportDAO the object that contains the extracted information
+	 * @returns PreparedStatement for execution of insert
+	 */
+	public PreparedStatement makeInsertStatement_genres(MovieImportDAO movieImportDAO) throws SQLException{
+		String[] ids = movieImportDAO.getIDs();
+		String[] genres = movieImportDAO.getGenres();
+		int placeholderCounter = 0;
+		
+		//find out how many placeholders are needed
+		for(int idx = ids.length; idx-- > 0;){
+			if(!genres[idx].equals("")){
+				placeholderCounter += genres[idx].split(", ",-1).length;				
+			}
+		}
+		
+		String sql = "INSERT INTO `movie_genres` (`movie_id`,`genre`) VALUES "+placeholderMaker(2,placeholderCounter)+";";
+		PreparedStatement pst = Database.getInstance().prepareStatement(sql);
+		
+		for(int idx = 0, placeholder_count = 1; idx < ids.length; idx++){
+			for(String genre : genres[idx].split(", ", -1)){
+				if(!genre.equals("")){
+					pst.setString(placeholder_count++,ids[idx]);
+					pst.setString(placeholder_count++, genre);					
 				}
 			}
 		}
@@ -144,9 +196,9 @@ public class UploadService extends HttpServlet {
 	 * @param movieImportDAO
 	 * @returns PreparedStatement
 	 */
-    public PreparedStatement makeMovieInsertStatement(MovieImportDAO movieImportDAO) throws SQLException{
+    public PreparedStatement makeInsertStatement_movies(MovieImportDAO movieImportDAO) throws SQLException{
        	int n_movies			= movieImportDAO.getNMovies();
-    	String sql 				= "INSERT INTO `movies` (?,?,?,?,?,?,?) VALUES "+placeholderMaker(7, n_movies)+";";
+    	String sql 				= "INSERT INTO `movies` (`movie_name`,`movie_release_year`,`movie_box_office_revenue`,`movie_runtime`,`movie_languages`,`movie_countries`,`movie_genres`) VALUES "+placeholderMaker(7, n_movies)+";";
     	PreparedStatement pst	= Database.getInstance().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
     	String[] titles 		= movieImportDAO.getTitles();
     	String[] years 			= movieImportDAO.getYears();
@@ -156,58 +208,50 @@ public class UploadService extends HttpServlet {
     	String[] countries		= movieImportDAO.getCountries();
     	String[] genres 		= movieImportDAO.getGenres();
     	
-    	pst.setString		(1, MovieTitle.dbLabelName);
-    	pst.setString		(2, MovieYear.dbLabelName);
-    	pst.setString		(3, MovieRevenue.dbLabelName);
-    	pst.setString		(4, MovieDuration.dbLabelName);
-    	pst.setString		(5, MovieLanguage.dbLabelName);
-    	pst.setString		(6, MovieCountry.dbLabelName);
-    	pst.setString		(7, MovieGenre.dbLabelName);
-    	
     	for(int idx = 0; idx < n_movies; idx++){
     		//title
-    		pst.setString((idx+1)*7+1, titles[idx]);
+    		pst.setString((idx)*7+1, titles[idx]);
     		
     		//year
     		if(years[idx] == null || years[idx].equals("")){
-    			pst.setNull((idx+1)*7+2, java.sql.Types.INTEGER);
+    			pst.setNull((idx)*7+2, java.sql.Types.INTEGER);
     		}else{
-    			pst.setInt((idx+1)*7+2, Integer.parseInt(years[idx]));
+    			pst.setInt((idx)*7+2, Integer.parseInt(years[idx]));
     		}
     		
     		//revenue
     		if(revenues[idx] == null || revenues[idx].equals("")){
-				pst.setNull((idx+1)*7+3, java.sql.Types.INTEGER);
+				pst.setNull((idx)*7+3, java.sql.Types.INTEGER);
 			}else{
-				pst.setInt((idx+1)*7+3, Integer.parseInt(revenues[idx]));	
+				pst.setInt((idx)*7+3, Integer.parseInt(revenues[idx]));	
 			}
     		
     		//duration
     		if(durations[idx] == null || durations[idx].equals("")){
-				pst.setNull((idx+1)*7+4, java.sql.Types.FLOAT);
+				pst.setNull((idx)*7+4, java.sql.Types.FLOAT);
 			}else{
-				pst.setFloat((idx+1)*7+4, Float.parseFloat(durations[idx]));	
+				pst.setFloat((idx)*7+4, Float.parseFloat(durations[idx]));	
 			}
     		
     		//languages
     		if(languages[idx] == null || languages[idx].equals("")){
-				pst.setNull((idx+1)*7+5, java.sql.Types.VARCHAR);
+				pst.setNull((idx)*7+5, java.sql.Types.VARCHAR);
 			}else{
-				pst.setString((idx+1)*7+5, languages[idx]);
+				pst.setString((idx)*7+5, languages[idx]);
 			}
     		
     		//countries
     		if(countries[idx] == null || countries[idx].equals("")){
-				pst.setNull((idx+1)*7+6, java.sql.Types.VARCHAR);
+				pst.setNull((idx)*7+6, java.sql.Types.VARCHAR);
 			}else{
-				pst.setString((idx+1)*7+6, countries[idx]);
+				pst.setString((idx)*7+6, countries[idx]);
 			}
     		
     		//genres
     		if(genres[idx] == null || genres[idx].equals("")){
-				pst.setNull((idx+1)*7+7, java.sql.Types.VARCHAR);
+				pst.setNull((idx)*7+7, java.sql.Types.VARCHAR);
 			}else{
-				pst.setString((idx+1)*7+7, genres[idx]);
+				pst.setString((idx)*7+7, genres[idx]);
 			}
     	}
     	
@@ -242,11 +286,29 @@ public class UploadService extends HttpServlet {
      * @param rs the ResultSet from the insert, containing all generated ids
      * @param movieImportDAO the object the ids are being inserted
      */
-    private void addIDsToMovieImportDAO(ResultSet rs, MovieImportDAO movieImportDAO) throws SQLException{
-    	String[] ids = new String[movieImportDAO.getNMovies()];
-    	for(int idx = 0; idx < movieImportDAO.getNMovies(); idx++){
-    		ids[idx] = rs.getString(idx);
-    	}
-    	movieImportDAO.setMovieIDs(ids);
+//    private void addIDsToMovieImportDAO(ResultSet rs, MovieImportDAO movieImportDAO) throws SQLException{
+//    	String[] ids = new String[movieImportDAO.getNMovies()];
+//    	for(int idx = 0; idx < movieImportDAO.getNMovies(); idx++){
+//    		ids[idx] = rs.getString(idx);
+//    	}
+//    	movieImportDAO.setMovieIDs(ids);
+//    }
+    
+    /*
+     * 
+     */
+    private String[] extractIDs(ResultSet rs){
+    	try {
+    		ArrayList<String> id_list = new ArrayList<String>();
+    		int size = 0;
+    		while(rs.next()){
+    			id_list.add(Integer.toString(rs.getInt(1)));
+    			size++;
+    		}
+			return id_list.toArray(new String[size]);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
     }
 }
