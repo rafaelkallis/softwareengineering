@@ -24,11 +24,8 @@ public class OrderedSet <T extends Comparable<T>> extends Model implements Itera
 		return elements.size();
 	}
 	
-	//FIXME
-	public T[] get(){
-		@SuppressWarnings("unchecked")
-		T[] array = (T[]) this.elements.toArray();
-		return array;
+	public Object[] toArray(){
+		return elements.toArray();
 	}
 	
 	public void clear(){
