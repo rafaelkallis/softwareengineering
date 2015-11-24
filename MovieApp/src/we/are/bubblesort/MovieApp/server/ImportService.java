@@ -24,7 +24,7 @@ import java.sql.Statement;
  * Created by rafael on 17/11/15.
  */
 
-public class UploadService extends HttpServlet {
+public class ImportService extends HttpServlet {
 
 	private static final long serialVersionUID = 3346772105950555818L;
 	
@@ -68,6 +68,7 @@ public class UploadService extends HttpServlet {
 			MovieImportDAO movieImportDAO = new MovieImportDAO(content,format);
 			{
 				PreparedStatement pst = makeInsertStatement_movies(movieImportDAO);
+				System.out.println(pst);
 				pst.executeUpdate();
 				movieImportDAO.setMovieIDs(extractIDs(pst.getGeneratedKeys()));
 			}
@@ -198,9 +199,12 @@ public class UploadService extends HttpServlet {
 	 */
     public PreparedStatement makeInsertStatement_movies(MovieImportDAO movieImportDAO) throws SQLException{
        	int n_movies			= movieImportDAO.getNMovies();
-    	String sql 				= "INSERT INTO `movies` (`movie_name`,`movie_release_year`,`movie_box_office_revenue`,`movie_runtime`,`movie_languages`,`movie_countries`,`movie_genres`) VALUES "+placeholderMaker(7, n_movies)+";";
+    	String sql 				= "INSERT INTO `movies` (`wikipedia_movie_id`,`freebase_movie_id`,`movie_name`,`movie_release_date`,`movie_release_year`,`movie_box_office_revenue`,`movie_runtime`,`movie_languages`,`movie_countries`,`movie_genres`) VALUES "+placeholderMaker(10, n_movies)+";";
     	PreparedStatement pst	= Database.getInstance().prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+    	String[] wikipedia_ids	= movieImportDAO.getWikipediaIds();
+    	String[] freebase_ids	= movieImportDAO.getFreebaseIds();
     	String[] titles 		= movieImportDAO.getTitles();
+    	String[] dates			= movieImportDAO.getDates();
     	String[] years 			= movieImportDAO.getYears();
     	String[] revenues 		= movieImportDAO.getRevenues();
     	String[] durations 		= movieImportDAO.getDurations();
@@ -209,49 +213,70 @@ public class UploadService extends HttpServlet {
     	String[] genres 		= movieImportDAO.getGenres();
     	
     	for(int idx = 0; idx < n_movies; idx++){
+    		//wikipedia id
+    		if(wikipedia_ids[idx] == null || wikipedia_ids[idx].equals("")){
+    			pst.setNull((idx)*10+1, java.sql.Types.INTEGER);
+    		}else{
+    			pst.setInt((idx)*10+1, Integer.parseInt(wikipedia_ids[idx]));
+    		}
+    		
+    		//freebase id
+    		if(freebase_ids[idx] == null || freebase_ids[idx].equals("")){
+    			pst.setNull((idx)*10+2, java.sql.Types.VARCHAR);
+    		}else{
+    			pst.setString((idx)*10+2, freebase_ids[idx]);
+    		}
+    		
     		//title
-    		pst.setString((idx)*7+1, titles[idx]);
+    		pst.setString((idx)*10+3, titles[idx]);
+    		
+    		//date
+    		if(dates[idx] == null || dates[idx].equals("")){
+				pst.setNull((idx)*10+4, java.sql.Types.VARCHAR);
+			}else{
+				pst.setString((idx)*10+4, dates[idx]);
+			}
     		
     		//year
     		if(years[idx] == null || years[idx].equals("")){
-    			pst.setNull((idx)*7+2, java.sql.Types.INTEGER);
+    			pst.setNull((idx)*10+5, java.sql.Types.INTEGER);
     		}else{
-    			pst.setInt((idx)*7+2, Integer.parseInt(years[idx]));
+    			pst.setInt((idx)*10+5, Integer.parseInt(years[idx]));
     		}
     		
     		//revenue
     		if(revenues[idx] == null || revenues[idx].equals("")){
-				pst.setNull((idx)*7+3, java.sql.Types.INTEGER);
+				pst.setNull((idx)*10+6, java.sql.Types.INTEGER);
 			}else{
-				pst.setInt((idx)*7+3, Integer.parseInt(revenues[idx]));	
+				pst.setInt((idx)*10+6, Integer.parseInt(revenues[idx]));	
 			}
     		
     		//duration
     		if(durations[idx] == null || durations[idx].equals("")){
-				pst.setNull((idx)*7+4, java.sql.Types.FLOAT);
+				pst.setNull((idx)*10+7, java.sql.Types.FLOAT);
 			}else{
-				pst.setFloat((idx)*7+4, Float.parseFloat(durations[idx]));	
+				pst.setFloat((idx)*10+7, Float.parseFloat(durations[idx]));	
 			}
     		
     		//languages
     		if(languages[idx] == null || languages[idx].equals("")){
-				pst.setNull((idx)*7+5, java.sql.Types.VARCHAR);
+				pst.setNull((idx)*10+8, java.sql.Types.VARCHAR);
 			}else{
-				pst.setString((idx)*7+5, languages[idx]);
+				pst.setString((idx)*10+8, languages[idx]);
 			}
     		
     		//countries
     		if(countries[idx] == null || countries[idx].equals("")){
-				pst.setNull((idx)*7+6, java.sql.Types.VARCHAR);
+				pst.setNull((idx)*10+9, java.sql.Types.VARCHAR);
 			}else{
-				pst.setString((idx)*7+6, countries[idx]);
+				pst.setString((idx)*10+9, countries[idx]);
 			}
     		
     		//genres
     		if(genres[idx] == null || genres[idx].equals("")){
-				pst.setNull((idx)*7+7, java.sql.Types.VARCHAR);
+				pst.setNull((idx)*10+10, java.sql.Types.VARCHAR);
 			}else{
-				pst.setString((idx)*7+7, genres[idx]);
+				pst.setString((idx)*10+10, genres[idx]);
 			}
     	}
     	
@@ -280,19 +305,6 @@ public class UploadService extends HttpServlet {
     	}
     	return placeholderMake.toJoinedString(",");
     }
-
-    /*
-     * @pre rs.size == movieImportDAO.getNMovies()
-     * @param rs the ResultSet from the insert, containing all generated ids
-     * @param movieImportDAO the object the ids are being inserted
-     */
-//    private void addIDsToMovieImportDAO(ResultSet rs, MovieImportDAO movieImportDAO) throws SQLException{
-//    	String[] ids = new String[movieImportDAO.getNMovies()];
-//    	for(int idx = 0; idx < movieImportDAO.getNMovies(); idx++){
-//    		ids[idx] = rs.getString(idx);
-//    	}
-//    	movieImportDAO.setMovieIDs(ids);
-//    }
     
     /*
      * 
