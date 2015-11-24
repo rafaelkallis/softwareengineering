@@ -28,6 +28,7 @@ public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 		return elements.size();
 	}
 	
+	//FIXME
 	public T[] get(){
 		@SuppressWarnings("unchecked")
 		T[] array = (T[]) this.elements.toArray();
