@@ -17,9 +17,9 @@ public class UploadServiceTest {
 		MovieImportDAO importDAO = new MovieImportDAO(content,CSVFormat.TDF);
 		importDAO.setMovieIDs(new String[]{"123"});
 		assertEquals("INSERT INTO `movies` (`movie_name`,`movie_release_year`,`movie_box_office_revenue`,`movie_runtime`,`movie_languages`,`movie_countries`,`movie_genres`) VALUES ('Ghosts of Mars',2001,14010832,98.0,'English Language','United States of America','Thriller, Science Fiction, Horror, Adventure, Supernatural, Action, Space western');",US.makeInsertStatement_movies(importDAO).toString().replaceAll("com.mysql.jdbc.JDBC42PreparedStatement@[a-z0-9]*: ", ""));
-		assertEquals("INSERT INTO `movie_languages` (`id`,`movie_languages`) VALUES ('123','English Language');",US.makeInsertStatement_languages(importDAO).toString().replaceAll("com.mysql.jdbc.JDBC42PreparedStatement@[a-z0-9]*: ", ""));
-		assertEquals("INSERT INTO `movie_countries` (`id`,`movie_countries`) VALUES ('123','United States of America');",US.makeInsertStatement_countries(importDAO).toString().replaceAll("com.mysql.jdbc.JDBC42PreparedStatement@[a-z0-9]*: ", ""));
-		assertEquals("INSERT INTO `movie_genres` (`id`,`movie_genres`) VALUES ('123','Thriller'),('123','Science Fiction'),('123','Horror'),('123','Adventure'),('123','Supernatural'),('123','Action'),('123','Space western');",US.makeInsertStatement_genres(importDAO).toString().replaceAll("com.mysql.jdbc.JDBC42PreparedStatement@[a-z0-9]*: ", ""));
+		assertEquals("INSERT INTO `movie_languages` (`movie_id`,`language`) VALUES ('123','English Language');",US.makeInsertStatement_languages(importDAO).toString().replaceAll("com.mysql.jdbc.JDBC42PreparedStatement@[a-z0-9]*: ", ""));
+		assertEquals("INSERT INTO `movie_countries` (`movie_id`,`movie_country`) VALUES ('123','United States of America');",US.makeInsertStatement_countries(importDAO).toString().replaceAll("com.mysql.jdbc.JDBC42PreparedStatement@[a-z0-9]*: ", ""));
+		assertEquals("INSERT INTO `movie_genres` (`movie_id`,`genre`) VALUES ('123','Thriller'),('123','Science Fiction'),('123','Horror'),('123','Adventure'),('123','Supernatural'),('123','Action'),('123','Space western');",US.makeInsertStatement_genres(importDAO).toString().replaceAll("com.mysql.jdbc.JDBC42PreparedStatement@[a-z0-9]*: ", ""));
 	}
 	
 	@Test
