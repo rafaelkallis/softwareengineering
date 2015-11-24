@@ -55,20 +55,40 @@ public class Parser {
 	 */
 	public String[][] parseFormat(String content,CSVFormat format) throws IOException{
 		List<CSVRecord> movieRecords = CSVParser.parse(content, format).getRecords();
-		String records[][] = new String[7][movieRecords.size()];
+		String records[][] = new String[10][movieRecords.size()];
 		Iterator<CSVRecord> iterator = movieRecords.iterator();
 		for(int i = 0;iterator.hasNext();i++){
 			CSVRecord record = iterator.next();
-			records[0][i] 				= this.extractTitle		(record.get(2));
-			records[1][i] 				= this.extractYear		(record.get(3));
-			records[2][i] 				= this.extractRevenue	(record.get(4));
-			records[3][i] 				= this.extractDuration	(record.get(5));
-			records[4][i] 				= this.extractLanguages	(record.get(6));
-			records[5][i]				= this.extractCountries	(record.get(7));
-			records[6][i]	 			= this.extractGenres	(record.get(8));
+			
+			records[0][i] 				= this.extractWikipediaId	(record.get(0));
+			records[1][i] 				= this.extractFreebaseId	(record.get(1));
+			records[2][i] 				= this.extractTitle			(record.get(2));
+			records[3][i] 				= this.extractDate			(record.get(3));
+			records[4][i] 				= this.extractYear			(record.get(3));
+			records[5][i] 				= this.extractRevenue		(record.get(4));
+			records[6][i] 				= this.extractDuration		(record.get(5));
+			records[7][i] 				= this.extractLanguages		(record.get(6));
+			records[8][i]				= this.extractCountries		(record.get(7));
+			records[9][i]	 			= this.extractGenres		(record.get(8));
 		}
 		
 		return records;
+	}
+	
+	/*
+	 * @param value
+	 * @returns String
+	 */
+	private String extractWikipediaId(String value){
+		return value;
+	}
+	
+	/*
+	 * @param value
+	 * @returns String
+	 */
+	private String extractFreebaseId(String value){
+		return value;
 	}
 	
 	/*
@@ -79,6 +99,14 @@ public class Parser {
     	return value;
     }
     
+    /*
+	 * @param value
+	 * @returns String
+	 */
+    private String extractDate(String value){
+    	return value;
+    }
+	
 	/*
 	 * @param value
 	 * @returns String
@@ -126,5 +154,4 @@ public class Parser {
     private String extractGenres(String value){
     	return value.replaceAll("\"/m/[0-9a-zA-Z_]*\": |[\"{}]", "");
     }
-	
 }
