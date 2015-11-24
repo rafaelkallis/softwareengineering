@@ -2,32 +2,32 @@ package we.are.bubblesort.MovieApp.client;
 
 import java.util.Date;
 
+import we.are.bubblesort.MovieApp.shared.MovieYear;
+
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Hyperlink;
 
-import we.are.bubblesort.MovieApp.shared.MovieYear;
-
-public class WorldMapSection extends Section implements FilterChangedEventHandler {
-	static final String defaultName = "Karte";
+public class HeatMapSection extends Section implements FilterChangedEventHandler  {
+	static final String defaultName = "Heatmap";
 	protected QueryServiceAsync queryService;
-	protected WorldMapSectionView view;
-	protected MapPresenter worldmap;
+	protected HeatMapSectionView view;
+	protected MapPresenter heatmap;
 	protected FilterBarPresenter filterbar;
 
-	WorldMapSection(String sectionName, QueryServiceAsync queryService) {
+	HeatMapSection(String sectionName, QueryServiceAsync queryService) {
 		super(sectionName);
 		this.queryService = queryService;
-		this.view = new WorldMapSectionView();
+		this.view = new HeatMapSectionView();
 	}
 	
-	WorldMapSection(QueryServiceAsync queryService) {
+	HeatMapSection(QueryServiceAsync queryService) {
 		this(defaultName, queryService);
 	}
 
 	@Override
 	void init() {
 		this.initialized = true;
-		this.worldmap = new MapPresenter(this.queryService, new WorldMapView());
+		this.heatmap = new MapPresenter(this.queryService, new HeatMapView());
 		this.filterbar = new FilterBarPresenter(this.queryService);
 		
 		FilterPresenter yearFilter = new FilterPresenter(new MovieYear(""), queryService, new RangeSliderView());
@@ -35,7 +35,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 
 		this.filterbar.addHandler(FilterChangedEvent.TYPE, this);
 		
-		this.view.worldmap.add(this.worldmap.getCompositeView());
+		this.view.worldmap.add(this.heatmap.getCompositeView());
 		this.view.yearFilter.add(yearFilter.getCompositeView());
 		
 		// set yearfilter to current year
@@ -43,7 +43,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		int year = new Date().getYear();
 		yearFilter.setValue(Integer.toString(year + 1900));
 		
-		new ExportPresenter(this.worldmap, this.view.exportbutton);
+		new ExportPresenter(this.heatmap, this.view.exportbutton);
 		
 		Hyperlink sourceLink = new Hyperlink("Quelle", "");
 		new SourcePresenter(sourceLink);
@@ -52,7 +52,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 
 	@Override
 	public void onFilterValueChanged() {
-		this.worldmap.loadNewData(this.filterbar.getFilterValues());
+		this.heatmap.loadNewData(this.filterbar.getFilterValues());
 	}
 	
 	@Override

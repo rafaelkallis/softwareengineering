@@ -38,7 +38,7 @@ html {
 
 .app-section-container {
 	position:absolute;
-	top:50px;;
+	top:50px;
 	left:0;
 	right:0;
 	bottom:0;
@@ -76,6 +76,24 @@ html {
 .section .mapview path.country.active {
 	fill: #484e55;
 }
+    			
+.section .heatmapview path.country { fill: hsl(35, 96%, 96%); }
+.section .heatmapview path.country.active { fill: hsl(35, 96%, 66%); }
+
+.section .heatmapview .legendSquare text {
+	fill: #2F383D;
+}
+
+.section .heatmapview path.cat-1,
+.section .heatmapview rect.cat-1 { fill: hsl(45, 96%, 56%); }
+.section .heatmapview path.cat-2,
+.section .heatmapview rect.cat-2 { fill: hsl(40, 96%, 56%); }
+.section .heatmapview path.cat-3,
+.section .heatmapview rect.cat-3 { fill: hsl(35, 96%, 56%); }
+.section .heatmapview path.cat-4,
+.section .heatmapview rect.cat-4 { fill: hsl(30, 96%, 56%); }
+.section .heatmapview path.cat-5,
+.section .heatmapview rect.cat-5 { fill: hsl(25, 96%, 56%); }
 
 .section .mapview .spot circle, 
 .section .mapview .spot text {

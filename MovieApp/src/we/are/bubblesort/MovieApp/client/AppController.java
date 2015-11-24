@@ -39,14 +39,17 @@ public final class AppController extends Presenter implements AppActivateSection
 	
 	private void setupSections() {		
 		WorldMapSection world = new WorldMapSection(this.queryService);
+		HeatMapSection heatmap = new HeatMapSection(this.queryService);
 		TableSection table = new TableSection(this.queryService);
 		ImprintSection imprint = new ImprintSection();
 		
 		sections.add(world);
 		sections.add(table);
 		sections.add(imprint);
+		sections.add(heatmap);
 
 		this.mainNavigation.addMenu(world);
+		this.mainNavigation.addMenu(heatmap);
 		this.mainNavigation.addMenu(table);
 		
 		for (Section currentSection : sections) {
