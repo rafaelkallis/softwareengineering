@@ -40,7 +40,8 @@ public class CollectionTest {
 	@Test
 	public void testAddGetArray(){
 		collection.add(testArray);
-		assertArrayEquals(testArray, collection.toArray());
+		
+		assertArrayEquals(testArray, collection.toArray(new String[testArray.length]));
 	}
 	
 	@Test
