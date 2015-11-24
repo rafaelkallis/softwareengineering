@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.io.IOUtils;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +38,7 @@ public class UploadService extends HttpServlet {
         	if(blobKey == null){
         		response.sendRedirect("/");
         	}else{       		
-        		this.importContent(getContent(blobKey));      		
+        		this.importContent(getContent(blobKey),CSVFormat.TDF);      		
         		response.sendRedirect("/upload-success?blob-key=" + blobKey.getKeyString());
         	}
         }
@@ -48,10 +49,10 @@ public class UploadService extends HttpServlet {
 	 * @returns String the content of the BlobKey
 	 */
 	private String getContent(BlobKey blobKey) throws IOException{
-		String line;
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br =new BufferedReader(new InputStreamReader(new BlobstoreInputStream(blobKey)));
-		while(!(line = br.readLine()).isEmpty()){
+		String line			= null;
+		StringBuilder sb 	= new StringBuilder();
+		BufferedReader br 	= new BufferedReader(new InputStreamReader(new BlobstoreInputStream(blobKey)));
+		while((line = br.readLine())!=null){
 			sb.append(line+"\n");
 		}
 		br.close();
@@ -60,10 +61,11 @@ public class UploadService extends HttpServlet {
 	
 	/*
 	 * @param content the content to be imported to the DB
+	 * @param format [CSV,Excel,TSV, ..]
 	 */
-	public void importContent(String content){
+	public void importContent(String content,CSVFormat format){
 		try {
-			MovieImportDAO movieImportDAO = new MovieImportDAO(content,CSVFormat.TDF);
+			MovieImportDAO movieImportDAO = new MovieImportDAO(content,format);
 			{
 				PreparedStatement pst = makeMovieInsertStatement(movieImportDAO);
 				//pst.executeUpdate();
@@ -126,12 +128,11 @@ public class UploadService extends HttpServlet {
 		pst.setString(1, MovieID.dbLabelName);
 		pst.setString(2, dbLabelName);
 		
-		int placeholder_idx = 3;
-		for(int idx = 0; idx < ids.length; idx++){
+		for(int idx = 0, placeholder_count = 3; idx < ids.length; idx++){
 			for(String attribute : attributes[idx].split(", ", -1)){
 				if(!attribute.equals("")){
-					pst.setString(placeholder_idx++,ids[idx]);
-					pst.setString(placeholder_idx++, attribute);					
+					pst.setString(placeholder_count++,ids[idx]);
+					pst.setString(placeholder_count++, attribute);					
 				}
 			}
 		}
