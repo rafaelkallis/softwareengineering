@@ -40,6 +40,7 @@ public class ImportView extends View {
 	}
 
 	public void setupForm(String uploadUrl) {
+		this.form.reset();
 		this.form.setAction(uploadUrl);
         this.submit.setText("Hochladen");
         this.submit.setEnabled(true);

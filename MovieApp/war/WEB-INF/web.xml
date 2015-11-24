@@ -34,12 +34,12 @@
 
 	<!-- Upload Service  -->
     <servlet>
-        <servlet-name>UploadService</servlet-name>
-        <servlet-class>we.are.bubblesort.MovieApp.server.UploadService</servlet-class>
+        <servlet-name>ImportService</servlet-name>
+        <servlet-class>we.are.bubblesort.MovieApp.server.ImportService</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>UploadService</servlet-name>
-        <url-pattern>/upload</url-pattern>
+        <servlet-name>ImportService</servlet-name>
+        <url-pattern>/import</url-pattern>
     </servlet-mapping>
 </web-app>
 

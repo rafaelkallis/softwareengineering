@@ -27,8 +27,8 @@ public class ImportPresenter extends Presenter {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				String results = event.getResults();
-				
-				if (results.startsWith("success")) {
+
+				if (results == null || results.startsWith("success")) {
 					importSuccessful(results);
 				}
 				else {
@@ -42,6 +42,7 @@ public class ImportPresenter extends Presenter {
 
 	private void importSuccessful(String results) {
 		this.resetForm();
+		Window.alert("Upload successful (Import states it was successful too)");
 	}
 
 	private void importFailed(String results) {
@@ -52,7 +53,7 @@ public class ImportPresenter extends Presenter {
 	protected void resetForm() {
 		this.view.indicateSetup();
 		
-		String url = "/upload";
+		String url = "/import";
 		RequestBuilder builder = new RequestBuilder(
 		                            RequestBuilder.GET, url);
 		builder.setCallback(new RequestCallback() {
