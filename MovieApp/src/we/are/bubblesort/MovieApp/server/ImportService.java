@@ -68,7 +68,6 @@ public class ImportService extends HttpServlet {
 			MovieImportDAO movieImportDAO = new MovieImportDAO(content,format);
 			{
 				PreparedStatement pst = makeInsertStatement_movies(movieImportDAO);
-				System.out.println(pst);
 				pst.executeUpdate();
 				movieImportDAO.setMovieIDs(extractIDs(pst.getGeneratedKeys()));
 			}
