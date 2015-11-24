@@ -46,7 +46,7 @@ public class WorldMapSection extends Section implements FilterChangedEventHandle
 		new ExportPresenter(this.worldmap, this.view.exportbutton);
 		
 		Hyperlink sourceLink = new Hyperlink("Quelle", "");
-		new SourcePresenter(sourceLink);
+		new SectionChangerPresenter(sourceLink, "imprint");
 		this.view.mapannotations.add(sourceLink);
 	}
 

@@ -16,6 +16,7 @@ public class AppView extends View {
 	@UiField Panel appHeaderPanel;
 	@UiField Panel appMainNavigationPanel;
 	@UiField Panel appSectionContainerPanel;
+	@UiField Panel appSecondaryNavigationPanel;
 
 	public AppView() {
 		initWidget(uiBinder.createAndBindUi(this));

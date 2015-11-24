@@ -6,7 +6,11 @@
 	        <g:FlowPanel addStyleNames="container">
 	            <g:FlowPanel addStyleNames="row">
 			        <g:FlowPanel addStyleNames="navbar-collapse collapse" ui:field="appHeaderPanel">
-			            <g:FlowPanel addStyleNames="col-md-push-4 col-md-4 mainnavigation" ui:field="appMainNavigationPanel">
+			            <g:FlowPanel addStyleNames="col-md-4">
+			                <g:Anchor addStyleNames="navbar-brand" href="#">MovieApp</g:Anchor>
+			                <g:FlowPanel addStyleNames="navbar-text" ui:field="appSecondaryNavigationPanel"></g:FlowPanel>
+			            </g:FlowPanel>
+			            <g:FlowPanel addStyleNames="col-md-4 mainnavigation" ui:field="appMainNavigationPanel">
 						</g:FlowPanel>
 						<g:HTMLPanel addStyleNames="placeholder pull-right">
 		 					<img src="images/ad.png" width="190" height="50" />

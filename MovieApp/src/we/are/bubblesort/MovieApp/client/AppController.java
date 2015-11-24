@@ -1,6 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Panel;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
@@ -30,8 +31,9 @@ public final class AppController extends Presenter implements AppActivateSection
 		appPanel.add(this.view);
 		this.bind();
 		this.setupSections();
+		this.setupSecondaryNavigation();
 	}
-	
+
 	public void bind() {
 		this.eventBus.addHandler(AppActivateSectionEvent.TYPE, this);
 		this.mainNavigation.addHandler(AppActivateSectionEvent.TYPE, this);
@@ -42,11 +44,13 @@ public final class AppController extends Presenter implements AppActivateSection
 		HeatMapSection heatmap = new HeatMapSection(this.queryService);
 		TableSection table = new TableSection(this.queryService);
 		ImprintSection imprint = new ImprintSection();
+		AdminAreaSection adminarea = new AdminAreaSection();
 		
 		sections.add(world);
 		sections.add(table);
 		sections.add(imprint);
 		sections.add(heatmap);
+		sections.add(adminarea);
 
 		this.mainNavigation.addMenu(world);
 		this.mainNavigation.addMenu(heatmap);
@@ -58,6 +62,13 @@ public final class AppController extends Presenter implements AppActivateSection
 		}
 		
 		this.activateSection(world);
+	}
+	
+	private void setupSecondaryNavigation() {
+		Hyperlink adminLink = new Hyperlink("Admin", "");
+		new SectionChangerPresenter(adminLink, "adminarea");
+		
+		this.view.appSecondaryNavigationPanel.add(adminLink);
 	}
 	
 	public Section getSectionByName(String name) {
