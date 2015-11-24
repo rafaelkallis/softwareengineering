@@ -25,8 +25,8 @@ public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>
 			return elements.size();
 		}
 		
-		public Object[] toArray(){
-			return elements.toArray();
+		public T[] toArray(T[] array){
+			return elements.toArray(array);
 		}
 		
 		@Override

@@ -24,8 +24,8 @@ public class OrderedSet <T extends Comparable<T>> extends Model implements Itera
 		return elements.size();
 	}
 	
-	public Object[] toArray(){
-		return elements.toArray();
+	public T[] toArray(T[] array){
+		return elements.toArray(array);
 	}
 	
 	public void clear(){

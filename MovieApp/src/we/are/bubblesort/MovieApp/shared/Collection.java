@@ -28,8 +28,8 @@ public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 		return elements.size();
 	}
 	
-	public Object[] toArray(){
-		return elements.toArray();
+	public T[] toArray(T[] array){
+		return elements.toArray(array);
 	}
 	
 	@Override
