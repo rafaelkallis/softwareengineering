@@ -11,7 +11,7 @@ import org.apache.commons.csv.CSVRecord;
 public class Parser {
 	
 	private static Parser instance = new Parser();
-	
+	public static final String DEFAULT_MOVIE_RELEASE_YEAR = "2000";
 	private Parser(){
 		
 	}
@@ -112,7 +112,7 @@ public class Parser {
 	 * @returns String
 	 */
     private String extractYear(String value){     	
-    	return value.substring(0, 4);
+    	return value.equals("") ? DEFAULT_MOVIE_RELEASE_YEAR : value.substring(0, 4);
     }
     
     /*
