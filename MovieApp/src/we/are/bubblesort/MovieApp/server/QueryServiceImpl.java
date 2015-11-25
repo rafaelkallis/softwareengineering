@@ -1,13 +1,10 @@
 package we.are.bubblesort.MovieApp.server;
 
 import we.are.bubblesort.MovieApp.client.QueryService;
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-
 import we.are.bubblesort.MovieApp.shared.Collection;
 import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 import we.are.bubblesort.MovieApp.shared.MovieID;
@@ -33,11 +30,11 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	/*
 	 * Used for reverse queries 
 	 */
-	private static HashMap<String,String> reverseQueryStatements;
-	private static String movie_table = "movies";	
-	private static String worldStatisticsModelCommandPre;
-	private static String worldStatisticsModelCommandPost;
-	private static Database db = Database.getInstance();
+	private static HashMap<String,String> reverseQueryStatements 	= null;
+	private static String movie_table 								= "movies";	
+	private static String worldStatisticsModelCommandPre 			= null;
+	private static String worldStatisticsModelCommandPost 			= null;
+	private static Database db 										= Database.getInstance();
 	
 	public QueryServiceImpl() {
 		try {
@@ -54,13 +51,13 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	private void initialize_reverseQueryStatements() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
 		if(reverseQueryStatements == null){
 			reverseQueryStatements = new HashMap<String,String>();
-			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 		FROM "+movie_table+" ORDER BY `"+MovieID.dbLabelName		+"`");
-			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 	FROM "+movie_table+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"`    FROM "+movie_table+" WHERE `movie_release_year` != 0 ORDER BY `"+MovieYear.dbLabelName	+"` DESC");
-			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT language AS `"+MovieLanguage.dbLabelName	+"`	FROM movie_languages ORDER BY language");
-			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT movie_country AS `"+MovieCountry.dbLabelName	+"`	FROM movie_countries ORDER BY movie_country");
-			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT genre AS `"+MovieGenre.dbLabelName	+"` FROM movie_genres ORDER BY `"+MovieGenre.dbLabelName	+"`");
-			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT CEIL(`"+MovieDuration.dbLabelName+"`) as `"+MovieDuration.dbLabelName+"` FROM "+movie_table+" WHERE `"+MovieDuration.dbLabelName+"` IS NOT NULL ORDER BY `"+MovieDuration.dbLabelName+"` ASC");
+			reverseQueryStatements.put(MovieID.dbLabelName, 		"SELECT DISTINCT `"+MovieID.dbLabelName+"` 						FROM "+movie_table+" ORDER BY `"+MovieID.dbLabelName		+"`");
+			reverseQueryStatements.put(MovieTitle.dbLabelName, 		"SELECT DISTINCT `"+MovieTitle.dbLabelName+"` 					FROM "+movie_table+" ORDER BY `"+MovieTitle.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieYear.dbLabelName, 		"SELECT DISTINCT `"+MovieYear.dbLabelName+"`    				FROM "+movie_table+" WHERE `movie_release_year` != 0 ORDER BY `"+MovieYear.dbLabelName	+"` DESC");
+			reverseQueryStatements.put(MovieLanguage.dbLabelName,	"SELECT DISTINCT language AS `"+MovieLanguage.dbLabelName+"`	FROM movie_languages ORDER BY language");
+			reverseQueryStatements.put(MovieCountry.dbLabelName, 	"SELECT DISTINCT movie_country AS `"+MovieCountry.dbLabelName+"`FROM movie_countries ORDER BY movie_country");
+			reverseQueryStatements.put(MovieGenre.dbLabelName, 		"SELECT DISTINCT genre AS `"+MovieGenre.dbLabelName	+"` 		FROM movie_genres ORDER BY `"+MovieGenre.dbLabelName	+"`");
+			reverseQueryStatements.put(MovieDuration.dbLabelName, 	"SELECT DISTINCT CEIL(`"+MovieDuration.dbLabelName+"`) 			as `"+MovieDuration.dbLabelName+"` FROM "+movie_table+" WHERE `"+MovieDuration.dbLabelName+"` IS NOT NULL ORDER BY `"+MovieDuration.dbLabelName+"` ASC");
 		}
 	}
 	
@@ -111,30 +108,29 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
     	int i								= 1;
 
     	try{
-        	Connection connection = db.getConnection();
         	try {
 	    		movieCollection = new Collection<Movie>();
 	
 	    		// statement += " SELECT * FROM " + movie_table + " WHERE 1 ";
-	    		statement += "SELECT m.`" + MovieID.dbLabelName + "`," +
-	    							"m.`" + MovieTitle.dbLabelName + "`," +
-	    							"LEFT(m.`" + MovieYear.dbLabelName + "`, 4) AS `" + MovieYear.dbLabelName + "`," +
-	    							"m.`" + MovieDuration.dbLabelName + "`," +
-	    							" GROUP_CONCAT(DISTINCT movie_countries.movie_country SEPARATOR ',') as movie_countries," +
-	    							" GROUP_CONCAT(DISTINCT movie_genres.genre SEPARATOR ',') as `" + MovieGenre.dbLabelName + "`," +
-	    							" GROUP_CONCAT(DISTINCT movie_languages.language SEPARATOR ',') as `" + MovieLanguage.dbLabelName + "`" +
-	    							" FROM " + movie_table + " AS m " +
-	    							" JOIN movie_countries ON m.id = movie_countries.movie_id " +
-	    							" JOIN movie_languages ON m.id = movie_languages.movie_id " +
-	    							" JOIN movie_genres ON m.id = movie_genres.movie_id" +
-	    							" WHERE 1";
+	    		statement += 	"SELECT m.`" + MovieID.dbLabelName + "`," +
+	    						"m.`" + MovieTitle.dbLabelName + "`," +
+	    						"LEFT(m.`" + MovieYear.dbLabelName + "`, 4) AS `" + MovieYear.dbLabelName + "`," +
+	    						"m.`" + MovieDuration.dbLabelName + "`," +
+	    						" GROUP_CONCAT(DISTINCT movie_countries.movie_country SEPARATOR ',') as movie_countries," +
+	    						" GROUP_CONCAT(DISTINCT movie_genres.genre SEPARATOR ',') as `" + MovieGenre.dbLabelName + "`," +
+	    						" GROUP_CONCAT(DISTINCT movie_languages.language SEPARATOR ',') as `" + MovieLanguage.dbLabelName + "`" +
+	    						" FROM " + movie_table + " AS m " +
+	    						" JOIN movie_countries ON m.id = movie_countries.movie_id " +
+	    						" JOIN movie_languages ON m.id = movie_languages.movie_id " +
+	    						" JOIN movie_genres ON m.id = movie_genres.movie_id" +
+	    						" WHERE 1";
 	    		
 	    		// Placeholder insertion
 	        	for(MovieAttribute filter : filterSet){
-	        		if(		filter.dbLabelName.equals(MovieTitle.dbLabelName)
-	        				|| filter.dbLabelName.equals(MovieGenre.dbLabelName)
-	        				|| filter.dbLabelName.equals(MovieLanguage.dbLabelName)
-	        				|| filter.dbLabelName.equals(MovieCountry.dbLabelName)){
+	        		if(	   filter.dbLabelName.equals(MovieTitle.dbLabelName)
+	        			|| filter.dbLabelName.equals(MovieGenre.dbLabelName)
+	        			|| filter.dbLabelName.equals(MovieLanguage.dbLabelName)
+	        			|| filter.dbLabelName.equals(MovieCountry.dbLabelName)){
 	        			statement += (" AND "+filter.dbLabelName+" LIKE ? ");
 	        		}else{
 	        			statement += (" AND "+filter.dbLabelName+"= ? ");
@@ -147,7 +143,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	        	if(limit>0 && offset>0)statement += (" OFFSET "+offset);
 	        	statement += ";";
 	
-	        	pst = connection.prepareStatement(statement);
+	        	pst = db.getNewConnection().prepareStatement(statement);
 	        	
 	        	// Placeholder replace with actual filter
 	        	for(MovieAttribute filter : filterSet){
@@ -194,14 +190,10 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 	    	   									new MovieDuration(rs.getString(MovieDuration.dbLabelName)));
 	    	   		movieCollection.add(new_movie);
 	    	   	}
-	        	rs.close();
-	    		pst.close();
+        	} finally {
+        		pst.getConnection().close();
         	}
-        	finally {
-        		connection.close();
-        	}
-    	}
-		catch (SQLException e){
+    	} catch (SQLException e){
     		e.printStackTrace();
     	}
     	
@@ -224,9 +216,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 		ResultSet rs									= null;
 		String statement 								= "";
 
-    	try {
-    		Connection connection = db.getConnection();
-    		
+    	try {    		
     		try {
 	    		attributeCollection = new Collection<MovieAttribute>();
 	    		
@@ -237,7 +227,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 					if (limit > 0 && offset > 0)
 						statement += (" OFFSET " + offset);
 					statement += ";";
-					pst = connection.prepareStatement(statement);
+					pst = db.getNewConnection().prepareStatement(statement);
 					
 					rs = pst.executeQuery();
 					switch (attribute.dbLabelName) {
@@ -289,16 +279,12 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 								attributeCollection.add(new MovieGenre(genre, genre));
 							}
 							break;
-							
 					}
-					rs.close();
-					pst.close();
 				}else{
 					throw new NullPointerException("QueryServiceImpl.getAttributeSet: Passed attribute has not been initialized!");
 				}
-    		}
-    		finally {
-    			connection.close();
+    		} finally {
+    			pst.getConnection().close();
     		}
     	}catch(SQLException e){
     		e.printStackTrace();
@@ -320,9 +306,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 		String statement 				= "";		
 		int i							= 1;
 
-		try {
-			Connection connection = db.getConnection();
-			
+		try {			
 			try {
 				worldStats = new WorldStatisticsModel();
 				statement += worldStatisticsModelCommandPre;
@@ -343,7 +327,7 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 				}
 				statement += worldStatisticsModelCommandPost;
 				
-				pst = connection.prepareStatement(statement);
+				pst = db.getNewConnection().prepareStatement(statement);
 				
 				if (filterSet != null) {
 					// Replace Placeholders with actual filters
@@ -364,15 +348,10 @@ public class QueryServiceImpl extends RemoteServiceServlet implements QueryServi
 					Float latitude		= rs.getFloat(WorldStatisticsModel.latitude_DbLabelName);
 					worldStats.add(new WorldStatisticsModelEntry(iso_alpha,n_movies, latitude, longitude));
 				}
-				
-				rs.close();
-	    		pst.close();
+			} finally {
+				pst.getConnection().close();
 			}
-
-			finally {
-				connection.close();
-			}
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
