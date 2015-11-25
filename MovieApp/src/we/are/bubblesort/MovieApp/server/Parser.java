@@ -1,4 +1,4 @@
-package we.are.bubblesort.MovieApp.shared;
+package we.are.bubblesort.MovieApp.server;
 
 import java.io.IOException;
 import java.util.Iterator;

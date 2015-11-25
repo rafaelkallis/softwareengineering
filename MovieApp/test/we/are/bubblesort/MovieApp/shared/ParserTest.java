@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import java.io.IOException;
 import org.junit.Test;
 
+import we.are.bubblesort.MovieApp.server.Parser;
+
 public class ParserTest {
 
 	Parser parser = Parser.getInstance();

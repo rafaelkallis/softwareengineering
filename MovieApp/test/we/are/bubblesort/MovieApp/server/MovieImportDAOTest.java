@@ -1,9 +1,11 @@
-package we.are.bubblesort.MovieApp.shared;
+package we.are.bubblesort.MovieApp.server;
 
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import we.are.bubblesort.MovieApp.server.MovieImportDAO;
 
 public class MovieImportDAOTest {
 
