@@ -7,6 +7,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import we.are.bubblesort.MovieApp.shared.ImportFormatException;
+
 public class Parser {
 	
 	private static Parser instance = new Parser();
@@ -28,7 +30,7 @@ public class Parser {
 	 * @param line the line of text to be parsed
 	 * @returns String[] array of all values parsed
 	 */
-	public String[][] parseTSV(String content) throws IOException{
+	public String[][] parseTSV(String content) throws IOException, ImportFormatException{
 		return parseFormat(content,CSVFormat.TDF.withQuote(null));
 	}
 	
@@ -37,7 +39,7 @@ public class Parser {
 	 * @returns String[] array of all values parsed
 	 */
 	@Deprecated
-	public String[][] parseCSV(String content) throws IOException{
+	public String[][] parseCSV(String content) throws IOException, ImportFormatException{
 		return parseFormat(content,CSVFormat.DEFAULT);
 	}
 	
@@ -46,7 +48,7 @@ public class Parser {
 	 * @returns String[] array of all values parsed
 	 */
 	@Deprecated
-	public String[][] parseExcel(String content) throws IOException{
+	public String[][] parseExcel(String content) throws IOException, ImportFormatException{
 		return parseFormat(content,CSVFormat.EXCEL);
 	}
 	
@@ -55,8 +57,13 @@ public class Parser {
 	 * @param format the format of the tring to be parsed. Used to specify the delimiter
 	 * @returns String[] array of all values parsed
 	 */
-	public String[][] parseFormat(String content,CSVFormat format) throws IOException{
-		List<CSVRecord> movieRecords = CSVParser.parse((content), format).getRecords();
+	public String[][] parseFormat(String content,CSVFormat format) throws IOException, ImportFormatException {
+		List<CSVRecord> movieRecords;
+		try {
+			movieRecords = CSVParser.parse((content), format).getRecords();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			throw new ImportFormatException();
+		}
 		String records[][] = new String[10][movieRecords.size()];
 		Iterator<CSVRecord> iterator = movieRecords.iterator();
 		for(int i = 0;iterator.hasNext();i++){

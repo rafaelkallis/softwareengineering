@@ -5,13 +5,14 @@ import java.io.IOException;
 import org.junit.Test;
 
 import we.are.bubblesort.MovieApp.server.Parser;
+import we.are.bubblesort.MovieApp.shared.ImportFormatException;
 
 public class ParserTest {
 
 	Parser parser = Parser.getInstance();
 	
 	@Test
-	public void testParse() throws IOException {
+	public void testParse() throws IOException, ImportFormatException {
 		String tsv_string0 = "31138563	/m/0gh76d7	A Royal Divorce	1926			{}	{}	{\"/m/03g3w\": \"History\", \"/m/07s9rl0\": \"Drama\"}";
 		String[][] parsed0 = parser.parseTSV(tsv_string0);
 		assertEquals("31138563",						parsed0[0][0].toString());
@@ -41,7 +42,7 @@ public class ParserTest {
 	}
 	
 	@Test
-	public void testQuotes() throws IOException{
+	public void testQuotes() throws IOException, ImportFormatException{
 		String tsv_string0 = "31138563	/m/0gh76d7	\"A Royal\" Divorce	1926			{}	{}	{\"/m/03g3w\": \"History\", \"/m/07s9rl0\": \"Drama\"}";
 		String[][] parsed0 = parser.parseTSV(tsv_string0);
 		assertEquals("31138563",						parsed0[0][0].toString());
@@ -55,5 +56,4 @@ public class ParserTest {
 		assertEquals("",								parsed0[8][0].toString());
 		assertEquals("History, Drama",					parsed0[9][0].toString());
 	}
-
 }

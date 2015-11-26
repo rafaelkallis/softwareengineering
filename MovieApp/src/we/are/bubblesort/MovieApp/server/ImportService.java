@@ -40,7 +40,11 @@ public class ImportService extends HttpServlet {
         	if(blobKey == null){
         		response.getWriter().write("error: upload failed");
         	}else{       		
-        		this.importContent(this.getContent(blobKey));      		
+        		try {
+					this.importContent(this.getContent(blobKey));
+				} catch (ImportFormatException e) {
+					response.getWriter().write(e.getMessage());
+				}      		
         		response.getWriter().write("success");
         	}
         }
@@ -86,8 +90,7 @@ public class ImportService extends HttpServlet {
 	 * @param content the content to be imported to the DB
 	 * @param format [CSV,Excel,TSV, ..]
 	 */
-	public void importContent(String content){
-		
+	public void importContent(String content) throws ImportFormatException, IOException{
 		for(MovieImportDAO importDAO : MovieImportDAO.shuffle(content, MOVIES_PER_QUERY)){			
 			this.import_movies(importDAO);
 			this.import_languages(importDAO);
