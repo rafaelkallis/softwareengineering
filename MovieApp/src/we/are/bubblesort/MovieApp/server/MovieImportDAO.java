@@ -45,45 +45,48 @@ public class MovieImportDAO {
 	 */
 	public static MovieImportDAO[] shuffle(String content, int movies_per_object){
 		try {
-			String [][] temp_records = Parser.getInstance().parseTSV(content);
-			int total_n_movies = temp_records[0].length;
-			int n_objects = total_n_movies / movies_per_object;
-			Collection<MovieImportDAO> objects = new Collection<MovieImportDAO>(n_objects);
-			for(int i = 0; i< n_objects; i++){
+			String [][] all_records = Parser.getInstance().parseTSV(content);
+			int n_all_records = all_records[0].length;
+			Collection<MovieImportDAO> movie_import_dao_collection = new Collection<MovieImportDAO>();
+			
+			//add movies to object(s)
+			for(int i = 0; i< (n_all_records / movies_per_object); i++){
 				String[][] new_records = new String[11][movies_per_object];
 				for(int movie_idx = 0; movie_idx < movies_per_object; movie_idx++){
-					new_records[1][movie_idx] 	= temp_records[0][movie_idx+(movies_per_object*i)];
-					new_records[2][movie_idx] 	= temp_records[1][movie_idx+(movies_per_object*i)];
-					new_records[3][movie_idx] 	= temp_records[2][movie_idx+(movies_per_object*i)];
-					new_records[4][movie_idx] 	= temp_records[3][movie_idx+(movies_per_object*i)];
-					new_records[5][movie_idx] 	= temp_records[4][movie_idx+(movies_per_object*i)];
-					new_records[6][movie_idx] 	= temp_records[5][movie_idx+(movies_per_object*i)];
-					new_records[7][movie_idx] 	= temp_records[6][movie_idx+(movies_per_object*i)]; 
-					new_records[8][movie_idx] 	= temp_records[7][movie_idx+(movies_per_object*i)];
-					new_records[9][movie_idx] 	= temp_records[8][movie_idx+(movies_per_object*i)];
-					new_records[10][movie_idx] 	= temp_records[9][movie_idx+(movies_per_object*i)];
+					new_records[1][movie_idx] 	= all_records[0][movie_idx+(movies_per_object*i)];
+					new_records[2][movie_idx] 	= all_records[1][movie_idx+(movies_per_object*i)];
+					new_records[3][movie_idx] 	= all_records[2][movie_idx+(movies_per_object*i)];
+					new_records[4][movie_idx] 	= all_records[3][movie_idx+(movies_per_object*i)];
+					new_records[5][movie_idx] 	= all_records[4][movie_idx+(movies_per_object*i)];
+					new_records[6][movie_idx] 	= all_records[5][movie_idx+(movies_per_object*i)];
+					new_records[7][movie_idx] 	= all_records[6][movie_idx+(movies_per_object*i)]; 
+					new_records[8][movie_idx] 	= all_records[7][movie_idx+(movies_per_object*i)];
+					new_records[9][movie_idx] 	= all_records[8][movie_idx+(movies_per_object*i)];
+					new_records[10][movie_idx] 	= all_records[9][movie_idx+(movies_per_object*i)];
 				}
-				objects.add(new MovieImportDAO(new_records,movies_per_object));
+				movie_import_dao_collection.add(new MovieImportDAO(new_records,movies_per_object));
 			}
-			if(total_n_movies % movies_per_object != 0){
-				int n_movies = total_n_movies % movies_per_object;
-				String[][] new_records = new String[11][n_movies];
-				for(int new_movie_idx = 0, movie_idx = total_n_movies - n_movies;movie_idx < total_n_movies;new_movie_idx++, movie_idx++){
-					new_records[1][new_movie_idx] 	= temp_records[0][movie_idx];
-					new_records[2][new_movie_idx] 	= temp_records[1][movie_idx];
-					new_records[3][new_movie_idx] 	= temp_records[2][movie_idx];
-					new_records[4][new_movie_idx] 	= temp_records[3][movie_idx];
-					new_records[5][new_movie_idx] 	= temp_records[4][movie_idx];
-					new_records[6][new_movie_idx] 	= temp_records[5][movie_idx];
-					new_records[7][new_movie_idx] 	= temp_records[6][movie_idx]; 
-					new_records[8][new_movie_idx] 	= temp_records[7][movie_idx];
-					new_records[9][new_movie_idx] 	= temp_records[8][movie_idx];
-					new_records[10][new_movie_idx] 	= temp_records[9][movie_idx];
+			
+			//add leftover movies to object
+			if(n_all_records % movies_per_object != 0){
+				int n_leftover_movies = n_all_records % movies_per_object;
+				String[][] new_records = new String[11][n_leftover_movies];
+				for(int new_movie_idx = 0, movie_idx = n_all_records - n_leftover_movies;movie_idx < n_all_records;new_movie_idx++, movie_idx++){
+					new_records[1][new_movie_idx] 	= all_records[0][movie_idx];
+					new_records[2][new_movie_idx] 	= all_records[1][movie_idx];
+					new_records[3][new_movie_idx] 	= all_records[2][movie_idx];
+					new_records[4][new_movie_idx] 	= all_records[3][movie_idx];
+					new_records[5][new_movie_idx] 	= all_records[4][movie_idx];
+					new_records[6][new_movie_idx] 	= all_records[5][movie_idx];
+					new_records[7][new_movie_idx] 	= all_records[6][movie_idx]; 
+					new_records[8][new_movie_idx] 	= all_records[7][movie_idx];
+					new_records[9][new_movie_idx] 	= all_records[8][movie_idx];
+					new_records[10][new_movie_idx] 	= all_records[9][movie_idx];
 				}
-				objects.add(new MovieImportDAO(new_records,n_movies));
+				movie_import_dao_collection.add(new MovieImportDAO(new_records,n_leftover_movies));
 			}
-			MovieImportDAO [] object_array = new MovieImportDAO [objects.size()];
-			return objects.toArray(object_array);
+			
+			return movie_import_dao_collection.toArray(new MovieImportDAO [movie_import_dao_collection.size()]);
 		} catch (IOException e){
 			e.printStackTrace();
 			return null;
