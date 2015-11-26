@@ -25,10 +25,8 @@ public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>
 			return elements.size();
 		}
 		
-		public T[] get(){
-			@SuppressWarnings("unchecked")
-			T[] array = (T[]) this.elements.toArray();
-			return array;
+		public T[] toArray(T[] array){
+			return elements.toArray(array);
 		}
 		
 		@Override
@@ -36,15 +34,19 @@ public class UnorderedSet<T> extends Model implements IsSerializable,Iterable<T>
 			return elements.iterator();
 		}
 		
+		public void clear(){
+			elements.clear();
+		}
+		
 		public String toJoinedString(String delimiter){
 			Iterator<T> object = elements.iterator();
-			String joined = "";
+			StringBuilder sb = new StringBuilder();
 			while(object.hasNext()){
-				joined += object.next().toString();
+				sb.append(object.next());
 				if(object.hasNext()){
-					joined+=delimiter;
+					sb.append(delimiter);
 				}
 			}
-			return joined;
+			return sb.toString();
 		}
 }

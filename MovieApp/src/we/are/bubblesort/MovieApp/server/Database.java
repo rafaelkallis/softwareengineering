@@ -2,8 +2,6 @@ package we.are.bubblesort.MovieApp.server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.google.appengine.api.utils.SystemProperty;
 
@@ -25,18 +23,22 @@ public final class Database {
     	return instance;
     }
     
-    public Connection getConnection() {
+    /*
+     * @returns Connection
+     * @post connection is open and has to be closed
+     */
+    public Connection getNewConnection() {
     	Connection conn = null;
     	try {
     		if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
     			// Connect to Google SQL
     			Class.forName("com.mysql.jdbc.GoogleDriver");
     			url 						= "jdbc:google:mysql://themovieappvnext:themovieappnext/main?user=root";
-      		  	conn 						= DriverManager.getConnection(url);
+    			
     		} else {
     			// Connecting from an external network.
     			Class.forName("com.mysql.jdbc.Driver");
-    			url 						= "jdbc:mysql://80.74.150.210:3306/movieapp";
+    			url 						= "jdbc:mysql://80.74.150.210:3306/movieapp_test";
         		conn 						= DriverManager.getConnection(url, user, pass);
     		}
 
@@ -46,21 +48,4 @@ public final class Database {
     	
     	return conn;
     }
-	
-    /*
-     * @param pst PreparedStatement to be executed
-     * @returns ResultSet 
-     */
-	public ResultSet execute(PreparedStatement pst) throws SQLException{
-		return pst.executeQuery();
-	}
-	
-	/*
-	 * @param sql string used as a command
-	 * @returns PreparedStatement
-	 */
-	public PreparedStatement prepareStatement(String sql) throws SQLException{
-		return getConnection().prepareStatement(sql);
-	}
-	
 }
