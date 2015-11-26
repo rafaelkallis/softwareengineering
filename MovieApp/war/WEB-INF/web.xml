@@ -5,21 +5,6 @@
          version="2.5"
          xmlns="http://java.sun.com/xml/ns/javaee">
 
-  <!-- Servlets -->
-  <!--
-  <servlet>
-    <servlet-name>greetServlet</servlet-name>
-    <servlet-class>we.are.bubblesort.MovieApp.server.GreetingServiceImpl</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/movieapp/greet</url-pattern>
-  </servlet-mapping>
-  -->
-  
-  
-  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>MovieApp.html</welcome-file>
@@ -37,7 +22,7 @@
     <url-pattern>/movieapp/query</url-pattern>
   </servlet-mapping>
   
-  <!-- Export Http Service -->
+  <!-- Export Service -->
   	<servlet>  
  		<servlet-name>ExportService</servlet-name>  
  		<servlet-class>we.are.bubblesort.MovieApp.server.ExportService</servlet-class>  
@@ -45,5 +30,17 @@
 	<servlet-mapping>  
  		<servlet-name>ExportService</servlet-name>  
  		<url-pattern>/export</url-pattern>  
-	</servlet-mapping>  
+	</servlet-mapping>
+
+	<!-- Upload Service  -->
+    <servlet>
+        <servlet-name>ImportService</servlet-name>
+        <servlet-class>we.are.bubblesort.MovieApp.server.ImportService</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ImportService</servlet-name>
+        <url-pattern>/import</url-pattern>
+    </servlet-mapping>
 </web-app>
+
+

@@ -33,6 +33,6 @@ MovieApp/www-test/*
 *.gwt.rpc
 *.symbolMap
 .idea/
-
+MovieApp/war/WEB-INF/appengine-generated/*
 
 *.iml

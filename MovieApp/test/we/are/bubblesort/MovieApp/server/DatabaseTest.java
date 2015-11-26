@@ -28,14 +28,14 @@ public class DatabaseTest {
 	
 	@Test
 	public void test_database_prepareStatements() throws SQLException{
-		PreparedStatement pst 	= db.prepareStatement(testQuery);
+		PreparedStatement pst 	= db.getNewConnection().prepareStatement(testQuery);
 		
 		assertNotNull(pst);
 	}
 	
 	@Test 
 	public void test_database_execute() throws SQLException{
-		ResultSet rs 			= db.execute(db.prepareStatement(testQuery));
+		ResultSet rs 			= (db.getNewConnection().prepareStatement(testQuery)).executeQuery();
 		
 		assertNotNull(rs);
 		assertTrue(rs.next());

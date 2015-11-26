@@ -46,7 +46,7 @@ public class HeatMapSection extends Section implements FilterChangedEventHandler
 		new ExportPresenter(this.heatmap, this.view.exportbutton);
 		
 		Hyperlink sourceLink = new Hyperlink("Quelle", "");
-		new SourcePresenter(sourceLink);
+		new SectionChangerPresenter(sourceLink, "imprint");
 		this.view.mapannotations.add(sourceLink);
 	}
 
