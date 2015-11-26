@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import we.are.bubblesort.MovieApp.shared.InvalidSessionException;
 import we.are.bubblesort.MovieApp.shared.WrongCredentialsException;
 
 import org.junit.After;
@@ -16,19 +17,21 @@ import org.mindrot.jbcrypt.BCrypt;
 import we.are.bubblesort.MovieApp.shared.User;
 
 public class UserServiceImplTest {
-	UserServiceImpl userService;
+	UserServiceImpl userService = new UserServiceImpl();
 	User testUser = new User("unit-test-user" + Double.toString(Math.random()));
 	String testUserPassword = "testpassword";
 	String validSessionId = "123456789" + Double.toString(Math.random());
+	String expiredSessionId = "123456789" + Double.toString(Math.random());
 	
 	@Before
 	public void setUp() {
 		this.createSampleUser(testUser, testUserPassword);
-		this.createValidSessionId(testUser, validSessionId);
+		this.createValidSessionId(testUser, validSessionId, 30);
+		this.createValidSessionId(testUser, expiredSessionId, -10);
 	}
 
 	@Test
-	public void loginUserWithPasswordReturnsLoggedInUser() {
+	public void loginUserWithPasswordReturnsLoggedInUser() throws WrongCredentialsException {
 		User returnUser = this.userService.loginWithPassword(this.testUser, this.testUserPassword);
 		
 		assertEquals(testUser.getUsername(), returnUser.getUsername());
@@ -39,7 +42,7 @@ public class UserServiceImplTest {
 	}
 	
 	@Test
-	public void loginUserWithSessionReturnsLoggedInUser() {
+	public void loginUserWithSessionReturnsLoggedInUser() throws InvalidSessionException {
 		User returnUser = this.userService.loginWithSession(this.testUser, this.validSessionId);
 		
 		assertEquals(testUser.getUsername(), returnUser.getUsername());
@@ -50,12 +53,8 @@ public class UserServiceImplTest {
 	}
 	
 	@Test
-	public void sessionsAreNotReused() {
-		User returnUser = this.userService.loginWithSession(this.testUser, this.validSessionId);
-		
-		assertNotEquals(returnUser.getSessionId(), this.validSessionId);
-		
-		returnUser = this.userService.loginWithPassword(this.testUser, this.testUserPassword);
+	public void sessionsAreNotReused() throws WrongCredentialsException, InvalidSessionException {
+		User returnUser = this.userService.loginWithPassword(this.testUser, this.testUserPassword);
 		
 		assertNotEquals(returnUser.getSessionId(), this.validSessionId);
 
@@ -63,29 +62,35 @@ public class UserServiceImplTest {
 	}
 	
 	@Test(expected=WrongCredentialsException.class)
-	public void loginUserWithPasswordThrowsWrongCredentialExceptionWithWrongCredentials() {
+	public void loginUserWithPasswordThrowsWrongCredentialExceptionWithWrongCredentials() throws WrongCredentialsException {
 		this.userService.loginWithPassword(this.testUser, "wrongpassword");
 	}
 	
 	@Test(expected=WrongCredentialsException.class)
-	public void loginUserWithPasswordThrowsWrongCredentialsExceptionWithNotExistingUser() {
-		this.userService.loginWithPassword(new User("some-user"), "somepassword");
+	public void loginUserWithPasswordThrowsWrongCredentialsExceptionWithNotExistingUser() throws WrongCredentialsException {
+		this.userService.loginWithPassword(new User("some-user"), this.testUserPassword);
 	}
 	
-	@Test
-	public void loginUserWithSessionThrowsInvalidSessionExceptionWithInvalidSession() {
-		this.userService.loginWithSession(this.testUser, "somesession");
+	@Test(expected=InvalidSessionException.class)
+	public void loginUserWithSessionThrowsInvalidSessionExceptionWithInvalidSession() throws InvalidSessionException {
+		this.userService.loginWithSession(this.testUser, "wrongsession");
 	}
 	
-	@Test
-	public void loginUserWithSessionThrowsInvalidSessionExceptionWithNotExistingUser() {
-		this.userService.loginWithSession(new User("some-user"), "somesession");
+	@Test(expected=InvalidSessionException.class)
+	public void loginUserWithSessionThrowsInvalidSessionExceptionWithExpiredSession() throws InvalidSessionException {
+		this.userService.loginWithSession(this.testUser, expiredSessionId);
+	}
+	
+	@Test(expected=InvalidSessionException.class)
+	public void loginUserWithSessionThrowsInvalidSessionExceptionWithNotExistingUser() throws InvalidSessionException {
+		this.userService.loginWithSession(new User("some-user"), this.validSessionId);
 	}
 	
 	@After
 	public void tearDown() {
 		this.deleteUser(this.testUser);
 		this.deleteSession(this.validSessionId);
+		this.deleteSession(this.expiredSessionId);
 	}
 	
 	private void createSampleUser(User user, String password) {
@@ -100,9 +105,10 @@ public class UserServiceImplTest {
 				" WHERE username = '" + user.getUsername() + "';");
 	}
 
-	private void createValidSessionId(User user, String sessionId) {
-		this.doDbQuery("INSERT INTO " + UserServiceImpl.sessionTableName + " (sid, username) " +
-				" VALUES ('" + sessionId + "'" + user.getUsername() + "');");
+	private void createValidSessionId(User user, String sessionId, Integer secondsFromNow) {
+		String query = "INSERT INTO " + UserServiceImpl.sessionTableName + " (sid, username, expires) " +
+				" VALUES ('" + sessionId + "', '" + user.getUsername() + "', DATE_ADD(NOW(), INTERVAL " + secondsFromNow + " SECOND));";
+		this.doDbQuery(query);
 	}
 	
 	private void deleteSession(String sessionId) {
