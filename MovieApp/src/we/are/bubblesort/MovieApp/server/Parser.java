@@ -10,7 +10,8 @@ import org.apache.commons.csv.CSVRecord;
 public class Parser {
 	
 	private static Parser instance = new Parser();
-	public static final String DEFAULT_MOVIE_RELEASE_YEAR = "2000";
+	public static final String FALLBACK_YEAR = "0";
+	public static final Integer LOWER_YEAR_BOUND = 1850;
 	private Parser(){
 		
 	}
@@ -111,9 +112,16 @@ public class Parser {
 	/*
 	 * @param value
 	 * @returns String
+	 * Years below the lower year bound have value 0
 	 */
-    private String extractYear(String value){     	
-    	return value.equals("") ? DEFAULT_MOVIE_RELEASE_YEAR : value.substring(0, 4);
+    private String extractYear(String value){    
+    	if(value.equals("")){
+    		return FALLBACK_YEAR;
+    	}else{
+    		String year_string = value.subSequence(0, 4).toString();
+    		Integer year = Integer.parseInt(year_string);
+    		return year.compareTo(LOWER_YEAR_BOUND) < 0 ? FALLBACK_YEAR : year_string;	
+    	}
     }
     
     /*
