@@ -18,7 +18,7 @@ import we.are.bubblesort.MovieApp.shared.User;
 
 public class UserServiceImplTest {
 	UserServiceImpl userService = new UserServiceImpl();
-	User testUser = new User("unit-test-user" + Double.toString(Math.random()));
+	User testUser = new User("unit-test-user" + Double.toString(Math.random()), "Unit Test User");
 	String testUserPassword = "testpassword";
 	String validSessionId = "123456789" + Double.toString(Math.random());
 	String expiredSessionId = "123456789" + Double.toString(Math.random());
@@ -33,8 +33,9 @@ public class UserServiceImplTest {
 	@Test
 	public void loginUserWithPasswordReturnsLoggedInUser() throws WrongCredentialsException {
 		User returnUser = this.userService.loginWithPassword(this.testUser, this.testUserPassword);
-		
+
 		assertEquals(testUser.getUsername(), returnUser.getUsername());
+		assertEquals(returnUser.getName(), "Unit Test User");
 		assertTrue(returnUser.isLoggedIn());
 		assertNotNull(returnUser.getSessionId());
 
@@ -96,8 +97,8 @@ public class UserServiceImplTest {
 	private void createSampleUser(User user, String password) {
 		String salt = BCrypt.gensalt(5);
 		String hashedPassword = BCrypt.hashpw(password, salt);
-		this.doDbQuery("INSERT INTO " + UserServiceImpl.userTableName + " (username, password) " +
-				" VALUES ('" + user.getUsername() + "', '" + hashedPassword + "');");
+		this.doDbQuery("INSERT INTO " + UserServiceImpl.userTableName + " (username, password, name) " +
+				" VALUES ('" + user.getUsername() + "', '" + hashedPassword + "', '" + user.getName() + "');");
 	}
 	
 	private void deleteUser(User user) {

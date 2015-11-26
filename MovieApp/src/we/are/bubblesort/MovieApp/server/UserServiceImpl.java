@@ -23,7 +23,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 
 	public User loginWithPassword(User user, String password) throws WrongCredentialsException {
 		User validUser = null;
-		String sql = "SELECT username, password FROM `" + userTableName + "`" +
+		String sql = "SELECT username, password, name FROM `" + userTableName + "`" +
 				" WHERE username = ? LIMIT 1;";
 		
 		try {
@@ -35,9 +35,11 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 				
 				ResultSet rs = statement.executeQuery();
 				String entryPassword = null;
+				String entryName = null;
 				
 				while(rs.next()) {
 					entryPassword = rs.getString("password");
+					entryName = rs.getString("name");
 				}
 				
 				if (entryPassword == null) {
@@ -50,7 +52,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 					throw new WrongCredentialsException();
 				}
 				
-				validUser = new User(user.getUsername());
+				validUser = new User(user.getUsername(), entryName);
 				String sessionId = this.createSession(validUser);
 				validUser.setSessionId(sessionId);
 

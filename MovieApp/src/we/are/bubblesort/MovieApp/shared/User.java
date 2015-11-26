@@ -3,9 +3,15 @@ package we.are.bubblesort.MovieApp.shared;
 public class User {
 	protected String username = "anonymous";
 	protected String sessionId = null;
-	
+	protected String name = "Anonymous";
+
 	public User(String username) {
 		this.username = username;
+	}
+
+	public User(String username, String name) {
+		this.username = username;
+		this.name = name;
 	}
 	
 	public void setSessionId(String sessionId) {
@@ -22,5 +28,13 @@ public class User {
 
 	public String getSessionId() {
 		return this.sessionId;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return this.name;
 	}
 }
