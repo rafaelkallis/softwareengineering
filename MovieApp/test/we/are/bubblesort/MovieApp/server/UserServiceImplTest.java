@@ -119,7 +119,7 @@ public class UserServiceImplTest {
 	
 	private void doDbQuery(String sql) {
 		try {
-			Connection connection = Database.getInstance().getConnection();
+			Connection connection = Database.getInstance().getNewConnection();
 			
 			try {
 				Statement statement = connection.createStatement();

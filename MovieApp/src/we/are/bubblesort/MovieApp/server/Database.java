@@ -38,7 +38,7 @@ public final class Database {
     		} else {
     			// Connecting from an external network.
     			Class.forName("com.mysql.jdbc.Driver");
-    			url 						= "jdbc:mysql://80.74.150.210:3306/movieapp_test";
+    			url 						= "jdbc:mysql://80.74.150.210:3306/movieapp";
         		conn 						= DriverManager.getConnection(url, user, pass);
     		}
 

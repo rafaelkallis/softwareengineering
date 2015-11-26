@@ -27,7 +27,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 				" WHERE username = ? LIMIT 1;";
 		
 		try {
-			Connection connection = Database.getInstance().getConnection();
+			Connection connection = Database.getInstance().getNewConnection();
 			
 			try {
 				PreparedStatement statement = connection.prepareStatement(sql);
@@ -78,7 +78,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 				" LIMIT 1;";
 		
 		try {
-			Connection connection = Database.getInstance().getConnection();
+			Connection connection = Database.getInstance().getNewConnection();
 			
 			try {
 				PreparedStatement statement = connection.prepareStatement(sql);
@@ -122,7 +122,7 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 		String sessionId = this.getRandomSessionId();
 		
 		try {
-			Connection connection = Database.getInstance().getConnection();
+			Connection connection = Database.getInstance().getNewConnection();
 			
 			try {
 				PreparedStatement statement = connection.prepareStatement(sql);
