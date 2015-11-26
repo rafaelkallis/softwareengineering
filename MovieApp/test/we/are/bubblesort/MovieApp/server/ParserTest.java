@@ -1,4 +1,4 @@
-package we.are.bubblesort.MovieApp.shared;
+package we.are.bubblesort.MovieApp.server;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class ParserTest {
 	}
 	
 	@Test
-	public void test() throws IOException{
+	public void testQuotes() throws IOException{
 		String tsv_string0 = "31138563	/m/0gh76d7	\"A Royal\" Divorce	1926			{}	{}	{\"/m/03g3w\": \"History\", \"/m/07s9rl0\": \"Drama\"}";
 		String[][] parsed0 = parser.parseTSV(tsv_string0);
 		assertEquals("31138563",						parsed0[0][0].toString());
