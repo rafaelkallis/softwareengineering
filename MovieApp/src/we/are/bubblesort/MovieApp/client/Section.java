@@ -6,6 +6,7 @@ public abstract class Section extends Presenter {
 	private int id;
 	protected SectionView view;
 	protected Boolean initialized = false;
+	protected Boolean requiresLogin = false;
 
 	Section(String sectionName) {
 		this.name = sectionName;
@@ -28,4 +29,8 @@ public abstract class Section extends Presenter {
 	abstract void init();
 	abstract void hide();
 	abstract void show();
+
+	public boolean requiresLogin() {
+		return this.requiresLogin;
+	}
 }

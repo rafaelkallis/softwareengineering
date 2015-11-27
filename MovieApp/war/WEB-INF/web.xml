@@ -41,6 +41,16 @@
         <servlet-name>ImportService</servlet-name>
         <url-pattern>/import</url-pattern>
     </servlet-mapping>
+    
+	<!-- User Service  -->
+    <servlet>
+        <servlet-name>UserService</servlet-name>
+        <servlet-class>we.are.bubblesort.MovieApp.server.UserServiceImpl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserService</servlet-name>
+        <url-pattern>/movieapp/user</url-pattern>
+    </servlet-mapping>
 </web-app>
 
 

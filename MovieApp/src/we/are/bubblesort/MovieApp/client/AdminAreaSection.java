@@ -8,6 +8,7 @@ public class AdminAreaSection extends Section {
 	
 	AdminAreaSection(String sectionName) {
 		super(sectionName);
+		this.requiresLogin = true;
 	}
 	
 	AdminAreaSection() {

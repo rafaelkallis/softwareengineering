@@ -1,0 +1,43 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:FlowPanel addStyleNames="modal fade" ui:field="main">
+		<g:FormPanel ui:field="loginForm" addStyleNames="form-horizontal">
+			<g:FlowPanel addStyleNames="modal-dialog">
+				<g:FlowPanel addStyleNames="modal-content">
+				    <g:HTML addStyleNames="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title">Login</h4>
+					</g:HTML>
+					<g:FlowPanel addStyleNames="modal-body">
+					    <g:FlowPanel>
+						    <g:FlowPanel addStyleNames="form-group">
+						        <g:Label addStyleNames="col-sm-3 control-label">Benutzername</g:Label>
+						        <g:FlowPanel addStyleNames="col-sm-6">
+					            	<g:TextBox addStyleNames="form-control" ui:field="username"></g:TextBox>
+					            </g:FlowPanel>
+						    </g:FlowPanel>
+						    <g:FlowPanel addStyleNames="form-group">
+						        <g:Label addStyleNames="col-sm-3 control-label">Passwort</g:Label>
+						        <g:FlowPanel addStyleNames="col-sm-6">
+					            	<g:PasswordTextBox addStyleNames="form-control" ui:field="password"></g:PasswordTextBox>
+					            </g:FlowPanel>
+						    </g:FlowPanel>
+						    <g:FlowPanel visible="false" ui:field="error" addStyleNames="alert alert-danger">
+						        <g:HTML><p>Ihr Passwort und/oder Ihr Benutzername sind falsch. Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.</p></g:HTML>
+						    </g:FlowPanel>
+					    </g:FlowPanel>
+					</g:FlowPanel>
+					<g:FlowPanel addStyleNames="modal-footer">
+					    <g:InlineHTML>
+					        <button type="button" style="margin-right:5px;" class="btn btn-link" data-dismiss="modal">Abbrechen</button>
+					    </g:InlineHTML>
+						<g:SubmitButton addStyleNames="btn btn-success" ui:field="loginButton">Login</g:SubmitButton>
+					</g:FlowPanel>
+				</g:FlowPanel>
+			</g:FlowPanel>	
+		</g:FormPanel>
+	</g:FlowPanel>
+</ui:UiBinder>

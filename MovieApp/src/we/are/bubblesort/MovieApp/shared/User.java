@@ -1,10 +1,15 @@
 package we.are.bubblesort.MovieApp.shared;
 
-public class User {
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public class User implements IsSerializable {
 	protected String username = "anonymous";
 	protected String sessionId = null;
 	protected String name = "Anonymous";
 
+	public User() {
+	}
+	
 	public User(String username) {
 		this.username = username;
 	}
@@ -13,7 +18,7 @@ public class User {
 		this.username = username;
 		this.name = name;
 	}
-	
+
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
 	}
