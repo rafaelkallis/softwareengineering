@@ -56,4 +56,11 @@ public class ParserTest {
 		assertEquals("",								parsed0[8][0].toString());
 		assertEquals("History, Drama",					parsed0[9][0].toString());
 	}
+	
+	@Test (expected=ImportFormatException.class)
+	public void testImportFormatException() throws IOException, ImportFormatException{
+		String csv_string = "31138563,/m/0gh76d7,\"A Royal\" Divorce,1926,,,{},{},{\"/m/03g3w\": \"History\", \"/m/07s9rl0\": \"Drama\"}";
+		@SuppressWarnings("unused")
+		String[][] parsed0 = parser.parseTSV(csv_string);
+	}
 }

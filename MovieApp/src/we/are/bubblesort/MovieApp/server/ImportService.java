@@ -42,10 +42,11 @@ public class ImportService extends HttpServlet {
         	}else{       		
         		try {
 					this.importContent(this.getContent(blobKey));
+					response.getWriter().write("success");
 				} catch (ImportFormatException e) {
-					response.getWriter().write(e.getMessage());
+					response.getWriter().write("error: "+e.getMessage());
 				}      		
-        		response.getWriter().write("success");
+        		
         	}
         }
 	}
