@@ -58,29 +58,29 @@ public class Parser {
 	 * @returns String[] array of all values parsed
 	 */
 	public String[][] parseFormat(String content,CSVFormat format) throws IOException, ImportFormatException {
-		List<CSVRecord> movieRecords;
+		List<CSVRecord> movieRecords 	= null;
+		String[][] records 				= null;
 		try {
 			movieRecords = CSVParser.parse((content), format).getRecords();
+			records = new String[10][movieRecords.size()];
+			Iterator<CSVRecord> iterator = movieRecords.iterator();
+			for(int i = 0;iterator.hasNext();i++){
+				CSVRecord record = iterator.next();
+				
+				records[0][i] 				= this.extractWikipediaId	((record.get(0)));
+				records[1][i] 				= this.extractFreebaseId	((record.get(1)));
+				records[2][i] 				= this.extractTitle			((record.get(2)));
+				records[3][i] 				= this.extractDate			((record.get(3)));
+				records[4][i] 				= this.extractYear			((record.get(3)));
+				records[5][i] 				= this.extractRevenue		((record.get(4)));
+				records[6][i] 				= this.extractDuration		((record.get(5)));
+				records[7][i] 				= this.extractLanguages		((record.get(6)));
+				records[8][i]				= this.extractCountries		((record.get(7)));
+				records[9][i]	 			= this.extractGenres		((record.get(8)));
+			}
 		} catch (ArrayIndexOutOfBoundsException e) {
 			throw new ImportFormatException();
-		}
-		String records[][] = new String[10][movieRecords.size()];
-		Iterator<CSVRecord> iterator = movieRecords.iterator();
-		for(int i = 0;iterator.hasNext();i++){
-			CSVRecord record = iterator.next();
-			
-			records[0][i] 				= this.extractWikipediaId	((record.get(0)));
-			records[1][i] 				= this.extractFreebaseId	((record.get(1)));
-			records[2][i] 				= this.extractTitle			((record.get(2)));
-			records[3][i] 				= this.extractDate			((record.get(3)));
-			records[4][i] 				= this.extractYear			((record.get(3)));
-			records[5][i] 				= this.extractRevenue		((record.get(4)));
-			records[6][i] 				= this.extractDuration		((record.get(5)));
-			records[7][i] 				= this.extractLanguages		((record.get(6)));
-			records[8][i]				= this.extractCountries		((record.get(7)));
-			records[9][i]	 			= this.extractGenres		((record.get(8)));
-		}
-		
+		}	
 		return records;
 	}
 	
