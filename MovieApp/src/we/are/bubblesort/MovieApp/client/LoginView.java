@@ -46,7 +46,7 @@ public class LoginView extends View {
 		showDialog(this.getElement(), true);
 	}
 	
-	protected void hide() {
+	public void hide() {
 		showDialog(this.getElement(), false);
 	}
 

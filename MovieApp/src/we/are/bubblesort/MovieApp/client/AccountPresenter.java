@@ -66,6 +66,8 @@ public class AccountPresenter extends Presenter {
 				if (loginSuccessHandler != null) {
 					loginSuccessHandler.onSuccess();
 				}
+				
+				loginView.hide();
 			}
 		});
 	}

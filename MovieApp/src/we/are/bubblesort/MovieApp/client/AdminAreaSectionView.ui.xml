@@ -7,6 +7,9 @@
 		    </g:HTMLPanel>
 		    <g:FlowPanel>
 		        <g:HTMLPanel>
+		        	<p>Willkommen <strong><g:InlineLabel ui:field="username">Nobody</g:InlineLabel></strong></p>
+		        </g:HTMLPanel>
+		        <g:HTMLPanel>
 		            <h2>Import</h2>
 		        </g:HTMLPanel>
     			<g:FlowPanel ui:field="importForm"></g:FlowPanel>

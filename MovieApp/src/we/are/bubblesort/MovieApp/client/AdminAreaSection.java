@@ -40,6 +40,7 @@ public class AdminAreaSection extends Section {
 
 	@Override
 	void show() {
+		this.view.updateUser(AccountPresenter.localUser);
 		this.view.show();
 	}
 
