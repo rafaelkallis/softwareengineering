@@ -81,6 +81,7 @@ public class AccountPresenter extends Presenter {
 		
 		// check for session log in
 		String sessionId = Cookies.getCookie(sessionCookieName);
+		
 		if (sessionId != null) {
 			this.userService.loginWithSession(localUser, sessionId, new AsyncCallback<User>(){
 				@Override

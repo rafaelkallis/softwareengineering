@@ -76,7 +76,9 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 				" JOIN `" + sessionTableName + "` as s" +
 				" ON  u.username = s.username WHERE s.sid = ? AND u.username = ? AND expires > NOW()" +
 				" LIMIT 1;";
-		
+		System.out.println(sql);
+		System.out.println(sessionId);
+		System.out.println(user.getUsername());
 		try {
 			Connection connection = Database.getInstance().getNewConnection();
 			
