@@ -50,8 +50,14 @@ public class LoginView extends View {
 		showDialog(this.getElement(), false);
 	}
 
-	private native static void showDialog(Element dialog, Boolean show) /*-{
+	private native static void showDialog(Element dialog, boolean show) /*-{
 		$wnd.jQuery(dialog).modal(show ? 'show' : 'hide');
+		
+		if (show) {
+			setTimeout(function() {
+				$wnd.jQuery(dialog).find("input[name='username']").get(0).focus();
+			}, 160);
+		}
 	}-*/;
 
 	public void showLoginError() {

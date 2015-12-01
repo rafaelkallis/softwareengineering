@@ -16,7 +16,7 @@
 						    <g:FlowPanel addStyleNames="form-group">
 						        <g:Label addStyleNames="col-sm-3 control-label">Benutzername</g:Label>
 						        <g:FlowPanel addStyleNames="col-sm-6">
-					            	<g:TextBox addStyleNames="form-control" ui:field="username"></g:TextBox>
+					            	<g:TextBox addStyleNames="form-control" name="username" ui:field="username"></g:TextBox>
 					            </g:FlowPanel>
 						    </g:FlowPanel>
 						    <g:FlowPanel addStyleNames="form-group">
