@@ -70,29 +70,28 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 		return validUser;
 	}
 
-	public User loginWithSession(User user, String sessionId) throws InvalidSessionException {
+	public User loginWithSession(String sessionId) throws InvalidSessionException {
 		User validUser = null;
-		String sql = "SELECT u.username as username FROM `" + userTableName + "` as u" +
+		String sql = "SELECT u.username as username, u.name as name FROM `" + userTableName + "` as u" +
 				" JOIN `" + sessionTableName + "` as s" +
-				" ON  u.username = s.username WHERE s.sid = ? AND u.username = ? AND expires > NOW()" +
+				" ON  u.username = s.username WHERE s.sid = ? AND expires > NOW()" +
 				" LIMIT 1;";
-		System.out.println(sql);
-		System.out.println(sessionId);
-		System.out.println(user.getUsername());
+
 		try {
 			Connection connection = Database.getInstance().getNewConnection();
 			
 			try {
 				PreparedStatement statement = connection.prepareStatement(sql);
 				statement.setString(1, sessionId);
-				statement.setString(2, user.getUsername());
 				
 				ResultSet rs = statement.executeQuery();
 				
 				String entryUsername = null;
+				String entryName = null;
 				
 				while(rs.next()) {
 					entryUsername = rs.getString("username");
+					entryName = rs.getString("name");
 				}
 				
 				if (entryUsername == null) {
@@ -100,7 +99,8 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 					throw new InvalidSessionException();
 				}
 				
-				validUser = new User(user.getUsername());
+				validUser = new User(entryUsername);
+				validUser.setName(entryName);
 				validUser.setSessionId(sessionId);
 
 				rs.close();

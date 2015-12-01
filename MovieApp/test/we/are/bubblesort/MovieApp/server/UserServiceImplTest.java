@@ -44,9 +44,10 @@ public class UserServiceImplTest {
 	
 	@Test
 	public void loginUserWithSessionReturnsLoggedInUser() throws InvalidSessionException {
-		User returnUser = this.userService.loginWithSession(this.testUser, this.validSessionId);
-		
+		User returnUser = this.userService.loginWithSession(this.validSessionId);
+
 		assertEquals(testUser.getUsername(), returnUser.getUsername());
+		assertEquals(testUser.getName(), returnUser.getName());
 		assertTrue(returnUser.isLoggedIn());
 		assertNotNull(returnUser.getSessionId());
 		
@@ -74,17 +75,12 @@ public class UserServiceImplTest {
 	
 	@Test(expected=InvalidSessionException.class)
 	public void loginUserWithSessionThrowsInvalidSessionExceptionWithInvalidSession() throws InvalidSessionException {
-		this.userService.loginWithSession(this.testUser, "wrongsession");
+		this.userService.loginWithSession("wrongsession");
 	}
 	
 	@Test(expected=InvalidSessionException.class)
 	public void loginUserWithSessionThrowsInvalidSessionExceptionWithExpiredSession() throws InvalidSessionException {
-		this.userService.loginWithSession(this.testUser, expiredSessionId);
-	}
-	
-	@Test(expected=InvalidSessionException.class)
-	public void loginUserWithSessionThrowsInvalidSessionExceptionWithNotExistingUser() throws InvalidSessionException {
-		this.userService.loginWithSession(new User("some-user"), this.validSessionId);
+		this.userService.loginWithSession(expiredSessionId);
 	}
 	
 	@After

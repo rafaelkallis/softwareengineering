@@ -10,5 +10,5 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("user")
 public interface UserService extends RemoteService {
 	public User loginWithPassword(User user, String password) throws WrongCredentialsException;
-	public User loginWithSession(User user, String sessionId) throws InvalidSessionException;
+	public User loginWithSession(String sessionId) throws InvalidSessionException;
 }

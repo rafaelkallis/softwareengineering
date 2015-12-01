@@ -83,7 +83,7 @@ public class AccountPresenter extends Presenter {
 		String sessionId = Cookies.getCookie(sessionCookieName);
 		
 		if (sessionId != null) {
-			this.userService.loginWithSession(localUser, sessionId, new AsyncCallback<User>(){
+			this.userService.loginWithSession(sessionId, new AsyncCallback<User>(){
 				@Override
 				public void onFailure(Throwable caught) {
 					if (caught instanceof InvalidSessionException) {
