@@ -83,6 +83,33 @@ public class UserServiceImplTest {
 		this.userService.loginWithSession(expiredSessionId);
 	}
 	
+	@Test
+	public void changePasswordReturnsUser() throws InvalidSessionException, WrongCredentialsException {
+		User returnUser = this.userService.changePassword(this.validSessionId, this.testUserPassword, "newpassword");
+		
+		assertEquals(testUser.getUsername(), returnUser.getUsername());
+		assertEquals(testUser.getName(), returnUser.getName());
+		assertTrue(returnUser.isLoggedIn());
+		assertNotNull(returnUser.getSessionId());
+	}
+	
+	@Test
+	public void loginWithChangedPasswordIsPossible() throws InvalidSessionException, WrongCredentialsException {
+		this.userService.changePassword(this.validSessionId, this.testUserPassword, "newpassword");
+		User returnUser = this.userService.loginWithPassword(this.testUser, "newpassword");
+
+		assertEquals(testUser.getUsername(), returnUser.getUsername());
+		assertEquals(testUser.getName(), returnUser.getName());
+		assertTrue(returnUser.isLoggedIn());
+		assertNotNull(returnUser.getSessionId());
+	}
+	
+	@Test(expected=WrongCredentialsException.class)
+	public void loginWithOldPasswordIsNotPossible() throws WrongCredentialsException, InvalidSessionException {
+		this.userService.changePassword(this.validSessionId, this.testUserPassword, "newpassword");
+		this.userService.loginWithPassword(this.testUser, this.testUserPassword);
+	}
+	
 	@After
 	public void tearDown() {
 		this.deleteUser(this.testUser);

@@ -22,8 +22,9 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 	static Integer sessionLifeTime = 3600; // in seconds
 
 	public User loginWithPassword(User user, String password) throws WrongCredentialsException {
-		User validUser = null;
-		String sql = "SELECT username, password, name FROM `" + userTableName + "`" +
+		User validUser = this.checkPassword(user, password);
+
+		String sql = "SELECT name FROM `" + userTableName + "`" +
 				" WHERE username = ? LIMIT 1;";
 		
 		try {
@@ -34,25 +35,13 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 				statement.setString(1, user.getUsername());
 				
 				ResultSet rs = statement.executeQuery();
-				String entryPassword = null;
 				String entryName = null;
 				
 				while(rs.next()) {
-					entryPassword = rs.getString("password");
 					entryName = rs.getString("name");
 				}
 				
-				if (entryPassword == null) {
-					// user not found
-					throw new WrongCredentialsException();
-				}
-				
-				if (!BCrypt.checkpw(password, entryPassword)) {
-					// password incorrect
-					throw new WrongCredentialsException();
-				}
-				
-				validUser = new User(user.getUsername(), entryName);
+				validUser.setName(entryName);
 				String sessionId = this.createSession(validUser);
 				validUser.setSessionId(sessionId);
 
@@ -149,5 +138,84 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 	
 	protected String getRandomSessionId() {
 		return String.valueOf(UUID.randomUUID());
+	}
+
+	public User changePassword(String sessionId, String oldPassword, String newPassword) throws InvalidSessionException, WrongCredentialsException {
+		User user = this.loginWithSession(sessionId);
+		this.checkPassword(user, oldPassword);
+		
+		String salt = BCrypt.gensalt(5);
+		String hashedPassword = BCrypt.hashpw(newPassword, salt);
+		
+		String sql = "UPDATE `" + userTableName + "` SET password = ? WHERE username = ?;";
+
+		try {
+			Connection connection = Database.getInstance().getNewConnection();
+			
+			try {
+				PreparedStatement statement = connection.prepareStatement(sql);
+				statement.setString(1, hashedPassword);
+				statement.setString(2, user.getUsername());
+				
+				statement.executeUpdate();
+				
+	    		statement.close();
+			}
+			finally {
+				connection.close();
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
+	
+	protected User checkPassword(User user, String password) throws WrongCredentialsException {
+		User validUser = null;
+		String sql = "SELECT username, password, name FROM `" + userTableName + "`" +
+				" WHERE username = ? LIMIT 1;";
+		
+		try {
+			Connection connection = Database.getInstance().getNewConnection();
+			
+			try {
+				PreparedStatement statement = connection.prepareStatement(sql);
+				statement.setString(1, user.getUsername());
+				
+				ResultSet rs = statement.executeQuery();
+				String entryPassword = null;
+				String entryName = null;
+				
+				while(rs.next()) {
+					entryPassword = rs.getString("password");
+					entryName = rs.getString("name");
+				}
+				
+				if (entryPassword == null) {
+					// user not found
+					throw new WrongCredentialsException();
+				}
+				
+				if (!BCrypt.checkpw(password, entryPassword)) {
+					// password incorrect
+					throw new WrongCredentialsException();
+				}
+				
+				validUser = new User(user.getUsername(), entryName);
+
+				rs.close();
+	    		statement.close();
+			}
+			finally {
+				connection.close();
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return validUser;
 	}
 }
