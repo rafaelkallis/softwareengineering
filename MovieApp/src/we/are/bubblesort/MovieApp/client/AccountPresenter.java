@@ -16,7 +16,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class AccountPresenter extends Presenter {
 	protected LoginView loginView;
 	protected UserServiceAsync userService;
-	protected static String sessionCookieName = "sid";
 	protected static User localUser = new User();
 	protected LoginEventHandler loginSuccessHandler = null;
 	protected ChangePasswordView changePasswordView;
@@ -98,7 +97,7 @@ public class AccountPresenter extends Presenter {
 			@Override
 			public void onSuccess(User validUser) {
 				localUser = validUser;
-				Cookies.setCookie(sessionCookieName, localUser.getSessionId());
+				Cookies.setCookie(UserService.sessionCookieName, localUser.getSessionId());
 				
 				if (loginSuccessHandler != null) {
 					loginSuccessHandler.onSuccess();
@@ -117,7 +116,7 @@ public class AccountPresenter extends Presenter {
 		}
 		
 		// check for session log in
-		String sessionId = Cookies.getCookie(sessionCookieName);
+		String sessionId = Cookies.getCookie(UserService.sessionCookieName);
 		
 		if (sessionId != null) {
 			this.userService.loginWithSession(sessionId, new AsyncCallback<User>(){
@@ -125,7 +124,7 @@ public class AccountPresenter extends Presenter {
 				public void onFailure(Throwable caught) {
 					if (caught instanceof InvalidSessionException) {
 						GWT.log("Session invalid, deleting.");
-						Cookies.removeCookie(sessionCookieName);
+						Cookies.removeCookie(UserService.sessionCookieName);
 						showLogin();
 					}
 					else {
@@ -146,7 +145,7 @@ public class AccountPresenter extends Presenter {
 	}
 
 	public void logout() {
-		Cookies.removeCookie(sessionCookieName);
+		Cookies.removeCookie(UserService.sessionCookieName);
 		localUser = new User();
 	}
   

@@ -29,9 +29,15 @@ public class ImportService extends HttpServlet {
 	private static final int MOVIES_PER_QUERY 	= 6000;
 	private BlobstoreService blobstoreService 	= BlobstoreServiceFactory.getBlobstoreService();
 	private Database db 						= Database.getInstance();	
+	private UserServiceImpl user 				= new UserServiceImpl();
 	
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		if (!user.validateRequest(request)) {
+			response.sendError(403);
+			return;
+		}
+		
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
         List<BlobKey> blobKeyList = blobs.get("importCSV");
 		response.setContentType("text/html");
