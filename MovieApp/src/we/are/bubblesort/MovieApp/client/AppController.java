@@ -111,6 +111,10 @@ public final class AppController extends Presenter implements AppActivateSection
 			doSectionActivation(section);
 		}
 	}
+
+	public void activateDefaultSection() {
+		this.activateSection(this.sections.get(0));
+	}
 	
 	private void doSectionActivation(Section section) {
 		if (!section.isInitialized()) {

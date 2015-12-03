@@ -144,6 +144,11 @@ public class AccountPresenter extends Presenter {
 			showLogin();
 		}
 	}
+
+	public void logout() {
+		Cookies.removeCookie(sessionCookieName);
+		localUser = new User();
+	}
   
 	protected void showLogin() {
 		this.loginView.show();

@@ -1,5 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Composite;
 
 public class AdminAreaSection extends Section {
@@ -25,6 +27,14 @@ public class AdminAreaSection extends Section {
 		
 		this.accountPresenter = MovieApp.controller.account;
 		this.view.changePassword.add(accountPresenter.getChangePasswordView());
+		
+		this.view.logout.addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				accountPresenter.logout();
+				MovieApp.controller.activateDefaultSection();
+			}
+		});
 	}
 	
 	@Override
