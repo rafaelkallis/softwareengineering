@@ -5,6 +5,7 @@ import com.google.gwt.user.client.ui.Composite;
 public class AdminAreaSection extends Section {
 	protected AdminAreaSectionView view = new AdminAreaSectionView();
 	protected ImportPresenter importPresenter;
+	protected AccountPresenter accountPresenter;
 	
 	AdminAreaSection(String sectionName) {
 		super(sectionName);
@@ -18,9 +19,12 @@ public class AdminAreaSection extends Section {
 	@Override
 	void init() {
 		this.initialized = true;
-		
+
 		this.importPresenter = new ImportPresenter();
 		this.view.importForm.add(importPresenter.getCompositeView());
+		
+		this.accountPresenter = MovieApp.controller.account;
+		this.view.changePassword.add(accountPresenter.getChangePasswordView());
 	}
 	
 	@Override

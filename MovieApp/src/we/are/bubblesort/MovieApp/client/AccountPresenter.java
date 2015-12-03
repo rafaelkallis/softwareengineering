@@ -19,6 +19,7 @@ public class AccountPresenter extends Presenter {
 	protected static String sessionCookieName = "sid";
 	protected static User localUser = new User();
 	protected LoginEventHandler loginSuccessHandler = null;
+	protected ChangePasswordView changePasswordView;
 	
 	public AccountPresenter(UserServiceAsync userService) {
 		this(userService, new LoginView());
@@ -27,6 +28,7 @@ public class AccountPresenter extends Presenter {
 	public AccountPresenter(UserServiceAsync userService, LoginView view) {
 		this.loginView = view;
 		this.userService = userService;
+		this.changePasswordView = new ChangePasswordView();
 
 		RootPanel.get().add(this.loginView);
 		this.init();
@@ -42,6 +44,41 @@ public class AccountPresenter extends Presenter {
 				checkLoginWithPassword(username, password);
 				
 				event.cancel();
+			}
+		});
+		
+		this.changePasswordView.form.addSubmitHandler(new FormPanel.SubmitHandler() {
+			@Override
+			public void onSubmit(SubmitEvent event) {
+				changePasswordView.clearMessages();
+				
+				String oldPassword = changePasswordView.oldPassword.getValue();
+				String newPassword = changePasswordView.newPassword.getValue();
+				String passwordConfirmation = changePasswordView.passwordConfirmation.getValue();
+				
+				if (passwordConfirmation != newPassword) {
+					changePasswordView.showWrongConfirmationError();
+					event.cancel();
+					return;
+				}
+				
+				userService.changePassword(localUser.getSessionId(), oldPassword, newPassword, new AsyncCallback<User>() {
+					@Override
+					public void onFailure(Throwable caught) {
+						if (caught instanceof WrongCredentialsException || caught instanceof InvalidSessionException) {
+							changePasswordView.showWrongCredentialsError();
+						}
+						else {
+							Window.alert("Unexepected error while logging in with password.");
+						}
+					}
+					
+					@Override
+					public void onSuccess(User validUser) {
+						changePasswordView.clearForm();
+						changePasswordView.showSuccessMessage();
+					}
+				});
 			}
 		});
 	}
@@ -128,5 +165,9 @@ public class AccountPresenter extends Presenter {
 
 	public User getLocalUser() {
 		return localUser;
+	}
+
+	public Composite getChangePasswordView() {
+		return (Composite)this.changePasswordView;
 	}
 }

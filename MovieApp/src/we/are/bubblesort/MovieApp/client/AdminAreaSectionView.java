@@ -20,6 +20,7 @@ public class AdminAreaSectionView extends SectionView {
 	
 	@UiField Panel importForm;
 	@UiField InlineLabel username;
+	@UiField Panel changePassword;
 
 	public AdminAreaSectionView() {
 		initWidget(uiBinder.createAndBindUi(this));

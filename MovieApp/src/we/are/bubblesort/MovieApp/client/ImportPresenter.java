@@ -91,5 +91,4 @@ public class ImportPresenter extends Presenter {
 	public View getView() {
 		return (View)this.view;
 	}
-
 }
