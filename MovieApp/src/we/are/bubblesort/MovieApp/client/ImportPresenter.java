@@ -9,6 +9,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
+import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
+import com.google.gwt.user.client.ui.FormPanel.SubmitHandler;
 
 public class ImportPresenter extends Presenter {
 	protected ImportView view;
@@ -23,6 +25,13 @@ public class ImportPresenter extends Presenter {
 	}
 	
 	protected void init() {
+		this.view.form.addSubmitHandler(new SubmitHandler() {
+			@Override
+			public void onSubmit(SubmitEvent event) {
+				view.clearMessages();
+			}
+		});
+		
 		this.view.form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
