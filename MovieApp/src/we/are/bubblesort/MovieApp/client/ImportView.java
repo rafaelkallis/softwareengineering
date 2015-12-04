@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
+import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ImportView extends View {
@@ -19,6 +20,7 @@ public class ImportView extends View {
 	@UiField Button submit;
 	@UiField FormPanel form;
 	@UiField FileUpload file;
+	@UiField Hidden session;
 	
 	@UiHandler("submit")
 	void onSubmit(ClickEvent e) {

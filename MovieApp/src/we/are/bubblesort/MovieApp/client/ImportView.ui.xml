@@ -7,6 +7,7 @@
 		        <g:Label addStyleNames="col-sm-3 control-label">TSV-Datei</g:Label>
 		        <g:FlowPanel addStyleNames="col-sm-8">
 	            	<g:FileUpload addStyleNames="form-control" ui:field="file"></g:FileUpload>
+	            	<g:Hidden ui:field="session" />
 	            </g:FlowPanel>
 		    </g:FlowPanel>
 		   	<g:FlowPanel addStyleNames="form-group">

@@ -109,21 +109,13 @@ public class UserServiceImpl extends RemoteServiceServlet implements UserService
 		return validUser;
 	}
 	
-	public boolean validateRequest(HttpServletRequest req) {
-		Cookie[] cookies = req.getCookies();
-		
-		for(Cookie c : cookies){
-			if (c.getName() == sessionCookieName) {
-				try {
-					this.loginWithSession(c.getValue());
-					return true;
-				} catch (InvalidSessionException e) {
-					return false;
-				}
-			}
-        }
-		
-		return false;
+	public boolean validateRequest(String sessionId) {
+		try {
+			this.loginWithSession(sessionId);
+			return true;
+		} catch (InvalidSessionException e) {
+			return false;
+		}
 	}
 	
 	protected String createSession(User user) {
