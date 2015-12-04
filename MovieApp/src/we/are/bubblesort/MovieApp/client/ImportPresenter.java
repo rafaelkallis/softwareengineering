@@ -31,6 +31,11 @@ public class ImportPresenter extends Presenter {
 			@Override
 			public void onSubmit(SubmitEvent event) {
 				view.clearMessages();
+				
+				if (view.file.getFilename().equals("")) {
+					view.showErrorNoFileMessage();
+					event.cancel();
+				}
 			}
 		});
 		

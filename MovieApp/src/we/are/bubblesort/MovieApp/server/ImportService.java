@@ -51,11 +51,10 @@ public class ImportService extends HttpServlet {
         response.setContentType("text/html");
         try{
         	if(blobKeyList == null){
-            	response.getWriter().write(ImportResultCode.NO_FILE_UPLOADED.name());
-            	return;
+            	throw new ImportException(ImportResultCode.NO_FILE_UPLOADED);
             }
     		
-            for(BlobKey blobKey : blobKeyList){
+            for(BlobKey blobKey : blobKeyList) {
 				this.importContent(this.getContent(blobKey));
 				response.getWriter().write(ImportResultCode.SUCCESS.name());    		
             }
