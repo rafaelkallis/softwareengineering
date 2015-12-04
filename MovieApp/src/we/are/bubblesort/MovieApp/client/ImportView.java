@@ -74,6 +74,5 @@ public class ImportView extends View {
 		this.form.setAction(uploadUrl);
         this.submit.setText("Hochladen");
         this.submit.setEnabled(true);
-        this.clearMessages();
 	}
 }

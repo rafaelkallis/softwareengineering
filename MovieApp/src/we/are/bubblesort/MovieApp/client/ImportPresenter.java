@@ -1,5 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
+import we.are.bubblesort.MovieApp.shared.ImportResultCode;
+
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -67,7 +69,17 @@ public class ImportPresenter extends Presenter {
 
 	private void importFailed(ImportResultCode code) {
 		this.resetForm();
-		Window.alert(results);
+		
+		switch (code) {
+			case UNSUPPORTED_FORMAT:
+				this.view.showErrorFormatMessage();
+				break;
+			case NO_FILE_UPLOADED:
+				this.view.showErrorNoFileMessage();
+			break;
+			default:
+				this.view.showErrorUploadMessage();
+		}
 	}
 	
 	protected void resetForm() {

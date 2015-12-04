@@ -7,7 +7,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import we.are.bubblesort.MovieApp.shared.ImportFormatException;
+import we.are.bubblesort.MovieApp.shared.ImportException;
+import we.are.bubblesort.MovieApp.shared.ImportResultCode;
 
 public class Parser {
 	
@@ -30,7 +31,7 @@ public class Parser {
 	 * @param line the line of text to be parsed
 	 * @returns String[] array of all values parsed
 	 */
-	public String[][] parseTSV(String content) throws IOException, ImportFormatException{
+	public String[][] parseTSV(String content) throws IOException, ImportException{
 		return parseFormat(content,CSVFormat.TDF.withQuote(null));
 	}
 	
@@ -39,7 +40,7 @@ public class Parser {
 	 * @returns String[] array of all values parsed
 	 */
 	@Deprecated
-	public String[][] parseCSV(String content) throws IOException, ImportFormatException{
+	public String[][] parseCSV(String content) throws IOException, ImportException{
 		return parseFormat(content,CSVFormat.DEFAULT);
 	}
 	
@@ -48,7 +49,7 @@ public class Parser {
 	 * @returns String[] array of all values parsed
 	 */
 	@Deprecated
-	public String[][] parseExcel(String content) throws IOException, ImportFormatException{
+	public String[][] parseExcel(String content) throws IOException, ImportException{
 		return parseFormat(content,CSVFormat.EXCEL);
 	}
 	
@@ -57,7 +58,7 @@ public class Parser {
 	 * @param format the format of the tring to be parsed. Used to specify the delimiter
 	 * @returns String[] array of all values parsed
 	 */
-	public String[][] parseFormat(String content,CSVFormat format) throws IOException, ImportFormatException {
+	public String[][] parseFormat(String content,CSVFormat format) throws IOException, ImportException {
 		List<CSVRecord> movieRecords 	= null;
 		String[][] records 				= null;
 		try {
@@ -79,7 +80,7 @@ public class Parser {
 				records[9][i]	 			= this.extractGenres		((record.get(8)));
 			}
 		} catch (ArrayIndexOutOfBoundsException e) {
-			throw new ImportFormatException();
+			throw new ImportException(ImportResultCode.UNSUPPORTED_FORMAT);
 		}	
 		return records;
 	}
