@@ -36,18 +36,23 @@ public class ImportPresenter extends Presenter {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				String results = event.getResults();
-
-				if (results == null) {
-					Window.alert("That bitch is null");
-					
-					return;
-				}
+				ImportResultCode resultCode;
 				
-				if (results.startsWith("success")) {
-					importSuccessful(results);
+				try {
+					resultCode = ImportResultCode.valueOf(results);
+				}
+				catch (IllegalArgumentException e) {
+					resultCode = ImportResultCode.OTHER;
+				}
+				catch (NullPointerException e) {
+					resultCode = ImportResultCode.OTHER;
+				}
+
+				if (resultCode == ImportResultCode.SUCCESS) {
+					importSuccessful();
 				}
 				else {
-					importFailed(results);
+					importFailed(resultCode);
 				}
 			}
         });
@@ -55,12 +60,12 @@ public class ImportPresenter extends Presenter {
 		this.resetForm();
 	}
 
-	private void importSuccessful(String results) {
+	private void importSuccessful() {
 		this.resetForm();
-		Window.alert("Upload successful (Import states it was successful too)");
+		this.view.showSuccessMessage();
 	}
 
-	private void importFailed(String results) {
+	private void importFailed(ImportResultCode code) {
 		this.resetForm();
 		Window.alert(results);
 	}
