@@ -2,6 +2,7 @@ package we.are.bubblesort.MovieApp.shared;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import com.google.gwt.user.client.rpc.IsSerializable;
 
 public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
@@ -39,6 +40,10 @@ public class Collection<T> extends Model implements Iterable<T>,IsSerializable {
 	
 	public void clear(){
 		elements.clear();
+	}
+	
+	public T get(Integer ix) {
+		return this.elements.get(ix);
 	}
 	
 	public String toJoinedString(String delimiter){

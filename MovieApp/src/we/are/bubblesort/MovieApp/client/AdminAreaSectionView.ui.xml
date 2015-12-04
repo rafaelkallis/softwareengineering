@@ -2,14 +2,30 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<g:FlowPanel addStyleNames="container">
-		    <g:HTMLPanel addStyleNames="page-header">
+	    <g:HTMLPanel addStyleNames="page-header row">
+	        <div class="col-md-12">
 		        <h1>Admin</h1>
-		    </g:HTMLPanel>
-		    <g:FlowPanel>
-		        <g:HTMLPanel>
-		            <h2>Import</h2>
+		        <g:HTMLPanel addStyleNames="pull-left">
+		        	<p>Willkommen <strong><g:InlineLabel ui:field="username">Nobody</g:InlineLabel></strong></p>
 		        </g:HTMLPanel>
-    			<g:FlowPanel ui:field="importForm"></g:FlowPanel>
-			</g:FlowPanel>
+		        <g:FlowPanel addStyleNames="pull-right">
+		            <g:Anchor ui:field="logout" href="#">Logout</g:Anchor>
+		        </g:FlowPanel>
+	        </div>
+	    </g:HTMLPanel>
+	    <g:FlowPanel addStyleNames="row">
+	        <g:FlowPanel addStyleNames="col-md-6">
+		        <g:FlowPanel addStyleNames="panel panel-default">
+		            <g:FlowPanel addStyleNames="panel-heading"><g:HTML>Import</g:HTML></g:FlowPanel>
+	   				<g:FlowPanel addStyleNames="panel-body" ui:field="importForm"></g:FlowPanel>
+		        </g:FlowPanel>
+	        </g:FlowPanel>
+	        <g:FlowPanel addStyleNames="col-md-6">
+		        <g:FlowPanel addStyleNames="panel panel-default">
+		            <g:FlowPanel addStyleNames="panel-heading"><g:HTML>Passwort ändern</g:HTML></g:FlowPanel>
+	   				<g:FlowPanel addStyleNames="panel-body" ui:field="changePassword"></g:FlowPanel>
+		        </g:FlowPanel>
+	        </g:FlowPanel>
+		</g:FlowPanel>
 	</g:FlowPanel>
 </ui:UiBinder> 

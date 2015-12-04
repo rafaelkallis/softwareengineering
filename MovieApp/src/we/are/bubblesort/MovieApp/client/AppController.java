@@ -6,22 +6,27 @@ import com.google.gwt.user.client.ui.Panel;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
+import we.are.bubblesort.MovieApp.shared.User;
 
 public final class AppController extends Presenter implements AppActivateSectionEventHandler {
 	private AppView view;
 	private QueryServiceAsync queryService;
+	private UserServiceAsync userService;
 	private Collection<Section> sections = new Collection<Section>();
 	private SectionNavigationPresenter mainNavigation;
+	protected AccountPresenter account;
 	
 	HandlerRegistration AppActivateSectionEventHandlerRegistration;
 	
-	public AppController(QueryServiceAsync queryService) {
-		this(queryService, new AppView());
+	public AppController(QueryServiceAsync queryService, UserServiceAsync userService) {
+		this(queryService, userService, new AppView());
 	}
 
-	public AppController(QueryServiceAsync queryService, AppView view) {
+	public AppController(QueryServiceAsync queryService, UserServiceAsync userService, AppView view) {
 		this.view = view;
+		this.userService = userService;
 		this.queryService = queryService;
+		this.account = new AccountPresenter(this.userService);
 		this.mainNavigation = new SectionNavigationPresenter(new ButtonNavigationView(), this.eventBus);
 	}
 
@@ -91,7 +96,27 @@ public final class AppController extends Presenter implements AppActivateSection
 		return null;
 	}
 
-	public void activateSection(Section section) {
+	public void activateSection(final Section section) {
+		if (section.requiresLogin()) {
+			this.account.requiresLogin(new LoginEventHandler() {
+
+				@Override
+				public void onSuccess() {
+					doSectionActivation(section);
+				}
+				
+			});
+		}
+		else {
+			doSectionActivation(section);
+		}
+	}
+
+	public void activateDefaultSection() {
+		this.activateSection(this.sections.get(0));
+	}
+	
+	private void doSectionActivation(Section section) {
 		if (!section.isInitialized()) {
 			section.init();
 		}
@@ -107,7 +132,11 @@ public final class AppController extends Presenter implements AppActivateSection
 		}
 	}
 
-	
+	  
+	public User getLocalUser() {
+		return this.account.getLocalUser();
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * @see we.are.bubblesort.MovieApp.client.AppActivateSectionEventHandler#onActivateSection(we.are.bubblesort.MovieApp.client.Section)
