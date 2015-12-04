@@ -19,6 +19,7 @@ import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreInputStream;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.utils.SystemProperty;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,7 +47,7 @@ public class ImportService extends HttpServlet {
 		
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
         List<BlobKey> blobKeyList = blobs.get("importCSV");
-		response.setContentType("text/plain");
+		response.setContentType("text/html");
 		
         for(BlobKey blobKey : blobKeyList){
         	if(blobKey == null){
@@ -70,7 +71,12 @@ public class ImportService extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         String uploadUrl = blobstoreService.createUploadUrl("/import");
-        
+
+		// change the computer name to standard localhost ip address, if in dev mode
+		if(SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
+			uploadUrl = uploadUrl.replaceAll("//[^/]+", "//127.0.0.1:8888");
+		}
+       
 		OutputStream o = response.getOutputStream();
 		o.write((uploadUrl).getBytes());
 		o.flush();
