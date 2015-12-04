@@ -47,21 +47,22 @@ public class ImportService extends HttpServlet {
 		
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
         List<BlobKey> blobKeyList = blobs.get("importCSV");
-		response.setContentType("text/html");
-		
-        for(BlobKey blobKey : blobKeyList){
-        	if(blobKey == null){
-        		response.getWriter().write("error: upload failed");
-        	}else{       		
-        		try {
-					this.importContent(this.getContent(blobKey));
-					response.getWriter().write("success");
-				} catch (ImportFormatException e) {
-					response.getWriter().write("error: "+e.getMessage());
-				}      		
-        		
-        	}
+        
+        response.setContentType("text/html");
+        try{
+        	if(blobKeyList == null){
+            	response.getWriter().write(ImportResultCode.NO_FILE_UPLOADED.name());
+            	return;
+            }
+    		
+            for(BlobKey blobKey : blobKeyList){
+				this.importContent(this.getContent(blobKey));
+				response.getWriter().write(ImportResultCode.SUCCESS.name());    		
+            }
+        } catch (ImportException e) {
+        	response.getWriter().write(e.getImportResultCode().name());
         }
+        
 	}
 	
 	/*
@@ -109,7 +110,7 @@ public class ImportService extends HttpServlet {
 	 * @param content the content to be imported to the DB
 	 * @param format [CSV,Excel,TSV, ..]
 	 */
-	public void importContent(String content) throws ImportFormatException, IOException{
+	public void importContent(String content) throws ImportException, IOException{
 		for(MovieImportDAO importDAO : MovieImportDAO.shuffle(content, MOVIES_PER_QUERY)){			
 			this.import_movies(importDAO);
 			this.import_languages(importDAO);

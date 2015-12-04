@@ -27,19 +27,19 @@ public class ImportPresenter extends Presenter {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				String results = event.getResults();
-
-				if (results == null) {
-					Window.alert("That bitch is null");
-					
-					return;
-				}
-				
-				if (results.startsWith("success")) {
-					importSuccessful(results);
-				}
-				else {
-					importFailed(results);
-				}
+				Window.alert(results);
+//				if (results == null) {
+//					Window.alert("That bitch is null");
+//					
+//					return;
+//				}
+//				
+//				if (results.startsWith("success")) {
+//					importSuccessful(results);
+//				}
+//				else {
+//					importFailed(results);
+//				}
 			}
         });
 		
