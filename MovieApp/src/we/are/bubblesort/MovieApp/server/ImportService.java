@@ -2,18 +2,24 @@ package we.are.bubblesort.MovieApp.server;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+
+import we.are.bubblesort.MovieApp.client.UserService;
 import we.are.bubblesort.MovieApp.shared.*;
+
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreInputStream;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,14 +39,14 @@ public class ImportService extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		if (!user.validateRequest(request)) {
+		if (!user.validateRequest(request.getParameter(UserService.sessionCookieName))) {
 			response.sendError(403);
 			return;
 		}
 		
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
         List<BlobKey> blobKeyList = blobs.get("importCSV");
-		response.setContentType("text/html");
+		response.setContentType("text/plain");
 		
         for(BlobKey blobKey : blobKeyList){
         	if(blobKey == null){

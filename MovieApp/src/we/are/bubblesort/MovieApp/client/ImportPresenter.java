@@ -28,7 +28,13 @@ public class ImportPresenter extends Presenter {
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				String results = event.getResults();
 
-				if (results == null || results.startsWith("success")) {
+				if (results == null) {
+					Window.alert("That bitch is null");
+					
+					return;
+				}
+				
+				if (results.startsWith("success")) {
 					importSuccessful(results);
 				}
 				else {
@@ -51,6 +57,8 @@ public class ImportPresenter extends Presenter {
 	}
 	
 	protected void resetForm() {
+		this.view.session.setName(UserService.sessionCookieName);
+		this.view.session.setValue(AccountPresenter.localUser.getSessionId());
 		this.view.indicateSetup();
 		
 		String url = "/import";
