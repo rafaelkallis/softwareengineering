@@ -1,5 +1,7 @@
 package we.are.bubblesort.MovieApp.client;
 
+import we.are.bubblesort.MovieApp.shared.ImportResultCode;
+
 import com.google.gwt.http.client.Request;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestCallback;
@@ -9,6 +11,8 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
+import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
+import com.google.gwt.user.client.ui.FormPanel.SubmitHandler;
 
 public class ImportPresenter extends Presenter {
 	protected ImportView view;
@@ -23,22 +27,39 @@ public class ImportPresenter extends Presenter {
 	}
 	
 	protected void init() {
+		this.view.form.addSubmitHandler(new SubmitHandler() {
+			@Override
+			public void onSubmit(SubmitEvent event) {
+				view.clearMessages();
+				
+				if (view.file.getFilename().equals("")) {
+					view.showErrorNoFileMessage();
+					event.cancel();
+				}
+			}
+		});
+		
 		this.view.form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
 			@Override
 			public void onSubmitComplete(SubmitCompleteEvent event) {
 				String results = event.getResults();
-
-				if (results == null) {
-					Window.alert("That bitch is null");
-					
-					return;
-				}
+				ImportResultCode resultCode;
 				
-				if (results.startsWith("success")) {
-					importSuccessful(results);
+				try {
+					resultCode = ImportResultCode.valueOf(results);
+				}
+				catch (IllegalArgumentException e) {
+					resultCode = ImportResultCode.OTHER;
+				}
+				catch (NullPointerException e) {
+					resultCode = ImportResultCode.OTHER;
+				}
+
+				if (resultCode == ImportResultCode.SUCCESS) {
+					importSuccessful();
 				}
 				else {
-					importFailed(results);
+					importFailed(resultCode);
 				}
 			}
         });
@@ -46,14 +67,24 @@ public class ImportPresenter extends Presenter {
 		this.resetForm();
 	}
 
-	private void importSuccessful(String results) {
+	private void importSuccessful() {
 		this.resetForm();
-		Window.alert("Upload successful (Import states it was successful too)");
+		this.view.showSuccessMessage();
 	}
 
-	private void importFailed(String results) {
+	private void importFailed(ImportResultCode code) {
 		this.resetForm();
-		Window.alert(results);
+		
+		switch (code) {
+			case UNSUPPORTED_FORMAT:
+				this.view.showErrorFormatMessage();
+				break;
+			case NO_FILE_UPLOADED:
+				this.view.showErrorNoFileMessage();
+			break;
+			default:
+				this.view.showErrorUploadMessage();
+		}
 	}
 	
 	protected void resetForm() {

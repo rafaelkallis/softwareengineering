@@ -3,13 +3,13 @@ package we.are.bubblesort.MovieApp.server;
 import java.io.IOException;
 
 import we.are.bubblesort.MovieApp.shared.Collection;
-import we.are.bubblesort.MovieApp.shared.ImportFormatException;
+import we.are.bubblesort.MovieApp.shared.ImportException;
 
 public class MovieImportDAO {
 	String records[][];
 	int n_movies;
 	
-	public MovieImportDAO(String content) throws ImportFormatException, IOException{
+	public MovieImportDAO(String content) throws ImportException, IOException{
 		String [][] temp_records = Parser.getInstance().parseTSV(content);
 		this.n_movies = temp_records[0].length;
 		this.records = new String[11][this.n_movies];
@@ -38,7 +38,7 @@ public class MovieImportDAO {
 	 * @returns MovieImportDAO[]
 	 * @pre content is '\t' separated
 	 */
-	public static MovieImportDAO[] shuffle(String content, int movies_per_object) throws ImportFormatException, IOException{
+	public static MovieImportDAO[] shuffle(String content, int movies_per_object) throws ImportException, IOException{
 		String [][] all_records = Parser.getInstance().parseTSV(content);
 		int n_all_records = all_records[0].length;
 		Collection<MovieImportDAO> movie_import_dao_collection = new Collection<MovieImportDAO>();

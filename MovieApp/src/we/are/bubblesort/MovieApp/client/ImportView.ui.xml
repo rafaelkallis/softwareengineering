@@ -10,6 +10,18 @@
 	            	<g:Hidden ui:field="session" />
 	            </g:FlowPanel>
 		    </g:FlowPanel>
+		    <g:FlowPanel visible="false" ui:field="errorUpload" addStyleNames="alert alert-danger">
+		        <g:HTML><p>Ein technischer Fehler ist aufgetreten. Bitte versuchen Sie es erneut.</p></g:HTML>
+		    </g:FlowPanel>
+		    <g:FlowPanel visible="false" ui:field="errorNoFile" addStyleNames="alert alert-danger">
+		        <g:HTML><p>Bitte wählen Sie zuerst eine Datei aus.</p></g:HTML>
+		    </g:FlowPanel>
+		    <g:FlowPanel visible="false" ui:field="errorFormat" addStyleNames="alert alert-danger">
+		        <g:HTML><p>Das hochgeladene Format kann leider nicht verarbeitet werden.</p></g:HTML>
+		    </g:FlowPanel>
+		    <g:FlowPanel visible="false" ui:field="success" addStyleNames="alert alert-success">
+		        <g:HTML><p>Der Import war erfolgreich.</p></g:HTML>
+		    </g:FlowPanel>
 		   	<g:FlowPanel addStyleNames="form-group">
 		        <g:FlowPanel addStyleNames="col-sm-offset-3 col-sm-8">
 	            	<g:Button addStyleNames="btn btn-primary" ui:field="submit">Hochladen</g:Button>

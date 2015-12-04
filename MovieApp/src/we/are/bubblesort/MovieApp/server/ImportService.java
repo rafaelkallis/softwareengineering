@@ -19,6 +19,7 @@ import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreInputStream;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.utils.SystemProperty;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,21 +47,21 @@ public class ImportService extends HttpServlet {
 		
 		Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(request);
         List<BlobKey> blobKeyList = blobs.get("importCSV");
-		response.setContentType("text/plain");
-		
-        for(BlobKey blobKey : blobKeyList){
-        	if(blobKey == null){
-        		response.getWriter().write("error: upload failed");
-        	}else{       		
-        		try {
-					this.importContent(this.getContent(blobKey));
-					response.getWriter().write("success");
-				} catch (ImportFormatException e) {
-					response.getWriter().write("error: "+e.getMessage());
-				}      		
-        		
-        	}
+        
+        response.setContentType("text/html");
+        try{
+        	if(blobKeyList == null){
+            	throw new ImportException(ImportResultCode.NO_FILE_UPLOADED);
+            }
+    		
+            for(BlobKey blobKey : blobKeyList) {
+				this.importContent(this.getContent(blobKey));
+				response.getWriter().write(ImportResultCode.SUCCESS.name());    		
+            }
+        } catch (ImportException e) {
+        	response.getWriter().write(e.getImportResultCode().name());
         }
+        
 	}
 	
 	/*
@@ -70,7 +71,12 @@ public class ImportService extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         String uploadUrl = blobstoreService.createUploadUrl("/import");
-        
+
+		// change the computer name to standard localhost ip address, if in dev mode
+		if(SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
+			uploadUrl = uploadUrl.replaceAll("//[^/]+", "//127.0.0.1:8888");
+		}
+       
 		OutputStream o = response.getOutputStream();
 		o.write((uploadUrl).getBytes());
 		o.flush();
@@ -103,7 +109,7 @@ public class ImportService extends HttpServlet {
 	 * @param content the content to be imported to the DB
 	 * @param format [CSV,Excel,TSV, ..]
 	 */
-	public void importContent(String content) throws ImportFormatException, IOException{
+	public void importContent(String content) throws ImportException, IOException{
 		for(MovieImportDAO importDAO : MovieImportDAO.shuffle(content, MOVIES_PER_QUERY)){			
 			this.import_movies(importDAO);
 			this.import_languages(importDAO);

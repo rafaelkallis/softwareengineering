@@ -5,14 +5,14 @@ import java.io.IOException;
 import org.junit.Test;
 
 import we.are.bubblesort.MovieApp.server.Parser;
-import we.are.bubblesort.MovieApp.shared.ImportFormatException;
+import we.are.bubblesort.MovieApp.shared.ImportException;
 
 public class ParserTest {
 
 	Parser parser = Parser.getInstance();
 	
 	@Test
-	public void testParse() throws IOException, ImportFormatException {
+	public void testParse() throws IOException, ImportException {
 		String tsv_string0 = "31138563	/m/0gh76d7	A Royal Divorce	1926			{}	{}	{\"/m/03g3w\": \"History\", \"/m/07s9rl0\": \"Drama\"}";
 		String[][] parsed0 = parser.parseTSV(tsv_string0);
 		assertEquals("31138563",						parsed0[0][0].toString());
@@ -42,7 +42,7 @@ public class ParserTest {
 	}
 	
 	@Test
-	public void testQuotes() throws IOException, ImportFormatException{
+	public void testQuotes() throws IOException, ImportException{
 		String tsv_string0 = "31138563	/m/0gh76d7	\"A Royal\" Divorce	1926			{}	{}	{\"/m/03g3w\": \"History\", \"/m/07s9rl0\": \"Drama\"}";
 		String[][] parsed0 = parser.parseTSV(tsv_string0);
 		assertEquals("31138563",						parsed0[0][0].toString());
@@ -57,8 +57,8 @@ public class ParserTest {
 		assertEquals("History, Drama",					parsed0[9][0].toString());
 	}
 	
-	@Test (expected=ImportFormatException.class)
-	public void testImportFormatException() throws IOException, ImportFormatException{
+	@Test (expected=ImportException.class)
+	public void testImportFormatException() throws IOException, ImportException{
 		String csv_string = "31138563,/m/0gh76d7,\"A Royal\" Divorce,1926,,,{},{},{\"/m/03g3w\": \"History\", \"/m/07s9rl0\": \"Drama\"}";
 		@SuppressWarnings("unused")
 		String[][] parsed0 = parser.parseTSV(csv_string);

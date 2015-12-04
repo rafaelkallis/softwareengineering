@@ -9,6 +9,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Hidden;
+import com.google.gwt.user.client.ui.Panel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ImportView extends View {
@@ -21,6 +22,10 @@ public class ImportView extends View {
 	@UiField FormPanel form;
 	@UiField FileUpload file;
 	@UiField Hidden session;
+	@UiField Panel errorUpload;
+	@UiField Panel errorFormat;
+	@UiField Panel success;
+	@UiField Panel errorNoFile;
 	
 	@UiHandler("submit")
 	void onSubmit(ClickEvent e) {
@@ -33,6 +38,29 @@ public class ImportView extends View {
         this.form.setEncoding(FormPanel.ENCODING_MULTIPART);
         this.form.setMethod(FormPanel.METHOD_POST);
         this.file.setName("importCSV");
+	}
+	
+	public void clearMessages() {
+		this.errorFormat.setVisible(false);
+		this.errorNoFile.setVisible(false);
+		this.errorUpload.setVisible(false);
+		this.success.setVisible(false);
+	}
+	
+	public void showSuccessMessage() {
+		this.success.setVisible(true);
+	}
+	
+	public void showErrorNoFileMessage() {
+		this.errorNoFile.setVisible(true);
+	}
+	
+	public void showErrorUploadMessage() {
+		this.errorUpload.setVisible(true);
+	}
+	
+	public void showErrorFormatMessage() {
+		this.errorFormat.setVisible(true);
 	}
 	
 	public void indicateSetup() {
