@@ -14,13 +14,20 @@ public class FilterPresenterTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	@Test
-	public void testaddFilter() {
+	public void getAttribute() {
+		
 	}
-
+	
 	@Test
-	public void testGetFilterValues() {
+	public void getValue() {
+		
+	}
+	
+	@Test
+	public void setValue() {
+		
 	}
 
 }

@@ -17,27 +17,17 @@ public class AppControllerTest {
 	}
 
 	@Test
-	public void testInitAddAppViewToPanel() {
+	public void testGetSectionByName() {
+		
 	}
-
+	
 	@Test
-	public void testSetupSections() {
+	public void testGetSectionById() {
+		
 	}
-
+	
 	@Test
-	public void testActivateSection() {
+	public void activateSection() {
+		
 	}
-
-	@Test
-	public void testHideAllSections() {
-	}
-
-	@Test
-	public void testOnActivateSection() {
-	}
-
-	@Test
-	public void testbind() {
-	}
-
 }

@@ -15,7 +15,11 @@ public class FilterBarPresenterTest {
 	}
 
 	@Test
-	public void test() {
+	public void testaddFilter() {
+	}
+
+	@Test
+	public void testGetFilterValues() {
 	}
 
 }
