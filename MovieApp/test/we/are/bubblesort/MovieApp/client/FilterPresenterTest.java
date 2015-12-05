@@ -1,33 +1,27 @@
 package we.are.bubblesort.MovieApp.client;
 
-import org.junit.After;
-import org.junit.Before;
+import static org.junit.Assert.*;
+
 import org.junit.Test;
+
+import we.are.bubblesort.MovieApp.shared.MovieAttribute;
 
 public class FilterPresenterTest {
 	FilterPresenter filterPresenter;
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
 	
 	@Test
 	public void getAttribute() {
+		FilterPresenter filter = new FilterPresenter(new MovieAttributeMock("test"), new FilterViewMock());
+		MovieAttribute attribute = filter.getAttribute();
 		
+		assertNotNull(attribute);
+		assertEquals(attribute.value, "test");
 	}
 	
 	@Test
 	public void getValue() {
+		FilterPresenter filter = new FilterPresenter(new MovieAttributeMock("test"), new FilterViewMock());
 		
+		assertEquals(filter.getValue(), "test");
 	}
-	
-	@Test
-	public void setValue() {
-		
-	}
-
 }
