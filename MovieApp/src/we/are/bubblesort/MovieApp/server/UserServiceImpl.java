@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-
 import org.mindrot.jbcrypt.BCrypt;
 
 import we.are.bubblesort.MovieApp.client.UserService;

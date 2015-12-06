@@ -30,6 +30,10 @@ public final class AppController extends Presenter implements AppActivateSection
 		this.mainNavigation = new SectionNavigationPresenter(new ButtonNavigationView(), this.eventBus);
 	}
 
+	public AppController(Collection<Section> sections) {
+		this.sections = sections;
+	}
+
 	public void init(Panel appPanel) {
 		this.view.appMainNavigationPanel.add(this.mainNavigation.getCompositeView());
 

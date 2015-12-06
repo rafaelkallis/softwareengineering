@@ -34,6 +34,12 @@ public class FilterPresenter extends Presenter {
 		});
 	}
 	
+	public FilterPresenter(MovieAttribute attribute, FilterViewInterface view) {
+		this.view = view;
+		this.attribute = attribute;
+		this.isLoaded = true;
+	}
+
 	public MovieAttribute getAttribute() {
 		return this.attribute;
 	}

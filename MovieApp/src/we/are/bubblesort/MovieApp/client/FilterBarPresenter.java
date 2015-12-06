@@ -8,6 +8,9 @@ import we.are.bubblesort.MovieApp.shared.UnorderedSet;
 public class FilterBarPresenter extends Presenter implements FilterChangedEventHandler {
 	protected QueryServiceAsync queryService;
 	protected UnorderedSet<FilterPresenter> presenters = new UnorderedSet<FilterPresenter>();
+
+	FilterBarPresenter() {
+	}
 	
 	FilterBarPresenter(QueryServiceAsync queryService) {
 		this.queryService = queryService;
@@ -17,6 +20,10 @@ public class FilterBarPresenter extends Presenter implements FilterChangedEventH
 		this.presenters.add(filter);
 		
 		filter.addHandler(FilterChangedEvent.TYPE, this);
+	}
+	
+	public UnorderedSet<FilterPresenter> getFilters() {
+		return this.presenters;
 	}
 	
 	public UnorderedSet<MovieAttribute> getFilterValues() {
